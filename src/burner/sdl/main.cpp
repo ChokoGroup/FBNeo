@@ -36,6 +36,7 @@ bool gamefound = 0;
 const char* romname = NULL;
 
 extern void InitSupportPaths();
+extern bool useUniBIOS;
 
 #ifdef BUILD_SDL2
 SDL_Window* sdlWindow = NULL;
@@ -61,6 +62,10 @@ int parseSwitches(int argc, char* argv[])
 		else if (strcmp(argv[i], "-menu") == 0)
 		{
 			set_commandline_option_not_config(usemenu, 1);
+		}
+		else if (strcmp(argv[i], "-unibios") == 0)
+		{
+			useUniBIOS = true;
 		}
 		else if (strcmp(argv[i], "-novsync") == 0)
 		{
@@ -350,12 +355,18 @@ int main(int argc, char* argv[])
 	//SDL_ShowCursor(SDL_DISABLE);
 
 #if defined(BUILD_SDL2) && !defined(SDL_WINDOWS)
-    // Load mapping from file if it exists
+	// Make CHA joysticks automatically mapped, also other CHA in USB joystick mode
+	SDL_GameControllerAddMapping("030000005a1c00002400000010010000,CHA Controller P1,x:b0,y:b1,leftshoulder:b2,a:b3,b:b4,rightshoulder:b5,start:b6,back:b7,leftx:a0,lefty:a1,");
+	SDL_GameControllerAddMapping("030000005b1c00002500000010010000,CHA Controller P2,x:b0,y:b1,leftshoulder:b2,a:b3,b:b4,rightshoulder:b5,start:b6,back:b7,leftx:a0,lefty:a1,");
+	SDL_GameControllerAddMapping("030000006b1d00000401000001010000,CHA Controller USB Mode,x:b0,y:b1,leftshoulder:b2,a:b3,b:b4,rightshoulder:b5,start:b6,back:b7,leftx:a0,lefty:a1,");
+
+	// Load mapping from file if it exists
 	char gamecontrollerdbfile[MAX_PATH] = _T("");
-	TCHAR *szSDLconfigPath = NULL;
-	szSDLconfigPath = SDL_GetPrefPath("fbneo", "config");
+	TCHAR *szSDLconfigPath = _T("/opt/fbneo/config/");
+//	TCHAR *szSDLconfigPath = NULL;
+//	szSDLconfigPath = SDL_GetPrefPath("fbneo", "config");
 	_stprintf(gamecontrollerdbfile, _T("%sgamecontrollerdb.txt"), szSDLconfigPath);
-	SDL_free(szSDLconfigPath);
+//	SDL_free(szSDLconfigPath);
 	if (SDL_GameControllerAddMappingsFromFile(gamecontrollerdbfile) > 0) printf("Game controller mappings loaded from: %s\n", gamecontrollerdbfile);
 #endif
 

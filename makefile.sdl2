@@ -1,4 +1,4 @@
-# Makefile for FBNeo, SDL2
+# Makefile for FBNeo for CHA, SDL2
 #
 # The first pass makes sure all intermediary targets are present. The second pass updates
 # any targets, if necessary. (Intermediary) targets which have their own unique rules
@@ -39,6 +39,8 @@ INCLUDE_AVI_RECORDING=
 BUILD_A68K=
 UNICODE=
 
+# BUILD_NATIVE = 1
+BUILD_CHA = 1
 
 #
 #	Specify paths/files
@@ -180,14 +182,21 @@ LD	= $(CC)
 AS	= nasm
 
 # While cross-compiling, tools need to be compiled for host so that they can be executed by host.
-# if HOST_CC is not set, then we aren't cross-compiling, so we'll use target compiler as host compiler
-ifeq ($(HOST_CC),)
-HOST_CC       := $(CC)
-HOST_CXX      := $(CXX)
-HOST_CFLAGS   := $(CFLAGS)
-HOST_CXXFLAGS := $(CXXFLAGS)
-HOST_LDFLAGS  := $(LDFLAGS)
+# if CROSS_COMP is not set, then we aren't cross-compiling, so we'll use target compiler as host compiler
+ifeq ($(CROSS_COMP),)
+  HOST_CC := $(CC)
+  HOST_CXX := $(CXX)
+  HOST_CFLAGS   := $(CFLAGS)
+  HOST_CXXFLAGS := $(CXXFLAGS)
+  HOST_LDFLAGS  := $(LDFLAGS)
+else
+  CC = arm-linux-gnueabihf-gcc
+  CXX = arm-linux-gnueabihf-g++
+  HOST_CC = gcc -m32
+  HOST_CXX = g++ -m32
 endif
+
+
 
 #LDFLAGS	= -static
 
@@ -211,7 +220,7 @@ ASFLAGS	=  -O1 -f coff -w-orphan-labels
 #       DEF     = -Dsinf=\(float\)sin -Dcosf=\(float\)cos -Dasinf=\(float\)asin -Dacosf=\(float\)acos -Dsqrtf=\(float\)sqrt
 
 # FIXME
-	DEF	:= -DBUILD_SDL2 -DUSE_SPEEDHACKS -DFILENAME=$(NAME) -DUSE_FILE32API
+	DEF	:= -DBUILD_CHA -DBUILD_SDL2 -DUSE_SPEEDHACKS -DFILENAME=$(NAME) -DUSE_FILE32API
 
 ifdef FORCE_PULSE_AUDIO
 	DEF	:= $(DEF) -DFORCE_PULSE_AUDIO

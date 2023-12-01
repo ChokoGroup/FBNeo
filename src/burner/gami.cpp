@@ -2179,9 +2179,10 @@ void GetHistoryDatHardwareToken(char *to_string)
 INT32 ConfigGameLoadHardwareDefaults()
 {
 #if defined(BUILD_SDL2) && !defined(SDL_WINDOWS)
-	TCHAR *szFolderName = NULL;
+	TCHAR *szFolderName = _T("/opt/fbneo/");
+//	TCHAR *szFolderName = NULL;
 	TCHAR szFileName[MAX_PATH] = _T("");
-	szFolderName = SDL_GetPrefPath(NULL, "fbneo");		// Get fbneo folder path
+//	szFolderName = SDL_GetPrefPath(NULL, "fbneo");		// Get fbneo folder path
 #else
 	TCHAR *szFileName = _T("");
 #endif
@@ -2212,7 +2213,7 @@ INT32 ConfigGameLoadHardwareDefaults()
 	}
 
 #if defined(BUILD_SDL2) && !defined(SDL_WINDOWS)
-	SDL_free(szFolderName);
+//	SDL_free(szFolderName);
 #endif
 	return 0;
 }
@@ -2225,12 +2226,13 @@ INT32 GameInpDefault()
 	UINT32 i;
 
 #if defined(BUILD_SDL2) && !defined(SDL_WINDOWS)
-	TCHAR *szSDLconfigPath = NULL;
-	szSDLconfigPath = SDL_GetPrefPath("fbneo", "config");
+	TCHAR *szSDLconfigPath = _T("/opt/fbneo/config/");
+//	TCHAR *szSDLconfigPath = NULL;
+//	szSDLconfigPath = SDL_GetPrefPath("fbneo", "config");
 	for (INT32 nPlayer = 0; nPlayer < 4; nPlayer++) {
 		_stprintf(szPlayerDefaultIni[nPlayer], _T("%sp%ddefaults.ini"), szSDLconfigPath, nPlayer + 1);
 	}
-	SDL_free(szSDLconfigPath);
+//	SDL_free(szSDLconfigPath);
 
 	for (INT32 nPlayer = 0; nPlayer < nMaxPlayers; nPlayer++) {
 		GameInputAutoIni(nPlayer, szPlayerDefaultIni[nPlayer], false);

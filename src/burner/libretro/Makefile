@@ -83,6 +83,11 @@ ifneq (,$(findstring unix,$(platform)))
 		PLATFORM_DEFINES := -marm -mcpu=cortex-a7 -mfpu=neon-vfpv4 -mfloat-abi=hard
 		HAVE_NEON = 1
 		USE_CYCLONE = 1
+		# if CROSS_CHA is not set, then we are not cross-compiling for Capcom Home Arcade
+		ifneq ($(CROSS_CHA),)
+			CC = arm-linux-gnueabihf-gcc
+			CXX = arm-linux-gnueabihf-g++
+		endif
 	else ifneq (,$(findstring rpi3,$(platform)))
 		ifneq (,$(findstring rpi3_64,$(platform)))
 			PLATFORM_DEFINES := -march=armv8-a+crc+simd -mtune=cortex-a53
@@ -508,8 +513,14 @@ endif
 
 # some platforms (3ds, maybe others) are unable to find "main" entry symbol if you build with their sdk
 # so let's use standard compiler for header generation since this is cross-built anyway
-CC_SYSTEM = gcc
-CXX_SYSTEM = g++
+# if CROSS_CHA is not set, then we are not cross-compiling for Capcom Home Arcade
+ifeq ($(CROSS_CHA),)
+  CC_SYSTEM = gcc
+  CXX_SYSTEM = g++
+else
+  CC_SYSTEM = gcc -m32
+  CXX_SYSTEM = g++ -m32
+endif
 
 include $(INCLUDED_MAKEFILE)
 

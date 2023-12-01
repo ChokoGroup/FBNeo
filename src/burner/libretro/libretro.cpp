@@ -446,8 +446,10 @@ void InpDIPSWResetDIPs (void)
 		if (bdi.nFlags == 0xFF)
 		{
 			pgi = GameInp + bdi.nInput + nDIPOffset;
-			if (pgi)
-				pgi->Input.Constant.nConst = (pgi->Input.Constant.nConst & ~bdi.nMask) | (bdi.nSetting & bdi.nMask);
+            if (pgi) {
+                pgi->Input.Constant.nConst = pgi->Input.nVal = (pgi->Input.Constant.nConst & ~bdi.nMask) | (bdi.nSetting & bdi.nMask);
+                if (pgi->Input.pVal)  *(pgi->Input.pVal) = pgi->Input.nVal;
+            }
 		}
 		i++;
 	}

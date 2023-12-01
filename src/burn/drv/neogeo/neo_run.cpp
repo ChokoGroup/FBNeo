@@ -138,6 +138,7 @@ static UINT8 OldDebugDip[2] = { 0, 0 };
 
 // Which 68K BIOS to use
 INT32 nBIOS;
+bool useUniBIOS = false;		// To load NeoGeo games using Universe BIOS ver. 4.0 BIOS
 
 #if defined CYCLE_LOG
 // for debugging -dink (will be removed later)
@@ -3653,6 +3654,7 @@ static UINT8 __fastcall neogeoCDReadByte68KProgram(UINT32 sekAddress)
 static INT32 neogeoReset()
 {
 	if (nNeoSystemType & NEO_SYS_CART) {
+		if (useUniBIOS) NeoSystem = 0x93;
 		NeoLoad68KBIOS(NeoSystem & 0x3f);
 
 		if (nBIOS == -1 || nBIOS == 34) {
@@ -4310,6 +4312,7 @@ INT32 NeoInit()
 	NeoDecodeTextBIOS(0, 0x020000, NeoTextROMBIOS);
 
 	nBIOS = 9999;
+	if (useUniBIOS) NeoSystem = 0x93;
 	if (NeoLoad68KBIOS(NeoSystem & 0x3f)) {
 		return 1;
 	}

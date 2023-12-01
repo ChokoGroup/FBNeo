@@ -1,9 +1,12 @@
 // Burner Config file module
 #include "burner.h"
+#include <sys/stat.h>
+#include <cerrno>
 
 int nIniVersion = 0;
 
 #if defined(BUILD_SDL2) && !defined(SDL_WINDOWS)
+/*
 void FixAndCreateSupportPath(TCHAR *pSupportFolderPath, TCHAR *pBaseFolderName)
 {
 	TCHAR *szSupportFolderFixedPath = NULL;
@@ -15,51 +18,33 @@ void FixAndCreateSupportPath(TCHAR *pSupportFolderPath, TCHAR *pBaseFolderName)
 		SDL_free(szSupportFolderFixedPath);
 	}
 }
-
+*/
 void InitSupportPaths()
 {
-	TCHAR *szBaseFolderName = NULL;
-	szBaseFolderName = SDL_GetPrefPath(NULL, "fbneo");
-	FixAndCreateSupportPath(szAppPreviewsPath, szBaseFolderName);
-	FixAndCreateSupportPath(szAppTitlesPath, szBaseFolderName);
-	FixAndCreateSupportPath(szAppCheatsPath, szBaseFolderName);
-	FixAndCreateSupportPath(szAppHiscorePath, szBaseFolderName);
-	FixAndCreateSupportPath(szAppSamplesPath, szBaseFolderName);
-	FixAndCreateSupportPath(szAppHDDPath, szBaseFolderName);
-	FixAndCreateSupportPath(szAppIpsPath, szBaseFolderName);
-	FixAndCreateSupportPath(szAppIconsPath, szBaseFolderName);
-	FixAndCreateSupportPath(szAppBlendPath, szBaseFolderName);
-	FixAndCreateSupportPath(szAppSelectPath, szBaseFolderName);
-	FixAndCreateSupportPath(szAppVersusPath, szBaseFolderName);
-	FixAndCreateSupportPath(szAppHowtoPath, szBaseFolderName);
-	FixAndCreateSupportPath(szAppScoresPath, szBaseFolderName);
-	FixAndCreateSupportPath(szAppBossesPath, szBaseFolderName);
-	FixAndCreateSupportPath(szAppGameoverPath, szBaseFolderName);
-	FixAndCreateSupportPath(szAppFlyersPath, szBaseFolderName);
-	FixAndCreateSupportPath(szAppMarqueesPath, szBaseFolderName);
-	FixAndCreateSupportPath(szAppControlsPath, szBaseFolderName);
-	FixAndCreateSupportPath(szAppCabinetsPath, szBaseFolderName);
-	FixAndCreateSupportPath(szAppPCBsPath, szBaseFolderName);
-	FixAndCreateSupportPath(szAppHistoryPath, szBaseFolderName);
-	FixAndCreateSupportPath(szAppEEPROMPath, szBaseFolderName);
-	FixAndCreateSupportPath(szAppListsPath, szBaseFolderName);
-	FixAndCreateSupportPath(szAppDatListsPath, szBaseFolderName);
-	FixAndCreateSupportPath(szAppArchivesPath, szBaseFolderName);
-
-	TCHAR szAppPresets[MAX_PATH] = _T("config/presets/");
-	FixAndCreateSupportPath(szAppPresets, szBaseFolderName);
-
-	SDL_free(szBaseFolderName);
+	int dir_err = mkdir("/opt/fbneo", 0755);
+	if ((dir_err == 0) || (errno == EEXIST)) dir_err = mkdir("/opt/fbneo/config", 0755);
+	if ((dir_err == 0) || (errno == EEXIST)) dir_err = mkdir("/opt/fbneo/config/games", 0755);
+	if ((dir_err == 0) || (errno == EEXIST)) dir_err = mkdir("/opt/fbneo/config/presets", 0755);
+	if ((dir_err == 0) || (errno == EEXIST)) dir_err = mkdir("/opt/fbneo/support", 0755);
+	if ((dir_err == 0) || (errno == EEXIST)) dir_err = mkdir("/opt/fbneo/support/cheats", 0755);
+	if ((dir_err == 0) || (errno == EEXIST)) dir_err = mkdir("/opt/fbneo/support/hiscores", 0755);
+	if ((dir_err == 0) || (errno == EEXIST)) dir_err = mkdir("/opt/fbneo/support/samples", 0755);
+	if ((dir_err == 0) || (errno == EEXIST)) dir_err = mkdir("/opt/fbneo/support/hdd", 0755);
+	if ((dir_err == 0) || (errno == EEXIST)) dir_err = mkdir("/opt/fbneo/support/ips", 0755);
+	if ((dir_err == 0) || (errno == EEXIST)) dir_err = mkdir("/opt/fbneo/support/lists", 0755);
+	if ((dir_err == 0) || (errno == EEXIST)) dir_err = mkdir("/opt/fbneo/support/lists/dat", 0755);
+	if ((dir_err == 0) || (errno == EEXIST)) dir_err = mkdir("/opt/fbneo/screenshots", 0755);
+	if ((dir_err < 0) && (errno != EEXIST)) printf("*** Error creating support folders! ***\n");
 }
 #endif
 
 static void CreateConfigName(char* szConfig)
 {
 #if defined(BUILD_SDL2) && !defined(SDL_WINDOWS)
-	TCHAR *szSDLconfigPath = NULL;
-	szSDLconfigPath = SDL_GetPrefPath("fbneo", "config");
+	TCHAR *szSDLconfigPath = _T("/opt/fbneo/config/");
+//	szSDLconfigPath = SDL_GetPrefPath("fbneo", "config");
 	_stprintf(szConfig, _T("%sfbneo.ini"), szSDLconfigPath);
-	SDL_free(szSDLconfigPath);
+//	SDL_free(szSDLconfigPath);
 #else
 	_stprintf(szConfig, _T("fbneo.ini"));
 #endif

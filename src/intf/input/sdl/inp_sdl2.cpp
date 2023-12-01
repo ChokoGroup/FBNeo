@@ -16,6 +16,8 @@ static int* JoyPrevAxes = NULL;
 /* static */ int nJoystickCount = 0;						// Number of joysticks connected to this machine
 int buttons [4][8]= { {-1,-1,-1,-1,-1,-1,-1,-1}, {-1,-1,-1,-1,-1,-1,-1,-1}, {-1,-1,-1,-1,-1,-1,-1,-1}, {-1,-1,-1,-1,-1,-1,-1,-1} }; // 4 joysticks buttons 0 -5 and start / select
 
+static int GCdefault = -1;	// Game controller to use for ingame menu/exit combos
+
 void setup_kemaps(void)
 {
 	SDLtoFBK[SDL_SCANCODE_UNKNOWN] = 0;
@@ -312,6 +314,8 @@ static int SDLinpJoystickInit(int i)
 
 		bind = SDL_GameControllerGetBindForButton(GCList[i], SDL_CONTROLLER_BUTTON_START  );
 		buttons[i][7] = bind.value.button;
+
+		if (GCdefault == -1) GCdefault = i;	// Use this game controller for ingame menu/exit combos
    }
 
 	return 0;
@@ -386,6 +390,8 @@ int SDLinpInit()
 		SDL_Init(SDL_INIT_JOYSTICK | SDL_INIT_GAMECONTROLLER);
 	}
 
+	GCdefault = -1;	// Game controller to use for ingame menu/exit combos
+
 	// Set up the joysticks
 	nJoystickCount = SDL_NumJoysticks();
 	for (int i = 0; i < nJoystickCount; i++) {
@@ -412,12 +418,21 @@ static unsigned char bMouseRead = 0;
 static struct { unsigned char buttons; int xdelta; int ydelta; } SDLinpMouseState;
 
 bool do_reset_game = false;		// To reset game without reloading
+bool do_diag_menu = false;		// To call diag menu in some games
 
+// Simulate F2 key pressed if diag input is requested
 // Simulate F3 key pressed if reset game is requested
 int SDL_KEY_IS_DOWN(int key)
 {
 	if (FBKtoSDL[key] > 0) {
 		switch (key) {
+			case FBK_F2:
+				if (do_diag_menu) {
+					do_diag_menu = false;
+					return 1;
+				} else {
+					return SDLinpKeyboardState[SDL_SCANCODE_F2];
+				}
 			case FBK_F3:
 				if (do_reset_game) {
 					do_reset_game = false;
@@ -449,6 +464,9 @@ int SDLinpStart()
 	return 0;
 }
 
+SDL_Event sdlevent = {};
+int QuitWaitCounterP1 = 0;
+
 // Read one of the joysticks
 static int ReadJoystick()
 {
@@ -457,6 +475,26 @@ static int ReadJoystick()
 	}
 
 	SDL_GameControllerUpdate();		// This updates Joysticks too
+
+	if (SDL_GameControllerGetButton(GCList[GCdefault], SDL_CONTROLLER_BUTTON_START)) {
+		if (SDL_GameControllerGetButton(GCList[GCdefault], SDL_CONTROLLER_BUTTON_BACK)) {	// If Start+Coin is pressed...
+			if (QuitWaitCounterP1 < 40) QuitWaitCounterP1++;	// Delay to allow UniBIOS Menu to be triggered
+			else {												// If hold then quit game (send F12)
+				sdlevent.type = SDL_KEYUP;
+				sdlevent.key.keysym.sym = SDLK_F12;
+				SDL_PushEvent(&sdlevent);
+			}
+		} else if (SDL_GameControllerGetAxis(GCList[GCdefault], SDL_CONTROLLER_AXIS_LEFTY) > JOYSTICK_DEAD_ZONE) {
+			// If Start+Down then show diagnostic menu (send F2)
+			do_diag_menu = true;
+		} else if (SDL_GameControllerGetAxis(GCList[GCdefault], SDL_CONTROLLER_AXIS_LEFTY) < -JOYSTICK_DEAD_ZONE) {
+			// If Start+Up then show ingame menu (send TAB)
+			while (SDL_GameControllerGetButton(GCList[GCdefault], SDL_CONTROLLER_BUTTON_START)) SDL_GameControllerUpdate(); // Wait for START button to be released first
+			sdlevent.type = SDL_KEYDOWN;
+			sdlevent.key.keysym.sym = SDLK_TAB;
+			SDL_PushEvent(&sdlevent);
+		}
+	} else QuitWaitCounterP1 = 0;
 
 	// All joysticks have been Read this frame
 	bJoystickRead = 1;

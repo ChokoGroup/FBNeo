@@ -23,7 +23,7 @@ config/*
 fbneo.dat
 
 # libretro
-/.github
+# /.github
 *.so
 *.o
 src/burner/libretro/ctvmake

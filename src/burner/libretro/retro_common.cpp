@@ -55,7 +55,7 @@ INT32 g_audio_samplerate = 48000;
 UINT32 nMemcardMode = 0;
 UINT32 nLightgunCrosshairEmulation = 0;
 UINT8 *diag_input;
-uint32_t g_opt_neo_geo_mode = 0;
+uint32_t g_opt_neo_geo_mode = NEOGEO_UNI;
 
 #ifdef USE_CYCLONE
 // 0 - c68k, 1 - m68k
@@ -1353,13 +1353,16 @@ void check_variables(void)
 
 	if (pgi_diag)
 	{
+/*
 		var.key = var_fbneo_diagnostic_input.key;
 		if (environ_cb(RETRO_ENVIRONMENT_GET_VARIABLE, &var) && var.value)
 		{
 			if (strcmp(var.value, "Hold Start") == 0)
 			{
+*/
 				diag_input = diag_input_start;
 				SetDiagInpHoldFrameDelay(60);
+/*
 			}
 			else if(strcmp(var.value, "Start + A + B") == 0)
 			{
@@ -1412,6 +1415,7 @@ void check_variables(void)
 				SetDiagInpHoldFrameDelay(0);
 			}
 		}
+*/
 	}
 
 	if (bIsNeogeoCartGame)

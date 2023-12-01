@@ -964,11 +964,12 @@ int PlayerDefaultsMenuSelected()
 
 int SaveHardwareDefaultMapping()
 {
-	TCHAR *szFolderName = NULL;
+	TCHAR *szFolderName = _T("/opt/fbneo/");
+//	TCHAR *szFolderName = NULL;
 	TCHAR szFileName[MAX_PATH] = _T("");
-	szFolderName = SDL_GetPrefPath(NULL, "fbneo");		// Get fbneo folder path
+//	szFolderName = SDL_GetPrefPath(NULL, "fbneo");		// Get fbneo folder path
 	_stprintf(szFileName, _T("%s%s"), szFolderName, gamehw_cfg[gamehw_cfg_index].ini);
-	SDL_free(szFolderName);
+//	SDL_free(szFolderName);
 
 	FILE* h = _tfopen(szFileName, _T("wt"));
 	if (h) {
@@ -1070,11 +1071,12 @@ int InitHardwareDefaultInputs()
 	// Get inputs list used in current game
 	UINT16 totalcount = getPlayerGameInputs(255, 0);
 
-	TCHAR *szFolderName = NULL;
+	TCHAR *szFolderName = _T("/opt/fbneo/");
+//	TCHAR *szFolderName = NULL;
 	TCHAR szFileName[MAX_PATH] = _T("");
-	szFolderName = SDL_GetPrefPath(NULL, "fbneo");		// Get fbneo folder path
+//	szFolderName = SDL_GetPrefPath(NULL, "fbneo");		// Get fbneo folder path
 	_stprintf(szFileName, _T("%s%s"), szFolderName, gamehw_cfg[gamehw_cfg_index].ini);
-	SDL_free(szFolderName);
+//	SDL_free(szFolderName);
 
 	// Update inputs list with defaults from presets/*.ini
 	char szLine[1024];
@@ -1337,11 +1339,12 @@ int SaveMappedButtons()
 		char* pos = NULL;
 		TCHAR gamecontrollerdbpath[MAX_PATH] = {0};
 		TCHAR tempgamecontrollerdbpath[MAX_PATH] = {0};
-		TCHAR *szSDLconfigPath = NULL;
-		szSDLconfigPath = SDL_GetPrefPath("fbneo", "config");
+		TCHAR *szSDLconfigPath = _T("/opt/fbneo/config/");
+//		TCHAR *szSDLconfigPath = NULL;
+//		szSDLconfigPath = SDL_GetPrefPath("fbneo", "config");
 		_stprintf(gamecontrollerdbpath, _T("%sgamecontrollerdb.txt"), szSDLconfigPath);
 		_stprintf(tempgamecontrollerdbpath, _T("%sgamecontrollerdb.TEMP.txt"), szSDLconfigPath);
-		SDL_free(szSDLconfigPath);
+//		SDL_free(szSDLconfigPath);
 
 		// Delete old mappings for this joystick that may exist in gamecontrollerdb.txt
 		if ((gamecontrollerdbfile = _tfopen(gamecontrollerdbpath, _T("rt"))) && (tempfile = _tfopen(tempgamecontrollerdbpath, _T("wt")))) {

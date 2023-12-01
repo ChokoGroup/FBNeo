@@ -525,7 +525,7 @@ static INT32 GameInpAnalog2RetroInpAnalog(struct GameInp* pgi, unsigned port, un
 // Digital to digital mapping
 static INT32 GameInpDigital2RetroInpKey(struct GameInp* pgi, unsigned port, unsigned id, char *szn, unsigned device = RETRO_DEVICE_JOYPAD, unsigned nInput = GIT_SWITCH)
 {
-	if(bButtonMapped || pgi->nType != BIT_DIGITAL) return 0;
+	if(pgi->nType != BIT_DIGITAL) return 0;
 	pgi->nInput = nInput;
 	if(nInput == GIT_SWITCH)
 	{
@@ -2063,6 +2063,25 @@ static INT32 GameInpSpecialOne(struct GameInp* pgi, INT32 nPlayer, char* szb, ch
 	// map VS unisystem select button to L3
 	if (strncmp("select", szb, 6) == 0 && (nHardwareCode & HARDWARE_PUBLIC_MASK) == HARDWARE_NVS)
 		GameInpDigital2RetroInpKey(pgi, nPlayer, RETRO_DEVICE_ID_JOYPAD_L3, description);
+
+	// Dungeons & Dragons - shadow over mystara
+	// fix P2 can not use magic in CHA with Choko Hack
+	if ((parentrom && strcmp(parentrom, "ddsom") == 0) ||
+		(drvname && strcmp(drvname, "ddsom") == 0)
+	) {
+		if (strcmp("Attack", description) == 0) {
+			GameInpDigital2RetroInpKey(pgi, nPlayer, RETRO_DEVICE_ID_JOYPAD_Y, description);
+		}
+		if (strcmp("Jump", description) == 0) {
+			GameInpDigital2RetroInpKey(pgi, nPlayer, RETRO_DEVICE_ID_JOYPAD_X, description);
+		}
+		if (strcmp("Use", description) == 0) {
+			GameInpDigital2RetroInpKey(pgi, nPlayer, RETRO_DEVICE_ID_JOYPAD_B, description);
+		}
+		if (strcmp("Select", description) == 0) {
+			GameInpDigital2RetroInpKey(pgi, nPlayer, RETRO_DEVICE_ID_JOYPAD_A, description);
+		}
+	}
 
 	return 0;
 }

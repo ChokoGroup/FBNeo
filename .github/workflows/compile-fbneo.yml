@@ -1,0 +1,67 @@
+name: Compile FBNeo for CHA
+
+# Controls when the workflow will run
+on:
+  push:
+    branches: [ master ]
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+  workflow_run:
+    workflows: ["Sync fork"]
+    types:
+      - completed
+
+jobs:
+  build-and-release:
+    runs-on: ubuntu-latest
+    container: node:current-buster-slim
+    if: ${{ github.event.workflow_run.conclusion == 'success' || github.event_name == 'workflow_dispatch' || github.event_name == 'push' }}
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+      - name: Install needed tools
+        run: |
+          echo "NOW=$(date +%F)" >> "$GITHUB_ENV"
+          apt-get update
+          apt-get install --assume-yes curl ca-certificates build-essential zip
+          curl -fsSL https://cli.github.com/packages/githubcli-archive-keyring.gpg | dd of=/usr/share/keyrings/githubcli-archive-keyring.gpg
+          chmod go+r /usr/share/keyrings/githubcli-archive-keyring.gpg
+          echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/githubcli-archive-keyring.gpg] https://cli.github.com/packages stable main" | tee /etc/apt/sources.list.d/github-cli.list > /dev/null
+          apt-get update
+          apt-get install --assume-yes gh
+          dpkg --add-architecture armhf
+          apt-get update
+          apt-get install --assume-yes gcc-multilib g++-multilib binutils-multiarch
+          apt-get install --assume-yes gcc-arm-linux-gnueabihf g++-arm-linux-gnueabihf libudev-dev:armhf libsdl2-dev:armhf libsdl2-image-dev:armhf
+      - name: Compile FinalBurn Neo for CHA
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          git clone "https://${GITHUB_REPOSITORY_OWNER}:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git" .
+          git config --global --add safe.directory /__w/FBNeo/FBNeo
+          make sdl2 CROSS_COMP=1 RELEASEBUILD=1
+      - name: Release FinalBurn Neo for CHA
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          mv ./fbneo ./FinalBurn\ Neo\ for\ CHA/
+          cp ./metadata/hiscore.dat ./FinalBurn\ Neo\ for\ CHA/
+          echo "${{ env.NOW }}" > ./FinalBurn\ Neo\ for\ CHA/fbneo_build_date.txt
+          cp ./README.md ./FinalBurn\ Neo\ for\ CHA/_README_.TXT
+          zip -9 -r ./FinalBurn\ Neo\ for\ CHA.zip ./FinalBurn\ Neo\ for\ CHA
+          mkdir ./FinalBurn\ Neo\ for\ CHA\ -\ Help\ Videos
+          mv *.mp4 ./FinalBurn\ Neo\ for\ CHA\ -\ Help\ Videos/
+          zip -9 -r ./FinalBurn\ Neo\ for\ CHA\ -\ Help\ Videos.zip ./FinalBurn\ Neo\ for\ CHA\ -\ Help\ Videos
+          gh release delete latest --cleanup-tag -y || git tag latest
+          gh release create latest --latest --generate-notes --target "master" --title "FinalBurn Neo for CHA (${{ env.NOW }})" ./*.zip
+      - name: Compile fbneo_libretro.so
+        run: |
+          make -j$(nproc) -C src/burner/libretro generate-files platform=unix_rpi2 CROSS_CHA=1
+          make -j$(nproc) -C src/burner/libretro platform=unix_rpi2 CROSS_CHA=1
+      - name: Release fbneo_libretro.so
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          mv src/burner/libretro/fbneo_libretro.so ./fbneo_libretro.${{ env.NOW }}.so
+          zip -9 fbneo_libretro.zip fbneo_libretro*.so
+          gh release delete libretro-latest --cleanup-tag -y || git tag libretro-latest
+          gh release create libretro-latest --prerelease --generate-notes --target "master" --title "FinalBurn Neo libretro core for CHA (${{ env.NOW }})" ./fbneo_libretro.zip

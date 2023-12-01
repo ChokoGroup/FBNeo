@@ -3,7 +3,10 @@
 #include "neocdlist.h"
 int bDrvOkay = 0;                       // 1 if the Driver has been initted okay, and it's okay to use the BurnDrv functions
 
-char szAppRomPaths[DIRS_MAX][MAX_PATH] = { { "/usr/local/share/roms/" }, { "roms/" }, };
+// Choko Hack will mount "/mnt/fbneo" in "/opt/fbneo"
+// We can have roms in pendrive either in "/roms" or "/fbneo/roms"
+// We also include the path for the official games that come with CHA: "/usr/share/roms/"
+char szAppRomPaths[DIRS_MAX][MAX_PATH] = { { "/opt/fbneo/roms/" }, { "/mnt/roms/" }, { "/usr/share/roms/" }, };
 
 static bool bSaveRAM = false;
 

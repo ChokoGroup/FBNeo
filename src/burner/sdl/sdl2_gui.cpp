@@ -83,10 +83,10 @@ SDL_Texture* LoadTitleImage(SDL_Renderer* renderer, SDL_Texture* loadedTexture)
 static void CreateRomDatName(TCHAR* szRomDat)
 {
 #if defined(BUILD_SDL2) && !defined(SDL_WINDOWS)
-	TCHAR *szSDLconfigPath = NULL;
-	szSDLconfigPath = SDL_GetPrefPath("fbneo", "config");
+	TCHAR *szSDLconfigPath = _T("/opt/fbneo/config/");
+//	szSDLconfigPath = SDL_GetPrefPath("fbneo", "config");
 	_stprintf(szRomDat, _T("%sroms.found"), szSDLconfigPath);
-	SDL_free(szSDLconfigPath);
+//	SDL_free(szSDLconfigPath);
 #else
 	_stprintf(szRomDat, _T("fbneo.dat"));
 #endif

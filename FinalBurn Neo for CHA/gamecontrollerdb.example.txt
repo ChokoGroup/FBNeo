@@ -1,0 +1,3 @@
+030000006b1d00000401000001010000,CHA Controller USB Mode,x:b0,y:b1,leftshoulder:b2,a:b3,b:b4,rightshoulder:b5,start:b6,back:b7,leftx:a0,lefty:a1,platform:Linux,
+030000005a1c00002400000010010000,CHA Controller P1,x:b0,y:b1,leftshoulder:b2,a:b3,b:b4,rightshoulder:b5,start:b6,back:b7,leftx:a0,lefty:a1,platform:Linux,
+030000005b1c00002500000010010000,CHA Controller P2,x:b0,y:b1,leftshoulder:b2,a:b3,b:b4,rightshoulder:b5,start:b6,back:b7,leftx:a0,lefty:a1,platform:Linux,
