@@ -130,6 +130,7 @@ struct cache_entry
 	INT32			tmap;
 	UINT8			page;
 	UINT8			bank;
+	UINT8			dirty;
 };
 
 static cache_entry tmap_cache[32];
@@ -969,7 +970,7 @@ static struct BurnInputInfo TitlefInputList[] = {
 	{"P1 Right Stick Right",BIT_DIGITAL,	DrvJoy2 + 6,	"p3 right"	},
 
 	{"P2 Coin",				BIT_DIGITAL,	DrvJoy13 + 2,	"p2 coin"	},
-	{"P2 Start",			BIT_DIGITAL,	DrvJoy13 + 4,	"p2 start"	},
+	{"P2 Start",			BIT_DIGITAL,	DrvJoy5 + 5,	"p2 start"	},
 	{"P2 Left Stick Up",	BIT_DIGITAL,	DrvJoy9 + 5,	"p2 up"		},
 	{"P2 Left Stick Down",	BIT_DIGITAL,	DrvJoy9 + 4,	"p2 down"	},
 	{"P2 Left Stick Left",	BIT_DIGITAL,	DrvJoy9 + 7,	"p2 left"	},
@@ -978,6 +979,9 @@ static struct BurnInputInfo TitlefInputList[] = {
 	{"P2 Right Stick Down",	BIT_DIGITAL,	DrvJoy10 + 4,	"p4 down"	},
 	{"P2 Right Stick Left",	BIT_DIGITAL,	DrvJoy10 + 7,	"p4 left"	},
 	{"P2 Right Stick Right",BIT_DIGITAL,	DrvJoy10 + 6,	"p4 right"	},
+
+	{"P3 Start",			BIT_DIGITAL,	DrvJoy13 + 4,	"p3 start"	},
+	{"P4 Start",			BIT_DIGITAL,	DrvJoy13 + 5,	"p4 start"	},
 
 	{"Reset",				BIT_DIGITAL,	&DrvReset,		"reset"		},
 	{"Service Mode",		BIT_DIGITAL,	DrvJoy5 + 1,	"diag"		},
@@ -1110,7 +1114,7 @@ DEFAULT_UNUSED_DIPS_WHEEL(F1lap, 0x0d)
 DEFAULT_UNUSED_DIPS_MS_WHEEL(Orunners, 0x19)
 DEFAULT_UNUSED_DIPS_MS(Harddunk, 0x3d)
 DEFAULT_UNUSED_DIPS_MS(Scross, 0x13)
-DEFAULT_UNUSED_DIPS_MS(Titlef, 0x19)
+DEFAULT_UNUSED_DIPS_MS(Titlef, 0x1b)
 
 static INT32 irq_callback(INT32 /*state*/)
 {
@@ -1427,6 +1431,18 @@ static UINT16 io_chip_read(INT32 which, UINT32 offset)
 	return 0xffff;
 }
 
+static inline void mark_dirty(UINT32 offset)
+{
+	if (offset < (0x1ff00 >> 1)) {
+		for (cache_entry *entry = cache_head; entry != NULL; entry = entry->next) {
+			if (entry->page == (offset >> 9)) {
+				entry->dirty = 1;
+				GenericTilemapSetTileDirty(entry->tmap, offset & 0x1ff);
+			}
+		}
+	}
+}
+
 static void system32_main_write_word(UINT32 address, UINT16 data)
 {
 #ifdef LOG_RW
@@ -1440,6 +1456,13 @@ static void system32_main_write_word(UINT32 address, UINT16 data)
 		if (memory_protection_write) {
 			memory_protection_write(offset, data, 0xffff);
 		}
+		return;
+	}
+
+	if ((address & 0xf00000) == 0x300000) {
+		UINT16 *ram = (UINT16*)DrvVidRAM;
+		ram[(address & 0x1ffff) >> 1] = BURN_ENDIAN_SWAP_INT16(data);
+		mark_dirty((address & 0x1ffff) >> 1);
 		return;
 	}
 
@@ -1555,6 +1578,12 @@ static void system32_main_write_byte(UINT32 address, UINT8 data)
 		return;
 	}
 
+	if ((address & 0xf00000) == 0x300000) {
+		DrvVidRAM[address & 0x1ffff] = data;
+		mark_dirty((address & 0x1ffff) >> 1);
+		return;
+	}
+
 	if ((address & 0xfe0000) == 0x400000) {
 		INT32 offset = address & 0x1ffff;
 		DrvSprRAM[offset] = data;
@@ -1661,6 +1690,11 @@ static UINT16 system32_main_read_word(UINT32 address)
 			return memory_protection_read(offset, 0xffff);
 		}
 		return BURN_ENDIAN_SWAP_INT16(ram[offset]);
+	}
+
+	if ((address & 0xf00000) == 0x300000) {
+		UINT16 *ram = (UINT16*)DrvVidRAM;
+		return BURN_ENDIAN_SWAP_INT16(ram[(address & 0x1ffff) >> 1]);
 	}
 
 	if ((address & 0xf00000) == 0x500000) {
@@ -1897,7 +1931,6 @@ static tilemap_callback( layer )
 static void tilemap_configure_allocate()
 {
 	GenericTilesInit();
-	GenericTilemapInit(0, TILEMAP_SCAN_ROWS, layer_map_callback, 16, 16, 32, 16);
 	GenericTilemapSetGfx(0, DrvGfxROM[0], 4, 16, 16, graphics_length[0], 0, 0x3ff);
 
 	if (has_gun) {
@@ -1918,6 +1951,12 @@ static void tilemap_configure_allocate()
 		entry->bank = 0;
 		entry->next = cache_head;
 		entry->tmap = tmap;
+		entry->dirty = 1;
+
+		GenericTilemapInit(tmap, TILEMAP_SCAN_ROWS, layer_map_callback, 16, 16, 32, 16);
+		GenericTilemapUseDirtyTiles(tmap);
+
+		BurnBitmapAllocate(32 + tmap, 512, 256, true); // each tmap gets a draw-buffer (speedup)
 
 		cache_head = entry;
 	}
@@ -2439,8 +2478,8 @@ static void system32_v60_map()
 	for (INT32 i = 0; i < 0x100000; i+=0x10000) {
 		v60MapMemory(DrvV60RAM,			0x200000 + i, 0x20ffff + i, MAP_RAM);
 	}
-	for (INT32 i = 0; i < 0x100000; i+=0x20000) {
-		v60MapMemory(DrvVidRAM,			0x300000 + i, 0x31ffff + i, MAP_RAM);
+	for (INT32 i = 0; i < 0x100000; i+=0x20000) { // mapped in handler
+//		v60MapMemory(DrvVidRAM,			0x300000 + i, 0x31ffff + i, MAP_RAM);
 	}
 	for (INT32 i = 0; i < 0x100000; i+=0x20000) {
 		v60MapMemory(DrvSprRAM,			0x400000 + i, 0x41ffff + i, MAP_ROM); // writes in handler
@@ -2466,8 +2505,8 @@ static void system32_v70_map()
 	for (INT32 i = 0; i < 0x100000; i+=0x20000) {
 		v60MapMemory(DrvV60RAM,			0x200000 + i, 0x21ffff + i, MAP_RAM);
 	}
-	for (INT32 i = 0; i < 0x100000; i+=0x20000) {
-		v60MapMemory(DrvVidRAM,			0x300000 + i, 0x31ffff + i, MAP_RAM);
+	for (INT32 i = 0; i < 0x100000; i+=0x20000) { // mapped in handler
+//		v60MapMemory(DrvVidRAM,			0x300000 + i, 0x31ffff + i, MAP_RAM);
 	}
 	for (INT32 i = 0; i < 0x100000; i+=0x20000) {
 		v60MapMemory(DrvSprRAM,			0x400000 + i, 0x41ffff + i, MAP_ROM); // writes in handler
@@ -2758,6 +2797,8 @@ static INT32 find_cache_entry(INT32 page, INT32 bank)
 
 	entry->page = page;
 	entry->bank = bank;
+	entry->dirty = 1;
+	GenericTilemapAllTilesDirty(entry->tmap);
 
 	prev->next = entry->next;
 	entry->next = cache_head;
@@ -2817,7 +2858,11 @@ static void update_tilemap_zoom(clip_struct cliprect, UINT16 *ram, INT32 destbmp
 
 	for (INT32 i = 0; i < 4; i++) {
 		tilemap_cache = &tmap_cache[tilemaps[i]];
-		GenericTilemapDraw(0, 1 + i, 0);
+
+		if (tilemap_cache->dirty) {
+			tilemap_cache->dirty = 0;
+			GenericTilemapDraw(tilemap_cache->tmap, 32 + tilemap_cache->tmap, 0);
+		}
 	}
 
 	INT32 opaque = 0;
@@ -2885,8 +2930,8 @@ static void update_tilemap_zoom(clip_struct cliprect, UINT16 *ram, INT32 destbmp
 		{
 			INT32 transparent = 0;
 
-			UINT16 const *tm0 = BurnBitmapGetBitmap((((srcy >> 27) & 2) + 0)+1);
-			UINT16 const *tm1 = BurnBitmapGetBitmap((((srcy >> 27) & 2) + 1)+1);
+			UINT16 const *tm0 = BurnBitmapGetBitmap(tmap_cache[tilemaps[(((srcy >> 27) & 2) + 0)]].tmap + 32 );
+			UINT16 const *tm1 = BurnBitmapGetBitmap(tmap_cache[tilemaps[(((srcy >> 27) & 2) + 1)]].tmap + 32 );
 			UINT16 const *src[2] = { &tm0[((srcy >> 20) & 0xff) * 512], &tm1[((srcy >> 20) & 0xff) * 512] };
 
 			UINT32 srcx = srcx_start;
@@ -2933,7 +2978,11 @@ static void update_tilemap_rowscroll(clip_struct cliprect, UINT16 *m_videoram, I
 
 	for (INT32 i = 0; i < 4; i++) {
 		tilemap_cache = &tmap_cache[tilemaps[i]];
-		GenericTilemapDraw(0, 1 + i, 0);
+
+		if (tilemap_cache->dirty) {
+			tilemap_cache->dirty = 0;
+			GenericTilemapDraw(tilemap_cache->tmap, 32 + tilemap_cache->tmap, 0);
+		}
 	}
 
 	INT32 opaque = (opaquey_hack) ? ((m_videoram[0x1ff8e/2] >> (8 + bgnum)) & 1) : 0;
@@ -2999,8 +3048,8 @@ static void update_tilemap_rowscroll(clip_struct cliprect, UINT16 *m_videoram, I
 				srcy = (yscroll + BURN_ENDIAN_SWAP_INT16(table[0x200 + 0x100 * (bgnum - 2) + y])) & 0x1ff;
 
 			/* look up the pages and get their source pixmaps */
-			UINT16 const *tm0 = BurnBitmapGetBitmap(((srcy >> 7) & 2) + 0 + 1);
-			UINT16 const *tm1 = BurnBitmapGetBitmap(((srcy >> 7) & 2) + 1 + 1);
+			UINT16 const *tm0 = BurnBitmapGetBitmap(tmap_cache[tilemaps[((srcy >> 7) & 2) + 0]].tmap + 32 );
+			UINT16 const *tm1 = BurnBitmapGetBitmap(tmap_cache[tilemaps[((srcy >> 7) & 2) + 1]].tmap + 32 );
 			UINT16 const *src[2] = { &tm0[(srcy & 0xff) * 512], &tm1[(srcy & 0xff) * 512] };
 
 			/* loop over extents */

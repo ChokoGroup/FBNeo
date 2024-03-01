@@ -1639,6 +1639,8 @@ static struct BurnInputInfo WofsgzbInputList[] =
 	{"Dip A"            , BIT_DIPSWITCH, &Cpi01A      , "dip"       }, // 1e
 	{"Dip B"            , BIT_DIPSWITCH, &Cpi01C      , "dip"       }, // 1f
 	{"Dip C"            , BIT_DIPSWITCH, &Cpi01E      , "dip"       }, // 20
+	{"Dip D"            , BIT_DIPSWITCH, &Cps1QSDip   , "dip"       }, // 21
+	{"Dip Ex"            ,BIT_DIPSWITCH, &VerSwitcher , "dip"       }, // 22
 };
 
 STDINPUTINFO(Wofsgzb)
@@ -1676,6 +1678,7 @@ static struct BurnInputInfo WofhInputList[] =
  	{"P3 Fire 3"        , BIT_DIGITAL  , CpsInp177+6, "p3 fire 3" }, // 1a
 
  	{"Reset"            , BIT_DIGITAL  , &CpsReset,   "reset"     }, // 1b
+//	{"Diagnostic"       , BIT_DIGITAL  , CpsInp018+6, "diag"      }, // Black screen/disable
  	{"Service"          , BIT_DIGITAL  , CpsInp018+2, "service"   }, // 1c
  	{"Dip A"            , BIT_DIPSWITCH, &Cpi01A    , "dip"       }, // 1d
  	{"Dip B"            , BIT_DIPSWITCH, &Cpi01C    , "dip"       }, // 1e
@@ -4784,44 +4787,46 @@ STDDIPINFO(Wof)
 
 static struct BurnDIPInfo WofhfhDIPList[]=
 {
+	DIP_OFFSET(0x1e)
+
 	// Defaults
-	{0x1b, 0xff, 0xff, 0x00, NULL                     },
-	{0x1c, 0xff, 0xff, 0x13, NULL                     },
-	{0x1d, 0xff, 0xff, 0x00, NULL                     },
+	{0x00, 0xff, 0xff, 0x00, NULL                     },
+	{0x01, 0xff, 0xff, 0x13, NULL                     },
+	{0x02, 0xff, 0xff, 0x00, NULL                     },
 	
 	// Dip A
-	{0   , 0xfe, 0   , 4   , "Coin A"                 },
-	{0x1b, 0x01, 0x03, 0x00, "1 Coin 1 Credit"        },
-	{0x1b, 0x01, 0x03, 0x01, "1 Coin 2 Credits"       },
-	{0x1b, 0x01, 0x03, 0x02, "1 Coin 3 Credits"       },
-	{0x1b, 0x01, 0x03, 0x03, "1 Coin 4 Credits"       },
+	{0   , 0xfe, 0   , 4   , "Coinage"                },
+	{0x00, 0x01, 0x03, 0x00, "1 Coin 1 Credit"        },
+	{0x00, 0x01, 0x03, 0x01, "1 Coin 2 Credits"       },
+	{0x00, 0x01, 0x03, 0x02, "1 Coin 3 Credits"       },
+	{0x00, 0x01, 0x03, 0x03, "1 Coin 4 Credits"       },
 	
 	// Dip B
 	{0   , 0xfe, 0   , 8   , "Difficulty"             },
-	{0x1c, 0x01, 0x07, 0x00, "Extra Easy"             },
-	{0x1c, 0x01, 0x07, 0x01, "Very Easy"              },
-	{0x1c, 0x01, 0x07, 0x02, "Easy"                   },
-	{0x1c, 0x01, 0x07, 0x03, "Normal"                 },
-	{0x1c, 0x01, 0x07, 0x04, "Hard"                   },
-	{0x1c, 0x01, 0x07, 0x05, "Very Hard"              },
-	{0x1c, 0x01, 0x07, 0x06, "Extra Hard"             },
-	{0x1c, 0x01, 0x07, 0x07, "Hardest"                },
+	{0x01, 0x01, 0x07, 0x00, "Extra Easy"             },
+	{0x01, 0x01, 0x07, 0x01, "Very Easy"              },
+	{0x01, 0x01, 0x07, 0x02, "Easy"                   },
+	{0x01, 0x01, 0x07, 0x03, "Normal"                 },
+	{0x01, 0x01, 0x07, 0x04, "Hard"                   },
+	{0x01, 0x01, 0x07, 0x05, "Very Hard"              },
+	{0x01, 0x01, 0x07, 0x06, "Extra Hard"             },
+	{0x01, 0x01, 0x07, 0x07, "Hardest"                },
 	
 	{0   , 0xfe, 0   , 8   , "Lives"                  },
-	{0x1c, 0x01, 0x70, 0x70, "Start 4 Continue 5"     },
-	{0x1c, 0x01, 0x70, 0x60, "Start 3 Continue 4"     },
-	{0x1c, 0x01, 0x70, 0x50, "Start 2 Continue 3"     },
-	{0x1c, 0x01, 0x70, 0x40, "Start 1 Continue 2"     },
-	{0x1c, 0x01, 0x70, 0x30, "Start 4 Continue 4"     },
-	{0x1c, 0x01, 0x70, 0x20, "Start 3 Continue 3"     },
-	{0x1c, 0x01, 0x70, 0x10, "Start 2 Continue 2"     },
-	{0x1c, 0x01, 0x70, 0x00, "Start 1 Continue 1"     },
+	{0x01, 0x01, 0x70, 0x70, "Start 4 Continue 5"     },
+	{0x01, 0x01, 0x70, 0x60, "Start 3 Continue 4"     },
+	{0x01, 0x01, 0x70, 0x50, "Start 2 Continue 3"     },
+	{0x01, 0x01, 0x70, 0x40, "Start 1 Continue 2"     },
+	{0x01, 0x01, 0x70, 0x30, "Start 4 Continue 4"     },
+	{0x01, 0x01, 0x70, 0x20, "Start 3 Continue 3"     },
+	{0x01, 0x01, 0x70, 0x10, "Start 2 Continue 2"     },
+	{0x01, 0x01, 0x70, 0x00, "Start 1 Continue 1"     },
 	
 	// Dip C
 	{0   , 0xfe, 0   , 3   , "Coin Slots"             },
-	{0x1d, 0x01, 0x03, 0x02, "2 Players 1 Shooter"    },
-	{0x1d, 0x01, 0x03, 0x01, "3 Players 1 Shooter"    },
-	{0x1d, 0x01, 0x03, 0x00, "3 Players 3 Shooters"   },
+	{0x02, 0x01, 0x03, 0x02, "2 Players 1 Shooter"    },
+	{0x02, 0x01, 0x03, 0x01, "3 Players 1 Shooter"    },
+	{0x02, 0x01, 0x03, 0x00, "3 Players 3 Shooters"   },
 };
 
 STDDIPINFO(Wofhfh)
@@ -4834,9 +4839,11 @@ static struct BurnDIPInfo WofsgzbDIPList[] =
 	{0x00, 0xff, 0xff, 0x00, NULL                      },
 	{0x01, 0xff, 0xff, 0x13, NULL                      },
 	{0x02, 0xff, 0xff, 0x20, NULL                      },
+	{0x03, 0xff, 0xff, 0x00, NULL                      },
+	{0x04, 0xff, 0xff, 0x00, NULL                      },
 
 	// Dip A
-	{0   , 0xfe, 0   , 4   , "Coin A"                  },
+	{0   , 0xfe, 0   , 4   , "Coinage"                 },
 	{0x00, 0x01, 0x03, 0x00, "1 Coin 1 Credit"         },
 	{0x00, 0x01, 0x03, 0x01, "1 Coin 2 Credits"        },
 	{0x00, 0x01, 0x03, 0x02, "1 Coin 3 Credits"        },
@@ -4869,55 +4876,67 @@ static struct BurnDIPInfo WofsgzbDIPList[] =
 	{0x02, 0x01, 0x03, 0x01, "3 Players 1 Shooter"     },
 	{0x02, 0x01, 0x03, 0x00, "3 Players 3 Shooters"    },
 
-	{0   , 0xfe, 0   , 4   , "Bonus Life"              },
+	{0   , 0xfe, 0   , 4   , "Extend"                  },
 	{0x02, 0x01, 0x30, 0x30, "100k, 300k, 500k, 1000k" },
 	{0x02, 0x01, 0x30, 0x20, "300k"                    },
 	{0x02, 0x01, 0x30, 0x10, "100k"                    },
 	{0x02, 0x01, 0x30, 0x00, "None"                    },
+
+	// Dip D
+	{0   , 0xfe, 0   , 2   , "Sound (Must reload)"     },
+	{0x03, 0x01, 0x01, 0x00, "Original"                },
+	{0x03, 0x01, 0x01, 0x01, "Q Sound"                 },
+
+	// Dip Ex
+	{0   , 0xfe, 0   , 2   , "Scenario (Must reload)"  },
+	{0x04, 0x01, 0x01, 0x00, "Original"                },
+	{0x04, 0x01, 0x01, 0x01, "Wof"                     },
 };
 
 STDDIPINFO(Wofsgzb)
 
 static struct BurnDIPInfo WofhDIPList[]=
 {
+	DIP_OFFSET(0x1d)
+
 	// Defaults
-	{0x1a, 0xff, 0xff, 0x00, NULL                     },
-	{0x1b, 0xff, 0xff, 0x00, NULL                     },
-	{0x1c, 0xff, 0xff, 0x13, NULL                     },
+	{0x00, 0xff, 0xff, 0x00, NULL                     },
+	{0x01, 0xff, 0xff, 0x00, NULL                     },
+	{0x02, 0xff, 0xff, 0x13, NULL                     },
 	
 	// Dip A
 	{0   , 0xfe, 0   , 3   , "Coin Slots"             },
-	{0x1a, 0x01, 0x03, 0x02, "2 Players 1 Shooter"    },
-	{0x1a, 0x01, 0x03, 0x01, "3 Players 1 Shooter"    },
-	{0x1a, 0x01, 0x03, 0x00, "3 Players 3 Shooters"   },
+	{0x00, 0x01, 0x03, 0x02, "2 Players 1 Shooter"    },
+	{0x00, 0x01, 0x03, 0x01, "3 Players 1 Shooter"    },
+	{0x00, 0x01, 0x03, 0x00, "3 Players 3 Shooters"   },
 	
 	// Dip B
 	{0   , 0xfe, 0   , 4   , "Coinage"                },
-	{0x1b, 0x01, 0x03, 0x00, "1 Coin 1 Credit"        },
-	{0x1b, 0x01, 0x03, 0x01, "1 Coin 2 Credits"       },
-	{0x1b, 0x01, 0x03, 0x02, "1 Coin 3 Credits"       },
-	{0x1b, 0x01, 0x03, 0x03, "1 Coin 4 Credits"       },
+	{0x01, 0x01, 0x03, 0x00, "1 Coin 1 Credit"        },
+	{0x01, 0x01, 0x03, 0x01, "1 Coin 2 Credits"       },
+	{0x01, 0x01, 0x03, 0x02, "1 Coin 3 Credits"       },
+	{0x01, 0x01, 0x03, 0x03, "1 Coin 4 Credits"       },
 	
 	// Dip C
 	{0   , 0xfe, 0   , 8   , "Difficulty"             },
-	{0x1c, 0x01, 0x07, 0x00, "Extra Easy"             },
-	{0x1c, 0x01, 0x07, 0x01, "Very Easy"              },
-	{0x1c, 0x01, 0x07, 0x02, "Easy"                   },
-	{0x1c, 0x01, 0x07, 0x03, "Normal"                 },
-	{0x1c, 0x01, 0x07, 0x04, "Hard"                   },
-	{0x1c, 0x01, 0x07, 0x05, "Very Hard"              },
-	{0x1c, 0x01, 0x07, 0x06, "Extra Hard"             },
-	{0x1c, 0x01, 0x07, 0x07, "Hardest"                },
+	{0x02, 0x01, 0x07, 0x00, "Extra Easy"             },
+	{0x02, 0x01, 0x07, 0x01, "Very Easy"              },
+	{0x02, 0x01, 0x07, 0x02, "Easy"                   },
+	{0x02, 0x01, 0x07, 0x03, "Normal"                 },
+	{0x02, 0x01, 0x07, 0x04, "Hard"                   },
+	{0x02, 0x01, 0x07, 0x05, "Very Hard"              },
+	{0x02, 0x01, 0x07, 0x06, "Extra Hard"             },
+	{0x02, 0x01, 0x07, 0x07, "Hardest"                },
 	
 	{0   , 0xfe, 0   , 8   , "Lives"                  },
-	{0x1c, 0x01, 0x70, 0x70, "Start 4 Continue 5"     },
-	{0x1c, 0x01, 0x70, 0x60, "Start 3 Continue 4"     },
-	{0x1c, 0x01, 0x70, 0x50, "Start 2 Continue 3"     },
-	{0x1c, 0x01, 0x70, 0x40, "Start 1 Continue 2"     },
-	{0x1c, 0x01, 0x70, 0x30, "Start 4 Continue 4"     },
-	{0x1c, 0x01, 0x70, 0x20, "Start 3 Continue 3"     },
-	{0x1c, 0x01, 0x70, 0x10, "Start 2 Continue 2"     },
-	{0x1c, 0x01, 0x70, 0x00, "Start 1 Continue 1"     },
+	{0x02, 0x01, 0x70, 0x70, "Start 4 Continue 5"     },
+	{0x02, 0x01, 0x70, 0x60, "Start 3 Continue 4"     },
+	{0x02, 0x01, 0x70, 0x50, "Start 2 Continue 3"     },
+	{0x02, 0x01, 0x70, 0x40, "Start 1 Continue 2"     },
+	{0x02, 0x01, 0x70, 0x30, "Start 4 Continue 4"     },
+	{0x02, 0x01, 0x70, 0x20, "Start 3 Continue 3"     },
+	{0x02, 0x01, 0x70, 0x10, "Start 2 Continue 2"     },
+	{0x02, 0x01, 0x70, 0x00, "Start 1 Continue 1"     },
 };
 
 STDDIPINFO(Wofh)
@@ -5009,44 +5028,52 @@ STDDIPINFO(Wof3jsa)
 
 static struct BurnDIPInfo Wof3sjDIPList[]=
 {
+	DIP_OFFSET(0x1d)
+
 	// Defaults
-	{0x1a, 0xff, 0xff, 0x00, NULL                     },
-	{0x1b, 0xff, 0xff, 0x13, NULL                     },
-	{0x1c, 0xff, 0xff, 0x00, NULL                     },
+	{0x00, 0xff, 0xff, 0x00, NULL                     },
+	{0x01, 0xff, 0xff, 0x13, NULL                     },
+	{0x02, 0xff, 0xff, 0x20, NULL                     },
 	
 	// Dip A
 	{0   , 0xfe, 0   , 4   , "Coinage"                },
-	{0x1a, 0x01, 0x03, 0x00, "1 Coin 1 Credit"        },
-	{0x1a, 0x01, 0x03, 0x01, "1 Coin 2 Credits"       },
-	{0x1a, 0x01, 0x03, 0x02, "1 Coin 3 Credits"       },
-	{0x1a, 0x01, 0x03, 0x03, "1 Coin 4 Credits"       },
+	{0x00, 0x01, 0x03, 0x00, "1 Coin 1 Credit"        },
+	{0x00, 0x01, 0x03, 0x01, "1 Coin 2 Credits"       },
+	{0x00, 0x01, 0x03, 0x02, "1 Coin 3 Credits"       },
+	{0x00, 0x01, 0x03, 0x03, "1 Coin 4 Credits"       },
 	
 	// Dip B
 	{0   , 0xfe, 0   , 8   , "Difficulty"             },
-	{0x1b, 0x01, 0x07, 0x00, "Extra Easy"             },
-	{0x1b, 0x01, 0x07, 0x01, "Very Easy"              },
-	{0x1b, 0x01, 0x07, 0x02, "Easy"                   },
-	{0x1b, 0x01, 0x07, 0x03, "Normal"                 },
-	{0x1b, 0x01, 0x07, 0x04, "Hard"                   },
-	{0x1b, 0x01, 0x07, 0x05, "Very Hard"              },
-	{0x1b, 0x01, 0x07, 0x06, "Extra Hard"             },
-	{0x1b, 0x01, 0x07, 0x07, "Hardest"                },
+	{0x01, 0x01, 0x07, 0x00, "Extra Easy"             },
+	{0x01, 0x01, 0x07, 0x01, "Very Easy"              },
+	{0x01, 0x01, 0x07, 0x02, "Easy"                   },
+	{0x01, 0x01, 0x07, 0x03, "Normal"                 },
+	{0x01, 0x01, 0x07, 0x04, "Hard"                   },
+	{0x01, 0x01, 0x07, 0x05, "Very Hard"              },
+	{0x01, 0x01, 0x07, 0x06, "Extra Hard"             },
+	{0x01, 0x01, 0x07, 0x07, "Hardest"                },
 	
 	{0   , 0xfe, 0   , 8   , "Lives"                  },
-	{0x1b, 0x01, 0x70, 0x70, "Start 4 Continue 5"     },
-	{0x1b, 0x01, 0x70, 0x60, "Start 3 Continue 4"     },
-	{0x1b, 0x01, 0x70, 0x50, "Start 2 Continue 3"     },
-	{0x1b, 0x01, 0x70, 0x40, "Start 1 Continue 2"     },
-	{0x1b, 0x01, 0x70, 0x30, "Start 4 Continue 4"     },
-	{0x1b, 0x01, 0x70, 0x20, "Start 3 Continue 3"     },
-	{0x1b, 0x01, 0x70, 0x10, "Start 2 Continue 2"     },
-	{0x1b, 0x01, 0x70, 0x00, "Start 1 Continue 1"     },
+	{0x01, 0x01, 0x70, 0x70, "Start 4 Continue 5"     },
+	{0x01, 0x01, 0x70, 0x60, "Start 3 Continue 4"     },
+	{0x01, 0x01, 0x70, 0x50, "Start 2 Continue 3"     },
+	{0x01, 0x01, 0x70, 0x40, "Start 1 Continue 2"     },
+	{0x01, 0x01, 0x70, 0x30, "Start 4 Continue 4"     },
+	{0x01, 0x01, 0x70, 0x20, "Start 3 Continue 3"     },
+	{0x01, 0x01, 0x70, 0x10, "Start 2 Continue 2"     },
+	{0x01, 0x01, 0x70, 0x00, "Start 1 Continue 1"     },
 	
 	// Dip C
 	{0   , 0xfe, 0   , 3   , "Coin Slots"             },
-	{0x1c, 0x01, 0x03, 0x02, "2 Players 1 Shooter"    },
-	{0x1c, 0x01, 0x03, 0x01, "3 Players 1 Shooter"    },
-	{0x1c, 0x01, 0x03, 0x00, "3 Players 3 Shooters"   },
+	{0x02, 0x01, 0x03, 0x02, "2 Players 1 Shooter"    },
+	{0x02, 0x01, 0x03, 0x01, "3 Players 1 Shooter"    },
+	{0x02, 0x01, 0x03, 0x00, "3 Players 3 Shooters"   },
+
+	{0   , 0xfe, 0   , 4   , "Extend"                  },
+	{0x02, 0x01, 0x30, 0x30, "100k, 300k, 500k, 1000k" },
+	{0x02, 0x01, 0x30, 0x20, "300k"                    },
+	{0x02, 0x01, 0x30, 0x10, "100k"                    },
+	{0x02, 0x01, 0x30, 0x00, "None"                    },
 };
 
 STDDIPINFO(Wof3sj)
@@ -5113,7 +5140,7 @@ static struct BurnDIPInfo DinoQSoundDIPList[] =
 	{0x1c, 0xff, 0xff, 0x01, NULL                     },
 
 	// Fake Dip
-	{0   , 0xfe, 0   , 2   , "Q Sound"                },
+	{0   , 0xfe, 0   , 2   , "Q Sound (Must reload)"  },
 	{0x1c, 0x01, 0x01, 0x00, "Off"                    },
 	{0x1c, 0x01, 0x01, 0x01, "On"                     },
 };
@@ -5126,7 +5153,7 @@ static struct BurnDIPInfo DinohQSoundDIPList[] =
 	{0x1e, 0xff, 0xff, 0x01, NULL                     },
 
 	// Fake Dip
-	{0   , 0xfe, 0   , 2   , "Q Sound"                },
+	{0   , 0xfe, 0   , 2   , "Q Sound (Must reload)"  },
 	{0x1e, 0x01, 0x01, 0x00, "Off"                    },
 	{0x1e, 0x01, 0x01, 0x01, "On"                     },
 };
@@ -5137,7 +5164,7 @@ static struct BurnDIPInfo PunisherQSoundDIPList[] =
 	{0x14, 0xff, 0xff, 0x01, NULL                     },
 
 	// Fake Dip
-	{0   , 0xfe, 0   , 2   , "Q Sound"                },
+	{0   , 0xfe, 0   , 2   , "Q Sound (Must reload)"  },
 	{0x14, 0x01, 0x01, 0x00, "Off"                    },
 	{0x14, 0x01, 0x01, 0x01, "On"                     },
 };
@@ -5148,7 +5175,7 @@ static struct BurnDIPInfo SlammastQSoundDIPList[] =
 	{0x28, 0xff, 0xff, 0x01, NULL                     },
 
 	// Fake Dip
-	{0   , 0xfe, 0   , 2   , "Q Sound"                },
+	{0   , 0xfe, 0   , 2   , "Q Sound (Must reload)"  },
 	{0x28, 0x01, 0x01, 0x00, "Off"                    },
 	{0x28, 0x01, 0x01, 0x01, "On"                     },
 };
@@ -16275,27 +16302,32 @@ STD_ROM_PICK(Wofahb)
 STD_ROM_FN(Wofahb)
 
 static struct BurnRomInfo wofsgzbRomDesc[] = {
-	{ "p23",	0x080000, 0xd4811b58, BRF_ESS | BRF_PRG | CPS1_68K_PROGRAM_NO_BYTESWAP },
-	{ "p22",	0x080000, 0xf99a6fd3, BRF_ESS | BRF_PRG | CPS1_68K_PROGRAM_NO_BYTESWAP },
-	{ "p21",	0x080000, 0x2c16579e, BRF_ESS | BRF_PRG | CPS1_68K_PROGRAM_NO_BYTESWAP },
+	{ "p23",		0x080000, 0xd4811b58, BRF_ESS | BRF_PRG | CPS1_68K_PROGRAM_NO_BYTESWAP },
+	{ "p22",		0x080000, 0xf99a6fd3, BRF_ESS | BRF_PRG | CPS1_68K_PROGRAM_NO_BYTESWAP },
+	{ "p21",		0x080000, 0x2c16579e, BRF_ESS | BRF_PRG | CPS1_68K_PROGRAM_NO_BYTESWAP },
 
-	{ "a10",	0x080000, 0x5414122b, BRF_GRA | CPS1_TILES },
-	{ "a11",	0x080000, 0x74bc2116, BRF_GRA | CPS1_TILES },
-	{ "a12",	0x080000, 0x529ee8ef, BRF_GRA | CPS1_TILES },
-	{ "a13",	0x080000, 0x9a951cd8, BRF_GRA | CPS1_TILES },
-	{ "a1",		0x080000, 0x0d9cb9bf, BRF_GRA | CPS1_TILES },
-	{ "a2",		0x080000, 0x45227027, BRF_GRA | CPS1_TILES },
-	{ "a3",		0x080000, 0xc5ca2460, BRF_GRA | CPS1_TILES },
-	{ "a4",		0x080000, 0xe349551c, BRF_GRA | CPS1_TILES },
-	{ "a5",		0x080000, 0x71addda7, BRF_GRA | CPS1_TILES },
-	{ "a6",		0x080000, 0x9ad61056, BRF_GRA | CPS1_TILES },
-	{ "a7",		0x080000, 0x80e231ff, BRF_GRA | CPS1_TILES },
-	{ "a8",		0x080000, 0xb0707469, BRF_GRA | CPS1_TILES },
+	{ "a10",		0x080000, 0x5414122b, BRF_GRA | CPS1_TILES },
+	{ "a11",		0x080000, 0x74bc2116, BRF_GRA | CPS1_TILES },
+	{ "a12",		0x080000, 0x529ee8ef, BRF_GRA | CPS1_TILES },
+	{ "a13",		0x080000, 0x9a951cd8, BRF_GRA | CPS1_TILES },
+	{ "a1",			0x080000, 0x0d9cb9bf, BRF_GRA | CPS1_TILES },
+	{ "a2",			0x080000, 0x45227027, BRF_GRA | CPS1_TILES },
+	{ "a3",			0x080000, 0xc5ca2460, BRF_GRA | CPS1_TILES },
+	{ "a4",			0x080000, 0xe349551c, BRF_GRA | CPS1_TILES },
+	{ "a5",			0x080000, 0x71addda7, BRF_GRA | CPS1_TILES },
+	{ "a6",			0x080000, 0x9ad61056, BRF_GRA | CPS1_TILES },
+	{ "a7",			0x080000, 0x80e231ff, BRF_GRA | CPS1_TILES },
+	{ "a8",			0x080000, 0xb0707469, BRF_GRA | CPS1_TILES },
 
-	{ "m9",		0x010000, 0x210c376f, BRF_PRG | CPS1_Z80_PROGRAM },
+	{ "m9",			0x010000, 0x210c376f, BRF_PRG | CPS1_Z80_PROGRAM },
+	{ "tk2_qa.5k",	0x020000, 0xc9183a0d, BRF_PRG }, // 16
 
-	{ "m18",	0x020000, 0xab740743, BRF_SND | CPS1_OKIM6295_SAMPLES },
-	{ "m19",	0x020000, 0xfbb8d8c1, BRF_SND | CPS1_OKIM6295_SAMPLES },
+	{ "m18",		0x020000, 0xab740743, BRF_SND | CPS1_OKIM6295_SAMPLES },
+	{ "m19",		0x020000, 0xfbb8d8c1, BRF_SND | CPS1_OKIM6295_SAMPLES },
+	{ "tk2-q1.1k",	0x080000, 0x611268cf, BRF_SND }, // 19
+	{ "tk2-q2.2k",	0x080000, 0x20f55ca9, BRF_SND },
+	{ "tk2-q3.3k",	0x080000, 0xbfcf6f52, BRF_SND },
+	{ "tk2-q4.4k",	0x080000, 0x36642e88, BRF_SND },
 };
 
 STD_ROM_PICK(wofsgzb)
@@ -16329,22 +16361,16 @@ static KabukiDecode KabukiDecodeFunction;
 
 static INT32 GameHasStars = 0;
 
-void wof_patch(void) {
-	if (Cps1QSDip & 1)
-		wof_decode();
+#define qs_patch(Name)		\
+void Name##_patch() {		\
+	if (Cps1QSDip & 1)		\
+		Name##_decode();	\
 }
-void dino_patch(void) {
-	if (Cps1QSDip & 1)
-		dino_decode();
-}
-void punisher_patch(void) {
-	if (Cps1QSDip & 1)
-		punisher_decode();
-}
-void slammast_patch(void) {
-	if (Cps1QSDip & 1)
-		slammast_decode();
-}
+
+qs_patch(wof)
+qs_patch(dino)
+qs_patch(punisher)
+qs_patch(slammast)
 
 struct GameConfig {
 	const char *DriverName;
@@ -16693,7 +16719,7 @@ static const struct GameConfig ConfigTable[] =
 	{ "wofah"         , CPS_B_21_DEF, mapper_TK263B, 0, wof_decode          },
 	{ "wofaha"        , CPS_B_21_DEF, mapper_TK263B, 0, wof_decode          },
 	{ "wofahb"        , CPS_B_21_DEF, mapper_TK263B, 0, wof_decode          },
-	{ "wofsgzb"		  , CPS_B_21_DEF, mapper_TKSGZB, 0, NULL                },
+	{ "wofsgzb"		  , CPS_B_21_DEF, mapper_TKSGZB, 0, wof_patch           },
 	{ "sfzch"         , CPS_B_21_DEF, mapper_SFZ63B, 0, NULL                },
 	{ "sfzcha"        , CPS_B_21_DEF, mapper_SFZ63B, 0, NULL                },
 	{ "wofch"         , CPS_B_21_DEF, mapper_sfzch , 0, wof_decode          },
@@ -17453,11 +17479,7 @@ static void Jurassic99PatchCallback()
 	};
 
 	for (INT32 i = 0; i < (sizeof(patch_fix_a) / sizeof(UINT32)) >> 1; i++) {
-#ifdef LSB_FIRST
 		CpsRom[patch_fix_a[(i << 1) + 0]] = (UINT8)patch_fix_a[(i << 1) + 1];
-#else
-		CpsRom[patch_fix_a[(i << 1) + 0] ^ 1] = (UINT8)patch_fix_a[(i << 1) + 1];
-#endif
 	}
 
 	if (Cps1QSDip & 1) {
@@ -17481,11 +17503,7 @@ static void Jurassic99PatchCallback()
 		};
 
 		for (INT32 i = 0; i < (sizeof(patch_fix_b) / sizeof(UINT32)) >> 1; i++) {
-#ifdef LSB_FIRST
 			CpsRom[patch_fix_b[(i << 1) + 0]] = (UINT8)patch_fix_b[(i << 1) + 1];
-#else
-			CpsRom[patch_fix_b[(i << 1) + 0] ^ 1] = (UINT8)patch_fix_b[(i << 1) + 1];
-#endif
 		}
 	}
 }
@@ -17502,11 +17520,7 @@ static void DinotpicPatchCallback()
 	};
 
 	for (INT32 i = 0; i < (sizeof(patch_fix_a) / sizeof(UINT32)) >> 1; i++) {
-#ifdef LSB_FIRST
 		CpsRom[patch_fix_a[(i << 1) + 0]] = (UINT8)patch_fix_a[(i << 1) + 1];
-#else
-		CpsRom[patch_fix_a[(i << 1) + 0] ^ 1] = (UINT8)patch_fix_a[(i << 1) + 1];
-#endif
 	}
 }
 
@@ -21003,7 +21017,7 @@ static INT32 WofhInit()
 	Cps1ObjDrawCallbackFunction = FcrashObjDraw;
 	AmendProgRomCallback = WofhPatch;
 	
-	nRet = TwelveMhzInit();
+	nRet = Cps1RasterInit();
 	if (nRet) return nRet;
 	
 	SekOpen(0);
@@ -21549,10 +21563,49 @@ static INT32 WofablInit()
 	return nRet;
 }
 
+static void WofsgzbPatchCallback()
+{
+	// QSound
+	if (Cps1Qs) {
+		CpsRom[0x056c] = 0x46;
+
+		// Clearing oki's z80 and samples
+		memset(CpsZRom, 0, 0x010000);
+		memset(CpsAd,   0, 0x040000);
+
+		// Loading QSound's z80
+		BurnLoadRom(CpsZRom,    16, 1);
+		BurnLoadRom(CpsEncZRom, 16, 1);
+
+		// Loading QSound's samples
+		for (INT32 nNum = 0, nIndex = 19; nNum < 4; nNum++, nIndex++) {
+			BurnLoadRom((UINT8*)CpsQSam + 0x080000 * nNum, nIndex, 1);
+		}
+
+	}
+
+	// Scenario: Same as wof
+	if (VerSwitcher & 1) {
+		CpsRom[0xb1b0] = 0x00;
+		*((UINT16*)(CpsRom + 0xb380)) = BURN_ENDIAN_SWAP_INT16(0x2020);
+		*((UINT16*)(CpsRom + 0xb382)) = BURN_ENDIAN_SWAP_INT16(0x522d);
+		*((UINT16*)(CpsRom + 0xb384)) = BURN_ENDIAN_SWAP_INT16(0xff88);
+	}
+}
+
 static INT32 WofsgzbInit()
 {
 	Cps1DrawAtVblank = 1;
 //	CpsBootlegEEPROM = 1;
+
+	Cps1Qs = Cps1QSDip & 1;
+
+	if (Cps1Qs) {
+		CRI.nCpsZRomLen = 0x010000;
+		CRI.nCpsQSamLen = 0x200000;
+	}
+
+	AmendProgRomCallback = WofsgzbPatchCallback;
 
 	return TwelveMhzInit();
 }
@@ -26185,6 +26238,31 @@ struct BurnDriver BurnDrvCpsdinojd = {
 };
 
 
+// Cadillacs and Dinosaurs (Crazy BBQ, Hack)
+// GOTVG 20240216
+
+static struct BurnRomInfo dinokrRomDesc[] = {
+	{ "cdkr_23a.8f",	0x080000, 0xa0069172, BRF_ESS | BRF_PRG | CPS1_68K_PROGRAM_NO_BYTESWAP },
+	{ "cdkr_22a.7f",	0x080000, 0x2169a778, BRF_ESS | BRF_PRG | CPS1_68K_PROGRAM_NO_BYTESWAP },
+	{ "cdkr_21a.6f",	0x080000, 0x7a6fbea7, BRF_ESS | BRF_PRG | CPS1_68K_PROGRAM_NO_BYTESWAP },
+
+	DINO_COMPONENT
+};
+
+STD_ROM_PICK(dinokr)
+STD_ROM_FN(dinokr)
+
+struct BurnDriver BurnDrvCpsdinokr = {
+	"dinokr", "dino", NULL, NULL, "2024",
+	"Cadillacs and Dinosaurs (Crazy BBQ, Hack)\0", NULL, "hack", "CPS1 / QSound",
+	NULL, NULL, NULL, NULL,
+	BDF_GAME_WORKING | BDF_CLONE | BDF_HACK | BDF_HISCORE_SUPPORTED, 3, HARDWARE_CAPCOM_CPS1_QSOUND, GBF_SCRFIGHT, 0,
+	NULL, dinokrRomInfo, dinokrRomName, NULL, NULL, NULL, NULL, DinoInputInfo, DinoDIPInfo,
+	DinoInit, DrvExit, Cps1Frame, CpsRedraw, CpsAreaScan,
+	&CpsRecalcPal, 0x1000, 384, 224, 4, 3
+};
+
+
 // Cadillacs and Dinosaurs (Triassic, Hack)
 // GOTVG 20231029
 
@@ -27161,7 +27239,7 @@ STD_ROM_FN(kodlys)
 
 static INT32 KodOcInit()
 {
-	if (0x300 < nBurnCPUSpeedAdjust) {
+	if (0x300 > nBurnCPUSpeedAdjust) {
 		nBurnCPUSpeedAdjust = 0x300;
 	}
 
@@ -27440,12 +27518,12 @@ struct BurnDriver BurnDrvCpswofdr = {
 
 
 // Tenchi wo Kurau II: Sekiheki no Tatakai (Master 2020, Hack)
-// GOTVG 20230615
+// GOTVG 20240210
 
 static struct BurnRomInfo wofdr20RomDesc[] = {
-	{ "tk2dr20_23c.8f",	0x080000, 0xb45850a9, BRF_ESS | BRF_PRG | CPS1_68K_PROGRAM_NO_BYTESWAP },
+	{ "tk2dr20_23c.8f",	0x080000, 0xd5187954, BRF_ESS | BRF_PRG | CPS1_68K_PROGRAM_NO_BYTESWAP },
 	{ "tk2dr_22c.7f",	0x080000, 0x16405A96, BRF_ESS | BRF_PRG | CPS1_68K_PROGRAM_NO_BYTESWAP },
-	{ "tk2dr20_21c.6f",	0x080000, 0x79ae6869, BRF_ESS | BRF_PRG | CPS1_68K_PROGRAM_NO_BYTESWAP },
+	{ "tk2dr20_21c.6f",	0x080000, 0x6ae37d1b, BRF_ESS | BRF_PRG | CPS1_68K_PROGRAM_NO_BYTESWAP },
 	{ "tk2dr20_20c.5f",	0x080000, 0x3a9c0284, BRF_ESS | BRF_PRG | CPS1_68K_PROGRAM_NO_BYTESWAP },
 
 	WOFJ_TILE1
@@ -27466,7 +27544,7 @@ STD_ROM_PICK(wofdr20)
 STD_ROM_FN(wofdr20)
 
 struct BurnDriver BurnDrvCpswofdr20 = {
-	"wofdr20", "wof", NULL, NULL, "2023",
+	"wofdr20", "wof", NULL, NULL, "2024",
 	"Tenchi wo Kurau II: Sekiheki no Tatakai (Master 2020, Hack)\0", NULL, "hack", "CPS1 / QSound",
 	L"\u5929\u5730\u3092\u55B0\u3089\u3046 II: \u8D64\u58C1\u306E\u6226\u3044\0Tenchi wo Kurau II: Sekiheki no Tatakai (Master 2020, Hack)\0", NULL, NULL, NULL,
 	BDF_GAME_WORKING | BDF_CLONE | BDF_HACK | BDF_HISCORE_SUPPORTED, 3, HARDWARE_CAPCOM_CPS1_QSOUND, GBF_SCRFIGHT, 0,
@@ -27543,6 +27621,30 @@ struct BurnDriver BurnDrvCpswofmz1v3 = {
 	L"\u5929\u5730\u3092\u55B0\u3089\u3046 II: \u8D64\u58C1\u306E\u6226\u3044\0Tenchi wo Kurau II: Sekiheki no Tatakai (Cavalry 1v3, Hack)\0", NULL, NULL, NULL,
 	BDF_GAME_WORKING | BDF_CLONE | BDF_HACK | BDF_HISCORE_SUPPORTED, 3, HARDWARE_CAPCOM_CPS1_QSOUND, GBF_SCRFIGHT, 0,
 	NULL, wofmz1v3RomInfo, wofmz1v3RomName, NULL, NULL, NULL, NULL, WofInputInfo, WofDIPInfo,
+	wofInit, DrvExit, Cps1Frame, CpsRedraw, CpsAreaScan,
+	&CpsRecalcPal, 0x1000, 384, 224, 4, 3
+};
+
+
+// Tenchi wo Kurau II: Sekiheki no Tatakai (Subject 3, Hack)
+// GOTVG 20231231
+
+static struct BurnRomInfo wofkm3RomDesc[] = {
+	{ "tk2km3_23c.8f",	0x080000, 0x6f001de5, BRF_ESS | BRF_PRG | CPS1_68K_PROGRAM_NO_BYTESWAP },
+	{ "tk2km3_22c.7f",	0x080000, 0x0c3bb3bc, BRF_ESS | BRF_PRG | CPS1_68K_PROGRAM_NO_BYTESWAP },
+
+	WOFJ_COMPONENT
+};
+
+STD_ROM_PICK(wofkm3)
+STD_ROM_FN(wofkm3)
+
+struct BurnDriver BurnDrvCpswofkm3 = {
+	"wofkm3", "wof", NULL, NULL, "2023",
+	"Tenchi wo Kurau II: Sekiheki no Tatakai (Subject 3, Hack)\0", NULL, "hack", "CPS1 / QSound",
+	L"\u5929\u5730\u3092\u55B0\u3089\u3046 II: \u8D64\u58C1\u306E\u6226\u3044\0Tenchi wo Kurau II: Sekiheki no Tatakai (Subject 3, Hack)\0", NULL, NULL, NULL,
+	BDF_GAME_WORKING | BDF_CLONE | BDF_HACK | BDF_HISCORE_SUPPORTED, 3, HARDWARE_CAPCOM_CPS1_QSOUND, GBF_SCRFIGHT, 0,
+	NULL, wofkm3RomInfo, wofkm3RomName, NULL, NULL, NULL, NULL, WofInputInfo, WofDIPInfo,
 	wofInit, DrvExit, Cps1Frame, CpsRedraw, CpsAreaScan,
 	&CpsRecalcPal, 0x1000, 384, 224, 4, 3
 };
