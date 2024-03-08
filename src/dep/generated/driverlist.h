@@ -2352,6 +2352,7 @@ DRV		BurnDrvBublbust;
 DRV		BurnSpecbubbdizz128;
 DRV		BurnSpecbubbdizz_48;
 DRV		BurnSpecBubfrenzy;
+DRV		BurnDrvBubblembe;
 DRV		BurnDrvBubblemj;
 DRV		BurnDrvBubblem;
 DRV		BurnDrvBubblemu;
@@ -9811,6 +9812,7 @@ DRV		BurnDrvMcatadvj;
 DRV		BurnDrvMcatadv;
 DRV		BurnDrvpce_magchase;
 DRV		BurnDrvtg_magchase;
+DRV		BurnDrvnes_magictrl;
 DRV		BurnDrvMgcrsytlj;
 DRV		BurnDrvMgcrsytlo;
 DRV		BurnDrvMgcrsytl;
@@ -12149,6 +12151,7 @@ DRV		BurnDrvOlds103t;
 DRV		BurnDrvOlds;
 DRV		BurnDrvzerofxz;
 DRV		BurnDrvOrius;
+DRV		BurnDrvnes_orphanmoon;
 DRV		BurnDrvnes_orphea;
 DRV		BurnSpecOrvolen;
 DRV		BurnSpecOrvoles;
@@ -14855,6 +14858,8 @@ DRV		BurnDrvfds_seikepsy;
 DRV		BurnDrvfds_seikepsyj;
 DRV		BurnDrvnes_seikima2;
 DRV		BurnDrvnes_seiredenlic;
+DRV		BurnDrvnes_shancaraj;
+DRV		BurnDrvnes_shancara;
 DRV		BurnDrvSscandal;
 DRV		BurnDrvsms_seishun;
 DRV		BurnDrvsms_seishun1;
@@ -19677,9 +19682,9 @@ DRV		BurnDrvWschampa;
 DRV		BurnDrvWschamp;
 DRV		BurnDrvcv_wingwar;
 DRV		BurnDrvMSX_wingwarrdx;
-DRV		BurnDrvgg_wingwarriors;
 DRV		BurnDrvMSX_wingwarr;
 DRV		BurnDrvsms_wingwarriors;
+DRV		BurnDrvgg_wingwarriors;
 DRV		BurnSpecWingave;
 DRV		BurnSpecWingwar;
 DRV		BurnDrvmd_wingswor;
@@ -22918,6 +22923,7 @@ static struct BurnDriver* pDriver[] = {
 	&BurnSpecbubbdizz128,		// Bubble Dizzy (128K)
 	&BurnSpecbubbdizz_48,		// Bubble Dizzy (48K)
 	&BurnSpecBubfrenzy,			// Bubble Frenzy (48K) (HB)
+	&BurnDrvBubblembe,			// Bubble Memories: Black Edition (Hack)
 	&BurnDrvBubblemj,			// Bubble Memories: The Story Of Bubble Bobble III (Ver 2.3J 1996/02/07)
 	&BurnDrvBubblem,			// Bubble Memories: The Story Of Bubble Bobble III (Ver 2.4O 1996/02/15)
 	&BurnDrvBubblemu,			// Bubble Memories: The Story Of Bubble Bobble III (Ver 2.5A 1996/02/21)
@@ -23383,7 +23389,7 @@ static struct BurnDriver* pDriver[] = {
 	&BurnDrvnes_castlevanialt,	// Castlevania - The Last Tear (Hack, v4.0)
 	&BurnDrvmd_cvania,			// Castlevania - The New Generation (Euro)
 	&BurnDrvmd_cvaniap,			// Castlevania - The New Generation (Euro, Prototype)
-	&BurnDrvnes_castliih,		// Castlevania II - Simon's Quest (Hack, Re-translation+Map)
+	&BurnDrvnes_castliih,		// Castlevania II - Simon's Quest (Hack, Re-translation + Map)
 	&BurnDrvnes_castliic,		// Castlevania II - Simon's Quest (Hack, Spanish v2.0)
 	&BurnDrvnes_castlii,		// Castlevania II - Simon's Quest (USA)
 	&BurnDrvnes_castliii,		// Castlevania III - Dracula's Curse (USA)
@@ -26037,7 +26043,7 @@ static struct BurnDriver* pDriver[] = {
 	&BurnDrvgg_evander,			// Evander Holyfield Boxing (Euro, USA)
 	&BurnDrvmd_evander,			// Evander Holyfield's 'Real Deal' Boxing (World)
 	&BurnSpecEverywally,		// Everyone's a Wally (48K)
-	&BurnDrvnes_evildead,		// Evil Dead - Ash lives! (Hack)
+	&BurnDrvnes_evildead,		// Evil Dead - Ash lives! (GlobalHack)
 	&BurnDrvEvilston,			// Evil Stone
 	&BurnDrvngpc_evolutn,		// Evolution - Eternal Dungeons (Euro)
 	&BurnDrvcv_evolutio,		// Evolution
@@ -30377,6 +30383,7 @@ static struct BurnDriver* pDriver[] = {
 	&BurnDrvMcatadv,			// Magical Cat Adventure
 	&BurnDrvpce_magchase,		// Magical Chase (Japan)
 	&BurnDrvtg_magchase,		// Magical Chase (USA)
+	&BurnDrvnes_magictrl,		// Magical Control (HB)
 	&BurnDrvMgcrsytlj,			// Magical Crystals (Japan, 92/01/13)
 	&BurnDrvMgcrsytlo,			// Magical Crystals (World, 91/12/10)
 	&BurnDrvMgcrsytl,			// Magical Crystals (World, 92/01/10)
@@ -31085,9 +31092,9 @@ static struct BurnDriver* pDriver[] = {
 	&BurnDrvnes_metroidc,		// Metroid (Hack, Spanish)
 	&BurnDrvfds_metroidj,		// Metroid (Japan)
 	&BurnDrvnes_metroid,		// Metroid (USA)
-	&BurnDrvnes_metroorienh,	// Metroid - Origin Enhanced (Hack, v2.1.2)
-	&BurnDrvnes_metrorogdaw,	// Metroid - Rogue Dawn (Hack, v1.21)
-	&BurnDrvnes_metroidmother,	// Metroid mOTHER (Hack)
+	&BurnDrvnes_metroorienh,	// Metroid - Origin Enhanced (GlobalHack, v2.1.2)
+	&BurnDrvnes_metrorogdaw,	// Metroid - Rogue Dawn (GlobalHack, v1.21)
+	&BurnDrvnes_metroidmother,	// Metroid mOTHER (GlobalHack)
 	&BurnDrvMSX_metropolis,		// Metropolis (Euro, Spanish)
 	&BurnDrvMexico86,			// Mexico 86 (bootleg of Kick and Run, set 1)
 #if defined FBNEO_DEBUG
@@ -32715,6 +32722,7 @@ static struct BurnDriver* pDriver[] = {
 	&BurnDrvOlds,				// Oriental Legend Super (V101, Korea)
 	&BurnDrvzerofxz,			// Oriental Legend ZERO (Hack)
 	&BurnDrvOrius,				// Orius (ver UAA)
+	&BurnDrvnes_orphanmoon,		// Orphan Moon (GlobalHack)
 	&BurnDrvnes_orphea,			// Orphea (HB, v1.1)
 	&BurnSpecOrvolen,			// Orvol Voon (English) (48K) (HB)
 	&BurnSpecOrvoles,			// Orvol Voon (Spanish) (48K) (HB)
@@ -35421,6 +35429,8 @@ static struct BurnDriver* pDriver[] = {
 	&BurnDrvfds_seikepsyj,		// Seiken Psychocalibur - Majuu no Mori Densetsu (Japan)
 	&BurnDrvnes_seikima2,		// Seikima II - Akuma no Gyakushuu (Japan)
 	&BurnDrvnes_seiredenlic,	// Seirei Densetsu Lickle (Japan)
+	&BurnDrvnes_shancaraj,		// Seiryaku Simulation - Inbou no Wakusei - Shancara (Japan)
+	&BurnDrvnes_shancara,		// Seiryaku Simulation - Planet of Conspiracy - Shancara (Hack, English)
 	&BurnDrvSscandal,			// Seishun Scandal (315-5132, Japan)
 	&BurnDrvsms_seishun,		// Seishun Scandal (Japan, MyCard)
 	&BurnDrvsms_seishun1,		// Seishun Scandal (Japan, Pirate?)
@@ -37539,9 +37549,9 @@ static struct BurnDriver* pDriver[] = {
 	&BurnDrvmd_smario2a,		// Super Mario 2 (Taiwan, Alt) (Unl) [no comment, NOT WORKING]
 	&BurnDrvnes_supermarallstanes,// Super Mario All Stars NES (Hack)
 	&BurnDrvnes_smbroop,		// Super Mario Bro-Op (Hack, v1.1)
-	&BurnDrvnes_smb8en,			// Super Mario Bros 8 (English) (Hack)
-	&BurnDrvnes_smb8es,			// Super Mario Bros 8 (Spanish) (Hack)
-	&BurnDrvnes_smb8se,			// Super Mario Bros 8 Special Edition (Hack)
+	&BurnDrvnes_smb8en,			// Super Mario Bros 8 (GlobalHack, English)
+	&BurnDrvnes_smb8es,			// Super Mario Bros 8 (GlobalHack, Spanish)
+	&BurnDrvnes_smb8se,			// Super Mario Bros 8 Special Edition (GlobalHack, English)
 	&BurnDrvnes_smbc,			// Super Mario Bros. (Hack, Spanish)
 	&BurnDrvnes_smb,			// Super Mario Bros. (World)
 	&BurnDrvmd_smbbc,			// Super Mario Bros. + Battle City (Russia) (Unl)
@@ -40243,9 +40253,9 @@ static struct BurnDriver* pDriver[] = {
 	&BurnDrvWschamp,			// Wing Shooting Championship V2.00
 	&BurnDrvcv_wingwar,			// Wing War
 	&BurnDrvMSX_wingwarrdx,		// Wing Warriors (2020 Version) (HB)
-	&BurnDrvgg_wingwarriors,	// Wing Warriors (HB)
 	&BurnDrvMSX_wingwarr,		// Wing Warriors (HB)
-	&BurnDrvsms_wingwarriors,	// Wing Warriors (HB)
+	&BurnDrvsms_wingwarriors,	// Wing Warriors (HB, v1.00 fix)
+	&BurnDrvgg_wingwarriors,	// Wing Warriors GG (HB, v1.00 fix)
 	&BurnSpecWingave,			// Winged Avenger, The (16K)
 	&BurnSpecWingwar,			// Winged Warlords (16K)
 	&BurnDrvmd_wingswor,		// Wings of Wor (USA)
@@ -43472,6 +43482,7 @@ static game_sourcefile_entry sourcefile_table[] = {
 	{ "spec_bubbdizz128", "spectrum/d_spectrum.cpp"},
 	{ "spec_bubbdizz48", "spectrum/d_spectrum.cpp"},
 	{ "spec_bubfrenzy", "spectrum/d_spectrum.cpp"},
+	{ "bubblembe", "taito/d_taitof3.cpp"},
 	{ "bubblemj", "taito/d_taitof3.cpp"},
 	{ "bubblem", "taito/d_taitof3.cpp"},
 	{ "bubblemu", "taito/d_taitof3.cpp"},
@@ -50853,6 +50864,7 @@ static game_sourcefile_entry sourcefile_table[] = {
 	{ "mcatadv", "pst90s/d_mcatadv.cpp"},
 	{ "pce_magchase", "pce/d_pce.cpp"},
 	{ "tg_magchase", "pce/d_pce.cpp"},
+	{ "nes_magictrl", "nes/d_nes.cpp"},
 	{ "mgcrystlj", "pst90s/d_kaneko16.cpp"},
 	{ "mgcrystlo", "pst90s/d_kaneko16.cpp"},
 	{ "mgcrystl", "pst90s/d_kaneko16.cpp"},
@@ -53173,6 +53185,7 @@ static game_sourcefile_entry sourcefile_table[] = {
 	{ "olds", "pgm/d_pgm.cpp"},
 	{ "zerofxz", "pgm/d_pgm.cpp"},
 	{ "orius", "konami/d_xexex.cpp"},
+	{ "nes_orphanmoon", "nes/d_nes.cpp"},
 	{ "nes_orphea", "nes/d_nes.cpp"},
 	{ "spec_orvolen", "spectrum/d_spectrum.cpp"},
 	{ "spec_orvoles", "spectrum/d_spectrum.cpp"},
@@ -55855,6 +55868,8 @@ static game_sourcefile_entry sourcefile_table[] = {
 	{ "fds_seikepsyj", "nes/d_nes.cpp"},
 	{ "nes_seikima2", "nes/d_nes.cpp"},
 	{ "nes_seiredenlic", "nes/d_nes.cpp"},
+	{ "nes_shancaraj", "nes/d_nes.cpp"},
+	{ "nes_shancara", "nes/d_nes.cpp"},
 	{ "sscandal", "sega/d_sys1.cpp"},
 	{ "sms_seishun", "sms/d_sms.cpp"},
 	{ "sms_seishun1", "sms/d_sms.cpp"},
@@ -60611,9 +60626,9 @@ static game_sourcefile_entry sourcefile_table[] = {
 	{ "wschamp", "pst90s/d_seta2.cpp"},
 	{ "cv_wingwar", "coleco/d_coleco.cpp"},
 	{ "msx_wingwarrdx", "msx/d_msx.cpp"},
-	{ "gg_wingwarriors", "sms/d_sms.cpp"},
 	{ "msx_wingwarr", "msx/d_msx.cpp"},
 	{ "sms_wingwarriors", "sms/d_sms.cpp"},
+	{ "gg_wingwarriors", "sms/d_sms.cpp"},
 	{ "spec_wingave", "spectrum/d_spectrum.cpp"},
 	{ "spec_wingwar", "spectrum/d_spectrum.cpp"},
 	{ "md_wingswor", "megadrive/d_megadrive.cpp"},
