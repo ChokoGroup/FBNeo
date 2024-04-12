@@ -2330,6 +2330,7 @@ static INT32 GameInpOtherOne(struct GameInp* pgi, char* szi, char *szn)
 {
 	const char * parentrom	= BurnDrvGetTextA(DRV_PARENT);
 	const char * drvname	= BurnDrvGetTextA(DRV_NAME);
+	const char * systemname	= BurnDrvGetTextA(DRV_SYSTEM);
 	int nHardwareCode = BurnDrvGetHardwareCode();
 
 	// Handle Spectrum
@@ -2565,6 +2566,13 @@ static INT32 GameInpOtherOne(struct GameInp* pgi, char* szi, char *szn)
 		(drvname && strcmp(drvname, "swatpolc") == 0)
 	) {
 		if (strcmp("Service", szn) == 0) {
+			GameInpDigital2RetroInpKey(pgi, 0, RETRO_DEVICE_ID_JOYPAD_R3, szn);
+		}
+	}
+
+	// "Service" is required to use the "Taito code" in Taito F3
+	if ((systemname && strcmp(systemname, "Taito F3 System") == 0)) {
+		if (strcmp("Service 1", szn) == 0) {
 			GameInpDigital2RetroInpKey(pgi, 0, RETRO_DEVICE_ID_JOYPAD_R3, szn);
 		}
 	}
