@@ -257,7 +257,9 @@ UINT8 *Neo68KBIOS, *NeoZ80BIOS;
 static UINT8 *Neo68KRAM, *NeoZ80RAM, *NeoNVRAM, *NeoNVRAM2, *NeoMemoryCard;
 
 static UINT32 nSpriteSize[MAX_SLOT] = { 0, 0, 0, 0, 0, 0, 0, 0 };
-static UINT32 nCodeSize[MAX_SLOT] = { 0, 0, 0, 0, 0, 0, 0, 0 }, nAllCodeSize = 0;
+static UINT32 nCodeSize[MAX_SLOT] = { 0, 0, 0, 0, 0, 0, 0, 0 };
+
+UINT32 nAllCodeSize = 0;
 
 UINT8* NeoGraphicsRAM;
 
@@ -3653,6 +3655,10 @@ static UINT8 __fastcall neogeoCDReadByte68KProgram(UINT32 sekAddress)
 
 static INT32 neogeoReset()
 {
+	if (NeoCallbackActive && NeoCallbackActive->pResetCallback) {
+		NeoCallbackActive->pResetCallback();
+	}
+
 	if (nNeoSystemType & NEO_SYS_CART) {
 		if (useUniBIOS) NeoSystem = 0x93;
 		NeoLoad68KBIOS(NeoSystem & 0x3f);
