@@ -51,7 +51,7 @@ jobs:
           mkdir ./FinalBurn\ Neo\ for\ CHA\ -\ Help\ Videos
           mv *.mp4 ./FinalBurn\ Neo\ for\ CHA\ -\ Help\ Videos/
           zip -9 -r ./FinalBurn\ Neo\ for\ CHA\ -\ Help\ Videos.zip ./FinalBurn\ Neo\ for\ CHA\ -\ Help\ Videos
-          gh release delete latest --cleanup-tag -y || git tag latest
+          gh release delete latest --cleanup-tag -y || ${{ true }}
           gh release create latest --latest --generate-notes --target "master" --title "FinalBurn Neo for CHA (${{ env.NOW }})" ./*.zip
       - name: Compile fbneo_libretro.so
         run: |
@@ -63,5 +63,5 @@ jobs:
         run: |
           mv src/burner/libretro/fbneo_libretro.so ./fbneo_libretro.${{ env.NOW }}.so
           zip -9 fbneo_libretro.zip fbneo_libretro*.so
-          gh release delete libretro-latest --cleanup-tag -y || git tag libretro-latest
+          gh release delete libretro-latest --cleanup-tag -y || ${{ true }}
           gh release create libretro-latest --prerelease --generate-notes --target "master" --title "FinalBurn Neo libretro core for CHA (${{ env.NOW }})" ./fbneo_libretro.zip
