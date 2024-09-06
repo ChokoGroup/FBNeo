@@ -1,93 +1,161 @@
-# FinalBurn Neo
+#
+
+## FinalBurn Neo
 Official Forum: https://neo-source.com
 
-Discord: https://discord.gg/8EGVd9v
-
-This is the official repository of FinalBurn Neo, an Emulator for Arcade Games & Select Consoles. It is based on the emulators FinalBurn and old versions of [MAME](https://www.mamedev.org)
+Official Discord: https://discord.gg/8EGVd9v
 
 Use of this program and its source code is subject to the license conditions provided in the [license.txt](/src/license.txt) file in the src folder.
 
-# Work in Progress builds
-You can download the latest builds by clicking on the badge below. Please note that the downloads might not be available immediately after a new commit. As this build is of the last commit occasionally you might run into incomplete code, crashes or other issues that [official releases](https://github.com/finalburnneo/FBNeo/releases) will not have.
-
-[![nightly-release](https://github.com/finalburnneo/FBNeo/actions/workflows/nightly-release.yml/badge.svg)](https://github.com/finalburnneo/FBNeo/releases/tag/latest)
-
-# Ports
-
-macOS [build instructions](README-macOS.md) and [releases](https://github.com/fbn-mac/FBNeo/releases).
-
-[LibRetro port](https://github.com/libretro/FBNeo) with builds availble via [RetroArch](https://www.retroarch.com/) for a lot of cool platforms.
-
-For SDL1.2 builds just type `make sdl` (requires SDL1.2 and GCC, make, perl and nasm) [instructions](README-SDL.md)
-
-For SDL2 builds just type `make sdl2` (requires SDL2, SDL2_image, gcc, make, perl and nasm) [instructions](README-SDL.md)
-
-~~Raspberry Pi [build instructions](README-PI.md).~~
-
-# Reporting Issues
-
-Please raise an issue on the [project GitHub](https://github.com/finalburnneo/FBNeo/issues) or report on the forums at [Neosource](https://neo-source.com)
-
-# What about FB Alpha?
-
-Many of the developers of this project also worked on FB Alpha. Due to a [controversy](https://www.google.com/search?q=capcom+home+arcade+illegal&oq=capcom+home+arcade+illegal), we no longer do, and recommend that everyone use this emulator instead.
-
-# Contributing
-
-We welcome pull requests and other submissions from anyone. We maintain a list of known bugs and features that would be nice to add on the [issue tracker](https://github.com/finalburnneo/FBNeo/issues), some of which would be a good starting point for new contributors. 
-
-One of the focuses of FBNeo is ensuring that the codebase is compilable on older systems. This is for many reasons, not least because older hardware still has a use outside of landfill or being stored in a recycling center, but also it can be a lot of fun porting and running FBNeo to other platforms. Currently, this means we will always aim for [C++03 compliance](https://en.wikipedia.org/wiki/C%2B%2B03) as a minimum. Any pull requests should keep this in mind!
-
-## Notes on Contributions
-
-In the root of the source tree there is an [.editorconfig](https://editorconfig.org/) that mandates:
-
-* tabs for indentation
-* tabs use 4 columns
-
-Please see the following function for some ideas on how naming, brackets and braces should be
 
 
-```
-void FunctionName(UINT8 var1, UINT16 var2)
-{
-	UINT64 result;
-	if (var1 * var2 >= 10) {
-		result = var1 * var2;
-	} else {
-		result = var1;
-	}
-}
+#
 
-```
-## Source tree structure
+## Port for Capcom Home Arcade
 
-The source for FBNeo is layed out in a similar way to how things were in the days of the original FinalBurn. It's just that there are now more directories and source files as the emulator has grown significantly.
-```
-src/
---/burn			<-- This is where the emulation code lives
-----/devices		<-- This is where emulated devices (EEPROMS, etc) live
-----/drv		<-- This is where the drivers for Games and Systems live
-----/snd		<-- This is where the emulation for sound chips and other sound generating devices live
---/burner		<-- This is where the frontend code lives
---/cpu			<-- This is where the CPU emulation lives
---/dep			<-- This is where external dependencies live (such as libpng)
---/intf			<-- This is where the platform specific code for each platform that FBNeo supports live (e.g. Video and Sound output)
-```
-## Porting FBNeo to different systems
+This is a fork from https://github.com/finalburnneo/FBNeo - the official repository of FinalBurn Neo, an Emulator for Arcade Games & Select Consoles. It is based on the emulators FinalBurn and old versions of [MAME](https://www.mamedev.org)
 
-In the main source tree, you will see in the intf directory various implementations for different platforms. You should look in here when porting to new platforms. We also encourage new ports, and are happy to have them merged in to the main sourcetree. There is probably a project there for someone to re-implement some of the older ports using the intf standard, should they want to.
+It's an unofficial port of the SDL2 build to the Capcom Home Arcade (specs and more in https://github.com/lilo-san/cha-documentation).
 
-For portability we define the following types
-```
-unsigned char   UINT8;
-signed char     INT8;
-unsigned short	UINT16;
-signed short	INT16;
-unsigned int	UINT32;
-signed int      INT32;
-signed int64	INT64;
-unsigned int64  UINT64;
+If you want to build from source, clone this git to a device able to compile for arm7hf and type `make sdl2` (requires SDL2, SDL2_image, gcc, make, perl and nasm).
+You can also cross compile with the command: `make sdl2 CROSS_COMP=1 RELEASEBUILD=1`
 
-```
-It is recommended that you take a look at the other #defines and structs in the header files in Burn and Burner, and don't forget that some of the existing code in the intf directory will come in handy for new ports. 
+#
+
+https://user-images.githubusercontent.com/55603581/284382783-2afbadec-8c0b-4680-96bf-7833dc8f0862.mov
+
+#
+
+The games selection menu supports titles screenshots.
+
+![Screenshot of FBNeo showing titles screenshots.](https://github.com/ChokoGroup/FBNeo/blob/fbneo-CHA/FinalBurn%20Neo%20for%20CHA%20-%20support%20titles%20screenshot.png?raw=true)
+#
+
+## How to use with Choko Hack
+
+1. Download the [latest build](https://github.com/ChokoGroup/FBNeo/releases/tag/latest) and extract the "FinalBurn Neo for CHA" folder to the root of an USB pendrive.
+
+2. You can put your ROMs either in "/roms" or in "/fbneo/roms" in the root of the pendrive.
+
+3. Put the pendrive in the USB EXT port of the CHA, power it on and select the option "Run FinalBurn Neo" from the Choko Menu.
+
+
+In Choko Menu you should also have an option for downloading and updating FinalBurn Neo **and cheats**.
+A new version is compiled in our GitHub fork every Friday.
+
+Another option should be in Choko Menu to install (or uninstall) FinalBurn Neo into the internal memory of the CHA.
+If installed, the folder "FinalBurn Neo for CHA" can be deleted from the pendrive.
+
+The installer can also copy the ROMs zip files to /opt/fbneo/roms (CHA internal disk), to play without using a pendrive.
+For that it's recommended to have the expanded partition for more available space.
+
+
+#
+
+## In Game special controls
+
+P1 Start + Coin = call UniBIOS menu when playing NeoGeo games
+
+P1 Start + Coin (Hold) = Quit game
+
+P1 Start + Joystick Down = diagnostic menu (available in some games)
+
+P1 Start + Joystick Up = pause game and show ingame menu
+
+#
+
+https://user-images.githubusercontent.com/55603581/169626870-86cb38f7-96b4-4946-a36e-f2e70b0e55d4.mov
+
+#
+
+#
+
+## Support for up to 4 joysticks/gamepads
+
+Games with 3 or 4 players are supported, just need to connect extra controllers to the USB EXT port of the CHA.
+
+Note: If you add controllers before calling fbneo, the 3rd controller will become the one that controls game selection and ingame special controls.
+
+
+### Game controllers not detected or not mapped correctly
+
+The ingame menu has a basic buttons mapping option that creates a file named gamecontrollerdb.txt file and will be loaded when fbneo starts.
+
+Alternatively, you can copy the file "gamecontrollerdb.example.txt" into the folder /fbneo/config (in the root of a pendrive) and rename it to "gamecontrollerdb.txt".
+Open the file in a text editor and add a line (or replace the content) to include your controller data. For this you will need to use the controller GUID.
+
+You can search [in this gamecontrollerdb.txt](https://github.com/gabomdq/SDL_GameControllerDB/blob/master/gamecontrollerdb.txt) if it has the data you need - don't forget to change the ending part to `platform:Linux,`
+
+
+https://github.com/gabomdq/SDL_GameControllerDB has more info on this and some tools that may be useful to create your controller mappings.
+
+Note: If you install fbneo into the CHA the file gamecontrollerdb.txt will also be copied.
+
+#
+
+https://user-images.githubusercontent.com/55603581/173922688-2472470b-5547-46cb-afca-53a636e54c06.mov
+
+#
+
+### What works and what not
+
+Tested and working:
+- Capcom Home Arcade (obviously) also in USB Joystick Mode
+- PS4 official controller
+- Nintendo Switch PowerA Wired Controller (needs button mapping)
+- THEGamepad from Retro Games LTD - A500 mini gamepad (needs button mapping)
+
+Tested and not working:
+- PS3 official controller (detected, mapped but no reaction ???)
+- PS5 official controller (not detected)
+- PDP Gaming Wired Controller Xbox Series X|S/Xbox One/PC (not detected)
+- NPLAY Skill 4.1 Wired PS4/PS3/PC controller (not detected)
+
+
+
+#
+
+## Support for cheats
+
+You can either use a MAME cheat.dat or download a pack of FBNeo native cheats in <romname>.ini format from https://github.com/finalburnneo/FBNeo-cheats/ and uncompress them into /fbneo/support/cheats folder (of the USB pendisk).
+They'll become available in the ingame menu (P1 Start + Joystick Up).
+
+Note: If you install fbneo into the CHA it will also copy the cheats folder.
+
+#
+
+https://user-images.githubusercontent.com/55603581/284382783-2afbadec-8c0b-4680-96bf-7833dc8f0862.mov
+
+#
+
+#
+
+## Support for DIP switches
+
+DIP switches are accessible in the ingame menu (P1 Start + Joystick Up).
+
+When available, we can usually change dificulty and other interesting aspects of the game.
+
+Note: If you changed DIP switches and exit game without resetting DIP switches to defaults, your settings are saved in the `<romname>.ini` file and they will become the default values. Only way to restore the real defaults is deleting the `<romname>.ini` file.
+
+#
+
+https://user-images.githubusercontent.com/55603581/284382936-d3784272-3717-4178-829a-b1ffc6aee792.mov
+
+#
+
+#
+
+## Reporting Issues
+
+Please don't report issues about this CHA build in the official libretro git, also don't report bugs on the forums at [Neosource](https://neo-source.com)
+
+Use [this to report issues](https://github.com/ChokoGroup/FBNeo/issues) instead.
+
+
+
+#
+
+## Contributing
+
+We welcome pull requests and other submissions. 
