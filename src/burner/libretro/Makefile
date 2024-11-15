@@ -16,8 +16,6 @@ HAVE_NEON = 0
 USE_EXPERIMENTAL_FLAGS = 0
 USE_CYCLONE = 0
 HAVE_UWP = 0
-# make the core smaller by removing some demanding drivers
-LIGHT = 0
 SPLIT_UP_LINK ?= 0
 
 SPACE :=
@@ -58,12 +56,12 @@ MAIN_FBNEO_DIR	:= ../..
 VERSION_SCRIPT	:= $(MAIN_FBNEO_DIR)/burner/libretro/link.T
 
 # TARGET
-ifeq ($(subset),)
+ifeq ($(SUBSET),)
 	TARGET_NAME := fbneo
-	INCLUDED_MAKEFILE = Makefile.common
+	INCLUDED_MAKEFILE = Makefile.all
 else
-	TARGET_NAME := fbneo_$(subset)
-	INCLUDED_MAKEFILE = Makefile.$(subset)
+	TARGET_NAME := fbneo_$(SUBSET)
+	INCLUDED_MAKEFILE = Makefile.$(SUBSET)
 endif
 
 # Unix
@@ -229,7 +227,6 @@ else ifneq (,$(filter $(platform), ps3 psl1ght))
 	EXTERNAL_ZLIB = 1
 	STATIC_LINKING = 1
 	INCLUDE_7Z_SUPPORT = 0
-#	LIGHT = 1
 
 	CC = $(PS3DEV)/ppu/bin/ppu-$(COMMONLV)gcc$(EXE_EXT)
 	CXX = $(PS3DEV)/ppu/bin/ppu-$(COMMONLV)g++$(EXE_EXT)
@@ -263,7 +260,6 @@ else ifeq ($(platform), ctr)
 	EXTERNAL_ZLIB = 1
 	STATIC_LINKING = 1
 	USE_CYCLONE = 1
-	LIGHT = 1
 
 # Xbox 360
 else ifeq ($(platform), xenon)
@@ -312,7 +308,6 @@ else ifeq ($(platform), funkey)
 	USE_EXPERIMENTAL_FLAGS = 1
 	HAVE_NEON = 1
 	USE_CYCLONE = 1
-	LIGHT = 1
 	ARCH = arm
 	ENDIANNESS_DEFINES := -DLSB_FIRST
 	ifeq ($(shell echo `$(CC) -dumpversion` "< 4.9" | bc -l), 1)
@@ -391,12 +386,10 @@ else ifneq (,$(filter $(platform), ngc wii wiiu))
 	# Nintendo Wii
 	else ifneq (,$(findstring wii,$(platform)))
 		PLATFORM_DEFINES += -DGEKKO -DHW_RVL -mrvl -mcpu=750 -meabi -mhard-float
-		LIGHT = 1
 
 	# Nintendo Game Cube
 	else ifneq (,$(findstring ngc,$(platform)))
 		PLATFORM_DEFINES += -DGEKKO -DHW_DOL -mrvl -mcpu=750 -meabi -mhard-float
-		LIGHT = 1
 	endif
 
 # Emscripten
@@ -522,6 +515,7 @@ else
   CXX_SYSTEM = g++ -m32
 endif
 
+include Makefile.common
 include $(INCLUDED_MAKEFILE)
 
 FBNEO_CXXOBJ := $(SOURCES_CXX:.cpp=.o)
@@ -637,17 +631,12 @@ CTVMAKE_EXE = ctvmake$(EXE_EXT)
 PGM_SPRITE_CREATE_EXE = pgmspritecreate$(EXE_EXT)
 EXE_PREFIX = ./
 
-.PHONY: clean generate-files generate-files-clean clean-objs
+# backward compatibility (make less than 4.4 doesn't support .WAIT)
+.WAIT:
 
-ifeq ($(platform), theos_ios)
-	COMMON_FLAGS := -DIOS -DARM $(COMMON_DEFINES) $(INCFLAGS) -I$(THEOS_INCLUDE_PATH) -Wno-error
-	$(LIBRARY_NAME)_CFLAGS += $(CFLAGS) $(COMMON_FLAGS)
-	$(LIBRARY_NAME)_CXXFLAGS += $(CXXFLAGS) $(COMMON_FLAGS)
-	${LIBRARY_NAME}_FILES = $(SOURCES_CXX) $(SOURCES_C)
-	include $(THEOS_MAKE_PATH)/library.mk
-else
-all: $(TARGET)
+.PHONY: all clean generate-files generate-files-clean clean-objs
 
+all: generate-files clean-objs .WAIT $(TARGET)
 
 generate-files-clean:
 	rm -rf $(FBNEO_GENERATED_DIR)/
@@ -777,4 +766,3 @@ endif
 	rm -f $(M68KMAKE_EXE)
 	rm -f $(PGM_SPRITE_CREATE_EXE)
 	rm -f $(CTVMAKE_EXE)
-endif
