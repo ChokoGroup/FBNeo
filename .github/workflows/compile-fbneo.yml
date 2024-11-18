@@ -14,14 +14,12 @@ on:
 jobs:
   build-and-release:
     runs-on: ubuntu-latest
-    container: node:current-buster-slim
     if: ${{ github.event.workflow_run.conclusion == 'success' || github.event_name == 'workflow_dispatch' || github.event_name == 'push' }}
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
       - name: Install needed tools
         run: |
           echo "NOW=$(date +%F)" >> "$GITHUB_ENV"
-          add-apt-repository ppa:ubuntu-toolchain-r/ppa -y
           apt-get update
           apt-get install --assume-yes curl ca-certificates build-essential zip
           curl -fsSL https://cli.github.com/packages/githubcli-archive-keyring.gpg | dd of=/usr/share/keyrings/githubcli-archive-keyring.gpg
