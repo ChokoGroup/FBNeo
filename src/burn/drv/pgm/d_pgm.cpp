@@ -5967,7 +5967,7 @@ struct BurnDriver BurnDrvDdpdojp = {
 	"ddpdojp", "ddp3", NULL, NULL, "2002",
 	"DoDonPachi Dai-Ou-Jou (Japan, 2002.04.05 Master Ver, location test)\0", NULL, "Cave (AMI license)", "PolyGameMaster",
 	L"DoDonPachi Dai-Ou-Jou\0\u6012\u9996\u9818\u8702 \u5927\u5f80\u751f (Japan, 2002.04.05 Master Ver, location test)\0", NULL, NULL, NULL,
-	BDF_GAME_WORKING | BDF_CLONE | BDF_PROTOTYPE | BDF_ORIENTATION_VERTICAL | BDF_HISCORE_SUPPORTED, 2, HARDWARE_MISC_POST90S, GBF_VERSHOOT, 0,
+	BDF_GAME_WORKING | BDF_CLONE | BDF_PROTOTYPE | BDF_ORIENTATION_VERTICAL | BDF_HISCORE_SUPPORTED, 2, HARDWARE_IGS_PGM, GBF_VERSHOOT, 0,
 	NULL, ddpdojpRomInfo, ddpdojpRomName, NULL, NULL, NULL, NULL, pgmInputInfo, jammaDIPInfo,
 	ddpdojpInit, pgmExit, pgmFrame, pgmDraw, pgmScan, &nPgmPalRecalc, 0x900,
 	224, 448, 3, 4
@@ -8616,11 +8616,11 @@ struct BurnDriver BurnDrvzerofxz = {
 
 
 // Oriental Legend Special / Meng Xun Ling Shan (Hack)
-// Hacked by XIAOYUER
-// GOTVG 2020/08/03
+// Modified by XIAOYUER
+// GOTVG 20240905
 
 static struct BurnRomInfo oldsmxRomDesc[] = {
-	{ "oldsmx_p0500.u24",			0x0400000, 0x3b94c0ac, 1 | BRF_PRG | BRF_ESS }, //  0 68K Code
+	{ "oldsmx_p0500.u24",			0x0400000, 0xd271e4fb, 1 | BRF_PRG | BRF_ESS }, //  0 68K Code
 
 	{ "oldsmx_t0500.u18",			0x0400000, 0x434ddae8, 2 | BRF_GRA },			//  1 Tile data
 	{ "pgm_t0501.u19",				0x0200000, 0xd2106864, 2 | BRF_GRA },			//  2
@@ -8652,8 +8652,8 @@ STD_ROM_FN(oldsmx)
 
 struct BurnDriver BurnDrvoldsmx = {
 	"oldsmx", "olds", "pgm", NULL, "2020",
-	"Oriental Legend Special - Meng Xun Ling Shan (Hack)\0", NULL, "Hack", "PolyGameMaster",
-	L"Oriental Legend Super - Meng Xun Ling Shan (Hack)\0\u897f\u884c\u5e73\u5996\u8a18 - \u5922\u5c0b\u9748\u5c71 (\u4fee\u6539\u7248)\0", NULL, NULL, NULL,
+	"Xiyou Shi E Zhuan Super - Meng Xun Ling Shan (Hack)\0", NULL, "Hack", "PolyGameMaster",
+	L"Xiyou Shi E Zhuan Super - Meng Xun Ling Shan (Hack)\0\u897f\u884c\u5e73\u5996\u8bb0 - \u68a6\u5bfb\u7075\u5c71\0", NULL, NULL, NULL,
 	BDF_GAME_WORKING | BDF_CLONE | BDF_HACK, 4, HARDWARE_IGS_PGM, GBF_SCRFIGHT, 0,
 	NULL, oldsmxRomInfo, oldsmxRomName, NULL, NULL, NULL, NULL, pgmhInputInfo, oldschsDIPInfo,
 	oldsInit, pgmExit, pgmFrame, pgmDraw, pgmScan, &nPgmPalRecalc, 0x900,
