@@ -9814,7 +9814,7 @@ struct BurnDriver BurnDrvMs5plus = {
 };
 
 
-// SNK vs. Capcom - SVC Chaos (JAMMA PCB, set 1)
+// SNK vs. Capcom - SVC Chaos (JAMMA PCB, NEO-MVH MVO PCB)
 
 static struct BurnRomInfo svcpcbRomDesc[] = {
 	{ "269-p1.p1",    0x2000000, 0x432cfdfc, 1 | BRF_ESS | BRF_PRG }, //  0 68K code
@@ -9888,7 +9888,7 @@ static INT32 svcpcbInit()
 
 struct BurnDriver BurnDrvSvcpcb = {
 	"svcpcb", NULL, NULL, NULL, "2003",
-	"SNK vs. Capcom - SVC Chaos (JAMMA PCB, set 1)\0", NULL, "Playmore / Capcom", "Neo Geo MVS",
+	"SNK vs. Capcom - SVC Chaos (JAMMA PCB, NEO-MVH MVO PCB)\0", NULL, "Playmore / Capcom", "Neo Geo MVS",
 	NULL, NULL, NULL, NULL,
 	BDF_GAME_WORKING, 2, HARDWARE_SNK_DEDICATED_PCB | HARDWARE_SNK_CMC50 | HARDWARE_SNK_ALTERNATE_TEXT | HARDWARE_SNK_ENCRYPTED_M1, GBF_VSFIGHT, FBF_KOF | FBF_SF,
 	NULL, svcpcbRomInfo, svcpcbRomName, NULL, NULL, NULL, NULL, neogeoInputInfo, svcpcbDIPInfo,
@@ -9897,7 +9897,7 @@ struct BurnDriver BurnDrvSvcpcb = {
 };
 
 
-// SNK vs. Capcom - SVC Chaos (JAMMA PCB, set 2)
+// SNK vs. Capcom - SVC Chaos (JAMMA PCB, NEO-MVH MVOB PCB)
 
 static struct BurnRomInfo svcpcbaRomDesc[] = {
 	/* alt PCB version, this one has the same program roms as the MVS set, and different GFX / Sound rom arrangements */
@@ -9919,7 +9919,7 @@ STD_ROM_FN(svcpcba)
 
 struct BurnDriver BurnDrvSvcpcba = {
 	"svcpcba", "svcpcb", NULL, NULL, "2003",
-	"SNK vs. Capcom - SVC Chaos (JAMMA PCB, set 2)\0", NULL, "Playmore / Capcom", "Neo Geo MVS",
+	"SNK vs. Capcom - SVC Chaos (JAMMA PCB, NEO-MVH MVOB PCB)\0", NULL, "Playmore / Capcom", "Neo Geo MVS",
 	NULL, NULL, NULL, NULL,
 	BDF_GAME_WORKING | BDF_CLONE, 2, HARDWARE_SNK_DEDICATED_PCB | HARDWARE_SNK_CMC50 | HARDWARE_SNK_ALTERNATE_TEXT | HARDWARE_SNK_P32 | HARDWARE_SNK_ENCRYPTED_M1, GBF_VSFIGHT, FBF_KOF | FBF_SF,
 	NULL, svcpcbaRomInfo, svcpcbaRomName, NULL, NULL, NULL, NULL, neogeoInputInfo, svcpcbDIPInfo,
@@ -25143,6 +25143,7 @@ struct BurnDriver BurnDrvKf2k1pkz = {
 
 
 // The King of Fighters 2001 (Ultimate, Hack)
+// Modified by 西岐赏金猎人, 臂力哥
 // GOTVG 20250126
 
 static struct BurnRomInfo kf2k1ultRomDesc[] = {
@@ -25174,6 +25175,7 @@ static struct BurnRomInfo kf2k1ultRomDesc[] = {
 	{ "262-v4ult-08-e0.v4",	0x400000, 0x81e7a417, 5 | BRF_SND },
 	{ "262-v5ult-08-e0.v5",	0x400000, 0x42423d32, 5 | BRF_SND },
 	{ "262-v6ult-08-e0.v6",	0x400000, 0x73a03cbf, 5 | BRF_SND },
+	{ "262-v7ult-08-e0.v7",	0x400000, 0x7a2d38df, 5 | BRF_SND },
 };
 
 STDROMPICKEXT(kf2k1ult, kf2k1ult, neogeo)
@@ -25182,7 +25184,7 @@ STD_ROM_FN(kf2k1ult)
 struct BurnDriver BurnDrvKf2k1ult = {
 	"kf2k1ult", "kof2001", "neogeo", NULL, "2025",
 	"The King of Fighters 2001 (All Boss Plus, Hack)\0", NULL, "hack", "Neo Geo MVS",
-	NULL, NULL, NULL, NULL,
+	NULL, NULL, L"\u897f\u5c90\u8d4f\u91d1\u730e\u4eba, \u81c2\u529b\u54e5", NULL,
 	BDF_GAME_WORKING | BDF_CLONE | BDF_HACK, 2, HARDWARE_PREFIX_CARTRIDGE | HARDWARE_SNK_NEOGEO, GBF_VSFIGHT, FBF_KOF,
 	NULL, kf2k1ultRomInfo, kf2k1ultRomName, NULL, NULL, NULL, NULL, neogeoInputInfo, neogeoDIPInfo,
 	NeoInit, NeoExit, NeoFrame, NeoRender, NeoScan, &NeoRecalcPalette,
