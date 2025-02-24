@@ -1,28 +1,35 @@
 name: Sync fork
 
-# Controls when the workflow will run
 on:
   schedule:
     - cron: '37 5 * * 5'
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
 
+env:
+  GITHUB_TOKEN: 
+  UPSTREAM_URL: "https://github.com/libretro/FBNeo.git"
+  WORKFLOW_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+  UPSTREAM_BRANCH: "master"
+  DOWNSTREAM_BRANCH: "master"
+  FETCH_ARGS: ""
+  MERGE_ARGS: ""
+  PUSH_ARGS: ""
+  SPAWN_LOGS: "false"
+
+
 jobs:
   sync-fork:
     runs-on: ubuntu-latest
-#    container: node:current-buster-slim
     steps:
-      - name: Sync fork
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: |
-          git clone "https://${GITHUB_REPOSITORY_OWNER}:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git" .
-          git config --global --add safe.directory /__w/FBNeo/FBNeo
-          git config user.name "${GITHUB_REPOSITORY_OWNER}"
-          git config user.email "${GITHUB_REPOSITORY_OWNER}@users.noreply.github.com"
-          git config --local user.password ${GITHUB_TOKEN}
-          git remote add upstream "https://github.com/libretro/FBNeo.git"
-          git checkout master
-          git fetch upstream
-          git merge upstream/master
-          git push origin master
+      - name: Sync to Upstream Repository
+        uses: dabreadman/sync-upstream-repo@v1.3.0
+        with: 
+          upstream_repo: ${{ env.UPSTREAM_URL }}
+          upstream_branch: ${{ env.UPSTREAM_BRANCH }}
+          downstream_branch: ${{ env.DOWNSTREAM_BRANCH }}
+          token: ${{ env.WORKFLOW_TOKEN }}
+          fetch_args: ${{ env.FETCH_ARGS }}
+          merge_args: ${{ env.MERGE_ARGS }}
+          push_args: ${{ env.PUSH_ARGS }}
+          spawn_logs: ${{ env.SPAWN_LOGS }}
