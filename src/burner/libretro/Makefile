@@ -84,8 +84,10 @@ ifneq (,$(findstring unix,$(platform)))
 		USE_CYCLONE = 1
 		# if CROSS_CHA is not set, then we are not cross-compiling for Capcom Home Arcade
 		ifneq ($(CROSS_CHA),)
+            AR = arm-linux-gnueabihf-ar
 			CC = arm-linux-gnueabihf-gcc
 			CXX = arm-linux-gnueabihf-g++
+            STATIC_LINKING = 1
 		endif
 	else ifneq (,$(findstring rpi3,$(platform)))
 		ifneq (,$(findstring rpi3_64,$(platform)))

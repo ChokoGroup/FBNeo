@@ -198,7 +198,7 @@ endif
 
 
 
-#LDFLAGS	= -static
+LDFLAGS	= -static
 
 CFLAGS = -O2 -fomit-frame-pointer -Wno-write-strings \
 	   -Wall -Wno-long-long -Wno-sign-compare -Wno-uninitialized -Wno-unused \
