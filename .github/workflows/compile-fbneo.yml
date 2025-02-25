@@ -23,7 +23,7 @@ jobs:
           echo "NOW=$(date +%F)" >> "$GITHUB_ENV"
           dpkg --add-architecture armhf
           apt-get update
-          apt-get install --assume-yes glibc-dev=2.28-0ubuntu1
+          apt-get install --assume-yes libc-dev=2.28-0ubuntu1
           apt-get install --assume-yes curl ca-certificates build-essential zip git
           apt-get install --assume-yes gcc-multilib g++-multilib binutils-multiarch
           apt-get install --assume-yes gcc-arm-linux-gnueabihf g++-arm-linux-gnueabihf libudev-dev:armhf libsdl2-dev:armhf libsdl2-image-dev:armhf
