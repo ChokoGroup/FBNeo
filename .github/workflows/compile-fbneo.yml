@@ -22,7 +22,7 @@ jobs:
         run: |
           echo "NOW=$(date +%F)" >> "$GITHUB_ENV"
           dpkg --add-architecture armhf
-          apt-get update
+          find /lib -type f -iname 'libc*.so*' -print
           apt-get install --assume-yes curl ca-certificates build-essential zip git
           apt-get install --assume-yes gcc-multilib g++-multilib binutils-multiarch
           apt-get install --assume-yes gcc-arm-linux-gnueabihf g++-arm-linux-gnueabihf libudev-dev:armhf libsdl2-dev:armhf libsdl2-image-dev:armhf
