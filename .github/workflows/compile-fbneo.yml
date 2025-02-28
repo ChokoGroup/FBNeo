@@ -20,7 +20,7 @@ jobs:
       - name: Install needed tools
         run: |
           echo "NOW=$(date +%F)" >> "$GITHUB_ENV"
-          sudo echo "http://ports.ubuntu.com/dists/	priority:4" >> /etc/apt/apt-mirrors.txt
+          sudo echo 'http://ports.ubuntu.com/dists/	priority:4' | sudo tee -a /etc/apt/apt-mirrors.txt
           echo "*** /etc/apt/apt-mirrors.txt"
           cat /etc/apt/apt-mirrors.txt
           sudo dpkg --add-architecture armhf
