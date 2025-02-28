@@ -20,8 +20,9 @@ jobs:
       - name: Install needed tools
         run: |
           echo "NOW=$(date +%F)" >> "$GITHUB_ENV"
+          sudo dpkg --add-architecture armhf
           sudo apt-get update
-          sudo apt-get install --assume-yes curl ca-certificates build-essential zip git libsdl2-dev
+          sudo apt-get install --assume-yes curl ca-certificates build-essential zip git libudev-dev:armhf libsdl2-dev:armhf libsdl2-image-dev:armhf
       - name: Compile FinalBurn Neo for CHA
         run: |
           git clone "https://${GITHUB_REPOSITORY_OWNER}:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git" .
