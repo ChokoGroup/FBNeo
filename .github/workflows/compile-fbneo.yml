@@ -22,7 +22,7 @@ jobs:
         run: |
           echo "NOW=$(date +%F)" >> "$GITHUB_ENV"
           apt-get update
-          apt-get install --assume-yes curl ca-certificates build-essential zip git glibc-dev
+          apt-get install --assume-yes curl ca-certificates build-essential zip git libc-dev
       - name: Compile FinalBurn Neo for CHA
         run: |
           git clone "https://${GITHUB_REPOSITORY_OWNER}:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git" .
