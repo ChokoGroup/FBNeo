@@ -20,14 +20,11 @@ jobs:
       - name: Install needed tools
         run: |
           echo "NOW=$(date +%F)" >> "$GITHUB_ENV"
-          sudo dpkg --add-architecture armhf
-          sudo apt-get update || true
-          echo "*** ls -la /etc/apt/sources.list.d/"
-          ls -la /etc/apt/sources.list.d/
-          echo "*** /etc/apt/sources.list.d/*"
-          cat /etc/apt/sources.list.d/*
+          echo "http://ports.ubuntu.com/dists/	priority:4" >> /etc/apt/apt-mirrors.txt
           echo "*** /etc/apt/apt-mirrors.txt"
           cat /etc/apt/apt-mirrors.txt
+          sudo dpkg --add-architecture armhf
+          sudo apt-get update || true
           sudo apt-get install --assume-yes curl ca-certificates build-essential zip git libudev-dev:armhf libsdl2-dev:armhf libsdl2-image-dev:armhf
       - name: Compile FinalBurn Neo for CHA
         run: |
