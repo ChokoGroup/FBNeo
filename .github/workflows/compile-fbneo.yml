@@ -21,11 +21,13 @@ jobs:
         run: |
           echo "NOW=$(date +%F)" >> "$GITHUB_ENV"
           sudo dpkg --add-architecture armhf
-          echo "*** /etc/apt/sources.list.d/ubuntu.sources"
-          cat /etc/apt/sources.list.d/ubuntu.sources
           sudo apt-get update || true
-          echo "*** /etc/apt/sources.list.d/ubuntu.sources"
-          cat /etc/apt/sources.list.d/ubuntu.sources
+          echo "*** ls -la /etc/apt/sources.list.d/"
+          ls -la /etc/apt/sources.list.d/
+          echo "*** /etc/apt/sources.list.d/*"
+          cat /etc/apt/sources.list.d/*
+          echo "*** /etc/apt/apt-mirrors.txt"
+          cat /etc/apt/apt-mirrors.txt
           sudo apt-get install --assume-yes curl ca-certificates build-essential zip git libudev-dev:armhf libsdl2-dev:armhf libsdl2-image-dev:armhf
       - name: Compile FinalBurn Neo for CHA
         run: |
