@@ -190,15 +190,15 @@ ifeq ($(CROSS_COMP),)
   HOST_CXXFLAGS := $(CXXFLAGS)
   HOST_LDFLAGS  := $(LDFLAGS)
 else
-  CC = arm-linux-gnueabihf-gcc
-  CXX = arm-linux-gnueabihf-g++
+  CC = armv7-rpi2-linux-gnueabihf-gcc -Wl,--dynamic-linker="$PWD/crosstool-ng/armv7-rpi2-linux-gnueabihf/sysroot/lib/ld-linux-armhf.so.3" -Wl,--rpath="$PWD/crosstool-ng/armv7-rpi2-linux-gnueabihf/sysroot/lib" -v -pthread
+  CXX = armv7-rpi2-linux-gnueabihf-g++ -Wl,--dynamic-linker="$PWD/crosstool-ng/armv7-rpi2-linux-gnueabihf/sysroot/lib/ld-linux-armhf.so.3" -Wl,--rpath="$PWD/crosstool-ng/armv7-rpi2-linux-gnueabihf/sysroot/lib" -v -pthread
   HOST_CC = gcc -m32
   HOST_CXX = g++ -m32
 endif
 
 
 
-LDFLAGS	= -static
+#LDFLAGS	= -static
 
 CFLAGS = -O2 -fomit-frame-pointer -Wno-write-strings \
 	   -Wall -Wno-long-long -Wno-sign-compare -Wno-uninitialized -Wno-unused \

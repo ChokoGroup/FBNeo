@@ -30,7 +30,7 @@ jobs:
         run: |
           git clone "https://${GITHUB_REPOSITORY_OWNER}:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git" .
           git config --global --add safe.directory "$PWD"
-          make sdl2 CROSS_COMP=1 RELEASEBUILD=1
+          PATH="${PATH}:$PWD/crosstool-ng/bin" make sdl2 CROSS_COMP=1 RELEASEBUILD=1
           mv ./fbneo ./FinalBurn\ Neo\ for\ CHA/
           mv ./metadata/hiscore.dat ./FinalBurn\ Neo\ for\ CHA/
           echo "${{ env.NOW }}" > ./FinalBurn\ Neo\ for\ CHA/fbneo_build_date.txt
@@ -41,8 +41,8 @@ jobs:
           zip -9 -r ./FinalBurn\ Neo\ for\ CHA\ -\ Help\ Videos.zip ./FinalBurn\ Neo\ for\ CHA\ -\ Help\ Videos
       - name: Compile fbneo_libretro.so
         run: |
-          make -j$(nproc) -C src/burner/libretro generate-files platform=unix_rpi2 CROSS_CHA=1
-          make -j$(nproc) -C src/burner/libretro platform=unix_rpi2 CROSS_CHA=1
+          PATH="${PATH}:$PWD/crosstool-ng/bin" make -j$(nproc) -C src/burner/libretro generate-files platform=unix_rpi2 CROSS_CHA=1
+          PATH="${PATH}:$PWD/crosstool-ng/bin" make -j$(nproc) -C src/burner/libretro platform=unix_rpi2 CROSS_CHA=1
           mv src/burner/libretro/fbneo_libretro.so ./fbneo_libretro.${{ env.NOW }}.so
           zip -9 fbneo_libretro.zip fbneo_libretro*.so
       - name: Release FinalBurn Neo for CHA
