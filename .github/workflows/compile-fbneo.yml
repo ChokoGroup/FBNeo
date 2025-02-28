@@ -26,8 +26,12 @@ jobs:
           sudo apt-get update || true
           echo "*** ls -la /etc/apt/sources.list.d/"
           ls -la /etc/apt/sources.list.d/
-          echo "*** /etc/apt/sources.list.d/*"
-          cat /etc/apt/sources.list.d/*
+          echo "*** /etc/apt/sources.list.d/azure-cli.sources"
+          cat /etc/apt/sources.list.d/azure-cli.sources
+          echo "*** /etc/apt/sources.list.d/microsoft-prod.list"
+          cat /etc/apt/sources.list.d/microsoft-prod.list
+          echo "*** /etc/apt/sources.list.d/ubuntu.sources"
+          cat /etc/apt/sources.list.d/ubuntu.sources
           sudo apt-get install --assume-yes curl ca-certificates build-essential zip git libudev-dev:armhf libsdl2-dev:armhf libsdl2-image-dev:armhf
       - name: Compile FinalBurn Neo for CHA
         run: |
