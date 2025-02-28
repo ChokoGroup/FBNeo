@@ -23,7 +23,7 @@ jobs:
           echo "*** /etc/apt/apt-mirrors.txt"
           cat /etc/apt/apt-mirrors.txt
           sudo dpkg --add-architecture armhf
-          sed -i 's|URIs: mirror+file:/etc/apt/apt-mirrors.txt|URIs: http://ports.ubuntu.com/dists/|g' /etc/apt/sources.list.d/ubuntu.sources
+          sudo sed -i 's|URIs: mirror+file:/etc/apt/apt-mirrors.txt|URIs: http://ports.ubuntu.com/dists/|g' /etc/apt/sources.list.d/ubuntu.sources
           sudo apt-get update || true
           echo "*** ls -la /etc/apt/sources.list.d/"
           ls -la /etc/apt/sources.list.d/
