@@ -15,6 +15,7 @@ env:
 jobs:
   build-and-release:
     runs-on: ubuntu-24.04
+    container: node:current-slim
     if: ${{ github.event.workflow_run.conclusion == 'success' || github.event_name == 'workflow_dispatch' || github.event_name == 'push' }}
     steps:
       - name: Install needed tools
@@ -23,7 +24,7 @@ jobs:
           sudo dpkg --add-architecture armhf
           sudo echo -e "Types: deb\nURIs: mirror+file:/etc/apt/apt-mirrors.txt\nArchitectures: amd64\nSuites: noble noble-updates noble-backports noble-security\nComponents: main universe restricted multiverse\nSigned-By: /usr/share/keyrings/ubuntu-archive-keyring.gpg\n\nTypes: deb\nURIs: http://ports.ubuntu.com/\nArchitectures: armhf\nSuites: noble noble-updates noble-backports noble-security\nComponents: main universe restricted multiverse\nSigned-By: /usr/share/keyrings/ubuntu-archive-keyring.gpg" | sudo tee /etc/apt/sources.list.d/ubuntu.sources
           sudo apt-get update; sudo apt-get upgrade; sudo apt-get autoremove; sudo apt-get autoclean
-          sudo apt-get install --assume-yes --ignore-missing curl ca-certificates build-essential zip git libudev-dev:armhf libsdl2-dev:armhf libsdl2-image-dev:armhf libglib2.0-dev-bin:armhf=2.80.0-6ubuntu3.2 libglib2.0-dev-bin-linux:armhf=2.80.0-6ubuntu3.2
+          sudo apt-get install --assume-yes curl ca-certificates build-essential binutils-multiarch zip git libudev-dev:armhf libsdl2-dev:armhf libsdl2-image-dev:armhf libglib2.0-dev-bin:armhf=2.80.0-6ubuntu3.2 libglib2.0-dev-bin-linux:armhf=2.80.0-6ubuntu3.2
       - name: Compile FinalBurn Neo for CHA
         run: |
           git clone "https://${GITHUB_REPOSITORY_OWNER}:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git" .
