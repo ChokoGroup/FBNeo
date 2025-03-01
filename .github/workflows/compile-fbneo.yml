@@ -22,7 +22,7 @@ jobs:
         run: |
           echo "NOW=$(date +%F)" >> "$GITHUB_ENV"
           dpkg --add-architecture armhf
-          echo -e "Types: deb\nURIs: mirror+file:/etc/apt/apt-mirrors.txt\nArchitectures: amd64\nSuites: noble noble-updates noble-backports noble-security\nComponents: main universe restricted multiverse\nSigned-By: /usr/share/keyrings/ubuntu-archive-keyring.gpg\n\nTypes: deb\nURIs: http://ports.ubuntu.com/\nArchitectures: armhf\nSuites: noble noble-updates noble-backports noble-security\nComponents: main universe restricted multiverse\nSigned-By: /usr/share/keyrings/ubuntu-archive-keyring.gpg" | tee /etc/apt/sources.list.d/ubuntu.sources
+          echo "Types: deb\nURIs: mirror+file:/etc/apt/apt-mirrors.txt\nArchitectures: amd64\nSuites: noble noble-updates noble-backports noble-security\nComponents: main universe restricted multiverse\nSigned-By: /usr/share/keyrings/ubuntu-archive-keyring.gpg\n\nTypes: deb\nURIs: http://ports.ubuntu.com/\nArchitectures: armhf\nSuites: noble noble-updates noble-backports noble-security\nComponents: main universe restricted multiverse\nSigned-By: /usr/share/keyrings/ubuntu-archive-keyring.gpg" | tee /etc/apt/sources.list.d/ubuntu.sources
           apt-get update; apt-get upgrade; apt-get autoremove; apt-get autoclean
           apt-get install --assume-yes curl ca-certificates build-essential binutils-multiarch zip git libudev-dev:armhf libsdl2-dev:armhf libsdl2-image-dev:armhf libglib2.0-dev-bin:armhf=2.80.0-6ubuntu3.2 libglib2.0-dev-bin-linux:armhf=2.80.0-6ubuntu3.2
       - name: Compile FinalBurn Neo for CHA
