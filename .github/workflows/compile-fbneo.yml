@@ -21,7 +21,7 @@ jobs:
         run: |
           echo "NOW=$(date +%F)" >> "$GITHUB_ENV"
           sudo dpkg --add-architecture armhf
-          sudo echo -e "Types: deb\nURIs: mirror+file:/etc/apt/apt-mirrors.txt\nArchitectures: amd64\nSuites: noble noble-updates noble-backports noble-security\nComponents: main universe restricted multiverse\nSigned-By: /usr/share/keyrings/ubuntu-archive-keyring.gpg\n\nTypes: deb\nURIs: http://ports.ubuntu.com/dists/\nArchitectures: armhf\nSuites: noble noble-updates noble-backports noble-security\nComponents: main universe restricted multiverse\nSigned-By: /usr/share/keyrings/ubuntu-archive-keyring.gpg" | sudo tee /etc/apt/sources.list.d/ubuntu.sources
+          sudo echo -e "Types: deb\nURIs: mirror+file:/etc/apt/apt-mirrors.txt\nArchitectures: amd64\nSuites: noble noble-updates noble-backports noble-security\nComponents: main universe restricted multiverse\nSigned-By: /usr/share/keyrings/ubuntu-archive-keyring.gpg\n\nTypes: deb\nURIs: http://ports.ubuntu.com/\nArchitectures: armhf\nSuites: noble noble-updates noble-backports noble-security\nComponents: main universe restricted multiverse\nSigned-By: /usr/share/keyrings/ubuntu-archive-keyring.gpg" | sudo tee /etc/apt/sources.list.d/ubuntu.sources
           sudo apt-get update || true
           echo "*** /etc/apt/sources.list.d/ubuntu.sources"
           cat /etc/apt/sources.list.d/ubuntu.sources
