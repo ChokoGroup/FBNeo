@@ -14,25 +14,15 @@ env:
 
 jobs:
   build-and-release:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     if: ${{ github.event.workflow_run.conclusion == 'success' || github.event_name == 'workflow_dispatch' || github.event_name == 'push' }}
     steps:
       - name: Install needed tools
         run: |
           echo "NOW=$(date +%F)" >> "$GITHUB_ENV"
-          echo "*** /etc/apt/apt-mirrors.txt"
-          cat /etc/apt/apt-mirrors.txt
           sudo dpkg --add-architecture armhf
-          sudo cp /etc/apt/sources.list.d/ubuntu.sources /etc/apt/sources.list.d/ubuntuarmhf.sources
-          sudo sed -i "s|URIs: mirror+file:/etc/apt/apt-mirrors.txt|URIs: mirror+file:/etc/apt/apt-mirrors.txt\nArchitectures: amd64|g" /etc/apt/sources.list.d/ubuntu.sources
-          sudo sed -i "s|URIs: mirror+file:/etc/apt/apt-mirrors.txt|URIs: http://ports.ubuntu.com/dists/\nArchitectures: armhf|g" /etc/apt/sources.list.d/ubuntuarmhf.sources
+          sudo echo "Types: deb\nURIs: mirror+file:/etc/apt/apt-mirrors.txt\nArchitectures: amd64\nSuites: noble noble-updates noble-backports noble-security\nComponents: main universe restricted multiverse\nSigned-By: /usr/share/keyrings/ubuntu-archive-keyring.gpg\n\nTypes: deb\nURIs: http://ports.ubuntu.com/dists/\nArchitectures: armhf\nSuites: noble noble-updates noble-backports noble-security\nComponents: main universe restricted multiverse\nSigned-By: /usr/share/keyrings/ubuntu-archive-keyring.gpg"
           sudo apt-get update || true
-          echo "*** ls -la /etc/apt/sources.list.d/"
-          ls -la /etc/apt/sources.list.d/
-          echo "*** /etc/apt/sources.list.d/azure-cli.sources"
-          cat /etc/apt/sources.list.d/azure-cli.sources
-          echo "*** /etc/apt/sources.list.d/microsoft-prod.list"
-          cat /etc/apt/sources.list.d/microsoft-prod.list
           echo "*** /etc/apt/sources.list.d/ubuntu.sources"
           cat /etc/apt/sources.list.d/ubuntu.sources
           sudo apt-get install --assume-yes curl ca-certificates build-essential zip git libudev-dev:armhf libsdl2-dev:armhf libsdl2-image-dev:armhf
