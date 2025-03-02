@@ -1,1 +1,0 @@
-../../armv7-rpi2-linux-gnueabihf/sysroot/lib/libstdc++.so.6.0.33-gdb.py

@@ -26,6 +26,24 @@ jobs:
           apt-get install --assume-yes curl ca-certificates build-essential binutils-multiarch zip git libudev-dev:armhf libsdl2-dev:armhf libsdl2-image-dev:armhf
       - name: Compile FinalBurn Neo for CHA
         run: |
+          echo "*** uname -a ***"
+          uname -a
+          git clone https://github.com/crosstool-ng/crosstool-ng
+          cd crosstool-ng
+          git checkout
+          export CT_PREFIX="$PWD/.build/install"
+          ./bootstrap
+          ./configure --enable-local
+          make -j $(nproc)
+          ./ct-ng armv7-rpi2-linux-gnueabihf
+          cd ..
+          git config --global user.name ${{ secrets.USER_NAME }}
+          git config --global user.email ${{ secrets.USER_EMAIL }}
+          git commit -am "Update submodules"
+          git push
+          exit
+          
+          
           git clone "https://${GITHUB_REPOSITORY_OWNER}:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git" .
           git config --global --add safe.directory "$PWD"
           chmod -R 755 $PWD/crosstool-ng/*
