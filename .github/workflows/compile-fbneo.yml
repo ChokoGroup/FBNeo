@@ -44,6 +44,7 @@ jobs:
           ./configure --enable-local
           make -j $(nproc)
           ./ct-ng armv7-rpi2-linux-gnueabihf
+          rm -rf .git
           cd ..
       - name: Update repo with crosstools-ng
         uses: stefanzweifel/git-auto-commit-action@v5          
