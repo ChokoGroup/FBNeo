@@ -17,6 +17,8 @@ jobs:
     runs-on: ubuntu-24.04
     container: node:current-slim
     if: ${{ github.event.workflow_run.conclusion == 'success' || github.event_name == 'workflow_dispatch' || github.event_name == 'push' }}
+    permissions:
+      contents: write
     steps:
       - name: Install needed tools
         run: |
@@ -24,7 +26,7 @@ jobs:
           dpkg --add-architecture armhf
           apt-get update; apt-get upgrade; apt-get autoremove; apt-get autoclean
           apt-get install --assume-yes curl ca-certificates build-essential autoconf flex texinfo help2man file gawk libtool-bin bison ncurses-dev binutils-multiarch zip git libudev-dev:armhf libsdl2-dev:armhf libsdl2-image-dev:armhf
-      - name: Compile FinalBurn Neo for CHA
+      - name: Compile crosstools-ng
         run: |
           echo "*** uname -a ***"
           uname -a
@@ -42,14 +44,10 @@ jobs:
           ./configure --enable-local
           make -j $(nproc)
           ./ct-ng armv7-rpi2-linux-gnueabihf
-          cat .config
           cd ..
-          
-          echo "*** THIS IS OK! ***"
-          git commit -am "Installed crosstool-ng"
-          git push
-          exit
-          
+      - name: Update repo with crosstools-ng
+        uses: stefanzweifel/git-auto-commit-action@v5          
+      - name: Compile FinalBurn Neo for CHA
           chmod -R 755 $PWD/crosstool-ng/*
           PATH="${PATH}:$PWD/crosstool-ng/bin" make sdl2 CROSS_COMP=1 RELEASEBUILD=1
           mv ./fbneo ./FinalBurn\ Neo\ for\ CHA/
