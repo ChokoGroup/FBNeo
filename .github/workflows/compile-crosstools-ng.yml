@@ -8,7 +8,8 @@ env:
 
 jobs:
   build-and-release:
-    runs-on: ubuntu-24.04.arm
+    runs-on: ubuntu-24.04
+    container: node:current-alpine
     permissions:
       contents: write
     steps:
