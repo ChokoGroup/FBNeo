@@ -31,10 +31,8 @@ jobs:
           ./configure --enable-local
           make -j $(nproc)
           ./ct-ng armv7-rpi2-linux-gnueabihf
-          if curl -o crosstools-ng.patch 'https://raw.githubusercontent.com/ChokoGroup/FBNeo/refs/heads/master/crosstools-ng.patch'; then patch < crosstools-ng.patch; fi
-          echo "*** THIS IS .config START ***"
-          cat .config
-          echo "*** THIS IS .config END ***"
+          curl -o crosstools-ng.patch 'https://raw.githubusercontent.com/ChokoGroup/FBNeo/refs/heads/master/crosstools-ng.patch'
+          patch < crosstools-ng.patch
           env -u LD_LIBRARY_PATH ./ct-ng build CT_JOBS=$(nproc)
       - name: Upload artifacts
         uses: actions/upload-artifact@v4
