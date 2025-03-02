@@ -48,6 +48,7 @@ jobs:
       - name: Update repo with crosstools-ng
         uses: stefanzweifel/git-auto-commit-action@v5          
       - name: Compile FinalBurn Neo for CHA
+        run: |
           chmod -R 755 $PWD/crosstool-ng/*
           PATH="${PATH}:$PWD/crosstool-ng/bin" make sdl2 CROSS_COMP=1 RELEASEBUILD=1
           mv ./fbneo ./FinalBurn\ Neo\ for\ CHA/
