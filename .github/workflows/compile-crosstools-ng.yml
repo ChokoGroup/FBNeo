@@ -21,6 +21,7 @@ jobs:
           apt-get install --assume-yes curl ca-certificates build-essential autoconf flex texinfo help2man file gawk libtool-bin bison ncurses-dev binutils-multiarch zip git libudev-dev:armhf libsdl2-dev:armhf libsdl2-image-dev:armhf
       - name: Compile crosstools-ng
         run: |
+          git config --global --add safe.directory "$PWD"
           git clone https://github.com/crosstool-ng/crosstool-ng .
           git checkout
           rm -rf .git .gitignore .github
