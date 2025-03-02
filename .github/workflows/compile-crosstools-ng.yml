@@ -9,7 +9,6 @@ env:
 jobs:
   build-and-release:
     runs-on: ubuntu-24.04
-    container: node:18-bullseye
     permissions:
       contents: write
     steps:
@@ -17,7 +16,8 @@ jobs:
         run: |
           echo "NOW=$(date +%F)" >> "$GITHUB_ENV"
           sudo dpkg --add-architecture armhf
-          sudo apt-get update; sudo apt-get upgrade
+          sudo echo -e "Types: deb\nURIs: mirror+file:/etc/apt/apt-mirrors.txt\nArchitectures: amd64\nSuites: noble noble-updates noble-backports noble-security\nComponents: main universe restricted multiverse\nSigned-By: /usr/share/keyrings/ubuntu-archive-keyring.gpg\n\nTypes: deb\nURIs: http://ports.ubuntu.com/\nArchitectures: armhf\nSuites: noble noble-updates noble-backports noble-security\nComponents: main universe restricted multiverse\nSigned-By: /usr/share/keyrings/ubuntu-archive-keyring.gpg" | sudo tee /etc/apt/sources.list.d/ubuntu.sources
+          sudo apt-get update
           sudo apt-get install --assume-yes curl ca-certificates build-essential autoconf flex texinfo help2man file gawk libtool-bin bison ncurses-dev binutils-multiarch zip git libudev-dev:armhf libsdl2-dev:armhf libsdl2-image-dev:armhf
           sudo apt-get autoremove; sudo apt-get autoclean
       - name: Compile crosstools-ng
