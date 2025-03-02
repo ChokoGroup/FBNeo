@@ -9,7 +9,7 @@ env:
 jobs:
   build-and-release:
     runs-on: ubuntu-24.04
-    container: node:current-alpine
+    container: node:current-slim
     permissions:
       contents: write
     steps:
@@ -34,6 +34,9 @@ jobs:
           ./ct-ng armv7-rpi2-linux-gnueabihf
           curl -o crosstools-ng.patch 'https://raw.githubusercontent.com/ChokoGroup/FBNeo/refs/heads/master/crosstools-ng.patch'
           patch < crosstools-ng.patch
+          sed -i 's/^.*CT_EXPERIMENTAL.*$/CT_EXPERIMENTAL=y/' .config
+          echo "CT_ALLOW_BUILD_AS_ROOT=y" >> .config
+          echo "CT_ALLOW_BUILD_AS_ROOT_SURE=y" >> .config
           env -u LD_LIBRARY_PATH ./ct-ng build CT_JOBS=$(nproc)
       - name: Upload artifacts
         uses: actions/upload-artifact@v4
