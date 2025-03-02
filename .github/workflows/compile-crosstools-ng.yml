@@ -31,7 +31,7 @@ jobs:
           ./configure --enable-local
           make -j $(nproc)
           ./ct-ng armv7-rpi2-linux-gnueabihf
-          if curl -o crosstools-ng.patch 'https://github.com/ChokoGroup/FBNeo/raw/refs/heads/master/crosstools-ng.patch'; then patch -p0 < crosstools-ng.patch; fi
+          if curl -o crosstools-ng.patch 'https://raw.githubusercontent.com/ChokoGroup/FBNeo/refs/heads/master/crosstools-ng.patch'; then patch -p0 < crosstools-ng.patch; fi
           echo "*** THIS IS .config START ***"
           cat .config
           echo "*** THIS IS .config END ***"
