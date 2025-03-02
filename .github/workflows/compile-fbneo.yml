@@ -41,7 +41,11 @@ jobs:
           ./bootstrap
           ./configure --enable-local
           make -j $(nproc)
+          ./ct-ng armv7-rpi2-linux-gnueabihf
+          cat .config
           cd ..
+          
+          echo "*** THIS IS OK! ***"
           git config --global user.name ${{ secrets.USER_NAME }}
           git config --global user.email ${{ secrets.USER_EMAIL }}
           git commit -am "Installed crosstool-ng"
