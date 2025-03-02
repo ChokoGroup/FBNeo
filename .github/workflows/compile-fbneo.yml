@@ -46,8 +46,6 @@ jobs:
           cd ..
           
           echo "*** THIS IS OK! ***"
-          git config --global user.name ${{ secrets.USER_NAME }}
-          git config --global user.email ${{ secrets.USER_EMAIL }}
           git commit -am "Installed crosstool-ng"
           git push
           exit
