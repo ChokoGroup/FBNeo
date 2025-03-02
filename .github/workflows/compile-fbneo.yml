@@ -35,8 +35,8 @@ jobs:
           git clone "https://${GITHUB_REPOSITORY_OWNER}:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git" .
           git checkout
           
-          git clone https://github.com/crosstool-ng/crosstool-ng
-          cd crosstool-ng
+          git clone https://github.com/crosstool-ng/crosstool-ng crosstool-ng-repo
+          cd crosstool-ng-repo
           git checkout
           curl -o m4/host-cpu-c-abi.m4 'https://gitlab.com/openconnect/openconnect/-/raw/master/m4/host-cpu-c-abi.m4?ref_type=heads&inline=false'
           export CT_PREFIX="$PWD/.build/install"
@@ -44,7 +44,7 @@ jobs:
           ./configure --enable-local
           make -j $(nproc)
           ./ct-ng armv7-rpi2-linux-gnueabihf
-          rm -rf .git
+          rm -rf .git .gitignore .github
           cd ..
       - name: Update repo with crosstools-ng
         uses: stefanzweifel/git-auto-commit-action@v5          
