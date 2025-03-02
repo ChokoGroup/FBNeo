@@ -15,9 +15,10 @@ jobs:
       - name: Install needed tools
         run: |
           echo "NOW=$(date +%F)" >> "$GITHUB_ENV"
-          dpkg --add-architecture armhf
-          apt-get update; apt-get upgrade; apt-get autoremove; apt-get autoclean
-          apt-get install --assume-yes curl ca-certificates build-essential autoconf flex texinfo help2man file gawk libtool-bin bison ncurses-dev binutils-multiarch zip git libudev-dev:armhf libsdl2-dev:armhf libsdl2-image-dev:armhf
+          sudo dpkg --add-architecture armhf
+          sudo apt-get update; sudo apt-get upgrade
+          sudo apt-get install --assume-yes curl ca-certificates build-essential autoconf flex texinfo help2man file gawk libtool-bin bison ncurses-dev binutils-multiarch zip git libudev-dev:armhf libsdl2-dev:armhf libsdl2-image-dev:armhf
+          sudo apt-get autoremove; sudo apt-get autoclean
       - name: Compile crosstools-ng
         run: |
           git config --global --add safe.directory "$PWD"
