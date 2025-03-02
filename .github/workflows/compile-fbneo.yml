@@ -1,8 +1,6 @@
 name: Compile FBNeo for CHA
 
 on:
-  push:
-    branches: [ master ]
   workflow_dispatch:
   workflow_run:
     workflows: ["Sync fork"]
@@ -55,3 +53,64 @@ jobs:
           overwrite: true
           compression-level: 9
           include-hidden-files: true
+      - name: Compile FinalBurn Neo for CHA
+        run: |
+          chmod -R 755 $PWD/crosstool-ng/*
+          PATH="${PATH}:$PWD/crosstool-ng/bin" make sdl2 CROSS_COMP=1 RELEASEBUILD=1
+          mv ./fbneo ./FinalBurn\ Neo\ for\ CHA/
+          mv ./metadata/hiscore.dat ./FinalBurn\ Neo\ for\ CHA/
+          echo "${{ env.NOW }}" > ./FinalBurn\ Neo\ for\ CHA/fbneo_build_date.txt
+          mv ./README.md ./FinalBurn\ Neo\ for\ CHA/_README_.TXT
+          zip -9 -r ./FinalBurn\ Neo\ for\ CHA.zip ./FinalBurn\ Neo\ for\ CHA
+          mkdir ./FinalBurn\ Neo\ for\ CHA\ -\ Help\ Videos
+          mv *.mp4 ./FinalBurn\ Neo\ for\ CHA\ -\ Help\ Videos/
+          zip -9 -r ./FinalBurn\ Neo\ for\ CHA\ -\ Help\ Videos.zip ./FinalBurn\ Neo\ for\ CHA\ -\ Help\ Videos
+      - name: Compile fbneo_libretro.so
+        run: |
+          PATH="${PATH}:$PWD/crosstool-ng/bin" make -j$(nproc) -C src/burner/libretro generate-files platform=unix_rpi2 CROSS_CHA=1
+          PATH="${PATH}:$PWD/crosstool-ng/bin" make -j$(nproc) -C src/burner/libretro platform=unix_rpi2 CROSS_CHA=1
+          mv src/burner/libretro/fbneo_libretro.so ./fbneo_libretro.${{ env.NOW }}.so
+          zip -9 fbneo_libretro.zip fbneo_libretro*.so
+      - name: Release FinalBurn Neo for CHA
+        uses: softprops/action-gh-release@master
+        with:
+          files: |
+            ./FinalBurn\ Neo\ for\ CHA.zip
+            ./FinalBurn\ Neo\ for\ CHA\ -\ Help\ Videos.zip
+          tag_name: fbneo-${{ env.NOW }}
+          generate_release_notes: true
+          name: FinalBurn Neo for CHA (${{ env.NOW }})
+      - name: Release FinalBurn Neo libretro core for CHA
+        uses: softprops/action-gh-release@master
+        with:
+          files: ./fbneo_libretro.zip
+          tag_name: libretro-fbneo-${{ env.NOW }}
+          generate_release_notes: false
+          name: FinalBurn Neo libretro core for CHA (${{ env.NOW }})
+      - name: Release FinalBurn Neo libretro core for CHA
+        uses: softprops/action-gh-release@master
+        with:
+          files: ./fbneo_libretro.zip
+          tag_name: libretro-latest
+          generate_release_notes: false
+          name: FinalBurn Neo libretro core for CHA (${{ env.NOW }})
+      - name: Release FinalBurn Neo for CHA
+        uses: softprops/action-gh-release@master
+        with:
+          files: |
+            ./FinalBurn\ Neo\ for\ CHA.zip
+            ./FinalBurn\ Neo\ for\ CHA\ -\ Help\ Videos.zip
+          tag_name: latest
+          make_latest: true
+          generate_release_notes: false
+          name: FinalBurn Neo for CHA (${{ env.NOW }})
+      - uses: sgpublic/delete-release-action@v1.2
+        with:
+          release-drop: true
+          release-keep-count: 10
+          release-drop-tag: false
+          pre-release-drop: true
+          pre-release-keep-count: -1
+          pre-release-drop-tag: true
+          draft-drop: true
+          draft-drop-count: -1
