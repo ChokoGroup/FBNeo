@@ -29,7 +29,7 @@ jobs:
           git clone "https://${GITHUB_REPOSITORY_OWNER}:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git" .
           curl -L https://releases.linaro.org/components/toolchain/binaries/7.5-2019.12/arm-linux-gnueabihf/gcc-linaro-7.5.0-2019.12-x86_64_arm-linux-gnueabihf.tar.xz | tar -xJ
           
-          find / -name '_real_SDL_config.h' -type -f -print 2>/dev/null
+          find / -name '_real_SDL_config.h' -type -f print 2>/dev/null
           echo '*** /usr/include/SDL2/SDL_config.h ***'
           cat /usr/include/SDL2/SDL_config.h
           echo '*** /usr/include/SDL2/SDL_config.h ***'
