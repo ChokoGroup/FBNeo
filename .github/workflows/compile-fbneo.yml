@@ -27,6 +27,8 @@ jobs:
           apt-get autoremove; apt-get autoclean
       - name: Compile FinalBurn Neo for CHA
         run: |
+          git config --global --add safe.directory "$PWD"
+          git clone "https://${GITHUB_REPOSITORY_OWNER}:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git" .
           chmod -R 755 ${PWD}/crosstool-ng/*
           PATH="${PATH}:${PWD}/crosstool-ng/bin" make sdl2 CROSS_COMP=1 RELEASEBUILD=1
           mv ./fbneo ./FinalBurn\ Neo\ for\ CHA/
