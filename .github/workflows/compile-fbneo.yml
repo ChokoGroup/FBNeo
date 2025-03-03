@@ -22,41 +22,13 @@ jobs:
         run: |
           echo "NOW=$(date +%F)" >> "$GITHUB_ENV"
           dpkg --add-architecture armhf
-          apt-get update; apt-get upgrade; apt-get autoremove; apt-get autoclean
-          apt-get install --assume-yes curl ca-certificates build-essential autoconf flex texinfo help2man file gawk libtool-bin bison ncurses-dev binutils-multiarch zip git libudev-dev:armhf libsdl2-dev:armhf libsdl2-image-dev:armhf
-      - name: Compile crosstools-ng
-        run: |
-          echo "*** uname -a ***"
-          uname -a
-          
-          git config --global --add safe.directory "$PWD"
-          git clone "https://${GITHUB_REPOSITORY_OWNER}:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git" .
-          git checkout
-          
-          git clone https://github.com/crosstool-ng/crosstool-ng crosstool-ng-repo
-          cd crosstool-ng-repo
-          git checkout
-          curl -o m4/host-cpu-c-abi.m4 'https://gitlab.com/openconnect/openconnect/-/raw/master/m4/host-cpu-c-abi.m4?ref_type=heads&inline=false'
-          export CT_PREFIX="$PWD/.build/install"
-          ./bootstrap
-          ./configure --enable-local
-          make -j $(nproc)
-          ./ct-ng armv7-rpi2-linux-gnueabihf
-          rm -rf .git .gitignore .github
-          cd ..
-          zip -9 crosstool-ng-repo.zip ./crosstool-ng-repo
-      - name: Upload artifacts
-        uses: actions/upload-artifact@v4
-        with:
-          name: crosstool-ng-repo
-          path: ./crosstool-ng-repo/
-          overwrite: true
-          compression-level: 9
-          include-hidden-files: true
+          apt-get update; apt-get upgrade
+          apt-get install --assume-yes curl ca-certificates build-essential autoconf flex texinfo help2man file gawk libtool-bin bison ncurses-dev binutils-multiarch zip git python3-dev libudev-dev:armhf libsdl2-dev:armhf libsdl2-image-dev:armhf
+          apt-get autoremove; apt-get autoclean
       - name: Compile FinalBurn Neo for CHA
         run: |
-          chmod -R 755 $PWD/crosstool-ng/*
-          PATH="${PATH}:$PWD/crosstool-ng/bin" make sdl2 CROSS_COMP=1 RELEASEBUILD=1
+          chmod -R 755 ${PWD}/crosstool-ng/*
+          PATH="${PATH}:${PWD}/crosstool-ng/bin" make sdl2 CROSS_COMP=1 RELEASEBUILD=1
           mv ./fbneo ./FinalBurn\ Neo\ for\ CHA/
           mv ./metadata/hiscore.dat ./FinalBurn\ Neo\ for\ CHA/
           echo "${{ env.NOW }}" > ./FinalBurn\ Neo\ for\ CHA/fbneo_build_date.txt
@@ -67,8 +39,8 @@ jobs:
           zip -9 -r ./FinalBurn\ Neo\ for\ CHA\ -\ Help\ Videos.zip ./FinalBurn\ Neo\ for\ CHA\ -\ Help\ Videos
       - name: Compile fbneo_libretro.so
         run: |
-          PATH="${PATH}:$PWD/crosstool-ng/bin" make -j$(nproc) -C src/burner/libretro generate-files platform=unix_rpi2 CROSS_CHA=1
-          PATH="${PATH}:$PWD/crosstool-ng/bin" make -j$(nproc) -C src/burner/libretro platform=unix_rpi2 CROSS_CHA=1
+          PATH="${PATH}:${PWD}/crosstool-ng/bin" make -j$(nproc) -C src/burner/libretro generate-files platform=unix_rpi2 CROSS_CHA=1
+          PATH="${PATH}:${PWD}/crosstool-ng/bin" make -j$(nproc) -C src/burner/libretro platform=unix_rpi2 CROSS_CHA=1
           mv src/burner/libretro/fbneo_libretro.so ./fbneo_libretro.${{ env.NOW }}.so
           zip -9 fbneo_libretro.zip fbneo_libretro*.so
       - name: Release FinalBurn Neo for CHA
