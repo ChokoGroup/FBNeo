@@ -27,9 +27,8 @@ jobs:
           apt-get autoremove; apt-get autoclean
       - name: Compile FinalBurn Neo for CHA
         run: |
-          find /usr/include/ -name '_real_SDL_config.h' -print
-          find /usr/include/ -name '_real_SDL_config.h' -type f -exec ln -s {} /usr/include/SDL2/_real_SDL_config.h \;
-          ls -la /usr/include/SDL2/
+          find /usr/include/ -name 'SDL_config.h' -print
+          find /usr/include/ -name '_real_SDL_config.h' -type f -exec cp {} /usr/include/SDL2/_real_SDL_config.h \;
           git config --global --add safe.directory "$PWD"
           git clone "https://${GITHUB_REPOSITORY_OWNER}:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git" .
           chmod -R 755 ${PWD}/crosstool-ng/*
