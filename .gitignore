@@ -27,7 +27,7 @@ fbneo.dat
 
 # libretro
 # /.github
-# *.so
+*.so
 *.o
 src/burner/libretro/ctvmake
 src/burner/libretro/m68kmake

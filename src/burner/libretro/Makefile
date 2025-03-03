@@ -84,8 +84,8 @@ ifneq (,$(findstring unix,$(platform)))
 		USE_CYCLONE = 1
 		# if CROSS_CHA is not set, then we are not cross-compiling for Capcom Home Arcade
 		ifneq ($(CROSS_CHA),)
-			CC = armv7-rpi2-linux-gnueabihf-gcc -Wl,--dynamic-linker="$PWD/crosstool-ng/armv7-rpi2-linux-gnueabihf/sysroot/lib/ld-linux-armhf.so.3" -Wl,--rpath="$PWD/crosstool-ng/armv7-rpi2-linux-gnueabihf/sysroot/lib" -pthread
-			CXX = armv7-rpi2-linux-gnueabihf-g++ -Wl,--dynamic-linker="$PWD/crosstool-ng/armv7-rpi2-linux-gnueabihf/sysroot/lib/ld-linux-armhf.so.3" -Wl,--rpath="$PWD/crosstool-ng/armv7-rpi2-linux-gnueabihf/sysroot/lib" -pthread
+			CC = arm-linux-gnueabihf-gcc
+			CXX = arm-linux-gnueabihf-g++
 		endif
 	else ifneq (,$(findstring rpi3,$(platform)))
 		ifneq (,$(findstring rpi3_64,$(platform)))

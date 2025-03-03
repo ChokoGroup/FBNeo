@@ -12,27 +12,23 @@ env:
 
 jobs:
   build-and-release:
-    runs-on: ubuntu-24.04
+    runs-on: ubuntu-latest
     container: node:current-slim
     if: ${{ github.event.workflow_run.conclusion == 'success' || github.event_name == 'workflow_dispatch' || github.event_name == 'push' }}
-    permissions:
-      contents: write
     steps:
       - name: Install needed tools
         run: |
           echo "NOW=$(date +%F)" >> "$GITHUB_ENV"
           dpkg --add-architecture armhf
           apt-get update; apt-get upgrade
-          apt-get install --assume-yes curl ca-certificates build-essential autoconf flex texinfo help2man file gawk libtool-bin bison ncurses-dev binutils-multiarch zip git python3-dev libudev-dev:armhf libsdl2-dev:armhf libsdl2-image-dev:armhf
+          apt-get install --assume-yes build-essential ca-certificates curl git zip libudev-dev:armhf libsdl2-dev:armhf libsdl2-image-dev:armhf
           apt-get autoremove; apt-get autoclean
       - name: Compile FinalBurn Neo for CHA
         run: |
-          git config --global --add safe.directory "$PWD"
+          git config --global --add safe.directory ${PWD}
           git clone "https://${GITHUB_REPOSITORY_OWNER}:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git" .
-          find / -name 'SDL_config.h' -or -name '_real_SDL_config.h' -print
-          find / -name '_real_SDL_config.h' -type f -exec cp {} /usr/include/SDL2/_real_SDL_config.h \;
-          chmod -R 755 ${PWD}/crosstool-ng/*
-          PATH="${PATH}:${PWD}/crosstool-ng/bin" make sdl2 CROSS_COMP=1 RELEASEBUILD=1
+          curl -L https://releases.linaro.org/components/toolchain/binaries/7.5-2019.12/arm-linux-gnueabihf/gcc-linaro-7.5.0-2019.12-x86_64_arm-linux-gnueabihf.tar.xz | tar -x
+          PATH="${PWD}/gcc-linaro-7.5.0-2019.12-x86_64_arm-linux-gnueabihf/bin:${PATH}" CROSS_COMP=1 RELEASEBUILD=1 make sdl2
           mv ./fbneo ./FinalBurn\ Neo\ for\ CHA/
           mv ./metadata/hiscore.dat ./FinalBurn\ Neo\ for\ CHA/
           echo "${{ env.NOW }}" > ./FinalBurn\ Neo\ for\ CHA/fbneo_build_date.txt
@@ -43,8 +39,8 @@ jobs:
           zip -9 -r ./FinalBurn\ Neo\ for\ CHA\ -\ Help\ Videos.zip ./FinalBurn\ Neo\ for\ CHA\ -\ Help\ Videos
       - name: Compile fbneo_libretro.so
         run: |
-          PATH="${PATH}:${PWD}/crosstool-ng/bin" make -j$(nproc) -C src/burner/libretro generate-files platform=unix_rpi2 CROSS_CHA=1
-          PATH="${PATH}:${PWD}/crosstool-ng/bin" make -j$(nproc) -C src/burner/libretro platform=unix_rpi2 CROSS_CHA=1
+          PATH="${PWD}/gcc-linaro-7.5.0-2019.12-x86_64_arm-linux-gnueabihf/bin:${PATH}" CROSS_CHA=1 make -j$(nproc) -C src/burner/libretro generate-files platform=unix_rpi2
+          PATH="${PWD}/gcc-linaro-7.5.0-2019.12-x86_64_arm-linux-gnueabihf/bin:${PATH}" CROSS_CHA=1 make -j$(nproc) -C src/burner/libretro platform=unix_rpi2
           mv src/burner/libretro/fbneo_libretro.so ./fbneo_libretro.${{ env.NOW }}.so
           zip -9 fbneo_libretro.zip fbneo_libretro*.so
       - name: Release FinalBurn Neo for CHA
@@ -83,7 +79,7 @@ jobs:
       - uses: sgpublic/delete-release-action@v1.2
         with:
           release-drop: true
-          release-keep-count: 10
+          release-keep-count: 14
           release-drop-tag: false
           pre-release-drop: true
           pre-release-keep-count: -1
