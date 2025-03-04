@@ -24,7 +24,6 @@ jobs:
           apt-get update; apt-get upgrade --assume-yes
           apt-get install --assume-yes build-essential ca-certificates gcc-multilib g++-multilib binutils-multiarch curl git zip
           apt-get install --assume-yes gcc-arm-linux-gnueabihf g++-arm-linux-gnueabihf libudev-dev:armhf libsdl2-dev:armhf libsdl2-image-dev:armhf
-          apt-get autoremove; apt-get autoclean
           echo '*** TEST LINUX VERSION ***'
           cat /etc/os-release
           echo '*** TEST GLIBC VERSION ***'
