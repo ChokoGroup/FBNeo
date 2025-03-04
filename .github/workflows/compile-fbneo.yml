@@ -15,10 +15,13 @@ jobs:
   build-and-release:
     runs-on: ubuntu-20.04
     if: ${{ github.event.workflow_run.conclusion == 'success' || github.event_name == 'workflow_dispatch' || github.event_name == 'push' }}
+    script: |
+      export NVM_DIR=~/.nvm
+      source ~/.nvm/nvm.sh
+      nvm install 16  # Force Node.js version 16 which has older GLIBC
     steps:
       - name: Install needed tools
         run: |
-          nvm install 16  # Force Node.js version 16 which has older GLIBC
           echo '*** TEST LINUX VERSION ***'
           cat /etc/os-release
           echo '*** TEST GLIBC VERSION ***'
