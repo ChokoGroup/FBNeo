@@ -40,7 +40,6 @@ BUILD_A68K=
 UNICODE=
 
 # BUILD_NATIVE = 1
-BUILD_CHA = 1
 
 #
 #	Specify paths/files
@@ -220,7 +219,7 @@ ASFLAGS	=  -O1 -f coff -w-orphan-labels
 #       DEF     = -Dsinf=\(float\)sin -Dcosf=\(float\)cos -Dasinf=\(float\)asin -Dacosf=\(float\)acos -Dsqrtf=\(float\)sqrt
 
 # FIXME
-	DEF	:= -DBUILD_CHA -DBUILD_SDL2 -DUSE_SPEEDHACKS -DFILENAME=$(NAME) -DUSE_FILE32API -DHAVE_UNISTD_H
+	DEF	:= -DBUILD_SDL2 -DUSE_SPEEDHACKS -DFILENAME=$(NAME) -DUSE_FILE32API -DHAVE_UNISTD_H
 
 ifdef FORCE_PULSE_AUDIO
 	DEF	:= $(DEF) -DFORCE_PULSE_AUDIO
