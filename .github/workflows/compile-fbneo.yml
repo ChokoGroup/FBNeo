@@ -15,14 +15,16 @@ jobs:
     steps:
       - name: Compile FinalBurn Neo for CHA
         run: |
-          echo "NOW=$(date +%F)" >> "$GITHUB_ENV"
+          NOW=$(date +%F)
+          echo "$NOW" >> "$GITHUB_ENV"
           git config --global --add safe.directory ${PWD}
           git clone "https://${GITHUB_REPOSITORY_OWNER}:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git" .
           CROSS_COMP=1 RELEASEBUILD=1 make sdl2
           mv ./fbneo ./FinalBurn\ Neo\ for\ CHA/
           mv ./metadata/hiscore.dat ./FinalBurn\ Neo\ for\ CHA/
-          echo "${{ env.NOW }}" > ./FinalBurn\ Neo\ for\ CHA/fbneo_build_date.txt
+          echo "$NOW" > ./FinalBurn\ Neo\ for\ CHA/fbneo_build_date.txt
           mv ./README.md ./FinalBurn\ Neo\ for\ CHA/_README_.TXT
+          zip -9 -r ./FinalBurn\ Neo\ for\ CHA/dats.zip ./dats
           zip -9 -r ./FinalBurn\ Neo\ for\ CHA.zip ./FinalBurn\ Neo\ for\ CHA
           mkdir ./FinalBurn\ Neo\ for\ CHA\ -\ Help\ Videos
           mv *.mp4 ./FinalBurn\ Neo\ for\ CHA\ -\ Help\ Videos/
@@ -32,7 +34,7 @@ jobs:
           CROSS_COMP=1 make -j$(nproc) -C src/burner/libretro generate-files platform=unix_rpi2
           CROSS_COMP=1 make -j$(nproc) -C src/burner/libretro platform=unix_rpi2
           mv src/burner/libretro/fbneo_libretro.so ./fbneo_libretro.${{ env.NOW }}.so
-          zip -9 fbneo_libretro.zip fbneo_libretro*.so
+          zip -9 fbneo_libretro.zip fbneo_libretro*.so dats
       - name: Release FinalBurn Neo for CHA
         uses: softprops/action-gh-release@master
         with:
