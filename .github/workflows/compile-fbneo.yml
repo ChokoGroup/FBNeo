@@ -16,7 +16,7 @@ jobs:
       - name: Compile FinalBurn Neo for CHA
         run: |
           NOW=$(date +%F)
-          echo "$NOW" >> "$GITHUB_ENV"
+          echo "NOW=$NOW" >> "$GITHUB_ENV"
           git config --global --add safe.directory ${PWD}
           git clone "https://${GITHUB_REPOSITORY_OWNER}:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git" .
           CROSS_COMP=1 RELEASEBUILD=1 make sdl2
