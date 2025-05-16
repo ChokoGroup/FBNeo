@@ -29,6 +29,7 @@ bool bDisableDebugConsole = true;
 HINSTANCE hAppInst = NULL;			// Application Instance
 HANDLE hMainThread;
 long int nMainThreadID;
+INT32 nCOMInit = S_FALSE;
 int nAppProcessPriority = NORMAL_PRIORITY_CLASS;
 int nAppShowCmd;
 
@@ -737,6 +738,15 @@ static int AppInit()
 	OpenDebugLog();
 #endif
 
+#if defined BUILD_X64_EXE
+	if (nVidSelect == 1) {
+		// if "d3d7 / enhanced blitter" is set & running 64bit build,
+		// fall back to "basic blitter".  (d3d7 has no 64bit mode!)
+		nVidSelect = 0;
+		bprintf(0, _T("*** D3D7 / Enhanced Blitter set w/64bit build - falling back to basic blitter.\n"));
+	}
+#endif
+
 	FBALocaliseInit(szLocalisationTemplate);
 	BurnerDoGameListLocalisation();
 
@@ -766,6 +776,8 @@ static int AppInit()
 			nAppProcessPriority = NORMAL_PRIORITY_CLASS;
 			break;
 	}
+
+	nCOMInit = CoInitializeEx(NULL, COINIT_APARTMENTTHREADED);
 
 	// Set the process priority
 	SetPriorityClass(GetCurrentProcess(), nAppProcessPriority);
@@ -826,6 +838,9 @@ static int AppExit()
 		DestroyAcceleratorTable(hAccel);
 		hAccel = NULL;
 	}
+
+	CoUninitialize();
+	nCOMInit = S_FALSE;
 
 	SplashDestroy(1);
 
