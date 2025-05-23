@@ -1749,7 +1749,7 @@ int QuickLoad()
 // Screenshot related stuff
 int MakeScreenShotSelected()
 {
-	if (MakeScreenShot()) UpdateMessage("There was some error saving the screenshot!");
+	if (MakeScreenShot(0)) UpdateMessage("There was some error saving the screenshot!");
 	else UpdateMessage("Screenshot saved.");
 	return 1;
 }
