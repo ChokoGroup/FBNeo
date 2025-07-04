@@ -300,12 +300,13 @@ static INT_PTR CALLBACK DefInpProc(HWND hDlg, UINT Msg, WPARAM wParam, LPARAM lP
 		}
 		case WM_CTLCOLORSTATIC: {
 			HDC hDc = (HDC)wParam;
-			SetBkMode(hDc, TRANSPARENT);											// LTEXT control with transparent background
-			return (LRESULT)GetStockObject(HOLLOW_BRUSH);							// Return to empty brush
 			for (int x = 0; x < 25; x++) {
-				if ((HWND)lParam == GetDlgItem(hDlg, IDC_SUPPORTDIR_EDIT1 + x)) return (INT_PTR)hWhiteBGBrush;
-				if ((HWND)lParam == GetDlgItem(hDlg, IDC_SUPPORTDIR_TEXT1 + x)) return (LRESULT)GetStockObject(HOLLOW_BRUSH);
-			}
+				if ((HWND)lParam == GetDlgItem(hDlg, IDC_SUPPORTDIR_TEXT1 + x)) {
+					SetBkMode(hDc, TRANSPARENT);									// LTEXT control with transparent background
+					return (LRESULT)GetStockObject(HOLLOW_BRUSH);					// Return to empty brush
+				}
+			}														// Enable Esc=close
+			break;
 		}
 		case WM_GETMINMAXINFO: {
 			MINMAXINFO* info = (MINMAXINFO*)lParam;
