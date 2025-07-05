@@ -9,8 +9,8 @@ env:
   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 jobs:
   build-and-release:
-    runs-on: ubuntu-24.04
-    container: chokogroup/chokogroup:debian-10-glibc-2.28
+    runs-on: ubuntu-latest
+    container: chokogroup/chokogroup:ubuntu-18.10-glibc-2.28
     if: ${{ github.event.workflow_run.conclusion == 'success' || github.event_name == 'workflow_dispatch' || github.event_name == 'push' }}
     steps:
       - name: Compile FinalBurn Neo for CHA
@@ -41,40 +41,23 @@ jobs:
           files: |
             ./FinalBurn\ Neo\ for\ CHA.zip
             ./FinalBurn\ Neo\ for\ CHA\ -\ Help\ Videos.zip
+            ./fbneo_libretro.zip
           tag_name: fbneo-${{ env.NOW }}
-          generate_release_notes: true
-          name: FinalBurn Neo for CHA (${{ env.NOW }})
-      - name: Release FinalBurn Neo libretro core for CHA
-        uses: softprops/action-gh-release@master
-        with:
-          files: ./fbneo_libretro.zip
-          tag_name: libretro-fbneo-${{ env.NOW }}
-          generate_release_notes: false
-          name: FinalBurn Neo libretro core for CHA (${{ env.NOW }})
-      - name: Release FinalBurn Neo libretro core for CHA
-        uses: softprops/action-gh-release@master
-        with:
-          files: ./fbneo_libretro.zip
-          tag_name: libretro-latest
-          generate_release_notes: false
-          name: FinalBurn Neo libretro core for CHA (${{ env.NOW }})
-      - name: Release FinalBurn Neo for CHA
-        uses: softprops/action-gh-release@master
-        with:
-          files: |
-            ./FinalBurn\ Neo\ for\ CHA.zip
-            ./FinalBurn\ Neo\ for\ CHA\ -\ Help\ Videos.zip
-          tag_name: latest
           make_latest: true
-          generate_release_notes: false
           name: FinalBurn Neo for CHA (${{ env.NOW }})
-      - uses: sgpublic/delete-release-action@v1.2
-        with:
-          release-drop: true
-          release-keep-count: 14
-          release-drop-tag: false
-          pre-release-drop: true
-          pre-release-keep-count: -1
-          pre-release-drop-tag: true
-          draft-drop: true
-          draft-drop-count: -1
+          body: Included FinalBurn Neo libretro core for CHA (${{ env.NOW }})
+          generate_release_notes: true
+      - name: Fix tags
+        run: |
+          git push --delete origin latest
+          git push --delete origin libretro-latest
+          git tag -d latest
+          git tag -d libretro-latest
+          git tag latest fbneo-${{ env.NOW }}
+          git tag libretro-latest fbneo-${{ env.NOW }}
+          git push origin --tags
+      - name: Clean up old releases
+        run: |
+          gh api repos/${{ github.repository }}/releases --paginate --jq '.[15:] | .[] | "\(.id) \(.tag_name)"' | while read id tag; do
+            gh api -X DELETE "repos/${{ github.repository }}/releases/$id" && gh api -X DELETE "repos/${{ github.repository }}/git/refs/tags/$tag" 2>/dev/null || true
+          done
