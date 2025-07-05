@@ -6,19 +6,19 @@ on:
     types:
       - completed
 env:
-  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+  GITHUB_TOKEN: ${{ github.token }}
 jobs:
   build-and-release:
     runs-on: ubuntu-latest
     container: chokogroup/chokogroup:ubuntu-18.10-glibc-2.28
     if: ${{ github.event.workflow_run.conclusion == 'success' || github.event_name == 'workflow_dispatch' || github.event_name == 'push' }}
     steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
       - name: Compile FinalBurn Neo for CHA
         run: |
           NOW=$(date +%F)
           echo "NOW=$NOW" >> "$GITHUB_ENV"
-          git config --global --add safe.directory ${PWD}
-          git clone "https://${GITHUB_REPOSITORY_OWNER}:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git" .
           CROSS_COMP=1 RELEASEBUILD=1 make sdl2
           mv ./fbneo ./FinalBurn\ Neo\ for\ CHA/
           mv ./metadata/hiscore.dat ./FinalBurn\ Neo\ for\ CHA/
