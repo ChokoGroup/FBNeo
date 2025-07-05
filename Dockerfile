@@ -9,14 +9,14 @@ RUN echo "deb http://old-releases.ubuntu.com/ubuntu/ cosmic main restricted univ
     && echo "deb http://old-releases.ubuntu.com/ubuntu/ cosmic-security main restricted universe multiverse" >>/etc/apt/sources.list \
     && echo "deb http://old-releases.ubuntu.com/ubuntu/ cosmic-backports main restricted universe multiverse" >>/etc/apt/sources.list \
     && apt-mark hold libc6 libstdc++6 \
-    && dpkg --add-architecture armhf && apt-get -y update && apt-get -y upgrade \
-    && apt-get -y install \
+    && dpkg --add-architecture armhf && apt-get -y update && apt-get -y upgrade
+
+RUN apt-get -y install ca-certificates build-essential binutils-multiarch gcc-multilib g++-multilib 
+
+RUN apt-get -y install \
     bc \
     bison \
-    build-essential \
-    binutils-multiarch \
     curl \
-    ca-certificates \
     dpkg-dev \
     g++ \
     g++-arm-linux-gnueabihf \
@@ -29,7 +29,6 @@ RUN echo "deb http://old-releases.ubuntu.com/ubuntu/ cosmic main restricted univ
     libasound2-dev \
     libavcodec-dev \
     libavformat-dev \
-    libc6-dev-armhf-cross \
     libdrm-dev \
     libegl1-mesa-dev \
     libfreetype6-dev \
@@ -57,8 +56,7 @@ RUN echo "deb http://old-releases.ubuntu.com/ubuntu/ cosmic main restricted univ
     libgles2-mesa-dev:armhf \
     libsdl2-dev:armhf \
     libsdl2-image-dev:armhf \
-    libudev-dev:armhf \
-    && apt-get autoremove -y && apt-get clean -y && rm -rf /var/lib/apt/lists/*
+    libudev-dev:armhf
 
 # Set the default command
 CMD ["/bin/bash"]
