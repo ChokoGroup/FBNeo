@@ -20,14 +20,7 @@ jobs:
         run: |
           NOW=$(date +%F)
           echo "NOW=$NOW" >> "$GITHUB_ENV"
-          
-          
-          ### DEBUG ###
-          find / -type f -iname "libc-header-start.h" 2>/dev/null
-          
-          
-          
-          CROSS_COMP=1 RELEASEBUILD=1 make sdl2
+          CROSS_COMP=1 RELEASEBUILD=1 make sdl2 CFLAGS="-I/usr/include/arm-linux-gnueabihf"
           mv ./fbneo ./FinalBurn\ Neo\ for\ CHA/
           mv ./metadata/hiscore.dat ./FinalBurn\ Neo\ for\ CHA/
           echo "$NOW" > ./FinalBurn\ Neo\ for\ CHA/fbneo_build_date.txt
