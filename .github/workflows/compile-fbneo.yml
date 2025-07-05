@@ -54,8 +54,8 @@ jobs:
           git push --delete origin libretro-latest || :
           git tag -d latest || :
           git tag -d libretro-latest || :
-          git tag latest fbneo-${{ env.NOW }}
-          git tag libretro-latest fbneo-${{ env.NOW }}
+          git tag latest
+          git tag libretro-latest
           git push origin --tags
       - name: Clean up old releases
         run: |
