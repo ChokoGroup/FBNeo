@@ -29,6 +29,7 @@ RUN echo "deb http://old-releases.ubuntu.com/ubuntu/ cosmic main restricted univ
     libasound2-dev \
     libavcodec-dev \
     libavformat-dev \
+    libc6-dev-armhf-cross \
     libdrm-dev \
     libegl1-mesa-dev \
     libfreetype6-dev \
@@ -53,7 +54,6 @@ RUN echo "deb http://old-releases.ubuntu.com/ubuntu/ cosmic main restricted univ
     wget \
     zip \
     zlib1g-dev \
-    libc6-dev:armhf \
     libgles2-mesa-dev:armhf \
     libsdl2-dev:armhf \
     libsdl2-image-dev:armhf \
