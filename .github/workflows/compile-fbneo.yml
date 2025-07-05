@@ -23,7 +23,7 @@ jobs:
           
           
           ### DEBUG ###
-          find / -type -f -iname "libc-header-start.h" 2>/dev/null
+          find / -type f -iname "libc-header-start.h" 2>/dev/null
           
           
           
