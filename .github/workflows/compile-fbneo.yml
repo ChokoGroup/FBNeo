@@ -20,7 +20,7 @@ jobs:
         run: |
           NOW=$(date +%F)
           echo "NOW=$NOW" >> "$GITHUB_ENV"
-          sudo ln -s /usr/include/arm-linux-gnueabihf/bits /usr/include/bits    # Fix error about 'bits/libc-header-start.h' not found
+          ln -s /usr/include/arm-linux-gnueabihf/bits /usr/include/bits    # Fix error about 'bits/libc-header-start.h' not found
           CROSS_COMP=1 RELEASEBUILD=1 make sdl2
           mv ./fbneo ./FinalBurn\ Neo\ for\ CHA/
           mv ./metadata/hiscore.dat ./FinalBurn\ Neo\ for\ CHA/
