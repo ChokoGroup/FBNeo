@@ -26,8 +26,7 @@ _var_running_from_folder="$(dirname "$(realpath "$0")")"
 
 echo -e "\nConnecting Wi-Fi..."
 /etc/init.d/S40network restart > /dev/null 2>&1
-_var_release_date="$(/.choko/busybox wget -q -o /dev/null -O - 'https://github.com/ChokoGroup/FBNeo/releases/tag/latest' | grep -m 1 'FinalBurn Neo for CHA (')"
-_var_release_date="${_var_release_date#*FinalBurn Neo for CHA (}"; _var_release_date="${_var_release_date%%)*}"
+_var_release_date="$(/.choko/busybox wget -q -o /dev/null -O - 'https://api.github.com/repos/ChokoGroup/FBNeo/releases/latest' | grep -m 1 tag_name | grep -o '2[0-9-]*')"
 _var_current_release_date="$(head -n 1 "${_var_running_from_folder}/fbneo_build_date.txt")"
 if [ -z "$_var_release_date" ]
 then
@@ -70,7 +69,7 @@ else
   if [ "$_var_user_answer" = "Yes" ]
   then
     echo "Downloading FinalBurn.Neo.for.CHA.zip"
-    if /.choko/busybox wget -q -o /dev/null -O "/tmp/FinalBurn.Neo.for.CHA.zip" "https://github.com/ChokoGroup/FBNeo/releases/download/latest/FinalBurn.Neo.for.CHA.zip"
+    if /.choko/busybox wget -q -o /dev/null -O "/tmp/FinalBurn.Neo.for.CHA.zip" "$(/.choko/busybox wget -q -o /dev/null -O - 'https://api.github.com/repos/ChokoGroup/FBNeo/releases/latest' | grep browser_download_url | grep -o 'http.*FinalBurn.Neo.for.CHA.zip')"
     then
       echo "Extracting files..."
       if unzip -qo "/tmp/FinalBurn.Neo.for.CHA.zip" -d /tmp
