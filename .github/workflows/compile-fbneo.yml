@@ -1,64 +1,64 @@
 name: Compile FBNeo for CHA
 on:
   workflow_dispatch:
-  workflow_run:
-    workflows: ["Sync fork"]
-    types:
-      - completed
-env:
-  GITHUB_TOKEN: ${{ github.token }}
+  schedule:
+    - cron: '37 5 * * 5'
 jobs:
   build-and-release:
     runs-on: ubuntu-latest
-    container:
-      image: ghcr.io/chokogroup/ubuntu:18.10-glibc-2.28
-    if: ${{ github.event.workflow_run.conclusion == 'success' || github.event_name == 'workflow_dispatch' || github.event_name == 'push' }}
+    container: chokogroup/chokogroup:ubuntu-18.10-glibc-2.28
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
-      - name: Compile FinalBurn Neo for CHA
+      - name: Sync fork
+        id: sync_step
         run: |
-          NOW=$(date +%F)
-          echo "NOW=$NOW" >> "$GITHUB_ENV"
+          git config --global --add safe.directory "${{ github.workspace }}"
+          git config user.name "${{ github.repository_owner }}"
+          git config user.email "${{ github.repository_owner }}@users.noreply.github.com"
+          git config --local user.password ${{ github.token }}
+          git remote add upstream "https://github.com/libretro/FBNeo.git"
+          if git fetch upstream && git merge upstream/master && git push origin master ; then
+            echo "docompile=true" >> "$GITHUB_OUTPUT"
+            echo "releasedate=$(date +%F)" >> "$GITHUB_OUTPUT"
+          fi
+      - name: Compile FinalBurn Neo for CHA
+        id: compile_step
+        if: ${{ steps.sync_step.outputs.docompile == 'true' && ! cancelled() }}
+        run: |
           CROSS_COMP=1 RELEASEBUILD=1 make sdl2
           mv ./fbneo ./FinalBurn\ Neo\ for\ CHA/
           mv ./metadata/hiscore.dat ./FinalBurn\ Neo\ for\ CHA/
-          echo "$NOW" > ./FinalBurn\ Neo\ for\ CHA/fbneo_build_date.txt
+          echo "${{ steps.sync_step.outputs.releasedate }}" > ./FinalBurn\ Neo\ for\ CHA/fbneo_build_date.txt
           mv ./README.md ./FinalBurn\ Neo\ for\ CHA/_README_.TXT
           zip -9 -r ./FinalBurn\ Neo\ for\ CHA/dats.zip ./dats
           zip -9 -r ./FinalBurn\ Neo\ for\ CHA.zip ./FinalBurn\ Neo\ for\ CHA
           mkdir ./FinalBurn\ Neo\ for\ CHA\ -\ Help\ Videos
           mv *.mp4 ./FinalBurn\ Neo\ for\ CHA\ -\ Help\ Videos/
           zip -9 -r ./FinalBurn\ Neo\ for\ CHA\ -\ Help\ Videos.zip ./FinalBurn\ Neo\ for\ CHA\ -\ Help\ Videos
-      - name: Compile fbneo_libretro.so
-        run: |
           CROSS_COMP=1 make -j$(nproc) -C src/burner/libretro generate-files platform=unix_rpi2
           CROSS_COMP=1 make -j$(nproc) -C src/burner/libretro platform=unix_rpi2
-          mv src/burner/libretro/fbneo_libretro.so ./fbneo_libretro.${{ env.NOW }}.so
+          mv src/burner/libretro/fbneo_libretro.so ./fbneo_libretro.${{ steps.sync_step.outputs.releasedate }}.so
           zip -9 fbneo_libretro.zip fbneo_libretro*.so dats
+          echo "dorelease=true" >> "$GITHUB_OUTPUT"
       - name: Release FinalBurn Neo for CHA
+        id: release_step
+        if: ${{ steps.compile_step.outputs.dorelease == 'true' && ! cancelled() }}
         uses: softprops/action-gh-release@master
         with:
           files: |
             ./FinalBurn\ Neo\ for\ CHA.zip
             ./FinalBurn\ Neo\ for\ CHA\ -\ Help\ Videos.zip
             ./fbneo_libretro.zip
-          tag_name: fbneo-${{ env.NOW }}
+          tag_name: fbneo-${{ steps.sync_step.outputs.releasedate }}
           make_latest: true
-          name: FinalBurn Neo for CHA (${{ env.NOW }})
-          body: Included FinalBurn Neo libretro core for CHA (${{ env.NOW }})
+          name: FinalBurn Neo for CHA (${{ steps.sync_step.outputs.releasedate }})
+          body: Includes FinalBurn Neo libretro core for CHA.
           generate_release_notes: true
-      - name: Fix tags
-        run: |
-          git push --delete origin latest || :
-          git push --delete origin libretro-latest || :
-          git tag -d latest || :
-          git tag -d libretro-latest || :
-          git tag latest
-          git tag libretro-latest
-          git push origin --tags
       - name: Clean up old releases
+        id: clean_step
+        if: ${{ steps.compile_step.outputs.dorelease == 'true' && ! cancelled() }}
         run: |
-          gh api repos/${{ github.repository }}/releases --paginate --jq '.[15:] | .[] | "\(.id) \(.tag_name)"' | while read id tag; do
+          gh api repos/${{ github.repository }}/releases --paginate --jq '.[15:] | .[] | "\(.id) \(.tag_name)"' | grep -v latest | while read id tag; do
             gh api -X DELETE "repos/${{ github.repository }}/releases/$id" && gh api -X DELETE "repos/${{ github.repository }}/git/refs/tags/$tag" 2>/dev/null || true
           done

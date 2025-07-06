@@ -9,11 +9,9 @@ RUN echo "deb http://old-releases.ubuntu.com/ubuntu/ cosmic main restricted univ
     && echo "deb http://old-releases.ubuntu.com/ubuntu/ cosmic-security main restricted universe multiverse" >>/etc/apt/sources.list \
     && echo "deb http://old-releases.ubuntu.com/ubuntu/ cosmic-backports main restricted universe multiverse" >>/etc/apt/sources.list \
     && apt-mark hold libc6 libstdc++6 \
-    && dpkg --add-architecture armhf && apt-get -y update && apt-get -y upgrade
-
-RUN apt-get -y install ca-certificates build-essential binutils-multiarch gcc-multilib g++-multilib 
-
-RUN apt-get -y install \
+    && dpkg --add-architecture armhf && apt-get -y update && apt-get -y upgrade \
+    && apt-get -y install ca-certificates build-essential binutils-multiarch gcc-multilib g++-multilib \
+    && apt-get -y install \
     bc \
     bison \
     curl \
