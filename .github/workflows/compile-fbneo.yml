@@ -31,7 +31,7 @@ jobs:
           mv ./metadata/hiscore.dat ./FinalBurn\ Neo\ for\ CHA/
           echo "${{ steps.sync_step.outputs.releasedate }}" > ./FinalBurn\ Neo\ for\ CHA/fbneo_build_date.txt
           mv ./README.md ./FinalBurn\ Neo\ for\ CHA/_README_.TXT
-          zip -9 -r ./FinalBurn\ Neo\ for\ CHA/dats.zip ./dats
+          zip -9 -r ./FinalBurn\ Neo\ for\ CHA/dats-${{ steps.sync_step.outputs.releasedate }}.zip ./dats
           zip -9 -r ./FinalBurn\ Neo\ for\ CHA.zip ./FinalBurn\ Neo\ for\ CHA
           mkdir ./FinalBurn\ Neo\ for\ CHA\ -\ Help\ Videos
           mv *.mp4 ./FinalBurn\ Neo\ for\ CHA\ -\ Help\ Videos/
@@ -39,7 +39,8 @@ jobs:
           CROSS_COMP=1 make -j$(nproc) -C src/burner/libretro generate-files platform=unix_rpi2
           CROSS_COMP=1 make -j$(nproc) -C src/burner/libretro platform=unix_rpi2
           mv src/burner/libretro/fbneo_libretro.so ./fbneo_libretro.${{ steps.sync_step.outputs.releasedate }}.so
-          zip -9 fbneo_libretro.zip fbneo_libretro*.so dats
+          mv ./FinalBurn\ Neo\ for\ CHA/dats-${{ steps.sync_step.outputs.releasedate }}.zip ./
+          zip -9 fbneo_libretro.zip fbneo_libretro*.so dats-${{ steps.sync_step.outputs.releasedate }}.zip
           echo "dorelease=true" >> "$GITHUB_OUTPUT"
       - name: Release FinalBurn Neo for CHA
         id: release_step
