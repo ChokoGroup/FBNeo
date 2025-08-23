@@ -30,6 +30,8 @@ static UINT8 DrvInputs[4]   = { 0, 0, 0, 0 };
 static UINT32 JoyShifter[2] = { 0, 0 };
 static UINT8 JoyStrobe      = 0;
 
+static ClearOpposite<4, UINT8> clear_opposite;
+
 // Zapper emulation
 INT16 ZapperX;
 INT16 ZapperY;
@@ -554,6 +556,9 @@ static INT32 cartridge_load(UINT8* ROMData, UINT32 ROMSize, UINT32 ROMCRC)
 	NESMode |= (ROMCRC == 0xfac97247) ? IS_PAL : 0; // Rainbow Islands (Ocean)
 	NESMode |= (ROMCRC == 0x391be891) ? IS_PAL : 0; // Sensible Soccer
 	NESMode |= (ROMCRC == 0x732b1a7a) ? IS_PAL : 0; // Smurfs, The
+	NESMode |= (ROMCRC == 0x90757260) ? IS_PAL : 0; // Ikari Warriors
+	NESMode |= (ROMCRC == 0x40f76343) ? IS_PAL : 0; // Side Pocket
+	NESMode |= (ROMCRC == 0xbb441910) ? IS_PAL : 0; // Castlevania II
 
 	if (nScreenHeight >= SCREEN_HEIGHT_PAL && !(NESMode & SHOW_OVERSCAN) && !(NESMode & IS_PAL)) { // cobol overscan collides with.....
 		bprintf(0, _T("*  PAL mode detected!\n"));
@@ -2397,6 +2402,75 @@ static void mapper132_map()
 #undef mapper132_reg
 #undef mapper132_reghi
 
+// ---[ mapper 173 (Idea-Tek ET-xx series) Xiao Mali
+#define mapper173_p_reg    (mapper_regs[0x1f - 0])  // 3-bit P register
+#define mapper173_r_reg    (mapper_regs[0x1f - 1])  // 3-bit R register
+#define mapper173_s_bit    (mapper_regs[0x1f - 2])  // 1-bit S flag
+#define mapper173_inc_bit  (mapper_regs[0x1f - 3])  // 1-bit increment mode
+#define mapper173_inv_bit  (mapper_regs[0x1f - 4])  // 1-bit invert flag
+
+static void mapper173_write(UINT16 address, UINT8 data) {
+	// $4100-$4103 register writes
+	if ((address & 0xe100) == 0x4100) {
+		switch (address & 0x03) {
+			case 0x00:  // $4100
+				if (mapper173_inc_bit) {
+					// Increment R register
+					mapper173_r_reg = (mapper173_r_reg + 1) & 0x07;
+				} else {
+					// Copy P to R (with optional inversion)
+					mapper173_r_reg = mapper173_inv_bit ? (~mapper173_p_reg & 0x07) : mapper173_p_reg;
+				}
+				break;
+
+			case 0x01:  // $4101
+				mapper173_inv_bit = data & 0x01;
+				mapper_map();  // Invert affects CHR banking immediately
+				break;
+
+			case 0x02:  // $4102
+				mapper173_s_bit = (data >> 3) & 0x01;
+				mapper173_p_reg = data & 0x07;
+				break;
+
+			case 0x03:  // $4103
+				mapper173_inc_bit = data & 0x01;
+				break;
+		}
+	}
+	// $8000+ banking control
+	else if (address & 0x8000) {
+		// Output R register low 2 bits to CHR banking pins
+		mapper_map();
+	}
+}
+
+static UINT8 mapper173_read(UINT16 address) {
+	// $4100 register read
+	if (address == 0x4100) {
+		// [xxxx SRRR] format with S inverted by V bit
+		return (mapper173_s_bit << 3) |
+			(mapper173_r_reg & 0x07) |
+			((mapper173_s_bit ^ mapper173_inv_bit) << 4);
+	}
+	return cpu_open_bus;
+}
+
+static void mapper173_map() {
+	// Fixed 32KB PRG ROM (no banking)
+	mapper_map_prg(32, 0, 0);
+
+	// Calculate CHR bank: (R & 1) | (~INV << 1)
+	UINT8 chr_bank = (mapper173_r_reg & 0x01) | ((~mapper173_inv_bit & 0x01) << 1);
+	mapper_map_chr(8, 0, chr_bank);
+}
+
+#undef mapper173_p_reg
+#undef mapper173_r_reg
+#undef mapper173_s_bit
+#undef mapper173_inc_bit
+#undef mapper173_inv_bit
+
 
 // flashrom simulator (flash eeprom)
 #define flashrom_cmd            (mapper_regs[0x1f - 0x9]) // must not conflict with mmc3 for 406 (Haradius Zero)
@@ -2582,7 +2656,7 @@ static void mapper03_cycle()
 }
 #undef mapper03_need_update
 
-// ---[ mapper 04 (mmc3) & mmc3-based: 12, 76, 95, 108, 115, 118, 119, 189, 262
+// ---[ mapper 04 (mmc3) & mmc3-based: 12, 76, 95, 108, 114, 115, 118, 119, 189, 262
 #define mapper4_banksel         (mapper_regs[0x1f - 0])
 #define mapper4_mirror			(mapper_regs[0x1f - 1])
 #define mapper4_irqlatch 		(mapper_regs[0x1f - 2])
@@ -2594,7 +2668,7 @@ static void mapper03_cycle()
 #define mapper12_highchr		(mapper_regs16[0x1f - 1])
 #define mapper04_vs_prottype    (mapper_regs16[0x1f - 2])
 #define mapper04_vs_protidx	    (mapper_regs16[0x1f - 3])
-#define mapper115_prg           (mapper_regs[0x1f - 7])
+#define mapper115_prg           (mapper_regs[0x1f - 7]) // note: pirate / unl usually start with "- 7"
 #define mapper115_chr           (mapper_regs[0x1f - 8])
 #define mapper115_prot          (mapper_regs[0x1f - 9])
 #define mapper258_reg           (mapper_regs[0x1f - 0xa])
@@ -2604,6 +2678,9 @@ static void mapper03_cycle()
 // mapper 165 mmc3 w/mmc4-like 4k chr banking latch
 #define mapper165_chrlatch(x)   (mapper_regs[(0x1f - 0x0a) + (x)])
 #define mapper165_update        (mapper_regs[0x1f - 0xb])
+// mapper 114 (mmc3 variant)
+#define mapper114_prg           (mapper_regs[0x1f - 0x7])
+#define mapper114_chr           (mapper_regs[0x1f - 0x8])
 
 static UINT8 mapper04_vs_rbi_tko_prot(UINT16 address)
 {
@@ -3193,6 +3270,52 @@ static void mapper119_map()
 		set_mirroring((mapper4_mirror) ? VERTICAL : HORIZONTAL);
 }
 
+static void mapper191_chrmap(INT32 slot, INT32 bank)
+{
+	if (bank & 0x80) {	// bit7 == 1
+		UINT8 ram_bank = bank & 0x01;
+		mapper_map_chr_ramrom(1, slot, ram_bank, MEM_RAM);
+	} else {
+		mapper_map_chr_ramrom(1, slot, bank,     MEM_ROM);
+	}
+}
+
+static void mapper191_map()
+{
+	mapper_map_prg(8, 1, mapper_regs[7]);
+	if (~mapper4_banksel & 0x40) {
+		mapper_map_prg(8, 0, mapper_regs[6]);
+		mapper_map_prg(8, 2, -2);
+	} else {
+		mapper_map_prg(8, 0, -2);
+		mapper_map_prg(8, 2, mapper_regs[6]);
+	}
+
+	if (~mapper4_banksel & 0x80) {
+		mapper191_chrmap(0, mapper_regs[0] & 0xfe);
+		mapper191_chrmap(1, mapper_regs[0] | 0x01);
+		mapper191_chrmap(2, mapper_regs[1] & 0xfe);
+		mapper191_chrmap(3, mapper_regs[1] | 0x01);
+		mapper191_chrmap(4, mapper_regs[2]);
+		mapper191_chrmap(5, mapper_regs[3]);
+		mapper191_chrmap(6, mapper_regs[4]);
+		mapper191_chrmap(7, mapper_regs[5]);
+	} else {
+		mapper191_chrmap(0, mapper_regs[2]);
+		mapper191_chrmap(1, mapper_regs[3]);
+		mapper191_chrmap(2, mapper_regs[4]);
+		mapper191_chrmap(3, mapper_regs[5]);
+		mapper191_chrmap(4, mapper_regs[0] & 0xfe);
+		mapper191_chrmap(5, mapper_regs[0] | 0x01);
+		mapper191_chrmap(6, mapper_regs[1] & 0xfe);
+		mapper191_chrmap(7, mapper_regs[1] | 0x01);
+	}
+
+	if (Cart.Mirroring != 4) {
+		set_mirroring(mapper4_mirror ? VERTICAL : HORIZONTAL);
+	}
+}
+
 static void mapper165_ppu_clock(UINT16 address)
 {
 	if (mapper165_update) {
@@ -3239,6 +3362,50 @@ static void mapper165_map()
 
 	mapper165_chrmap(0, mapper_regs[mapper165_chrlatch(0)]);
 	mapper165_chrmap(1, mapper_regs[mapper165_chrlatch(1)]);
+
+	if (Cart.Mirroring != 4)
+		set_mirroring(mapper4_mirror ? VERTICAL : HORIZONTAL);
+}
+
+// mapper 74: mmc3 + chrram banks 8-9
+static void mapper74_chrmap(INT32 slot, INT32 bank)
+{
+	mapper_map_chr_ramrom(1, slot, bank, (bank >= 0x08 && bank <= 0x09) ? MEM_RAM : MEM_ROM);
+}
+
+static void mapper74_map()
+{
+	mapper_map_prg(8, 1, mapper_regs[7]);
+
+	if (~mapper4_banksel & 0x40) {
+		mapper_map_prg(8, 0, mapper_regs[6]);
+		mapper_map_prg(8, 2, -2);
+	} else {
+		mapper_map_prg(8, 0, -2);
+		mapper_map_prg(8, 2, mapper_regs[6]);
+	}
+
+	if (~mapper4_banksel & 0x80) {
+		mapper74_chrmap(0, mapper_regs[0] & 0xfe);
+		mapper74_chrmap(1, mapper_regs[0] | 0x01);
+		mapper74_chrmap(2, mapper_regs[1] & 0xfe);
+		mapper74_chrmap(3, mapper_regs[1] | 0x01);
+
+		mapper74_chrmap(4, mapper_regs[2]);
+		mapper74_chrmap(5, mapper_regs[3]);
+		mapper74_chrmap(6, mapper_regs[4]);
+		mapper74_chrmap(7, mapper_regs[5]);
+	} else {
+		mapper74_chrmap(0, mapper_regs[2]);
+		mapper74_chrmap(1, mapper_regs[3]);
+		mapper74_chrmap(2, mapper_regs[4]);
+		mapper74_chrmap(3, mapper_regs[5]);
+
+		mapper74_chrmap(4, mapper_regs[0] & 0xfe);
+		mapper74_chrmap(5, mapper_regs[0] | 0x01);
+		mapper74_chrmap(6, mapper_regs[1] & 0xfe);
+		mapper74_chrmap(7, mapper_regs[1] | 0x01);
+	}
 
 	if (Cart.Mirroring != 4)
 		set_mirroring(mapper4_mirror ? VERTICAL : HORIZONTAL);
@@ -3379,14 +3546,22 @@ static void mapper195_map()
 static void mapper195_write(UINT16 address, UINT8 data)
 {
 	if (address >= 0x5000 && address <= 0x5fff) {
-		Cart.CHRRam[address&0xfff] = data;
+		// Offset in WorkRAM, address - 0x5000
+		const INT32 nOffset = address & 0x0fff;
+		if (nOffset < Cart.WorkRAMSize) {
+			Cart.WorkRAM[nOffset] = data;
+		}
 	}
 }
 
 static UINT8 mapper195_read(UINT16 address)
 {
 	if (address >= 0x5000 && address <= 0x5fff) {
-		return Cart.CHRRam[address&0xfff];
+		const INT32 nOffset = address & 0x0fff;
+		if (nOffset < Cart.WorkRAMSize) {
+			return Cart.WorkRAM[nOffset];
+		}
+		return 0xff;	// Overflow
 	}
 	return cpu_open_bus;
 }
@@ -3544,6 +3719,103 @@ static void mapper04_scanline()
 	}
 	mapper4_irqreload = 0;
 }
+
+// ---[ mapper 114: "Super Game": Lion King, The,  Boogerman,  Super Donkey Kong,  Aladdin
+static void mapper114_map_prg(INT32 slot, INT32 bank)
+{
+	if (mapper114_prg & 0x80) {
+		if (mapper114_prg & 0x20) {
+			// 114: NROM-256
+			mapper_map_prg(32, 0, (mapper114_prg & 0x0e) >> 1);
+		} else {
+			// 114: NROM-128
+			mapper_map_prg(16, 0, mapper114_prg & 0x0f);
+			mapper_map_prg(16, 1, mapper114_prg & 0x0f);
+		}
+	} else {
+		// MMC3
+		mapper_map_prg(8, slot, bank & 0x3f);
+	}
+}
+
+static const UINT16 mapper114_addr_remap[3][8] = {
+	{ 0x8000, 0x8001, 0xa000, 0xa001, 0xc000, 0xc001, 0xe000, 0xe001 }, /* mmc3 key */
+	{ 0xa000, 0xc000, 0x8001, 0x8000, 0xa001, 0xc001, 0xe000, 0xe001 }, /* sub 0 */
+	{ 0xa000, 0x8001, 0xc000, 0x8000, 0xc001, 0xa001, 0xe000, 0xe001 }  /* sub 1 */
+};
+
+static const UINT8 mapper114_reg_remap[2][8] = {
+	{ 0, 3, 1, 5, 6, 7, 2, 4 },
+	{ 0, 2, 5, 3, 6, 1, 7, 4 }
+};
+
+static UINT16 mapper114_address_remap(UINT16 address)
+{
+	for (int i = 0; i < 8; i++) {
+		if (address == mapper114_addr_remap[1 + (Cart.SubMapper & 1)][i]) {
+			address = mapper114_addr_remap[0][i];
+			break;
+		}
+	}
+
+	return address;
+}
+
+// $6000-$7fff, $8000-$ffff
+static void mapper114_write(UINT16 address, UINT8 data)
+{
+	if (address & 0xe001) {
+		address = mapper114_address_remap(address & 0xe001);
+		switch (address) {
+			case 0x6000:
+				mapper114_prg = data;
+				mapper_map();
+				break;
+			case 0x6001:
+				mapper114_chr = data & 1;
+				mapper_map();
+				break;
+			case 0x8000:
+				mapper04_write(0x8000, (data & 0xc0) | mapper114_reg_remap[Cart.SubMapper & 1][data & 0x07]);
+				break;
+			default:
+				mapper04_write(address, data);
+				break;
+		}
+	}
+}
+
+static void mapper114_map()
+{
+	mapper114_map_prg(0, mapper_regs[6]);
+	mapper114_map_prg(1, mapper_regs[7]);
+	mapper114_map_prg(2, -2);
+	mapper114_map_prg(3, -1);
+
+    if (~mapper4_banksel & 0x80) {
+		mapper_map_chr(2, 0, (mapper_regs[0] + (mapper114_chr << 8)) >> 1);
+        mapper_map_chr(2, 1, (mapper_regs[1] + (mapper114_chr << 8)) >> 1);
+
+		mapper_map_chr(1, 4, mapper_regs[2] + (mapper114_chr << 8));
+		mapper_map_chr(1, 5, mapper_regs[3] + (mapper114_chr << 8));
+		mapper_map_chr(1, 6, mapper_regs[4] + (mapper114_chr << 8));
+		mapper_map_chr(1, 7, mapper_regs[5] + (mapper114_chr << 8));
+	} else {
+		mapper_map_chr(1, 0, mapper_regs[2] + (mapper114_chr << 8));
+		mapper_map_chr(1, 1, mapper_regs[3] + (mapper114_chr << 8));
+		mapper_map_chr(1, 2, mapper_regs[4] + (mapper114_chr << 8));
+		mapper_map_chr(1, 3, mapper_regs[5] + (mapper114_chr << 8));
+
+		mapper_map_chr(2, 2, (mapper_regs[0] + (mapper114_chr << 8)) >> 1);
+		mapper_map_chr(2, 3, (mapper_regs[1] + (mapper114_chr << 8)) >> 1);
+	}
+
+	// mirroring
+	set_mirroring(mapper4_mirror ? VERTICAL : HORIZONTAL);
+}
+
+#undef mapper114_prg
+#undef mapper114_chr
 
 //#undef mapper4_mirror // used in mapper_init()
 #undef mapper4_irqlatch
@@ -4011,12 +4283,12 @@ static void mapper09_write(UINT16 address, UINT8 data)
 {
 	if (address & 0x8000) {
 		switch (address & 0xf000) {
-			case 0xa000: mapper9_prg       = data & 0xf; break;
+			case 0xa000: mapper9_prg       = data & 0xf;  break;
 			case 0xb000: mapper9_chr_lo(0) = data & 0x1f; break;
 			case 0xc000: mapper9_chr_lo(1) = data & 0x1f; break;
 			case 0xd000: mapper9_chr_hi(0) = data & 0x1f; break;
 			case 0xe000: mapper9_chr_hi(1) = data & 0x1f; break;
-			case 0xf000: mapper9_mirror    = data & 0x1; break;
+			case 0xf000: mapper9_mirror    = data & 0x1;  break;
 		}
 		mapper_map();
 	}
@@ -4030,6 +4302,52 @@ static void mapper09_map()
 	mapper_map_chr( 4, 1, mapper9_chr_hi(mapper9_chr_hi_E000));
 }
 
+static void mapper09_ppu_clk(UINT16 busaddr)
+{
+	switch (busaddr & 0x3fff) {
+		case 0x0fd8:
+			mapper9_chr_lo_C000 = 0;
+			mapper9_update      = 1;
+			break;
+		case 0x0fe8:
+			mapper9_chr_lo_C000 = 1;
+			mapper9_update      = 1;
+			break;
+	}
+
+	switch (busaddr & 0x3ff8) {
+		case 0x1fd8:
+			mapper9_chr_hi_E000 = 0;
+			mapper9_update      = 1;
+			break;
+		case 0x1fe8:
+			mapper9_chr_hi_E000 = 1;
+			mapper9_update      = 1;
+			break;
+	}
+
+	if (mapper9_update) {
+		// mmc2 needs update immediately on latch
+		mapper9_update = 0;
+		mapper_map();
+	}
+}
+
+static void mapper10_write(UINT16 address, UINT8 data)
+{
+	if (address & 0x8000) {
+		switch (address & 0xf000) {
+			case 0xa000: mapper9_prg       = data & 0xf; break;
+			case 0xb000: mapper9_chr_lo(0) = data;       break;	// 8-bits chr_reg[0]
+			case 0xc000: mapper9_chr_lo(1) = data;       break;	// 8-bits chr_reg[1]
+			case 0xd000: mapper9_chr_hi(0) = data;       break;	// 8-bits chr_reg[2]
+			case 0xe000: mapper9_chr_hi(1) = data;       break;	// 8-bits chr_reg[3]
+			case 0xf000: mapper9_mirror    = data & 0x1; break;
+		}
+		mapper_map();
+	}
+}
+
 static void mapper10_map()
 {
 	set_mirroring((mapper9_mirror) ? HORIZONTAL : VERTICAL);
@@ -4039,35 +4357,21 @@ static void mapper10_map()
 	mapper_map_chr( 4, 1, mapper9_chr_hi(mapper9_chr_hi_E000));
 }
 
-static void mapper09_ppu_clk(UINT16 busaddr)
+static void mapper10_reset()
 {
-	switch (busaddr & 0x3fff) {
-		case 0x0fd8:
-			mapper9_chr_lo_C000 = 0;
-			mapper9_update = 1;
-			break;
-		case 0x0fe8:
-			mapper9_chr_lo_C000 = 1;
-			mapper9_update = 1;
-			break;
-	}
+	// For Castlevania II: Simon's Quest (Hack, Traditional Chinese v1.2)
+	// Skip the first image after resetting the power
+	memset(NES_CPU_RAM, 0x00, 0x800);
 
-	switch (busaddr & 0x3ff8) {
-		case 0x1fd8:
-			mapper9_chr_hi_E000 = 0;
-			mapper9_update = 1;
-			break;
-		case 0x1fe8:
-			mapper9_chr_hi_E000 = 1;
-			mapper9_update = 1;
-			break;
-	}
-
-	if (mapper9_update) {
-		// mmc2 needs update immediately on latch
-		mapper9_update = 0;
-		mapper_map();
-	}
+	mapper9_prg         = 0;
+	mapper9_chr_lo_C000 = 1;
+	mapper9_chr_hi_E000 = 1;
+	mapper9_mirror      = 0;
+	mapper9_update      = 0;
+	mapper9_chr_lo(0)   = 0;
+	mapper9_chr_lo(1)   = 0;
+	mapper9_chr_hi(0)   = 0;
+	mapper9_chr_hi(1)   = 0;
 }
 
 static void mapper10_ppu_clk(UINT16 busaddr)
@@ -4082,19 +4386,19 @@ static void mapper10_ppu_clk(UINT16 busaddr)
 	switch (busaddr & 0x3ff8) {
 		case 0x0fd8:
 			mapper9_chr_lo_C000 = 0;
-			mapper9_update = 1;
+			mapper9_update      = 1;
 			break;
 		case 0x0fe8:
 			mapper9_chr_lo_C000 = 1;
-			mapper9_update = 1;
+			mapper9_update      = 1;
 			break;
 		case 0x1fd8:
 			mapper9_chr_hi_E000 = 0;
-			mapper9_update = 1;
+			mapper9_update      = 1;
 			break;
 		case 0x1fe8:
 			mapper9_chr_hi_E000 = 1;
-			mapper9_update = 1;
+			mapper9_update      = 1;
 			break;
 	}
 }
@@ -8460,6 +8764,16 @@ static INT32 mapper_init(INT32 mappernum)
 			break;
 		}
 
+		case 173: { // Xiao Mali
+			mapper_write   = mapper173_write;
+			mapper_map     = mapper173_map;
+			psg_area_read  = mapper173_read;
+			psg_area_write = mapper173_write;
+			mapper_map();
+			retval = 0;
+			break;
+		}
+
 		case 3: { // CNROM
 			mapper_write = mapper03_write;
 			mapper_map   = mapper03_map;
@@ -8514,9 +8828,10 @@ static INT32 mapper_init(INT32 mappernum)
 		}
 
 		case 10: { // mmc4: fire emblem (mmc2 + sram + different prg mapping)
-			mapper_write = mapper09_write;
+			mapper_write = mapper10_write;
 			mapper_map   = mapper10_map;
 			mapper_ppu_clock = mapper10_ppu_clk;
+			mapper10_reset();
 			mapper_map();
 			retval = 0;
 			break;
@@ -9496,6 +9811,29 @@ static INT32 mapper_init(INT32 mappernum)
 			break;
 		}
 
+		case 191: { // there is also an additional 2k of CHR-RAM which is selectable. Bit 7 of each CHR reg selects RAM or ROM (1=RAM, 0=ROM)
+			mapper_write = mapper04_write;
+			mapper_map = mapper191_map;
+			mapper_scanline = mapper04_scanline;
+			mapper4_mirror = Cart.Mirroring;
+
+			mapper_regs[0] = 0;
+			mapper_regs[1] = 2;
+			mapper_regs[2] = 4;
+			mapper_regs[3] = 5;
+			mapper_regs[4] = 6;
+			mapper_regs[5] = 7;
+			mapper_regs[6] = 0;
+			mapper_regs[7] = 1;
+
+			mapper_set_chrtype(MEM_RAM);
+			mapper_map_prg(32, 0, 0);
+			mapper_map_prg(8, 3, -1);
+			mapper_map();
+			retval = 0;
+			break;
+		}
+
 		case 165: { // mmc3-derivative w/mmc4-style char ram(bank0)+rom(others)
 			mapper_write = mapper04_write;
 			mapper_map   = mapper165_map;
@@ -9504,6 +9842,17 @@ static INT32 mapper_init(INT32 mappernum)
 			mapper_set_chrtype(MEM_RAM);
 			mapper_map_prg( 8, 3, -1);
 		    mapper_map();
+			retval = 0;
+			break;
+		}
+
+		case 74: { // mmc3-derivative w/char ram+rom, ram mapped to chr banks 8, 9
+			mapper_write = mapper04_write;
+			mapper_map = mapper74_map;
+			mapper_scanline = mapper04_scanline;
+			mapper_set_chrtype(MEM_RAM);
+			mapper_map_prg(8, 3, -1);
+			mapper_map();
 			retval = 0;
 			break;
 		}
@@ -9590,6 +9939,31 @@ static INT32 mapper_init(INT32 mappernum)
 			mapper4_mirror = Cart.Mirroring; // wagyan land doesn't set the mapper bit!
 			mapper_map_prg( 8, 3, -1);
 		    mapper_map();
+			retval = 0;
+			break;
+		}
+
+		case 182:
+		case 114: { // mmc3-derivative (Lion King, The)
+			mapper_write    = mapper114_write;
+			cart_exp_write  = mapper114_write;
+			mapper_map      = mapper114_map;
+			mapper_scanline = mapper04_scanline;
+			mapper4_mirror  = Cart.Mirroring;
+
+			// default mmc3 regs:
+			// chr
+			mapper_regs[0] = 0;
+			mapper_regs[1] = 2;
+			mapper_regs[2] = 4;
+			mapper_regs[3] = 5;
+			mapper_regs[4] = 6;
+			mapper_regs[5] = 7;
+			// prg
+			mapper_regs[6] = 0;
+			mapper_regs[7] = 1;
+
+			mapper_map();
 			retval = 0;
 			break;
 		}
@@ -10544,7 +10918,8 @@ static void ppu_init(INT32 is_pal)
 static UINT8 GetAvgBrightness(INT32 x, INT32 y)
 {
 	// Zapper Detection
-	const UINT32 rgbcolor = our_palette[screen[(y) * 256 + x] & 0x3f];
+	const INT32 start_y = (NESMode & SHOW_OVERSCAN) ? 0 : 8;
+	const UINT32 rgbcolor = our_palette[screen[(y + start_y) * 256 + x] & 0x3f];
 
 	return ((rgbcolor & 0xff) + ((rgbcolor >> 8) & 0xff) + ((rgbcolor >> 16) & 0xff)) / 3;
 }
@@ -10560,22 +10935,28 @@ static UINT8 nes_read_zapper()
 	if (RENDERING == 0 || scanline < 8 || scanline > 240)
 		return ZAP_NONSENSE;
 
+	// scale crosshair from gun device to nes coordinates
 	INT32 in_y = ((BurnGunReturnY(0) * 224) / 255);
 	INT32 in_x = BurnGunReturnX(0);
-	INT32 real_sl = scanline - 8;
+
+	// compute the last drawn scanline/pixel
+	const INT32 overscan = (NESMode & SHOW_OVERSCAN) ? 0 : 8;
+	INT32 real_sl = scanline - overscan;
+	INT32 real_pixel = pixel - 2;
 
 	// offscreen check
-	if (in_y == 0 || in_y == 224 || in_x == 0 || in_x == 255) {
+	if (in_y == 0 || in_y == 224 || in_x == 0 || in_x == 255 || real_sl < 0 || real_pixel < 0) {
 		return ZAP_NONSENSE;
 	}
 
-	for (INT32 yy = in_y - 2; yy < in_y + 2; yy++) {
+	for (INT32 yy = in_y - 2; yy < in_y + 12; yy++) {
 		if (yy < real_sl-8 || yy > real_sl || yy < 0 || yy > 224) continue;
 
-		for (INT32 xx = in_x - 2; xx < in_x + 2; xx++) {
+		for (INT32 xx = in_x - 4; xx < in_x + 4; xx++) {
 			if (xx < 0 || xx > 255) continue;
-			if (yy == real_sl && xx >= pixel) break; // <- timing is everything, here.
+			if (yy >= real_sl && xx >= real_pixel) break; // <- timing is everything, here.
 			if (GetAvgBrightness(xx, yy) > 0x88) { // + flux capacitor makes time travel possible
+				//bprintf(0, _T("HIT %d,%d  @ %d,%d    fr %d\n"), xx,yy, real_pixel,real_sl, nCurrentFrame);
 				return ZAP_SENSE;
 			}
 		}
@@ -10769,25 +11150,45 @@ static void prg_ram_write(UINT16 address, UINT8 data)
 }
 
 // cheat system
+
+enum { TYPE_GAMEGENIE = 0, TYPE_GOOD = 0x100, TYPE_ALWAYS = 0x100, TYPE_ONESHOT = 0x101, TYPE_CMP_GT = 0x102, TYPE_CMP_LT = 0x103, TYPE_DISABLED = 0x104 };
+
 static UINT8 gg_bit(UINT8 g)
 {
 	const UINT8 gg_str[0x11] = "APZLGITYEOXUKSVN";
 
 	for (UINT8 i = 0; i < 0x10; i++) {
-		if (g == gg_str[i]) {
+		if ((g & ~0x20) == gg_str[i]) {
 			return i;
 		}
 	}
 	return 0;
 }
 
-static INT32 gg_decode(char *gg_code, UINT16 &address, UINT8 &value, INT32 &compare)
+static INT32 gg_decode(char *gg_code, UINT16 &address, UINT8 &value, INT32 &compare, INT32 &attrib)
 {
 	INT32 type = strlen(gg_code);
+	bool address_lower = gg_code[0] & 0x20; // test for ascii lowercase
+	attrib = 0;
 
 	if (type != 6 && type != 8) {
-		// bad code!
-		return 1;
+		if (type == 7) {
+			// extra character added to GameGenie code for .vct format, to
+			// support the following actions:
+			switch (gg_code[6]) {
+				case '0': attrib = TYPE_ALWAYS; break;
+				case '1': attrib = TYPE_ONESHOT; break;
+				case '2': attrib = TYPE_CMP_GT; break;
+				case '3': attrib = TYPE_CMP_LT; break;
+				default: return 1; // bad code!
+			}
+		}
+		if (attrib & TYPE_GOOD) {
+			// good code?  remove (ignore) the attrib byte at the end of gg_code string
+			type--;
+		} else {
+			return 1; // bad code!
+		}
 	}
 
 	UINT8 str_bits[8];
@@ -10796,7 +11197,7 @@ static INT32 gg_decode(char *gg_code, UINT16 &address, UINT8 &value, INT32 &comp
 		str_bits[i] = gg_bit(gg_code[i]);
 	}
 
-	address = 0x8000 | ((str_bits[1] & 8) << 4) | ((str_bits[2] & 7) << 4) | ((str_bits[3] & 7) << 12) | ((str_bits[3] & 8) << 0) | ((str_bits[4] & 7) << 0) | ((str_bits[4] & 8) << 8) | ((str_bits[5] & 7) << 8);
+	address = ((address_lower) ? 0x0000 : 0x8000) | ((str_bits[1] & 8) << 4) | ((str_bits[2] & 7) << 4) | ((str_bits[3] & 7) << 12) | ((str_bits[3] & 8) << 0) | ((str_bits[4] & 7) << 0) | ((str_bits[4] & 8) << 8) | ((str_bits[5] & 7) << 8);
 	value = ((str_bits[0] & 7) << 0) | ((str_bits[0] & 8) << 4) | ((str_bits[1] & 7) << 4);
 	compare = -1;
 
@@ -10823,22 +11224,27 @@ struct cheat_struct {
 	UINT16 address;
 	UINT8 value;
 	INT32 compare; // -1, compare disabled.
+	INT32 type;
+	INT32 fbn_cheat_id;
 };
 
 static cheat_struct cheats[cheat_MAX];
 
-static void nes_add_cheat(char *code) // 6/8 character game genie codes allowed
-{
+static void nes_add_cheat(char *code, int fbn_cheat_id) // 6/8 character game genie codes allowed
+{ // lowercase GGenie code: access 0-7fff, uppercase: access 8000-ffff
 	UINT16 address;
 	UINT8 value;
 	INT32 compare;
+	INT32 type;
 
-	if (!gg_decode(code, address, value, compare) && cheats_active < (cheat_MAX-1)) {
+	if (!gg_decode(code, address, value, compare, type) && cheats_active < (cheat_MAX-1)) {
 		strncpy(cheats[cheats_active].code, code, 9);
 		cheats[cheats_active].address = address;
 		cheats[cheats_active].value = value;
 		cheats[cheats_active].compare = compare;
-		bprintf(0, _T("cheat #%d (%S) added.  (%x, %x, %d)\n"), cheats_active, cheats[cheats_active].code, address, value, compare);
+		cheats[cheats_active].type = type;
+		cheats[cheats_active].fbn_cheat_id = fbn_cheat_id;
+		bprintf(0, _T("cheat #%d (%S) added. (fbn subsys index: %d)  (%x, %x, %d)\n"), cheats_active, cheats[cheats_active].code, fbn_cheat_id, address, value, compare);
 		cheats_active++;
 	} else {
 		if (cheats_active < (cheat_MAX-1)) {
@@ -10867,13 +11273,45 @@ static void nes_remove_cheat(char *code)
 	cheats_active = temp_num;
 }
 
+static UINT8 cpu_bus_read(UINT16 address); // forward....
+static void cpu_bus_write(UINT16 address, UINT8 data); // forward....
+static void cheat_check_frame()
+{
+	for (INT32 i = 0; i < cheats_active; i++) {
+		if (cheats[i].type & TYPE_GOOD) {
+
+			switch (cheats[i].type) {
+				case TYPE_ALWAYS:
+					cpu_bus_write(cheats[i].address, cheats[i].value);
+					break;
+				case TYPE_ONESHOT:
+					cpu_bus_write(cheats[i].address, cheats[i].value);
+					cheats[i].type = TYPE_DISABLED;
+					bprintf(0, _T("nes cheat %S: oneshot hits, ending..\n"), cheats[i].code);
+					CheatEnable(cheats[i].fbn_cheat_id, -1);
+					break;
+				case TYPE_CMP_GT:
+					if (cpu_bus_read(cheats[i].address) > cheats[i].value)
+						cpu_bus_write(cheats[i].address, cheats[i].value);
+					break;
+				case TYPE_CMP_LT:
+					if (cpu_bus_read(cheats[i].address) < cheats[i].value)
+						cpu_bus_write(cheats[i].address, cheats[i].value);
+					break;
+				case TYPE_DISABLED: break;
+			}
+		}
+	}
+}
+
 static inline UINT8 cheat_check(UINT16 address, UINT8 value)
 {
 	for (INT32 i = 0; i < cheats_active; i++) {
-		if (cheats[i].address == address && (cheats[i].compare == -1 || cheats[i].compare == value)) {
+		if (cheats[i].address == address && (cheats[i].compare == -1 || cheats[i].compare == value) && cheats[i].type == TYPE_GAMEGENIE) {
 #if FIND_CHEAT_ROMOFFSET
 			bprintf(0, _T("%x %x -> %x, prg addy/offset: %x  %x\n"), address, cheats[i].compare, cheats[i].value, l_address, l_offset);
 #endif
+
 			return cheats[i].value;
 		}
 	}
@@ -10981,6 +11419,8 @@ static INT32 DrvDoReset()
 
 	cyc_counter = 0;
 	mega_cyc_counter = 0;
+
+	clear_opposite.reset();
 
 	{
 		INT32 nAspectX, nAspectY;
@@ -11425,11 +11865,12 @@ INT32 NESFrame()
 			DrvInputs[2] ^= (NESJoy3[i] & 1) << i;
 			DrvInputs[3] ^= (NESJoy4[i] & 1) << i;
 		}
-
-		clear_opposites(DrvInputs[0]);
-		clear_opposites(DrvInputs[1]);
-		clear_opposites(DrvInputs[2]);
-		clear_opposites(DrvInputs[3]);
+		for (INT32 i = 0; i < 4; i++) {
+			if ((0 == nSocd[i]) || (nSocd[i] > 6))
+				clear_opposites(DrvInputs[i]);
+			else
+				clear_opposite.check(i, DrvInputs[i], 0x10, 0x20, 0x40, 0x80, nSocd[i]);
+		}
 
 		if (NESMode & (USE_ZAPPER | VS_ZAPPER)) {
 			BurnGunMakeInputs(0, ZapperX, ZapperY);
@@ -11450,6 +11891,8 @@ INT32 NESFrame()
 			}
 		}
 	}
+
+	cheat_check_frame();
 
 	M6502Open(0);
 	M6502NewFrame();
@@ -11553,6 +11996,7 @@ INT32 NESScan(INT32 nAction, INT32 *pnMin)
 		SCAN_VAR(JoyShifter);
 		SCAN_VAR(JoyStrobe);
 		SCAN_VAR(ZapperReloadTimer);
+		clear_opposite.scan();
 
 		ScanVar(NES_CPU_RAM, 0x800, "CPU Ram");
 		ScanVar(Cart.WorkRAM, Cart.WorkRAMSize, "Work Ram");

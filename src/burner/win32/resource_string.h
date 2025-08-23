@@ -88,6 +88,9 @@
 #define IDS_DISK_TEXT					(IDS_STRING +  324)
 #define IDS_DISK_FILE_PATCH				(IDS_STRING +  326)
 #define IDS_DISK_FILE_ROMDATA			(IDS_STRING +  328)
+#define IDS_DISK_FILE_IPSPATCH			(IDS_STRING +  330)
+#define IDS_DISK_FILE_NEOGEOCD			(IDS_STRING +  332)
+#define IDS_DISK_FILE_ARCHIVE			(IDS_STRING +  334)
 
 #define IDS_DISK_SAVEREPORT				(IDS_STRING +  340)
 
@@ -221,14 +224,15 @@
 #define IDS_GENRE_MAHJONG				(IDS_STRING +  686)
 #define IDS_GENRE_RACING				(IDS_STRING +  688)
 #define IDS_GENRE_SHOOT					(IDS_STRING +  690)
-#define IDS_GENRE_RUNGUN                (IDS_STRING +  692)
-#define IDS_GENRE_STRATEGY              (IDS_STRING +  694)
-#define IDS_GENRE_ACTION                (IDS_STRING +  696)
-#define IDS_GENRE_RPG                   (IDS_STRING +  698)
-#define IDS_GENRE_SIM                   (IDS_STRING +  700)
-#define IDS_GENRE_ADV                   (IDS_STRING +  702)
-#define IDS_GENRE_CARD                  (IDS_STRING +  704)
-#define IDS_GENRE_BOARD                 (IDS_STRING +  706)
+#define IDS_GENRE_MULTISHOOT			(IDS_STRING +  692)
+#define IDS_GENRE_RUNGUN                (IDS_STRING +  694)
+#define IDS_GENRE_STRATEGY              (IDS_STRING +  696)
+#define IDS_GENRE_ACTION                (IDS_STRING +  698)
+#define IDS_GENRE_RPG                   (IDS_STRING +  700)
+#define IDS_GENRE_SIM                   (IDS_STRING +  702)
+#define IDS_GENRE_ADV                   (IDS_STRING +  704)
+#define IDS_GENRE_CARD                  (IDS_STRING +  706)
+#define IDS_GENRE_BOARD                 (IDS_STRING +  708)
 
 #define IDS_FAMILY						(IDS_STRING +  740)
 #define IDS_FAMILY_MSLUG				(IDS_STRING +  742)
@@ -250,6 +254,7 @@
 #define IDS_IPSMANAGER_TITLE			(IDS_STRING +  800)
 
 #define IDS_SUPPORTPATH_TITLE			(IDS_STRING +  802)
+
 
 #define IDS_NGCD_DIAG_TITLE				(IDS_STRING +  810)
 #define IDS_NGCD_TITLE					(IDS_STRING +  812)
@@ -380,6 +385,12 @@
 #define IDS_ERR_DISK_UNAVAIL			(IDS_ERROR  +   94)
 #define IDS_ERR_DISK_TOONEW				(IDS_ERROR  +   96)
 #define IDS_ERR_DISK_TOOOLD				(IDS_ERROR  +   98)
+
+#define IDS_ERR_FILE_ENCODING			(IDS_ERROR  +  100)
+#define IDS_ERR_FILE_EXIST				(IDS_ERROR  +  102)
+#define IDS_ERR_FILE_OPEN				(IDS_ERROR  +  104)
+#define IDS_ERR_FILE_CONTENT			(IDS_ERROR  +  106)
+#define IDS_ERR_FILE_EXTENSION			(IDS_ERROR  +  108)
 
 #define IDS_ERR_NO_NETPLAYDLL			(IDS_ERROR  +  110)
 #define IDS_ERR_NO_DRIVER_SELECTED		(IDS_ERROR  +  112)

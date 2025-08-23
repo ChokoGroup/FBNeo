@@ -50,6 +50,8 @@ bool bAutoLoadGameList = false;
 bool bQuietLoading = false;
 bool bNoPopups = false;
 
+bool bDontInitMedia = false; // doesn't init media (screen, input, etc.)
+
 bool bShonkyProfileMode = false;
 
 bool bNoChangeNumLock = 1;
@@ -787,6 +789,7 @@ static int AppInit()
 
 	// Load config for the application
 	ConfigAppLoad();
+	LookupSubDirThreads();
 
 #if defined (FBNEO_DEBUG)
 	OpenDebugLog();
@@ -952,6 +955,7 @@ void make_sha1_database(bool snes)
 	UINT32 nGameSelect = 0;
 
 	bNoPopups = true;
+	bDontInitMedia = true;
 
 	for (nGameSelect = 0; nGameSelect < nBurnDrvCount; nGameSelect++) {
 
@@ -1451,7 +1455,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE, LPSTR lpCmdLine, int nShowCmd
 	{                                           // Init Win* Common Controls lib
 		INITCOMMONCONTROLSEX initCC = {
 			sizeof(INITCOMMONCONTROLSEX),
-			ICC_BAR_CLASSES | ICC_COOL_CLASSES | ICC_LISTVIEW_CLASSES | ICC_PROGRESS_CLASS | ICC_TREEVIEW_CLASSES,
+			ICC_WIN95_CLASSES,
 		};
 		InitCommonControlsEx(&initCC);
 	}
