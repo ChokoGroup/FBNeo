@@ -18,13 +18,13 @@ jobs:
           git config user.email "${{ github.repository_owner }}@users.noreply.github.com"
           git config --local user.password ${{ github.token }}
           git remote add upstream "https://github.com/libretro/FBNeo.git"
-          if git fetch upstream && git merge upstream/master && git push origin master ; then
+          if git fetch upstream --allow-unrelated-histories && git merge upstream/master --allow-unrelated-histories && git push origin master --allow-unrelated-histories ; then
             echo "docompile=true" >> "$GITHUB_OUTPUT"
             echo "releasedate=$(date +%F)" >> "$GITHUB_OUTPUT"
           fi
       - name: Compile FinalBurn Neo for CHA
         id: compile_step
-        if: ${{ steps.sync_step.outputs.docompile == 'true' && ! cancelled() }}
+        if: ( github.event_name == 'workflow_dispatch' || steps.sync_step.outputs.docompile == 'true' ) && ! cancelled()
         run: |
           CROSS_COMP=1 RELEASEBUILD=1 make sdl2
           mv ./fbneo ./FinalBurn\ Neo\ for\ CHA/
@@ -44,7 +44,7 @@ jobs:
           echo "dorelease=true" >> "$GITHUB_OUTPUT"
       - name: Release FinalBurn Neo for CHA
         id: release_step
-        if: ${{ steps.compile_step.outputs.dorelease == 'true' && ! cancelled() }}
+        if: steps.compile_step.outputs.dorelease == 'true' && ! cancelled()
         uses: softprops/action-gh-release@master
         with:
           files: |
@@ -58,7 +58,7 @@ jobs:
           generate_release_notes: true
       - name: Clean up old releases
         id: clean_step
-        if: ${{ steps.compile_step.outputs.dorelease == 'true' && ! cancelled() }}
+        if: steps.compile_step.outputs.dorelease == 'true' && ! cancelled()
         run: |
           gh api repos/${{ github.repository }}/releases --paginate --jq '.[15:] | .[] | "\(.id) \(.tag_name)"' | grep -v latest | while read id tag; do
             gh api -X DELETE "repos/${{ github.repository }}/releases/$id" && gh api -X DELETE "repos/${{ github.repository }}/git/refs/tags/$tag" 2>/dev/null || true
