@@ -2705,16 +2705,10 @@ static INT32 compute_clipping_extents(INT32 enable, INT32 clipout, INT32 clipmas
 		}
 		else
 		{
-			clip_struct visarea;
-			visarea.nMinx = 0;
-			visarea.nMaxx = ((nScreenWidth) - 1);
-			visarea.nMiny = 0;
-			visarea.nMaxy = ((nScreenHeight) - 1);
-
-			clips[i].nMaxx = (visarea.nMaxx + 1) - (BURN_ENDIAN_SWAP_INT16(m_videoram[0x1ff60/2 + i * 4]) & 0x1ff);
-			clips[i].nMaxy = (visarea.nMaxy + 1) - (BURN_ENDIAN_SWAP_INT16(m_videoram[0x1ff62/2 + i * 4]) & 0x0ff);
-			clips[i].nMinx = (visarea.nMaxx + 1) - ((BURN_ENDIAN_SWAP_INT16(m_videoram[0x1ff64/2 + i * 4]) & 0x1ff) + 1);
-			clips[i].nMiny = (visarea.nMaxy + 1) - ((BURN_ENDIAN_SWAP_INT16(m_videoram[0x1ff66/2 + i * 4]) & 0x0ff) + 1);
+			clips[i].nMaxx = (tempclip.nMaxx) - (BURN_ENDIAN_SWAP_INT16(m_videoram[0x1ff60/2 + i * 4]) & 0x1ff);
+			clips[i].nMaxy = (tempclip.nMaxy) - (BURN_ENDIAN_SWAP_INT16(m_videoram[0x1ff62/2 + i * 4]) & 0x0ff);
+			clips[i].nMinx = (tempclip.nMaxx) - ((BURN_ENDIAN_SWAP_INT16(m_videoram[0x1ff64/2 + i * 4]) & 0x1ff) + 1);
+			clips[i].nMiny = (tempclip.nMaxy) - ((BURN_ENDIAN_SWAP_INT16(m_videoram[0x1ff66/2 + i * 4]) & 0x0ff) + 1);
 		}
 
 		if (clips[i].nMiny < tempclip.nMiny) clips[i].nMiny = tempclip.nMiny;
@@ -3190,9 +3184,9 @@ static void update_tilemap_text(clip_struct cliprect, UINT16 *ram, INT32 destbmp
 			/* flipped case */
 			else
 			{
-				INT32 effdstx = (width - 1) - x * 8;
-				INT32 effdsty = (height - 1) - y * 8;
-				UINT16 *dst = BurnBitmapGetPosition(destbmp+5, effdstx, effdsty);
+				INT32 effdstx = (cliprect.nMaxx) - x * 8;
+				INT32 effdsty = (cliprect.nMaxy) - y * 8;
+				UINT16 *dst = BurnBitmapGetPosition(destbmp+5, (x > 1) ? ((effdstx) + (wide_offs * fake_wide_screen)) : effdstx, effdsty);
 
 				/* loop over rows */
 				for (INT32 iy = 0; iy < 8; iy++)
