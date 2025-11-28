@@ -1575,6 +1575,8 @@ void retro_run()
 	{
 		UINT32 old_nVerticalMode = nVerticalMode;
 		UINT32 old_nFrameskipType = nFrameskipType;
+		UINT32 old_nNewWidth = nNewWidth;
+		UINT32 old_nNewHeight = nNewHeight;
 
 		check_variables();
 
@@ -1588,6 +1590,12 @@ void retro_run()
 			struct retro_system_av_info av_info;
 			retro_get_system_av_info(&av_info);
 			environ_cb(RETRO_ENVIRONMENT_SET_GEOMETRY, &av_info);
+		}
+
+		// change resolution
+		if (old_nNewWidth != nNewWidth && old_nNewHeight != nNewHeight)
+		{
+			BurnSetResolution(nNewWidth, nNewHeight);
 		}
 
 		if (old_nFrameskipType != nFrameskipType)
@@ -2206,6 +2214,7 @@ static bool retro_load_game_common()
 		// Initializing display, autorotate if needed
 		BurnDrvGetFullSize(&nGameWidth, &nGameHeight);
 		SetRotation();
+		BurnSetResolution(nNewWidth, nNewHeight);
 		SetColorDepth();
 
 		VideoBufferInit();
