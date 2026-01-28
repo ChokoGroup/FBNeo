@@ -2290,6 +2290,15 @@
 		<video type="raster" orientation="horizontal" width="512" height="448" aspectx="4" aspecty="3"/>
 		<driver status="good"/>
 	</game>
+	<game name="bof2tp" cloneof="bof2" romof="bof2" sourcefile="snes/d_snes.cpp">
+		<comment>Hack</comment>
+		<description>Breath of Fire II (Hack, Portuguese v1.01)</description>
+		<year>2025</year>
+		<manufacturer>Dindo</manufacturer>
+		<rom name="Breath of Fire II PT-BR v1.01 (2025)(Dindo).sfc" size="4194304" crc="464a870e"/>
+		<video type="raster" orientation="horizontal" width="512" height="448" aspectx="4" aspecty="3"/>
+		<driver status="good"/>
+	</game>
 	<game name="bof2ts" cloneof="bof2" romof="bof2" sourcefile="snes/d_snes.cpp">
 		<comment>Hack</comment>
 		<description>Breath of Fire II (Hack, Spanish v1.2)</description>
@@ -2876,6 +2885,15 @@
 		<year>2014</year>
 		<manufacturer>Dynamic-Designs</manufacturer>
 		<rom name="Chaos Seed T-Eng v1.02 (2014)(Dynamic-Designs).sfc" size="3145728" crc="988a1fdf"/>
+		<video type="raster" orientation="horizontal" width="512" height="448" aspectx="4" aspecty="3"/>
+		<driver status="good"/>
+	</game>
+	<game name="chaosseedtp" cloneof="chaosseedte" romof="chaosseedte" sourcefile="snes/d_snes.cpp">
+		<comment>Hack</comment>
+		<description>Chaos Seed: Cronicas do Feng Shui (Hack, Portuguese)</description>
+		<year>2025</year>
+		<manufacturer>Dindo</manufacturer>
+		<rom name="Chaos Seed - Cronicas do Feng Shui PT-BR (2025)(Dindo).sfc" size="3145728" crc="357e7441"/>
 		<video type="raster" orientation="horizontal" width="512" height="448" aspectx="4" aspecty="3"/>
 		<driver status="good"/>
 	</game>
@@ -4558,10 +4576,28 @@
 	</game>
 	<game name="dgbattlete" sourcefile="snes/d_snes.cpp">
 		<comment>Hack</comment>
-		<description>Dossun! Ganseki Battle (Hack, English)</description>
+		<description>Dossun! Ganseki Battle (Hack, English v1.1)</description>
+		<year>2026</year>
+		<manufacturer>Stoneboat</manufacturer>
+		<rom name="Dossun! Ganseki Battle T-Eng v1.1 (2026)(Stoneboat).sfc" size="2097152" crc="1111d176"/>
+		<video type="raster" orientation="horizontal" width="512" height="448" aspectx="4" aspecty="3"/>
+		<driver status="good"/>
+	</game>
+	<game name="dgbattletea" cloneof="dgbattlete" romof="dgbattlete" sourcefile="snes/d_snes.cpp">
+		<comment>Hack</comment>
+		<description>Dossun! Ganseki Battle (Hack, English, Alt)</description>
 		<year>2000</year>
 		<manufacturer>Aeon Genesis</manufacturer>
-		<rom name="Dossun! Ganseki Battle T-Eng (2000)(Aeon Genesis).sfc" size="1048576" crc="223d17d0"/>
+		<rom name="Dossun! Ganseki Battle T-Eng (Alt)(2000)(Aeon Genesis).sfc" size="1048576" crc="223d17d0"/>
+		<video type="raster" orientation="horizontal" width="512" height="448" aspectx="4" aspecty="3"/>
+		<driver status="good"/>
+	</game>
+	<game name="dgbattlets" cloneof="dgbattlete" romof="dgbattlete" sourcefile="snes/d_snes.cpp">
+		<comment>Hack</comment>
+		<description>Dossun! Ganseki Battle (Hack, Spanish v1.1)</description>
+		<year>2018</year>
+		<manufacturer>Wave</manufacturer>
+		<rom name="Dossun! Ganseki Battle T-Spa v1.1 (2018)(Wave).sfc" size="1048576" crc="8161d72e"/>
 		<video type="raster" orientation="horizontal" width="512" height="448" aspectx="4" aspecty="3"/>
 		<driver status="good"/>
 	</game>
@@ -10134,6 +10170,15 @@
 		<video type="raster" orientation="horizontal" width="512" height="448" aspectx="4" aspecty="3"/>
 		<driver status="good"/>
 	</game>
+	<game name="marveloustp" cloneof="marvelouste" romof="marvelouste" sourcefile="snes/d_snes.cpp">
+		<comment>Hack, SA-1 enhancement CPU</comment>
+		<description>Marvelous: Outra Ilha do Tesouro (Hack, Portuguese)</description>
+		<year>2025</year>
+		<manufacturer>Dindo</manufacturer>
+		<rom name="Marvelous - Outra Ilha do Tesouro PT-BR (2025)(Dindo).sfc" size="4194304" crc="d2417812"/>
+		<video type="raster" orientation="horizontal" width="512" height="448" aspectx="4" aspecty="3"/>
+		<driver status="good"/>
+	</game>
 	<game name="msfranken" sourcefile="snes/d_snes.cpp">
 		<description>Mary Shelley's Frankenstein (USA)</description>
 		<year>1994</year>
@@ -14100,6 +14145,15 @@
 		<video type="raster" orientation="horizontal" width="512" height="448" aspectx="4" aspecty="3"/>
 		<driver status="good"/>
 	</game>
+	<game name="seikdens3tp" cloneof="seikdens3te" romof="seikdens3te" sourcefile="snes/d_snes.cpp">
+		<comment>Hack</comment>
+		<description>Seiken Densetsu 3 ~ Trials of Mana (Hack, Portuguese v1.03)</description>
+		<year>2024</year>
+		<manufacturer>Dindo</manufacturer>
+		<rom name="Seiken Densetsu 3 - Trials of Mana PT-BR v1.03 (2024)(Dindo).sfc" size="4194304" crc="0c61a7bf"/>
+		<video type="raster" orientation="horizontal" width="512" height="448" aspectx="4" aspecty="3"/>
+		<driver status="good"/>
+	</game>
 	<game name="sengokute" sourcefile="snes/d_snes.cpp">
 		<comment>Hack</comment>
 		<description>Sengoku Denshou (Hack, English)</description>
@@ -15920,10 +15974,10 @@
 	</game>
 	<game name="superbughunters" sourcefile="snes/d_snes.cpp">
 		<comment>Homebrew</comment>
-		<description>Super Bug Hunters (HB, v1.1)</description>
+		<description>Super Bug Hunters (HB, v1.2)</description>
 		<year>2025</year>
 		<manufacturer>Maxwel Olinda</manufacturer>
-		<rom name="Super Bug Hunters v1.1 (2025)(Maxwel Olinda).sfc" size="262144" crc="f9305a4f"/>
+		<rom name="Super Bug Hunters v1.2 (2025)(Maxwel Olinda).sfc" size="262144" crc="23386931"/>
 		<video type="raster" orientation="horizontal" width="512" height="448" aspectx="4" aspecty="3"/>
 		<driver status="good"/>
 	</game>
@@ -16112,6 +16166,15 @@
 		<year>1992</year>
 		<manufacturer>Tradewest - Technos</manufacturer>
 		<rom name="Super Double Dragon (E)(1992)(Tradewest - Technos).sfc" size="1048576" crc="b3f6009b"/>
+		<video type="raster" orientation="horizontal" width="512" height="448" aspectx="4" aspecty="3"/>
+		<driver status="good"/>
+	</game>
+	<game name="superdoubledragonep" cloneof="returndoubledragonev" romof="returndoubledragonev" sourcefile="snes/d_snes.cpp">
+		<comment>Prototype</comment>
+		<description>Super Double Dragon (Euro, Prototype)</description>
+		<year>1992</year>
+		<manufacturer>Tradewest - Technos</manufacturer>
+		<rom name="Super Double Dragon (E, Proto)(1992)(Tradewest - Technos).sfc" size="1048576" crc="1064e0e0"/>
 		<video type="raster" orientation="horizontal" width="512" height="448" aspectx="4" aspecty="3"/>
 		<driver status="good"/>
 	</game>
@@ -16328,12 +16391,21 @@
 		<video type="raster" orientation="horizontal" width="512" height="448" aspectx="4" aspecty="3"/>
 		<driver status="good"/>
 	</game>
+	<game name="supergngp" cloneof="supergng" romof="supergng" sourcefile="snes/d_snes.cpp">
+		<comment>Prototype</comment>
+		<description>Super Ghouls'n Ghosts (USA, Prototype)</description>
+		<year>1991</year>
+		<manufacturer>Capcom</manufacturer>
+		<rom name="Super Ghouls'n Ghosts (U, Proto)(1991)(Capcom).sfc" size="2097152" crc="f1073bb3"/>
+		<video type="raster" orientation="horizontal" width="512" height="448" aspectx="4" aspecty="3"/>
+		<driver status="good"/>
+	</game>
 	<game name="supergngr" cloneof="supergng" romof="supergng" sourcefile="snes/d_snes.cpp">
 		<comment>Hack</comment>
 		<description>Super Ghouls'n Ghosts Restoration (Hack)</description>
-		<year>2023</year>
+		<year>2023-25</year>
 		<manufacturer>SCD</manufacturer>
-		<rom name="Super Ghouls'n Ghosts Restoration Hack (2023)(SCD).sfc" size="2097152" crc="acaed88a"/>
+		<rom name="Super Ghouls'n Ghosts Restoration Hack (2023-25)(SCD).sfc" size="2097152" crc="d983a882"/>
 		<video type="raster" orientation="horizontal" width="512" height="448" aspectx="4" aspecty="3"/>
 		<driver status="good"/>
 	</game>
