@@ -411,6 +411,15 @@
 		<video type="raster" orientation="horizontal" width="1024" height="240" aspectx="4" aspecty="3"/>
 		<driver status="good"/>
 	</game>
+	<game name="cityhuntee" cloneof="cityhunt" romof="cityhunt" sourcefile="pce/d_pce.cpp">
+		<comment>Official English Translation</comment>
+		<description>City Hunter (Enhanced Version) (World)</description>
+		<year>1989-2026</year>
+		<manufacturer>Sunsoft - Red Art Games</manufacturer>
+		<rom name="City Hunter (Enhanced Version) (World)(1989-2026)(Sunsoft - Red Art).pce" size="1048576" crc="18d09c0f"/>
+		<video type="raster" orientation="horizontal" width="1024" height="240" aspectx="4" aspecty="3"/>
+		<driver status="good"/>
+	</game>
 	<game name="cityhunte" cloneof="cityhunt" romof="cityhunt" sourcefile="pce/d_pce.cpp">
 		<comment>Hack</comment>
 		<description>City Hunter (Hack, English v1.1)</description>
@@ -420,11 +429,29 @@
 		<video type="raster" orientation="horizontal" width="1024" height="240" aspectx="4" aspecty="3"/>
 		<driver status="good"/>
 	</game>
-	<game name="cityhunt" sourcefile="pce/d_pce.cpp">
+	<game name="cityhunthm" cloneof="cityhunt" romof="cityhunt" sourcefile="pce/d_pce.cpp">
+		<comment>Official English Translation</comment>
+		<description>City Hunter (Hard Mode) (World)</description>
+		<year>1989-2026</year>
+		<manufacturer>Sunsoft - Red Art Games</manufacturer>
+		<rom name="City Hunter (Hard Mode) (World)(1989-2026)(Sunsoft - Red Art).pce" size="1048576" crc="5d79e930"/>
+		<video type="raster" orientation="horizontal" width="1024" height="240" aspectx="4" aspecty="3"/>
+		<driver status="good"/>
+	</game>
+	<game name="cityhuntj" cloneof="cityhunt" romof="cityhunt" sourcefile="pce/d_pce.cpp">
 		<description>City Hunter (Japan)</description>
 		<year>1989</year>
 		<manufacturer>Sunsoft</manufacturer>
 		<rom name="City Hunter (Japan)(1989)(Sunsoft).pce" size="393216" crc="f91b055f"/>
+		<video type="raster" orientation="horizontal" width="1024" height="240" aspectx="4" aspecty="3"/>
+		<driver status="good"/>
+	</game>
+	<game name="cityhunt" sourcefile="pce/d_pce.cpp">
+		<comment>Official English Translation</comment>
+		<description>City Hunter (World)</description>
+		<year>1989-2026</year>
+		<manufacturer>Sunsoft - Red Art Games</manufacturer>
+		<rom name="City Hunter (World)(1989-2026)(Sunsoft - Red Art).pce" size="1048576" crc="7e9c2c7e"/>
 		<video type="raster" orientation="horizontal" width="1024" height="240" aspectx="4" aspecty="3"/>
 		<driver status="good"/>
 	</game>
@@ -457,6 +484,15 @@
 		<year>1990</year>
 		<manufacturer>Face Corp.</manufacturer>
 		<rom name="Cross Wiber - Cyber Combat Police (Japan)(1990)(Face).pce" size="524288" crc="2df97bd0"/>
+		<video type="raster" orientation="horizontal" width="1024" height="240" aspectx="4" aspecty="3"/>
+		<driver status="good"/>
+	</game>
+	<game name="ccshockman" sourcefile="pce/d_pce.cpp">
+		<comment>Official English Translation</comment>
+		<description>Cyber Citizen Shockman (World)</description>
+		<year>1989-2024</year>
+		<manufacturer>Extreme - Ratalaika Games</manufacturer>
+		<rom name="Cyber Citizen Shockman (World)(1989-2024)(Extreme - Ratalaika).pce" size="524288" crc="5842f0ca"/>
 		<video type="raster" orientation="horizontal" width="1024" height="240" aspectx="4" aspecty="3"/>
 		<driver status="good"/>
 	</game>
@@ -1198,19 +1234,11 @@
 		<video type="raster" orientation="horizontal" width="1024" height="240" aspectx="4" aspecty="3"/>
 		<driver status="good"/>
 	</game>
-	<game name="shubibi" sourcefile="pce/d_pce.cpp">
+	<game name="shubibi" cloneof="ccshockman" romof="ccshockman" sourcefile="pce/d_pce.cpp">
 		<description>Kaizou Choujin Shubibinman (Japan)</description>
 		<year>1989</year>
-		<manufacturer>NCS - Masaya</manufacturer>
+		<manufacturer>NCS - Masaya Games</manufacturer>
 		<rom name="Kaizou Choujin Shubibinman (Japan)(1989)(NCS - Masaya).pce" size="262144" crc="a9084d6e"/>
-		<video type="raster" orientation="horizontal" width="1024" height="240" aspectx="4" aspecty="3"/>
-		<driver status="good"/>
-	</game>
-	<game name="shubibi2" sourcefile="pce/d_pce.cpp">
-		<description>Kaizou Choujin Shubibinman 2: Aratanaru Teki (Japan)</description>
-		<year>1991</year>
-		<manufacturer>Masaya</manufacturer>
-		<rom name="Kaizou Choujin Shubibinman 2 - Aratanaru Teki (Japan)(1991)(Masaya).pce" size="524288" crc="109ba474"/>
 		<video type="raster" orientation="horizontal" width="1024" height="240" aspectx="4" aspecty="3"/>
 		<driver status="good"/>
 	</game>
