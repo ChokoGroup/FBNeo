@@ -16706,6 +16706,25 @@ struct BurnDriver BurnDrvnes_citytrouble = {
 	SCREEN_WIDTH, SCREEN_HEIGHT, SCREEN_WIDTH, SCREEN_HEIGHT
 };
 
+// Clash of Courts (HB, v1.0.2)
+// https://kn56k.itch.io/clash-of-courts
+static struct BurnRomInfo nes_clashcourtsRomDesc[] = {
+	{ "Clash of Courts v1.0.2 (2026)(kn56k).nes",          524304, 0x9a914504, BRF_ESS | BRF_PRG },
+};
+
+STD_ROM_PICK(nes_clashcourts)
+STD_ROM_FN(nes_clashcourts)
+
+struct BurnDriver BurnDrvnes_clashcourts = {
+	"nes_clashcourts", NULL, NULL, NULL, "2026",
+	"Clash of Courts (HB, v1.0.2)\0", NULL, "kn56k", "NES / Famicom",
+	NULL, NULL, NULL, NULL,
+	BDF_GAME_WORKING | BDF_HOMEBREW, 6, HARDWARE_NES, GBF_PLATFORM | GBF_ACTION, 0,
+	NESGetZipName, nes_clashcourtsRomInfo, nes_clashcourtsRomName, NULL, NULL, NULL, NULL, NESInputInfo, NESDIPInfo,
+	NESInit, NESExit, NESFrame, NESDraw, NESScan, &NESRecalc, 0x40,
+	SCREEN_WIDTH, SCREEN_HEIGHT, SCREEN_WIDTH, SCREEN_HEIGHT
+};
+
 // CMC 80's Demo (HB, Tech-Demo)
 static struct BurnRomInfo nes_cmc80sdemoRomDesc[] = {
 	{ "CMC 80's Demo (2000)(Chris Covell).nes",          49168, 0x0135b0e8, BRF_ESS | BRF_PRG },
@@ -20113,6 +20132,25 @@ struct BurnDriver BurnDrvnes_justiceduel = {
 	NULL, NULL, NULL, NULL,
 	BDF_GAME_WORKING | BDF_HOMEBREW, 4, HARDWARE_NES, GBF_ACTION, 0,
 	NESGetZipName, nes_justiceduelRomInfo, nes_justiceduelRomName, NULL, NULL, NULL, NULL, NES4ScoreInputInfo, NES4ScoreDIPInfo,
+	NES4ScoreInit, NESExit, NESFrame, NESDraw, NESScan, &NESRecalc, 0x40,
+	SCREEN_WIDTH, SCREEN_HEIGHT, SCREEN_WIDTH, SCREEN_HEIGHT
+};
+
+// Justice Duel (HB, Alt)
+// https://megacatstudios.itch.io/justice-duel
+static struct BurnRomInfo nes_justiceduelaRomDesc[] = {
+	{ "Justice Duel (Alt)(2019)(Mega Cat Studios).nes",          196624, 0xb751f4b2, BRF_ESS | BRF_PRG },
+};
+
+STD_ROM_PICK(nes_justiceduela)
+STD_ROM_FN(nes_justiceduela)
+
+struct BurnDriver BurnDrvnes_justiceduela = {
+	"nes_justiceduela", "nes_justiceduel", NULL, NULL, "2019",
+	"Justice Duel (HB, Alt)\0", NULL, "Mega Cat Studios", "NES / Famicom",
+	NULL, NULL, NULL, NULL,
+	BDF_GAME_WORKING | BDF_CLONE | BDF_HOMEBREW, 4, HARDWARE_NES, GBF_ACTION, 0,
+	NESGetZipName, nes_justiceduelaRomInfo, nes_justiceduelaRomName, NULL, NULL, NULL, NULL, NES4ScoreInputInfo, NES4ScoreDIPInfo,
 	NES4ScoreInit, NESExit, NESFrame, NESDraw, NESScan, &NESRecalc, 0x40,
 	SCREEN_WIDTH, SCREEN_HEIGHT, SCREEN_WIDTH, SCREEN_HEIGHT
 };
@@ -23679,6 +23717,25 @@ struct BurnDriver BurnDrvnes_rescueforce = {
 	SCREEN_WIDTH, SCREEN_HEIGHT, SCREEN_WIDTH, SCREEN_HEIGHT
 };
 
+// Retro Replay: Pixel Panic (HB, v0.50)
+// https://retroreplay.itch.io/retro-replay-pixel-panic
+static struct BurnRomInfo nes_rrpixelpanicRomDesc[] = {
+	{ "Retro Replay - Pixel Panic v0.50 (2026)(Retro-Replay.com).nes",          40976, 0xb0d06f0c, BRF_ESS | BRF_PRG },
+};
+
+STD_ROM_PICK(nes_rrpixelpanic)
+STD_ROM_FN(nes_rrpixelpanic)
+
+struct BurnDriver BurnDrvnes_rrpixelpanic = {
+	"nes_rrpixelpanic", NULL, NULL, NULL, "2026",
+	"Retro Replay: Pixel Panic (HB, v0.50)\0", NULL, "Retro-Replay.com", "NES / Famicom",
+	NULL, NULL, NULL, NULL,
+	BDF_GAME_WORKING | BDF_HOMEBREW, 1, HARDWARE_NES, GBF_ACTION | GBF_MAZE, 0,
+	NESGetZipName, nes_rrpixelpanicRomInfo, nes_rrpixelpanicRomName, NULL, NULL, NULL, NULL, NESInputInfo, NESDIPInfo,
+	NESInit, NESExit, NESFrame, NESDraw, NESScan, &NESRecalc, 0x40,
+	SCREEN_WIDTH, SCREEN_HEIGHT, SCREEN_WIDTH, SCREEN_HEIGHT
+};
+
 // Return to Anctrayl (HB)
 static struct BurnRomInfo nes_retanctraylRomDesc[] = {
 	{ "Return to Anctrayl (2024)(Bipedal Studios).nes",          131088, 0x8176e315, BRF_ESS | BRF_PRG },
@@ -26558,7 +26615,7 @@ struct BurnDriver BurnDrvnes_tryptic = {
 
 // Tuki & Paco Adventures (HB, Demo)
 static struct BurnRomInfo nes_tukipacoRomDesc[] = {
-	{ "Tuki & Paco Adventures (Demo)(2026)(Pixelis Software).nes",          524304, 0xf5cb1867, BRF_ESS | BRF_PRG },
+	{ "Tuki & Paco Adventures (Demo)(2026)(Pixelis Software).nes",          524304, 0xb1c6e9fc, BRF_ESS | BRF_PRG },
 };
 
 STD_ROM_PICK(nes_tukipaco)
