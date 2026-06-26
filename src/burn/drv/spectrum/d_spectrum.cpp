@@ -28526,7 +28526,7 @@ struct BurnDriver BurnSpecSuperseymoursavestheplanet = {
 // Super Space Invaders (128K)
 
 static struct BurnRomInfo SpecSsinvadersRomDesc[] = {
-	{ "Super Space Invaders 128K (1991)(Domark).z80", 104637, 0x2a36ad52, BRF_ESS | BRF_PRG },
+	{ "Super Space Invaders 128K (1991)(Domark).tzx", 119931, 0x9e5ce705, BRF_ESS | BRF_PRG },
 };
 
 STDROMPICKEXT(SpecSsinvaders, SpecSsinvaders, Spec128)
@@ -28534,7 +28534,7 @@ STD_ROM_FN(SpecSsinvaders)
 
 struct BurnDriver BurnSpecSsinvaders = {
 	"spec_ssinvaders", NULL, "spec_spec128", NULL, "1991",
-	"Super Space Invaders (128K)\0", "In main menu: 'A' to move - 'Q' to select", "Domark", "ZX Spectrum",
+	"Super Space Invaders (128K)\0", "Options menu: use 'A' to move and 'Q' to select", "Domark", "ZX Spectrum",
 	NULL, NULL, NULL, NULL,
 	BDF_GAME_WORKING, 2, HARDWARE_SPECTRUM, GBF_VERSHOOT, 0,
 	SpectrumGetZipName, SpecSsinvadersRomInfo, SpecSsinvadersRomName, NULL, NULL, NULL, NULL, SpecInputInfo, SpecDIPInfo,
@@ -36949,7 +36949,7 @@ struct BurnDriver BurnSpecCattivik2 = {
 	&SpecRecalc, 0x10, 288, 224, 4, 3
 };
 
-// Cave Raider - The Cursed Treasure (128K) (HB)
+// Cave Raider: The Cursed Treasure (128K) (HB)
 
 static struct BurnRomInfo SpecCaveraidRomDesc[] = {
 	{ "Cave Raider - The Cursed Treasure 128K (2018)(Bumfun Software).tap", 35128, 0x57718ae2, BRF_ESS | BRF_PRG },
@@ -36960,7 +36960,7 @@ STD_ROM_FN(SpecCaveraid)
 
 struct BurnDriver BurnSpecCaveraid = {
 	"spec_caveraid", NULL, "spec_spec128", NULL, "2018",
-	"Cave Raider - The Cursed Treasure (128K) (HB)\0", NULL, "Bumfun Software", "ZX Spectrum",
+	"Cave Raider: The Cursed Treasure (128K) (HB)\0", NULL, "Bumfun Software", "ZX Spectrum",
 	NULL, NULL, NULL, NULL,
 	BDF_GAME_WORKING | BDF_HOMEBREW, 1, HARDWARE_SPECTRUM, GBF_PLATFORM, 0,
 	SpectrumGetZipName, SpecCaveraidRomInfo, SpecCaveraidRomName, NULL, NULL, NULL, NULL, SpecInputInfo, SpecDIPInfo,
@@ -38716,10 +38716,29 @@ struct BurnDriver BurnSpecDizzy7remake = {
 	&SpecRecalc, 0x10, 288, 224, 4, 3
 };
 
-// Cubic Experience, The (128K) (HB, v1.0)
+// Cuatro Vientos (48K) (HB)
+
+static struct BurnRomInfo SpecCuatrovientosRomDesc[] = {
+	{ "Cuatro Vientos 48K (2026)(Midtown Games).tap", 36672, 0xb5d4e265, BRF_ESS | BRF_PRG },
+};
+
+STDROMPICKEXT(SpecCuatrovientos, SpecCuatrovientos, Spectrum)
+STD_ROM_FN(SpecCuatrovientos)
+
+struct BurnDriver BurnSpecCuatrovientos = {
+	"spec_cuatrovientos", NULL, "spec_spectrum", NULL, "2026",
+	"Cuatro Vientos (48K) (HB)\0", NULL, "Midtown Games", "ZX Spectrum",
+	NULL, NULL, NULL, NULL,
+	BDF_GAME_WORKING | BDF_HOMEBREW, 1, HARDWARE_SPECTRUM, GBF_VERSHOOT, 0,
+	SpectrumGetZipName, SpecCuatrovientosRomInfo, SpecCuatrovientosRomName, NULL, NULL, NULL, NULL, SpecInputInfo, SpecDIPInfo,
+	SpecInit, SpecExit, SpecFrame, SpecDraw, SpecScan,
+	&SpecRecalc, 0x10, 288, 224, 4, 3
+};
+
+// Cubic Experience, The (48K-128K) (HB)
 
 static struct BurnRomInfo SpecCubicexpRomDesc[] = {
-	{ "Cubic Experience, The v1.0 128K (2022)(Toku Soft).tap", 37903, 0x366b62f0, BRF_ESS | BRF_PRG },
+	{ "Cubic Experience, The 48K-128K (2022)(Toku Soft).tap", 37903, 0x366b62f0, BRF_ESS | BRF_PRG },
 };
 
 STDROMPICKEXT(SpecCubicexp, SpecCubicexp, Spec128)
@@ -38727,7 +38746,7 @@ STD_ROM_FN(SpecCubicexp)
 
 struct BurnDriver BurnSpecCubicexp = {
 	"spec_cubicexp", NULL, "spec_spec128", NULL, "2022",
-	"Cubic Experience, The (128K) (HB, v1.0)\0", "Press '2' to use controller", "Toku Soft", "ZX Spectrum",
+	"Cubic Experience, The (48K-128K) (HB)\0", "Press '2' to use controller", "Toku Soft", "ZX Spectrum",
 	NULL, NULL, NULL, NULL,
 	BDF_GAME_WORKING | BDF_HOMEBREW, 1, HARDWARE_SPECTRUM, GBF_ACTION | GBF_PUZZLE, 0,
 	SpectrumGetZipName, SpecCubicexpRomInfo, SpecCubicexpRomName, NULL, NULL, NULL, NULL, SpecInputInfo, SpecDIPInfo,
@@ -38735,10 +38754,10 @@ struct BurnDriver BurnSpecCubicexp = {
 	&SpecRecalc, 0x10, 288, 224, 4, 3
 };
 
-// Cubic Experience, The - V.E. (128K) (HB, v1.0)
+// Cubic Experience, The - V.E. (48K-128K) (HB)
 
 static struct BurnRomInfo SpecCubicexpveRomDesc[] = {
-	{ "Cubic Experience, The - V.E. v1.0 128K (2022)(Toku Soft).tap", 25874, 0x02582bdf, BRF_ESS | BRF_PRG },
+	{ "Cubic Experience, The - V.E. 48K-128K (2022)(Toku Soft).tap", 25874, 0x02582bdf, BRF_ESS | BRF_PRG },
 };
 
 STDROMPICKEXT(SpecCubicexpve, SpecCubicexpve, Spec128)
@@ -38746,7 +38765,7 @@ STD_ROM_FN(SpecCubicexpve)
 
 struct BurnDriver BurnSpecCubicexpve = {
 	"spec_cubicexpve", "spec_cubicexp", "spec_spec128", NULL, "2022",
-	"Cubic Experience, The - V.E. (128K) (HB, v1.0)\0", "Visual Experince: the interactive tutorial of the game" , "Toku Soft", "ZX Spectrum",
+	"Cubic Experience, The - V.E. (48K-128K) (HB)\0", "Visual Experince: the interactive tutorial of the game" , "Toku Soft", "ZX Spectrum",
 	NULL, NULL, NULL, NULL,
 	BDF_GAME_WORKING | BDF_CLONE | BDF_HOMEBREW, 1, HARDWARE_SPECTRUM, GBF_ACTION | GBF_PUZZLE, 0,
 	SpectrumGetZipName, SpecCubicexpveRomInfo, SpecCubicexpveRomName, NULL, NULL, NULL, NULL, SpecInputInfo, SpecDIPInfo,
@@ -58188,6 +58207,44 @@ struct BurnDriver BurnSpecSpacebros = {
 	NULL, NULL, NULL, NULL,
 	BDF_GAME_WORKING | BDF_HOMEBREW, 1, HARDWARE_SPECTRUM, GBF_PLATFORM, 0,
 	SpectrumGetZipName, SpecSpacebrosRomInfo, SpecSpacebrosRomName, NULL, NULL, NULL, NULL, SpecInputInfo, SpecDIPInfo,
+	Spec128KInit, SpecExit, SpecFrame, SpecDraw, SpecScan,
+	&SpecRecalc, 0x10, 288, 224, 4, 3
+};
+
+// Space invaders (48K-128K) (HB, v1.4.1)
+
+static struct BurnRomInfo SpecSpacinvRomDesc[] = {
+	{ "Space invaders v1.4.1 48K-128K (2021)(SplinterGU).tzx", 29436, 0x61582cb7, BRF_ESS | BRF_PRG },
+};
+
+STDROMPICKEXT(SpecSpacinv, SpecSpacinv, Spec128)
+STD_ROM_FN(SpecSpacinv)
+
+struct BurnDriver BurnSpecSpacinv = {
+	"spec_spacinv", NULL, "spec_spec128", NULL, "2021",
+	"Space invaders (48K-128K) (HB, v1.4.1)\0", "K: insert coins - 1or2: start - P1/P2: O/P and A", "SplinterGU", "ZX Spectrum",
+	NULL, NULL, NULL, NULL,
+	BDF_GAME_WORKING | BDF_HOMEBREW, 2, HARDWARE_SPECTRUM, GBF_VERSHOOT, 0,
+	SpectrumGetZipName, SpecSpacinvRomInfo, SpecSpacinvRomName, NULL, NULL, NULL, NULL, SpecInputInfo, SpecDIPInfo,
+	Spec128KInit, SpecExit, SpecFrame, SpecDraw, SpecScan,
+	&SpecRecalc, 0x10, 288, 224, 4, 3
+};
+
+// Space Invaders Co-Op (48K-128K) (HB, v2.0.1)
+
+static struct BurnRomInfo SpecSpacinvcoopRomDesc[] = {
+	{ "Space Invaders Co-Op v2.0.1 48K-128K (2026)(SplinterGU).tzx", 32554, 0x19f54c9f, BRF_ESS | BRF_PRG },
+};
+
+STDROMPICKEXT(SpecSpacinvcoop, SpecSpacinvcoop, Spec128)
+STD_ROM_FN(SpecSpacinvcoop)
+
+struct BurnDriver BurnSpecSpacinvcoop = {
+	"spec_spacinvcoop", NULL, "spec_spec128", NULL, "2026",
+	"Space Invaders Co-Op (48K-128K) (HB, v2.0.1)\0", "K: insert coins - 1or2: start - P1: Q/W and X - P2: O/P and SPACE", "SplinterGU", "ZX Spectrum",
+	NULL, NULL, NULL, NULL,
+	BDF_GAME_WORKING | BDF_HOMEBREW, 2, HARDWARE_SPECTRUM, GBF_VERSHOOT, 0,
+	SpectrumGetZipName, SpecSpacinvcoopRomInfo, SpecSpacinvcoopRomName, NULL, NULL, NULL, NULL, SpecInputInfo, SpecDIPInfo,
 	Spec128KInit, SpecExit, SpecFrame, SpecDraw, SpecScan,
 	&SpecRecalc, 0x10, 288, 224, 4, 3
 };

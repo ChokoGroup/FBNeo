@@ -21815,14 +21815,14 @@ struct BurnDriver BurnDrvSamsh2jq = {
 };
 
 
-// Samurai Shodown II / Shin Samurai Spirits - Haohmaru Jigokuhen (Perfect V. 2.7, Hack)
+// Samurai Shodown II / Shin Samurai Spirits - Haohmaru Jigokuhen (Perfect V. 2.8, Hack)
 // Modified by Bear
-// 20260528
+// 20260620
 
 static struct BurnRomInfo samsho2peRomDesc[] = {
-	{ "063-p1pe.p1",	0x100000, 0x141bc590, 1 | BRF_ESS | BRF_PRG }, //  0 68K code
-	{ "063-p2pe.sp2",	0x100000, 0x8a0163d7, 1 | BRF_ESS | BRF_PRG }, //  1
-	{ "063-p3pe.p3",	0x020000, 0x5a51a63c, 1 | BRF_ESS | BRF_PRG }, //  2 Extra ROM
+	{ "063-p1pe.p1",	0x100000, 0xc578dcb1, 1 | BRF_ESS | BRF_PRG }, //  0 68K code
+	{ "063-p2pe.sp2",	0x100000, 0x01cded84, 1 | BRF_ESS | BRF_PRG }, //  1
+	{ "063-p3pe.p3",	0x020000, 0x9f2e0244, 1 | BRF_ESS | BRF_PRG }, //  2 Extra ROM
 
 	SAMSHO2_COMPONENTS
 };
@@ -21832,8 +21832,8 @@ STD_ROM_FN(samsho2pe)
 
 struct BurnDriver BurnDrvSamsho2pe = {
 	"samsho2pe", "samsho2", "neogeo", NULL, "2023-26",
-	"Samurai Shodown II / Shin Samurai Spirits - Haohmaru Jigokuhen (Perfect V. 2.7, Hack)\0", NULL, "Bear", "Neo Geo MVS",
-	L"Samurai Shodown II\0\u771F Samurai Spirits - \u8987\u738B\u4E38\u5730\u7344\u5909 (Perfect V. 2.7, Hack)\0", NULL, NULL, NULL,
+	"Samurai Shodown II / Shin Samurai Spirits - Haohmaru Jigokuhen (Perfect V. 2.8, Hack)\0", NULL, "Bear", "Neo Geo MVS",
+	L"Samurai Shodown II\0\u771F Samurai Spirits - \u8987\u738B\u4E38\u5730\u7344\u5909 (Perfect V. 2.8, Hack)\0", NULL, NULL, NULL,
 	BDF_GAME_WORKING | BDF_CLONE | BDF_HACK, 2, HARDWARE_PREFIX_CARTRIDGE | HARDWARE_SNK_NEOGEO, GBF_VSFIGHT, FBF_SAMSHO,
 	NULL, samsho2peRomInfo, samsho2peRomName, NULL, NULL, NULL, NULL, neogeoInputInfo, neoForceMVSDIPInfo,
 	samsh2spInit, NeoExit, NeoFrame, NeoRender, NeoScan, &NeoRecalcPalette,
@@ -27752,21 +27752,21 @@ struct BurnDriver BurnDrvInthehunt = {
 };
 
 
-// Blue And Red - Fight The Robots! (HB, v1.5 NTSC)
+// Blue And Red - Fight The Robots! (HB, v1.6 NTSC)
 // https://kaijuwasp.itch.io/blue-and-red-fight-the-robots-arcade-edition
 
 static struct BurnRomInfo blueandrRomDesc[] = {
-	{ "blueandr-p1.bin",		0x0100000, 0x32b764e1, 1 | BRF_ESS | BRF_PRG }, //  0 68K code
+	{ "blueandr-p1.bin",		0x0100000, 0x6e4f71aa, 1 | BRF_ESS | BRF_PRG }, //  0 68K code
 	
 	{ "blueandr-s1.bin",		0x0020000, 0x0d0067f5, 2 | BRF_GRA },           //  1 Text layer tiles
 
-	{ "blueandr-c1.bin",		0x0040000, 0xc1554b81, 3 | BRF_GRA },           //  2 Sprite data
-	{ "blueandr-c2.bin",		0x0040000, 0x83a9c206, 3 | BRF_GRA },           //  3
+	{ "blueandr-c1.bin",		0x0040000, 0x79b934a5, 3 | BRF_GRA },           //  2 Sprite data
+	{ "blueandr-c2.bin",		0x0040000, 0x47647e8d, 3 | BRF_GRA },           //  3
 
-	{ "blueandr-m1.bin",		0x0040000, 0x864a8cf8, 4 | BRF_ESS | BRF_PRG }, //  4 Z80 code
+	{ "blueandr-m1.bin",		0x0040000, 0x19f32974, 4 | BRF_ESS | BRF_PRG }, //  4 Z80 code
 
 	{ "blueandr-v1.bin",		0x0040000, 0x7d5535dd, 5 | BRF_SND },           //  5 Sound data
-	{ "blueandr-v2.bin",		0x0b80000, 0xd6308621, 5 | BRF_SND },           //  6
+	{ "blueandr-v2.bin",		0x0b80000, 0xd52a3036, 5 | BRF_SND },           //  6
 };
 
 STDROMPICKEXT(blueandr, blueandr, neogeo)
@@ -27774,7 +27774,7 @@ STD_ROM_FN(blueandr)
 
 struct BurnDriver BurnDrvblueandr = {
 	"blueandr", NULL, "neogeo", NULL, "2026",
-	"Blue And Red - Fight The Robots! (HB, v1.5 NTSC)\0", NULL, "Kaiju Wasp", "Neo Geo MVS",
+	"Blue And Red - Fight The Robots! (HB, v1.6 NTSC)\0", NULL, "Kaiju Wasp", "Neo Geo MVS",
 	NULL, NULL, NULL, NULL,
 	BDF_GAME_WORKING | BDF_HOMEBREW, 2, HARDWARE_SNK_NEOGEO, GBF_PLATFORM | GBF_ACTION, 0,
 	NULL, blueandrRomInfo, blueandrRomName, NULL, NULL, NULL, NULL, neogeoInputInfo, neogeoDIPInfo,
