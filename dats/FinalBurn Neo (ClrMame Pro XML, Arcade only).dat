@@ -15976,9 +15976,40 @@
 	<game name="sailmnhy" cloneof="sailormn" romof="sailormn" sourcefile="cave/d_sailormn.cpp">
 		<comment>Hack</comment>
 		<description>Bishoujo Senshi Sailor Moon (Black Moon, Hack)</description>
-		<year>2024</year>
+		<year>2026</year>
 		<manufacturer>hack</manufacturer>
-		<rom name="bpsmhy945a.u45" size="524288" crc="ce0dfc34"/>
+		<rom name="bpsmhy945a.u45" size="524288" crc="bac65b30"/>
+		<rom name="bpsm.u46" merge="bpsm.u46" size="2097152" crc="32084e80"/>
+		<rom name="bpsm945a.u9" merge="bpsm945a.u9" size="524288" crc="438de548"/>
+		<rom name="bpsm.u76" merge="bpsm.u76" size="2097152" crc="a243a5ba"/>
+		<rom name="bpsm.u77" merge="bpsm.u77" size="2097152" crc="5179a4ac"/>
+		<rom name="bpsm.u53" merge="bpsm.u53" size="2097152" crc="b9b15f83"/>
+		<rom name="bpsm.u54" merge="bpsm.u54" size="2097152" crc="8f00679d"/>
+		<rom name="bpsm.u57" merge="bpsm.u57" size="2097152" crc="86be7b63"/>
+		<rom name="bpsm.u58" merge="bpsm.u58" size="2097152" crc="e0bba83b"/>
+		<rom name="bpsm.u62" merge="bpsm.u62" size="2097152" crc="a1e3bfac"/>
+		<rom name="bpsm.u61" merge="bpsm.u61" size="2097152" crc="6a014b52"/>
+		<rom name="bpsm.u60" merge="bpsm.u60" size="2097152" crc="992468c0"/>
+		<rom name="bpsm.u65" merge="bpsm.u65" size="2097152" crc="f60fb7b5"/>
+		<rom name="bpsm.u64" merge="bpsm.u64" size="2097152" crc="6559d31c"/>
+		<rom name="bpsm.u63" merge="bpsm.u63" size="2097152" crc="d57a56b4"/>
+		<rom name="bpsm.u48" merge="bpsm.u48" size="2097152" crc="498e4ed1"/>
+		<rom name="bpsm.u47" merge="bpsm.u47" size="524288" crc="0f2901b9"/>
+		<rom name="sailormn_europe.nv" merge="sailormn_europe.nv" size="128" crc="59a7dc50"/>
+		<rom name="sailormn_usa.nv" size="128" crc="3915abe3"/>
+		<rom name="sailormn_japan.nv" size="128" crc="ea03c30a"/>
+		<rom name="sailormn_korea.nv" size="128" crc="0e7de398"/>
+		<rom name="sailormn_taiwan.nv" size="128" crc="6c7e8c2a"/>
+		<rom name="sailormn_hongkong.nv" size="128" crc="4d24c874"/>
+		<video type="raster" orientation="horizontal" width="320" height="240" aspectx="4" aspecty="3"/>
+		<driver status="good"/>
+	</game>
+	<game name="sailmnhx" cloneof="sailormn" romof="sailormn" sourcefile="cave/d_sailormn.cpp">
+		<comment>Hack</comment>
+		<description>Bishoujo Senshi Sailor Moon (Crescent Fantasy, Hack)</description>
+		<year>2026</year>
+		<manufacturer>hack</manufacturer>
+		<rom name="bpsmhx945a.u45" size="524288" crc="a8a7c786"/>
 		<rom name="bpsm.u46" merge="bpsm.u46" size="2097152" crc="32084e80"/>
 		<rom name="bpsm945a.u9" merge="bpsm945a.u9" size="524288" crc="438de548"/>
 		<rom name="bpsm.u76" merge="bpsm.u76" size="2097152" crc="a243a5ba"/>
@@ -16035,38 +16066,12 @@
 		<video type="raster" orientation="horizontal" width="320" height="240" aspectx="4" aspecty="3"/>
 		<driver status="good"/>
 	</game>
-	<game name="sailmnkf" cloneof="sailormn" romof="sailormn" sourcefile="cave/d_sailormn.cpp">
+	<game name="sailmnzy" cloneof="sailormn" romof="sailormn" sourcefile="cave/d_sailormn.cpp">
 		<comment>Hack</comment>
-		<description>Bishoujo Senshi Sailor Moon (Korea-France, Hack)</description>
-		<year>2023</year>
+		<description>Bishoujo Senshi Sailor Moon (Eternal End, Hack)</description>
+		<year>2026</year>
 		<manufacturer>hack</manufacturer>
-		<rom name="bpsmkf945a.u45" size="524288" crc="db46ed23"/>
-		<rom name="bpsm.u46" merge="bpsm.u46" size="2097152" crc="32084e80"/>
-		<rom name="bpsm945a.u9" merge="bpsm945a.u9" size="524288" crc="438de548"/>
-		<rom name="bpsm.u76" merge="bpsm.u76" size="2097152" crc="a243a5ba"/>
-		<rom name="bpsm.u77" merge="bpsm.u77" size="2097152" crc="5179a4ac"/>
-		<rom name="bpsm.u53" merge="bpsm.u53" size="2097152" crc="b9b15f83"/>
-		<rom name="bpsm.u54" merge="bpsm.u54" size="2097152" crc="8f00679d"/>
-		<rom name="bpsm.u57" merge="bpsm.u57" size="2097152" crc="86be7b63"/>
-		<rom name="bpsm.u58" merge="bpsm.u58" size="2097152" crc="e0bba83b"/>
-		<rom name="bpsm.u62" merge="bpsm.u62" size="2097152" crc="a1e3bfac"/>
-		<rom name="bpsm.u61" merge="bpsm.u61" size="2097152" crc="6a014b52"/>
-		<rom name="bpsm.u60" merge="bpsm.u60" size="2097152" crc="992468c0"/>
-		<rom name="bpsm.u65" merge="bpsm.u65" size="2097152" crc="f60fb7b5"/>
-		<rom name="bpsm.u64" merge="bpsm.u64" size="2097152" crc="6559d31c"/>
-		<rom name="bpsm.u63" merge="bpsm.u63" size="2097152" crc="d57a56b4"/>
-		<rom name="bpsm.u48" merge="bpsm.u48" size="2097152" crc="498e4ed1"/>
-		<rom name="bpsm.u47" merge="bpsm.u47" size="524288" crc="0f2901b9"/>
-		<rom name="sailormn_europe.nv" merge="sailormn_europe.nv" size="128" crc="59a7dc50"/>
-		<video type="raster" orientation="horizontal" width="320" height="240" aspectx="4" aspecty="3"/>
-		<driver status="good"/>
-	</game>
-	<game name="sailmnxy" cloneof="sailormn" romof="sailormn" sourcefile="cave/d_sailormn.cpp">
-		<comment>Hack</comment>
-		<description>Bishoujo Senshi Sailor Moon (New Moon, Hack)</description>
-		<year>2024</year>
-		<manufacturer>hack</manufacturer>
-		<rom name="bpsmxy945a.u45" size="524288" crc="00fff8e9"/>
+		<rom name="bpsmzy945a.u45" size="524288" crc="39d11c5a"/>
 		<rom name="bpsm.u46" merge="bpsm.u46" size="2097152" crc="32084e80"/>
 		<rom name="bpsm945a.u9" merge="bpsm945a.u9" size="524288" crc="438de548"/>
 		<rom name="bpsm.u76" merge="bpsm.u76" size="2097152" crc="a243a5ba"/>
@@ -16094,10 +16099,129 @@
 	</game>
 	<game name="sailmnyh" cloneof="sailormn" romof="sailormn" sourcefile="cave/d_sailormn.cpp">
 		<comment>Hack</comment>
+		<description>Bishoujo Senshi Sailor Moon (Eternal Poem, Hack)</description>
+		<year>2026</year>
+		<manufacturer>hack</manufacturer>
+		<rom name="bpsmyh945a.u45" size="524288" crc="a7f16fd8"/>
+		<rom name="bpsm.u46" merge="bpsm.u46" size="2097152" crc="32084e80"/>
+		<rom name="bpsm945a.u9" merge="bpsm945a.u9" size="524288" crc="438de548"/>
+		<rom name="bpsm.u76" merge="bpsm.u76" size="2097152" crc="a243a5ba"/>
+		<rom name="bpsm.u77" merge="bpsm.u77" size="2097152" crc="5179a4ac"/>
+		<rom name="bpsm.u53" merge="bpsm.u53" size="2097152" crc="b9b15f83"/>
+		<rom name="bpsm.u54" merge="bpsm.u54" size="2097152" crc="8f00679d"/>
+		<rom name="bpsm.u57" merge="bpsm.u57" size="2097152" crc="86be7b63"/>
+		<rom name="bpsm.u58" merge="bpsm.u58" size="2097152" crc="e0bba83b"/>
+		<rom name="bpsm.u62" merge="bpsm.u62" size="2097152" crc="a1e3bfac"/>
+		<rom name="bpsm.u61" merge="bpsm.u61" size="2097152" crc="6a014b52"/>
+		<rom name="bpsm.u60" merge="bpsm.u60" size="2097152" crc="992468c0"/>
+		<rom name="bpsm.u65" merge="bpsm.u65" size="2097152" crc="f60fb7b5"/>
+		<rom name="bpsm.u64" merge="bpsm.u64" size="2097152" crc="6559d31c"/>
+		<rom name="bpsm.u63" merge="bpsm.u63" size="2097152" crc="d57a56b4"/>
+		<rom name="bpsm.u48" merge="bpsm.u48" size="2097152" crc="498e4ed1"/>
+		<rom name="bpsm.u47" merge="bpsm.u47" size="524288" crc="0f2901b9"/>
+		<rom name="sailormn_europe.nv" merge="sailormn_europe.nv" size="128" crc="59a7dc50"/>
+		<rom name="sailormn_usa.nv" size="128" crc="3915abe3"/>
+		<rom name="sailormn_japan.nv" size="128" crc="ea03c30a"/>
+		<rom name="sailormn_korea.nv" size="128" crc="0e7de398"/>
+		<rom name="sailormn_taiwan.nv" size="128" crc="6c7e8c2a"/>
+		<rom name="sailormn_hongkong.nv" size="128" crc="4d24c874"/>
+		<video type="raster" orientation="horizontal" width="320" height="240" aspectx="4" aspecty="3"/>
+		<driver status="good"/>
+	</game>
+	<game name="sailmnkf" cloneof="sailormn" romof="sailormn" sourcefile="cave/d_sailormn.cpp">
+		<comment>Hack</comment>
+		<description>Bishoujo Senshi Sailor Moon (Korea-France, Hack)</description>
+		<year>2023</year>
+		<manufacturer>hack</manufacturer>
+		<rom name="bpsmkf945a.u45" size="524288" crc="db46ed23"/>
+		<rom name="bpsm.u46" merge="bpsm.u46" size="2097152" crc="32084e80"/>
+		<rom name="bpsm945a.u9" merge="bpsm945a.u9" size="524288" crc="438de548"/>
+		<rom name="bpsm.u76" merge="bpsm.u76" size="2097152" crc="a243a5ba"/>
+		<rom name="bpsm.u77" merge="bpsm.u77" size="2097152" crc="5179a4ac"/>
+		<rom name="bpsm.u53" merge="bpsm.u53" size="2097152" crc="b9b15f83"/>
+		<rom name="bpsm.u54" merge="bpsm.u54" size="2097152" crc="8f00679d"/>
+		<rom name="bpsm.u57" merge="bpsm.u57" size="2097152" crc="86be7b63"/>
+		<rom name="bpsm.u58" merge="bpsm.u58" size="2097152" crc="e0bba83b"/>
+		<rom name="bpsm.u62" merge="bpsm.u62" size="2097152" crc="a1e3bfac"/>
+		<rom name="bpsm.u61" merge="bpsm.u61" size="2097152" crc="6a014b52"/>
+		<rom name="bpsm.u60" merge="bpsm.u60" size="2097152" crc="992468c0"/>
+		<rom name="bpsm.u65" merge="bpsm.u65" size="2097152" crc="f60fb7b5"/>
+		<rom name="bpsm.u64" merge="bpsm.u64" size="2097152" crc="6559d31c"/>
+		<rom name="bpsm.u63" merge="bpsm.u63" size="2097152" crc="d57a56b4"/>
+		<rom name="bpsm.u48" merge="bpsm.u48" size="2097152" crc="498e4ed1"/>
+		<rom name="bpsm.u47" merge="bpsm.u47" size="524288" crc="0f2901b9"/>
+		<rom name="sailormn_europe.nv" merge="sailormn_europe.nv" size="128" crc="59a7dc50"/>
+		<video type="raster" orientation="horizontal" width="320" height="240" aspectx="4" aspecty="3"/>
+		<driver status="good"/>
+	</game>
+	<game name="sailmnxys" cloneof="sailormn" romof="sailormn" sourcefile="cave/d_sailormn.cpp">
+		<comment>Hack</comment>
+		<description>Bishoujo Senshi Sailor Moon (New Moon Super, Hack)</description>
+		<year>2026</year>
+		<manufacturer>hack</manufacturer>
+		<rom name="bpsmxys945a.u45" size="524288" crc="aecffa50"/>
+		<rom name="bpsm.u46" merge="bpsm.u46" size="2097152" crc="32084e80"/>
+		<rom name="bpsm945a.u9" merge="bpsm945a.u9" size="524288" crc="438de548"/>
+		<rom name="bpsm.u76" merge="bpsm.u76" size="2097152" crc="a243a5ba"/>
+		<rom name="bpsm.u77" merge="bpsm.u77" size="2097152" crc="5179a4ac"/>
+		<rom name="bpsm.u53" merge="bpsm.u53" size="2097152" crc="b9b15f83"/>
+		<rom name="bpsm.u54" merge="bpsm.u54" size="2097152" crc="8f00679d"/>
+		<rom name="bpsm.u57" merge="bpsm.u57" size="2097152" crc="86be7b63"/>
+		<rom name="bpsm.u58" merge="bpsm.u58" size="2097152" crc="e0bba83b"/>
+		<rom name="bpsm.u62" merge="bpsm.u62" size="2097152" crc="a1e3bfac"/>
+		<rom name="bpsm.u61" merge="bpsm.u61" size="2097152" crc="6a014b52"/>
+		<rom name="bpsm.u60" merge="bpsm.u60" size="2097152" crc="992468c0"/>
+		<rom name="bpsm.u65" merge="bpsm.u65" size="2097152" crc="f60fb7b5"/>
+		<rom name="bpsm.u64" merge="bpsm.u64" size="2097152" crc="6559d31c"/>
+		<rom name="bpsm.u63" merge="bpsm.u63" size="2097152" crc="d57a56b4"/>
+		<rom name="bpsm.u48" merge="bpsm.u48" size="2097152" crc="498e4ed1"/>
+		<rom name="bpsm.u47" merge="bpsm.u47" size="524288" crc="0f2901b9"/>
+		<rom name="sailormn_europe.nv" merge="sailormn_europe.nv" size="128" crc="59a7dc50"/>
+		<rom name="sailormn_usa.nv" size="128" crc="3915abe3"/>
+		<rom name="sailormn_japan.nv" size="128" crc="ea03c30a"/>
+		<rom name="sailormn_korea.nv" size="128" crc="0e7de398"/>
+		<rom name="sailormn_taiwan.nv" size="128" crc="6c7e8c2a"/>
+		<rom name="sailormn_hongkong.nv" size="128" crc="4d24c874"/>
+		<video type="raster" orientation="horizontal" width="320" height="240" aspectx="4" aspecty="3"/>
+		<driver status="good"/>
+	</game>
+	<game name="sailmnxy" cloneof="sailormn" romof="sailormn" sourcefile="cave/d_sailormn.cpp">
+		<comment>Hack</comment>
+		<description>Bishoujo Senshi Sailor Moon (New Moon, Hack)</description>
+		<year>2026</year>
+		<manufacturer>hack</manufacturer>
+		<rom name="bpsmxy945a.u45" size="524288" crc="b959c5ff"/>
+		<rom name="bpsm.u46" merge="bpsm.u46" size="2097152" crc="32084e80"/>
+		<rom name="bpsm945a.u9" merge="bpsm945a.u9" size="524288" crc="438de548"/>
+		<rom name="bpsm.u76" merge="bpsm.u76" size="2097152" crc="a243a5ba"/>
+		<rom name="bpsm.u77" merge="bpsm.u77" size="2097152" crc="5179a4ac"/>
+		<rom name="bpsm.u53" merge="bpsm.u53" size="2097152" crc="b9b15f83"/>
+		<rom name="bpsm.u54" merge="bpsm.u54" size="2097152" crc="8f00679d"/>
+		<rom name="bpsm.u57" merge="bpsm.u57" size="2097152" crc="86be7b63"/>
+		<rom name="bpsm.u58" merge="bpsm.u58" size="2097152" crc="e0bba83b"/>
+		<rom name="bpsm.u62" merge="bpsm.u62" size="2097152" crc="a1e3bfac"/>
+		<rom name="bpsm.u61" merge="bpsm.u61" size="2097152" crc="6a014b52"/>
+		<rom name="bpsm.u60" merge="bpsm.u60" size="2097152" crc="992468c0"/>
+		<rom name="bpsm.u65" merge="bpsm.u65" size="2097152" crc="f60fb7b5"/>
+		<rom name="bpsm.u64" merge="bpsm.u64" size="2097152" crc="6559d31c"/>
+		<rom name="bpsm.u63" merge="bpsm.u63" size="2097152" crc="d57a56b4"/>
+		<rom name="bpsm.u48" merge="bpsm.u48" size="2097152" crc="498e4ed1"/>
+		<rom name="bpsm.u47" merge="bpsm.u47" size="524288" crc="0f2901b9"/>
+		<rom name="sailormn_europe.nv" merge="sailormn_europe.nv" size="128" crc="59a7dc50"/>
+		<rom name="sailormn_usa.nv" size="128" crc="3915abe3"/>
+		<rom name="sailormn_japan.nv" size="128" crc="ea03c30a"/>
+		<rom name="sailormn_korea.nv" size="128" crc="0e7de398"/>
+		<rom name="sailormn_taiwan.nv" size="128" crc="6c7e8c2a"/>
+		<rom name="sailormn_hongkong.nv" size="128" crc="4d24c874"/>
+		<video type="raster" orientation="horizontal" width="320" height="240" aspectx="4" aspecty="3"/>
+		<driver status="good"/>
+	</game>
+	<game name="sailmnopt" cloneof="sailormn" romof="sailormn" sourcefile="cave/d_sailormn.cpp">
+		<comment>Hack</comment>
 		<description>Bishoujo Senshi Sailor Moon (Optimised, Hack)</description>
 		<year>2018</year>
 		<manufacturer>hack</manufacturer>
-		<rom name="bpsmyh945a.u45" size="524288" crc="0e7f4981"/>
+		<rom name="bpsmopt945a.u45" size="524288" crc="0e7f4981"/>
 		<rom name="bpsm.u46" merge="bpsm.u46" size="2097152" crc="32084e80"/>
 		<rom name="bpsm945a.u9" merge="bpsm945a.u9" size="524288" crc="438de548"/>
 		<rom name="bpsm.u76" merge="bpsm.u76" size="2097152" crc="a243a5ba"/>
@@ -39943,9 +40067,9 @@
 		<driver status="good"/>
 	</game>
 	<game name="ddpdojtd" cloneof="ddpdojt" romof="ddpdojt" sourcefile="pgm2/d_pgm2.cpp">
-		<description>DoDonPachi Dai-Ou-Jou Tamashii (V201, China, Decrypted)</description>
+		<description>DoDonPachi Dai-Ou-Jou Tamashii (V201, Decrypted)</description>
 		<year>2010</year>
-		<manufacturer>IGS / Cave (Tong Li Animation license)</manufacturer>
+		<manufacturer>IGS / Cave</manufacturer>
 		<rom name="ddpdoj_core_v100cn.rom" merge="ddpdoj_igs036_china.rom" size="16384" crc="5db91464"/>
 		<rom name="ddpdoj_board_v201cn.rom" size="2097152" crc="94ccee1c"/>
 		<rom name="ddpdoj_main_v201cn.rom" size="2097152" crc="5361f0f2"/>
@@ -85369,10 +85493,10 @@
 		<video type="raster" orientation="horizontal" width="448" height="224" aspectx="4" aspecty="3"/>
 		<driver status="good"/>
 	</game>
-	<game name="kov2nld_300cn" cloneof="kov2nl" romof="kov2nl" sourcefile="pgm2/d_pgm2.cpp">
-		<description>Knights of Valour 2 New Legend / Sanguo Zhan Ji 2 Gaishi Yingxiong (V300, China, Decrypted)</description>
+	<game name="kov2nld_300" cloneof="kov2nl" romof="kov2nl" sourcefile="pgm2/d_pgm2.cpp">
+		<description>Knights of Valour 2 New Legend / Sanguo Zhan Ji 2 Hengsao Qianjun (V300, Decrypted)</description>
 		<year>2008</year>
-		<manufacturer>IGS (Huatong license)</manufacturer>
+		<manufacturer>IGS</manufacturer>
 		<rom name="kov2nl_core_v100.rom" merge="kov2nl_igs036_oversea.rom" size="16384" crc="25ec60cd"/>
 		<rom name="kov2nl_main_v300.rom" size="8388608" crc="bdd9e53a"/>
 		<rom name="kov2nl_blank_card.pg2" size="264" crc="02842ae8"/>
@@ -85385,10 +85509,10 @@
 		<video type="raster" orientation="horizontal" width="448" height="224" aspectx="4" aspecty="3"/>
 		<driver status="good"/>
 	</game>
-	<game name="kov2nld_301cn" cloneof="kov2nl" romof="kov2nl" sourcefile="pgm2/d_pgm2.cpp">
-		<description>Knights of Valour 2 New Legend / Sanguo Zhan Ji 2 Gaishi Yingxiong (V301, China, Decrypted)</description>
+	<game name="kov2nld_301" cloneof="kov2nl" romof="kov2nl" sourcefile="pgm2/d_pgm2.cpp">
+		<description>Knights of Valour 2 New Legend / Sanguo Zhan Ji 2 Hengsao Qianjun (V301, Decrypted)</description>
 		<year>2008</year>
-		<manufacturer>IGS (Huatong license)</manufacturer>
+		<manufacturer>IGS</manufacturer>
 		<rom name="kov2nl_core_v100.rom" merge="kov2nl_igs036_oversea.rom" size="16384" crc="25ec60cd"/>
 		<rom name="kov2nl_main_v301.rom" size="8388608" crc="b82ab911"/>
 		<rom name="kov2nl_blank_card.pg2" size="264" crc="02842ae8"/>
@@ -85401,10 +85525,10 @@
 		<video type="raster" orientation="horizontal" width="448" height="224" aspectx="4" aspecty="3"/>
 		<driver status="good"/>
 	</game>
-	<game name="kov2nld_302cn" cloneof="kov2nl" romof="kov2nl" sourcefile="pgm2/d_pgm2.cpp">
-		<description>Knights of Valour 2 New Legend / Sanguo Zhan Ji 2 Gaishi Yingxiong (V302, China, Decrypted)</description>
+	<game name="kov2nld" cloneof="kov2nl" romof="kov2nl" sourcefile="pgm2/d_pgm2.cpp">
+		<description>Knights of Valour 2 New Legend / Sanguo Zhan Ji 2 Hengsao Qianjun (V302, Decrypted)</description>
 		<year>2008</year>
-		<manufacturer>IGS (Huatong license)</manufacturer>
+		<manufacturer>IGS</manufacturer>
 		<rom name="kov2nl_core_v100.rom" merge="kov2nl_igs036_oversea.rom" size="16384" crc="25ec60cd"/>
 		<rom name="kov2nl_main_v302.rom" size="8388608" crc="91febfd1"/>
 		<rom name="kov2nl_blank_card.pg2" size="264" crc="02842ae8"/>
@@ -85699,7 +85823,7 @@
 		<driver status="good"/>
 	</game>
 	<game name="kov3d_100" cloneof="kov3" romof="kov3" sourcefile="pgm2/d_pgm2.cpp">
-		<description>Knights of Valour 3 / Sanguo Zhan Ji 3 (V100, China, Decrypted)</description>
+		<description>Knights of Valour 3 / Sanguo Zhan Ji 3 (V100, China, Hong kong, Taiwan, Decrypted)</description>
 		<year>2011</year>
 		<manufacturer>IGS (Huatong license)</manufacturer>
 		<rom name="kov3_core_v100.rom" merge="kov3_igs036_china.rom" size="16384" crc="c7d33764"/>
@@ -85715,7 +85839,7 @@
 		<driver status="good"/>
 	</game>
 	<game name="kov3d_101" cloneof="kov3" romof="kov3" sourcefile="pgm2/d_pgm2.cpp">
-		<description>Knights of Valour 3 / Sanguo Zhan Ji 3 (V101, China, Decrypted)</description>
+		<description>Knights of Valour 3 / Sanguo Zhan Ji 3 (V101, China, Hong kong, Taiwan, Decrypted)</description>
 		<year>2011</year>
 		<manufacturer>IGS (Huatong license)</manufacturer>
 		<rom name="kov3_core_v100.rom" merge="kov3_igs036_china.rom" size="16384" crc="c7d33764"/>
@@ -85731,9 +85855,9 @@
 		<driver status="good"/>
 	</game>
 	<game name="kov3d_102" cloneof="kov3" romof="kov3" sourcefile="pgm2/d_pgm2.cpp">
-		<description>Knights of Valour 3 / Sanguo Zhan Ji 3 (V102, China, Decrypted)</description>
+		<description>Knights of Valour 3 / Sanguo Zhan Ji 3 (V102, China, Hong kong, Taiwan, Decrypted)</description>
 		<year>2011</year>
-		<manufacturer>IGS (Huatong license)</manufacturer>
+		<manufacturer>IGS</manufacturer>
 		<rom name="kov3_core_v100.rom" merge="kov3_igs036_china.rom" size="16384" crc="c7d33764"/>
 		<rom name="kov3_main_v102.rom" size="8388608" crc="d17d698f"/>
 		<rom name="kov3_blank_card.pg2" merge="blank_kov3_china_card.pg2" size="264" crc="bd5a968f"/>
@@ -85747,7 +85871,7 @@
 		<driver status="good"/>
 	</game>
 	<game name="kov3d" cloneof="kov3" romof="kov3" sourcefile="pgm2/d_pgm2.cpp">
-		<description>Knights of Valour 3 / Sanguo Zhan Ji 3 (V104, China, Decrypted)</description>
+		<description>Knights of Valour 3 / Sanguo Zhan Ji 3 (V104, China, Hong kong, Taiwan, Decrypted)</description>
 		<year>2011</year>
 		<manufacturer>IGS (Huatong license)</manufacturer>
 		<rom name="kov3_core_v100.rom" merge="kov3_igs036_china.rom" size="16384" crc="c7d33764"/>
@@ -120628,8 +120752,8 @@
 		<video type="raster" orientation="horizontal" width="448" height="224" aspectx="4" aspecty="3"/>
 		<driver status="good"/>
 	</game>
-	<game name="orleg2d_101cn" cloneof="orleg2" romof="orleg2" sourcefile="pgm2/d_pgm2.cpp">
-		<description>Oriental Legend 2 / Xi You Shi E Zhuan 2 (V101, China, Decrypted)</description>
+	<game name="orleg2d_101" cloneof="orleg2" romof="orleg2" sourcefile="pgm2/d_pgm2.cpp">
+		<description>Oriental Legend 2 / Xi You Shi E Zhuan 2 (V101, Decrypted)</description>
 		<year>2007</year>
 		<manufacturer>IGS (Huatong license)</manufacturer>
 		<rom name="orleg2_core_v100.rom" merge="ol2_fa.igs036" size="16384" crc="cc4d398a"/>
@@ -120644,8 +120768,8 @@
 		<video type="raster" orientation="horizontal" width="448" height="224" aspectx="4" aspecty="3"/>
 		<driver status="good"/>
 	</game>
-	<game name="orleg2d_103cn" cloneof="orleg2" romof="orleg2" sourcefile="pgm2/d_pgm2.cpp">
-		<description>Oriental Legend 2 / Xi You Shi E Zhuan 2 (V103, China, Decrypted)</description>
+	<game name="orleg2d_103" cloneof="orleg2" romof="orleg2" sourcefile="pgm2/d_pgm2.cpp">
+		<description>Oriental Legend 2 / Xi You Shi E Zhuan 2 (V103, Decrypted)</description>
 		<year>2007</year>
 		<manufacturer>IGS (Huatong license)</manufacturer>
 		<rom name="orleg2_core_v100.rom" merge="ol2_fa.igs036" size="16384" crc="cc4d398a"/>
@@ -120660,8 +120784,8 @@
 		<video type="raster" orientation="horizontal" width="448" height="224" aspectx="4" aspecty="3"/>
 		<driver status="good"/>
 	</game>
-	<game name="orleg2d_104cn" cloneof="orleg2" romof="orleg2" sourcefile="pgm2/d_pgm2.cpp">
-		<description>Oriental Legend 2 / Xi You Shi E Zhuan 2 (V104, China, Decrypted)</description>
+	<game name="orleg2d" cloneof="orleg2" romof="orleg2" sourcefile="pgm2/d_pgm2.cpp">
+		<description>Oriental Legend 2 / Xi You Shi E Zhuan 2 (V104, Decrypted)</description>
 		<year>2007</year>
 		<manufacturer>IGS (Huatong license)</manufacturer>
 		<rom name="orleg2_core_v100.rom" merge="ol2_fa.igs036" size="16384" crc="cc4d398a"/>
@@ -129797,6 +129921,37 @@
 		<video type="raster" orientation="horizontal" width="256" height="224" aspectx="4" aspecty="3"/>
 		<driver status="good"/>
 	</game>
+	<game name="sailmndf" cloneof="sailormn" romof="sailormn" sourcefile="cave/d_sailormn.cpp">
+		<comment>Hack</comment>
+		<description>Pretty Soldier Sailor Moon (Apex Infinity, Hack)</description>
+		<year>2026</year>
+		<manufacturer>hack</manufacturer>
+		<rom name="bpsmwdf945a.u45" size="524288" crc="b5289dc7"/>
+		<rom name="bpsm.u46" merge="bpsm.u46" size="2097152" crc="32084e80"/>
+		<rom name="bpsm945a.u9" merge="bpsm945a.u9" size="524288" crc="438de548"/>
+		<rom name="bpsm.u76" merge="bpsm.u76" size="2097152" crc="a243a5ba"/>
+		<rom name="bpsm.u77" merge="bpsm.u77" size="2097152" crc="5179a4ac"/>
+		<rom name="bpsm.u53" merge="bpsm.u53" size="2097152" crc="b9b15f83"/>
+		<rom name="bpsm.u54" merge="bpsm.u54" size="2097152" crc="8f00679d"/>
+		<rom name="bpsm.u57" merge="bpsm.u57" size="2097152" crc="86be7b63"/>
+		<rom name="bpsm.u58" merge="bpsm.u58" size="2097152" crc="e0bba83b"/>
+		<rom name="bpsm.u62" merge="bpsm.u62" size="2097152" crc="a1e3bfac"/>
+		<rom name="bpsm.u61" merge="bpsm.u61" size="2097152" crc="6a014b52"/>
+		<rom name="bpsm.u60" merge="bpsm.u60" size="2097152" crc="992468c0"/>
+		<rom name="bpsm.u65" merge="bpsm.u65" size="2097152" crc="f60fb7b5"/>
+		<rom name="bpsm.u64" merge="bpsm.u64" size="2097152" crc="6559d31c"/>
+		<rom name="bpsm.u63" merge="bpsm.u63" size="2097152" crc="d57a56b4"/>
+		<rom name="bpsm.u48" merge="bpsm.u48" size="2097152" crc="498e4ed1"/>
+		<rom name="bpsm.u47" merge="bpsm.u47" size="524288" crc="0f2901b9"/>
+		<rom name="sailormn_europe.nv" merge="sailormn_europe.nv" size="128" crc="59a7dc50"/>
+		<rom name="sailormn_usa.nv" size="128" crc="3915abe3"/>
+		<rom name="sailormn_japan.nv" size="128" crc="ea03c30a"/>
+		<rom name="sailormn_korea.nv" size="128" crc="0e7de398"/>
+		<rom name="sailormn_taiwan.nv" size="128" crc="6c7e8c2a"/>
+		<rom name="sailormn_hongkong.nv" size="128" crc="4d24c874"/>
+		<video type="raster" orientation="horizontal" width="320" height="240" aspectx="4" aspecty="3"/>
+		<driver status="good"/>
+	</game>
 	<game name="sailormnffj" cloneof="sailormn" romof="sailormn" sourcefile="cave/d_sailormn.cpp">
 		<comment>Hack</comment>
 		<description>Pretty Soldier Sailor Moon (Fighting For Justice, Hack)</description>
@@ -129828,12 +129983,43 @@
 		<video type="raster" orientation="horizontal" width="320" height="240" aspectx="4" aspecty="3"/>
 		<driver status="good"/>
 	</game>
+	<game name="sailmnwx" cloneof="sailormn" romof="sailormn" sourcefile="cave/d_sailormn.cpp">
+		<comment>Hack</comment>
+		<description>Pretty Soldier Sailor Moon (Infinite, Hack)</description>
+		<year>2026</year>
+		<manufacturer>hack</manufacturer>
+		<rom name="bpsmwwx945a.u45" size="524288" crc="0739857e"/>
+		<rom name="bpsm.u46" merge="bpsm.u46" size="2097152" crc="32084e80"/>
+		<rom name="bpsm945a.u9" merge="bpsm945a.u9" size="524288" crc="438de548"/>
+		<rom name="bpsm.u76" merge="bpsm.u76" size="2097152" crc="a243a5ba"/>
+		<rom name="bpsm.u77" merge="bpsm.u77" size="2097152" crc="5179a4ac"/>
+		<rom name="bpsm.u53" merge="bpsm.u53" size="2097152" crc="b9b15f83"/>
+		<rom name="bpsm.u54" merge="bpsm.u54" size="2097152" crc="8f00679d"/>
+		<rom name="bpsm.u57" merge="bpsm.u57" size="2097152" crc="86be7b63"/>
+		<rom name="bpsm.u58" merge="bpsm.u58" size="2097152" crc="e0bba83b"/>
+		<rom name="bpsm.u62" merge="bpsm.u62" size="2097152" crc="a1e3bfac"/>
+		<rom name="bpsm.u61" merge="bpsm.u61" size="2097152" crc="6a014b52"/>
+		<rom name="bpsm.u60" merge="bpsm.u60" size="2097152" crc="992468c0"/>
+		<rom name="bpsm.u65" merge="bpsm.u65" size="2097152" crc="f60fb7b5"/>
+		<rom name="bpsm.u64" merge="bpsm.u64" size="2097152" crc="6559d31c"/>
+		<rom name="bpsm.u63" merge="bpsm.u63" size="2097152" crc="d57a56b4"/>
+		<rom name="bpsm.u48" merge="bpsm.u48" size="2097152" crc="498e4ed1"/>
+		<rom name="bpsm.u47" merge="bpsm.u47" size="524288" crc="0f2901b9"/>
+		<rom name="sailormn_europe.nv" merge="sailormn_europe.nv" size="128" crc="59a7dc50"/>
+		<rom name="sailormn_usa.nv" size="128" crc="3915abe3"/>
+		<rom name="sailormn_japan.nv" size="128" crc="ea03c30a"/>
+		<rom name="sailormn_korea.nv" size="128" crc="0e7de398"/>
+		<rom name="sailormn_taiwan.nv" size="128" crc="6c7e8c2a"/>
+		<rom name="sailormn_hongkong.nv" size="128" crc="4d24c874"/>
+		<video type="raster" orientation="horizontal" width="320" height="240" aspectx="4" aspecty="3"/>
+		<driver status="good"/>
+	</game>
 	<game name="sailmnyg" cloneof="sailormn" romof="sailormn" sourcefile="cave/d_sailormn.cpp">
 		<comment>Hack</comment>
 		<description>Pretty Soldier Sailor Moon (Moonlight, Hack)</description>
-		<year>2025</year>
+		<year>2026</year>
 		<manufacturer>hack</manufacturer>
-		<rom name="bpsmyg945a.u45" size="524288" crc="d61d64ba"/>
+		<rom name="bpsmyg945a.u45" size="524288" crc="95752342"/>
 		<rom name="bpsm.u46" merge="bpsm.u46" size="2097152" crc="32084e80"/>
 		<rom name="bpsm945a.u9" merge="bpsm945a.u9" size="524288" crc="438de548"/>
 		<rom name="bpsm.u76" merge="bpsm.u76" size="2097152" crc="a243a5ba"/>
@@ -146934,12 +147120,12 @@
 	</game>
 	<game name="samsho2pe" cloneof="samsho2" romof="samsho2" sourcefile="neogeo/d_neogeo.cpp">
 		<comment>Hack</comment>
-		<description>Samurai Shodown II / Shin Samurai Spirits - Haohmaru Jigokuhen (Perfect V. 2.8, Hack)</description>
+		<description>Samurai Shodown II / Shin Samurai Spirits - Haohmaru Jigokuhen (Perfect V. 2.9, Hack)</description>
 		<year>2023-26</year>
 		<manufacturer>Bear</manufacturer>
-		<rom name="063-p1pe.p1" size="1048576" crc="c578dcb1"/>
-		<rom name="063-p2pe.sp2" size="1048576" crc="01cded84"/>
-		<rom name="063-p3pe.p3" size="131072" crc="9f2e0244"/>
+		<rom name="063-p1pe.p1" size="1048576" crc="c47446f7"/>
+		<rom name="063-p2pe.sp2" size="1048576" crc="269e9be3"/>
+		<rom name="063-p3pe.p3" size="131072" crc="7e9083e9"/>
 		<rom name="063-s1.s1" merge="063-s1.s1" size="131072" crc="64a5cd66"/>
 		<rom name="063-c1.c1" merge="063-c1.c1" size="2097152" crc="86cd307c"/>
 		<rom name="063-c2.c2" merge="063-c2.c2" size="2097152" crc="cdfcc4ca"/>
@@ -190625,7 +190811,7 @@
 		<driver status="good"/>
 	</game>
 	<game name="kof98umhd" cloneof="kof98umh" romof="kof98umh" sourcefile="pgm2/d_pgm2.cpp">
-		<description>The King of Fighters '98: Ultimate Match HERO (V100, China, Decrypted)</description>
+		<description>The King of Fighters '98: Ultimate Match HERO (V100, Decrypted)</description>
 		<year>2009</year>
 		<manufacturer>IGS / SNK Playmore / New Channel</manufacturer>
 		<rom name="kof98umh_core_v100cn.rom" merge="kof98umh_internal_rom.bin" size="16384" crc="3ed2e50f"/>
