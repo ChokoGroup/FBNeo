@@ -114690,6 +114690,45 @@
 		<video type="raster" orientation="horizontal" width="400" height="254" aspectx="4" aspecty="3"/>
 		<driver status="good"/>
 	</game>
+	<game name="nbamhtx" cloneof="nbahangt" romof="nbahangt" sourcefile="midway/d_wunit.cpp">
+		<comment>Hack</comment>
+		<description>NBA Super Maximum Hangtime (Custom Rebuild 07/02/26)</description>
+		<year>2026</year>
+		<manufacturer>hack</manufacturer>
+		<rom name="l1.03_maximum_hangtime_u54_l_version.u54" size="524288" crc="9fcf1f48"/>
+		<rom name="l1.03_maximum_hangtime_u63_l_version.u63" size="524288" crc="29530746"/>
+		<rom name="l1.0_nba_hangtime_u_2_music_spch.u2" merge="l1.0_nba_hangtime_u_2_music_spch.u2" size="1048576" crc="3f0b0d0a"/>
+		<rom name="l1.0_nba_hangtime_u_3_music_spch.u3" merge="l1.0_nba_hangtime_u_3_music_spch.u3" size="1048576" crc="ec1db988"/>
+		<rom name="l1.0_nba_hangtime_u_4_music_spch.u4" merge="l1.0_nba_hangtime_u_4_music_spch.u4" size="1048576" crc="c7f847a3"/>
+		<rom name="l1.0_nba_hangtime_u_5_music_spch.u5" merge="l1.0_nba_hangtime_u_5_music_spch.u5" size="1048576" crc="ef19316a"/>
+		<rom name="l1.0_nba_hangtime_u_133_image_rom.u133" merge="l1.0_nba_hangtime_u_133_image_rom.u133" size="1048576" crc="3163feed"/>
+		<rom name="l1.0_nba_hangtime_u_132_image_rom.u132" merge="l1.0_nba_hangtime_u_132_image_rom.u132" size="1048576" crc="428eaf44"/>
+		<rom name="l1.0_nba_hangtime_u_131_image_rom.u131" merge="l1.0_nba_hangtime_u_131_image_rom.u131" size="1048576" crc="5f7c5111"/>
+		<rom name="l1.0_nba_hangtime_u_130_image_rom.u130" merge="l1.0_nba_hangtime_u_130_image_rom.u130" size="1048576" crc="c7c0c514"/>
+		<rom name="l1.0_nba_hangtime_u_129_image_rom.u129" merge="l1.0_nba_hangtime_u_129_image_rom.u129" size="1048576" crc="b3d0daa0"/>
+		<rom name="l1.0_nba_hangtime_u_128_image_rom.u128" merge="l1.0_nba_hangtime_u_128_image_rom.u128" size="1048576" crc="3704ee69"/>
+		<rom name="l1.0_nba_hangtime_u_127_image_rom.u127" merge="l1.0_nba_hangtime_u_127_image_rom.u127" size="1048576" crc="4ea64d5a"/>
+		<rom name="l1.0_nba_hangtime_u_126_image_rom.u126" merge="l1.0_nba_hangtime_u_126_image_rom.u126" size="1048576" crc="0c5c19b7"/>
+		<rom name="l1.0_nba_hangtime_u_125_image_rom.u125" merge="l1.0_nba_hangtime_u_125_image_rom.u125" size="1048576" crc="46c43d67"/>
+		<rom name="l1.0_nba_hangtime_u_124_image_rom.u124" merge="l1.0_nba_hangtime_u_124_image_rom.u124" size="1048576" crc="ed495156"/>
+		<rom name="l1.0_nba_hangtime_u_123_image_rom.u123" merge="l1.0_nba_hangtime_u_123_image_rom.u123" size="1048576" crc="b48aa5da"/>
+		<rom name="l1.0_nba_hangtime_u_122_image_rom.u122" merge="l1.0_nba_hangtime_u_122_image_rom.u122" size="1048576" crc="b18cd181"/>
+		<rom name="l1.0_nba_hangtime_u_121_image_rom.u121" merge="l1.0_nba_hangtime_u_121_image_rom.u121" size="1048576" crc="5acb267a"/>
+		<rom name="l1.0_nba_hangtime_u_120_image_rom.u120" merge="l1.0_nba_hangtime_u_120_image_rom.u120" size="1048576" crc="28e05f86"/>
+		<rom name="l1.0_nba_hangtime_u_119_image_rom.u119" merge="l1.0_nba_hangtime_u_119_image_rom.u119" size="1048576" crc="b4f604ea"/>
+		<rom name="l1.0_nba_hangtime_u_118_image_rom.u118" merge="l1.0_nba_hangtime_u_118_image_rom.u118" size="1048576" crc="a257b973"/>
+		<rom name="l1.0_nba_hangtime_u_117_image_rom.u117" size="1048576" crc="6cf2e7b5"/>
+		<rom name="l1.0_nba_hangtime_u_116_image_rom.u116" size="1048576" crc="b19a5771"/>
+		<rom name="l1.0_nba_hangtime_u_115_image_rom.u115" size="1048576" crc="3a6dd372"/>
+		<rom name="l1.0_nba_hangtime_u_114_image_rom.u114" size="1048576" crc="23dbb571"/>
+		<rom name="l1.0_nba_hangtime_u_113_image_rom.u113" merge="l1.0_nba_hangtime_u_113_image_rom.u113" size="1048576" crc="d712a779"/>
+		<rom name="l1.0_nba_hangtime_u_112_image_rom.u112" merge="l1.0_nba_hangtime_u_112_image_rom.u112" size="1048576" crc="644e1bca"/>
+		<rom name="l1.0_nba_hangtime_u_111_image_rom.u111" merge="l1.0_nba_hangtime_u_111_image_rom.u111" size="1048576" crc="10d3b768"/>
+		<rom name="l1.0_nba_hangtime_u_110_image_rom.u110" merge="l1.0_nba_hangtime_u_110_image_rom.u110" size="1048576" crc="8575aeb2"/>
+		<rom name="459_nba_hang_time_u64.u64" merge="459_nba_hang_time_u64.u64" size="8192" crc="0e642b39"/>
+		<video type="raster" orientation="horizontal" width="400" height="254" aspectx="4" aspecty="3"/>
+		<driver status="good"/>
+	</game>
 	<game name="cnebula" romof="decocass" sourcefile="dataeast/d_decocass.cpp">
 		<description>Nebula (DECO Cassette) (UK)</description>
 		<year>1981</year>
@@ -171506,6 +171545,26 @@
 		<video type="raster" orientation="horizontal" width="384" height="224" aspectx="4" aspecty="3"/>
 		<driver status="good"/>
 	</game>
+	<game name="sbowling" sourcefile="taito/d_sbowling.cpp">
+		<description>Strike Bowling</description>
+		<year>1982</year>
+		<manufacturer>Taito Corporation</manufacturer>
+		<rom name="kb01.6h" size="4096" crc="dd5d411a"/>
+		<rom name="kb02.5h" size="4096" crc="75d3c45f"/>
+		<rom name="kb03.3h" size="4096" crc="955fbfb8"/>
+		<rom name="kb05.9k" size="2048" crc="4b4d9569"/>
+		<rom name="kb06.7k" size="2048" crc="d89ba78b"/>
+		<rom name="kb07.6k" size="2048" crc="9fb5db1a"/>
+		<rom name="kb04.10k" size="4096" crc="1c27adc1"/>
+		<rom name="kb08.7m" size="1024" crc="e949e441"/>
+		<rom name="kb09.6m" size="1024" crc="e29191a6"/>
+		<sample name="ball" />
+		<sample name="gutter" />
+		<sample name="return" />
+		<sample name="pin" />
+		<video type="raster" orientation="vertical" width="224" height="240" aspectx="3" aspecty="4"/>
+		<driver status="good"/>
+	</game>
 	<game name="strkfgtrj" cloneof="strkfgtr" romof="strkfgtr" sourcefile="sega/d_ybrd.cpp">
 		<description>Strike Fighter (Japan)</description>
 		<year>1991</year>
@@ -223829,15 +223888,15 @@
 		<description>Zintrick / Oshidashi Zentrix (bootleg of CD version, multi-V)</description>
 		<year>1996</year>
 		<manufacturer>bootleg</manufacturer>
-		<rom name="zin.P1" size="1048576" crc="654342e6"/>
+		<rom name="zin.P1" size="1048576" crc="23074a8d"/>
 		<rom name="zin-s1.bin" size="131072" crc="56d16afa"/>
 		<rom name="zin-c1.bin" merge="zin-c1.bin" size="2097152" crc="76aee189"/>
 		<rom name="zin-c2.bin" merge="zin-c2.bin" size="2097152" crc="844ed4b3"/>
-		<rom name="zin.M1" size="131072" crc="a1c68361"/>
-		<rom name="zin.V1" size="4194304" crc="cd257055"/>
-		<rom name="zin.V2" size="4194304" crc="5d8f89ab"/>
-		<rom name="zin.V3" size="4194304" crc="4626b4ff"/>
-		<rom name="zin.V4" size="4194304" crc="48666336"/>
+		<rom name="zin.M1" size="131072" crc="6d5b66cf"/>
+		<rom name="zin.V1" size="4194304" crc="ca4c57e1"/>
+		<rom name="zin.V2" size="4194304" crc="c4c82a19"/>
+		<rom name="zin.V3" size="4194304" crc="b3fad4c1"/>
+		<rom name="zin.V4" size="4194304" crc="4e77adac"/>
 		<rom name="sp-s3.sp1" merge="sp-s3.sp1" size="131072" crc="91b64be3"/>
 		<rom name="sp-s2.sp1" merge="sp-s2.sp1" size="131072" crc="9036d879"/>
 		<rom name="sp-s.sp1" merge="sp-s.sp1" size="131072" crc="c7f2fa45"/>
