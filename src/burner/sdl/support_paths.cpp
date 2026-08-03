@@ -5,6 +5,7 @@ TCHAR szAppTitlesPath[MAX_PATH] = _T("/opt/fbneo/support/titles/");
 TCHAR szAppCheatsPath[MAX_PATH] = _T("/opt/fbneo/support/cheats/");
 TCHAR szAppHiscorePath[MAX_PATH] = _T("/opt/fbneo/support/hiscores/");
 TCHAR szAppSamplesPath[MAX_PATH] = _T("/opt/fbneo/support/samples/");
+TCHAR szAppSnesMsu1Path[MAX_PATH]	= _T("/opt/fbneo/support/snesmsu1/");
 TCHAR szAppHDDPath[MAX_PATH] = _T("/opt/fbneo/support/hdd/");
 TCHAR szAppIpsPath[MAX_PATH] = _T("/opt/fbneo/support/ips/");
 TCHAR szAppIconsPath[MAX_PATH] = _T("/opt/fbneo/support/icons/");
