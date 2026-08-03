@@ -3438,6 +3438,7 @@
 		<driver status="good"/>
 	</game>
 	<game name="adkw" romof="neogeo" sourcefile="neogeo/d_neogeo.cpp">
+		<comment>Hack</comment>
 		<description>ADK World (Neo CD conversion)</description>
 		<year>1995</year>
 		<manufacturer>Alpha Denshi Co.</manufacturer>
@@ -60044,6 +60045,15 @@
 		<video type="raster" orientation="horizontal" width="320" height="224" aspectx="4" aspecty="3"/>
 		<driver status="good"/>
 	</game>
+	<game name="galgame" sourcefile="pre90s/d_galgame.cpp">
+		<comment>NO Sound</comment>
+		<description>Galaxy Game</description>
+		<year>1971</year>
+		<manufacturer>Computer Recreations, Inc</manufacturer>
+		<rom name="sw97.lst" size="127074" crc="838018a5"/>
+		<video type="raster" orientation="horizontal" width="512" height="512" aspectx="4" aspecty="3"/>
+		<driver status="good"/>
+	</game>
 	<game name="galaxygnh" cloneof="galaxygn" romof="galaxygn" sourcefile="pre90s/d_fantland.cpp">
 		<comment>Imperfect sound</comment>
 		<description>Galaxy Gunners (1990 year hack)</description>
@@ -76491,15 +76501,15 @@
 	</game>
 	<game name="hyxevious" cloneof="sxevious" romof="sxevious" sampleof="xevious" sourcefile="pre90s/d_galaga.cpp">
 		<comment>Hack, High difficulty level hack</comment>
-		<description>Hyper Xevious (Hack, 2026-06-18)</description>
+		<description>Hyper Xevious (Hack, 2026-07-30)</description>
 		<year>2026</year>
 		<manufacturer>zeroco</manufacturer>
-		<rom name="hx_cpu_3p.rom" size="4096" crc="3083987b"/>
-		<rom name="hx_cpu_3m.rom" size="4096" crc="dd07d018"/>
-		<rom name="hx_xv3_3.2m" size="4096" crc="79c0fb2f"/>
-		<rom name="hx_xv3_4.2l" size="4096" crc="ec88d2bc"/>
-		<rom name="hx_xv3_5.3f" size="4096" crc="d921841a"/>
-		<rom name="hx_xv3_6.3j" size="4096" crc="c13e8374"/>
+		<rom name="hx_cpu_3p.rom" size="4096" crc="08272d28"/>
+		<rom name="hx_cpu_3m.rom" size="4096" crc="8c9f4685"/>
+		<rom name="hx_xv3_3.2m" size="4096" crc="3088765b"/>
+		<rom name="hx_xv3_4.2l" size="4096" crc="c27a7ed4"/>
+		<rom name="hx_xv3_5.3f" size="4096" crc="ac6c050d"/>
+		<rom name="hx_xv3_6.3j" size="4096" crc="e32de02d"/>
 		<rom name="xvi_7.2c" merge="xvi_7.2c" size="4096" crc="dd35cf1c"/>
 		<rom name="xvi_12.3b" merge="xvi_12.3b" size="4096" crc="088c8b26"/>
 		<rom name="xvi_13.3c" merge="xvi_13.3c" size="4096" crc="de60ba25"/>
@@ -116148,10 +116158,10 @@
 	</game>
 	<game name="turfmastsc" cloneof="turfmast" romof="turfmast" sourcefile="neogeo/d_neogeo.cpp">
 		<comment>Hack</comment>
-		<description>Neo Turf Masters / Big Tournament Golf: Scotland Course (Hack, v1.08)</description>
+		<description>Neo Turf Masters / Big Tournament Golf: Scotland Course (Hack, v1.09)</description>
 		<year>2026</year>
 		<manufacturer>dericmiller</manufacturer>
-		<rom name="200-p1sc.p1" size="2097152" crc="c1c9751c"/>
+		<rom name="200-p1sc.p1" size="2097152" crc="efd0ef14"/>
 		<rom name="200-s1.s1" merge="200-s1.s1" size="131072" crc="9a5402b2"/>
 		<rom name="200-c1sc.c1" size="4194304" crc="bb2a69a7"/>
 		<rom name="200-c2sc.c2" size="4194304" crc="443e13c5"/>
@@ -175887,6 +175897,65 @@
 		<video type="raster" orientation="horizontal" width="240" height="192" aspectx="4" aspecty="3"/>
 		<driver status="good"/>
 	</game>
+	<game name="spbactnj" cloneof="spbactn" romof="spbactn" sourcefile="pre90s/d_spbactn.cpp">
+		<description>Super Pinball Action (Japan)</description>
+		<year>1991</year>
+		<manufacturer>Tecmo</manufacturer>
+		<rom name="a-u68.1" size="131072" crc="b5b2d824"/>
+		<rom name="a-u67.2" size="131072" crc="9577b48b"/>
+		<rom name="a-u14.3" merge="a-u14.3" size="65536" crc="57f4c503"/>
+		<rom name="a-u19" merge="a-u19" size="131072" crc="87427d7d"/>
+		<rom name="b-u98" merge="b-u98" size="262144" crc="315eab4d"/>
+		<rom name="b-u99" merge="b-u99" size="262144" crc="7b76efd9"/>
+		<rom name="b-u104" merge="b-u104" size="262144" crc="b648a40a"/>
+		<rom name="b-u105" merge="b-u105" size="262144" crc="0172d79a"/>
+		<rom name="b-u110" merge="b-u110" size="262144" crc="862ebacd"/>
+		<rom name="b-u111" merge="b-u111" size="262144" crc="1cc1379a"/>
+		<video type="raster" orientation="vertical" width="224" height="512" aspectx="3" aspecty="4"/>
+		<driver status="good"/>
+	</game>
+	<game name="spbactn" sourcefile="pre90s/d_spbactn.cpp">
+		<description>Super Pinball Action (US)</description>
+		<year>1991</year>
+		<manufacturer>Tecmo</manufacturer>
+		<rom name="rom1.bin" size="131072" crc="6741bd3f"/>
+		<rom name="rom2.bin" size="131072" crc="488cc511"/>
+		<rom name="a-u14.3" size="65536" crc="57f4c503"/>
+		<rom name="a-u19" size="131072" crc="87427d7d"/>
+		<rom name="b-u98" size="262144" crc="315eab4d"/>
+		<rom name="b-u99" size="262144" crc="7b76efd9"/>
+		<rom name="b-u104" size="262144" crc="b648a40a"/>
+		<rom name="b-u105" size="262144" crc="0172d79a"/>
+		<rom name="b-u110" size="262144" crc="862ebacd"/>
+		<rom name="b-u111" size="262144" crc="1cc1379a"/>
+		<video type="raster" orientation="vertical" width="224" height="512" aspectx="3" aspecty="4"/>
+		<driver status="good"/>
+	</game>
+	<game name="spbactnp" cloneof="spbactn" romof="spbactn" sourcefile="pre90s/d_spbactn.cpp">
+		<comment>Prototype</comment>
+		<description>Super Pinball Action (US, prototype, dual screen)</description>
+		<year>1989</year>
+		<manufacturer>Tecmo</manufacturer>
+		<rom name="spa.18k" size="65536" crc="40f6a1e6"/>
+		<rom name="spa.22k" size="65536" crc="ce31871e"/>
+		<rom name="spa.17k" size="65536" crc="c9860ae9"/>
+		<rom name="spa.21k" size="65536" crc="8226f644"/>
+		<rom name="spa.17g" size="65536" crc="445fc2c5"/>
+		<rom name="spa_data_2-21-a10.8e" merge="a-u19" size="131072" crc="87427d7d"/>
+		<rom name="spa_back0_split0_5-17-p-1.27b" size="131072" crc="37922110"/>
+		<rom name="spa_back0_split1_5-17-p-1.27c" size="131072" crc="9d6ef9ab"/>
+		<rom name="spa_back1_split0_3-14-a-11.26b" size="131072" crc="6953fd62"/>
+		<rom name="spa_back1_split1_3-14-a-11.26c" size="131072" crc="b4123511"/>
+		<rom name="spa_sp0_4-18-p-8.5m" size="131072" crc="cd6ba360"/>
+		<rom name="spa_sp1_3-14-a-10.4m" size="131072" crc="86406336"/>
+		<rom name="6204_6-6.29c" size="65536" crc="e8250c26"/>
+		<rom name="spa.25c" size="131072" crc="02b69ab9"/>
+		<rom name="p109.18d" size="256" crc="2297a725"/>
+		<rom name="pin.b.sub.23g" size="256" crc="3a0c70ed"/>
+		<rom name="tcm1.19g.bin" size="83" crc="2c54354a"/>
+		<video type="raster" orientation="vertical" width="256" height="736" aspectx="4" aspecty="7"/>
+		<driver status="good"/>
+	</game>
 	<game name="spool3" cloneof="pcktgal" romof="pcktgal" sourcefile="dataeast/d_pcktgal.cpp">
 		<description>Super Pool III (English)</description>
 		<year>1989</year>
@@ -180122,6 +180191,45 @@
 		<rom name="mb7051_m02.m6" size="32" crc="b3fc1505"/>
 		<rom name="mb7051_m02.m7" size="32" crc="26aada9e"/>
 		<rom name="mb7051_m02.m8" size="32" crc="676b3166"/>
+		<video type="raster" orientation="vertical" width="224" height="256" aspectx="3" aspecty="4"/>
+		<driver status="good"/>
+	</game>
+	<game name="tankbattb" cloneof="tankbatt" romof="tankbatt" sampleof="tankbatt" sourcefile="pre90s/d_tankbatt.cpp">
+		<comment>Bootleg</comment>
+		<description>Tank Battalion (bootleg)</description>
+		<year>1980</year>
+		<manufacturer>bootleg</manufacturer>
+		<rom name="tb1-1.1a" merge="tb1-1.1a" size="2048" crc="278a0b8c"/>
+		<rom name="tb1-2.1b" merge="tb1-2.1b" size="2048" crc="e0923370"/>
+		<rom name="tb1-3.1c" merge="tb1-3.1c" size="2048" crc="85005ea4"/>
+		<rom name="tb1-4.1d" merge="tb1-4.1d" size="2048" crc="3dfb5bcf"/>
+		<rom name="e.2k" size="2048" crc="249f4e1b"/>
+		<rom name="bct1-1.l3" merge="bct1-1.l3" size="256" crc="d17518bc"/>
+		<sample name="boop" />
+		<sample name="beep" />
+		<sample name="engine_lo" />
+		<sample name="engine_hi" />
+		<sample name="shoot" />
+		<sample name="explode" />
+		<video type="raster" orientation="vertical" width="224" height="256" aspectx="3" aspecty="4"/>
+		<driver status="good"/>
+	</game>
+	<game name="tankbatt" sourcefile="pre90s/d_tankbatt.cpp">
+		<description>Tank Battalion</description>
+		<year>1980</year>
+		<manufacturer>Namco</manufacturer>
+		<rom name="tb1-1.1a" size="2048" crc="278a0b8c"/>
+		<rom name="tb1-2.1b" size="2048" crc="e0923370"/>
+		<rom name="tb1-3.1c" size="2048" crc="85005ea4"/>
+		<rom name="tb1-4.1d" size="2048" crc="3dfb5bcf"/>
+		<rom name="tb1-5.2k" size="2048" crc="aabd4fb1"/>
+		<rom name="bct1-1.l3" size="256" crc="d17518bc"/>
+		<sample name="boop" />
+		<sample name="beep" />
+		<sample name="engine_lo" />
+		<sample name="engine_hi" />
+		<sample name="shoot" />
+		<sample name="explode" />
 		<video type="raster" orientation="vertical" width="224" height="256" aspectx="3" aspecty="4"/>
 		<driver status="good"/>
 	</game>
