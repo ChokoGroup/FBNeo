@@ -1,16 +1,5 @@
 // FB Neo PC-Engine CD driver module
 // Based on MAME/MESS driver by Wilbert Pol & Angelo Salese
-// (Ported with AI assist)
-
-/*
- * notes:
- * 
- * There is currently no/minimal UI support, code-wise to start a game you need to :
- * - copy its image path to CDEmuImage
- * - call CDEmuInit()
- * - start the pce_scdsys romset
- * neogeo cd emulation uses the same process internally, except it starts the neocdz romset
- */
 
 #include "burnint.h"
 #include "h6280_intf.h"
@@ -25,6 +14,8 @@ static UINT8 *PCEADPCMRAM;
 static UINT8 *PCECDRAM;
 static UINT8 *PCESuperRAM;
 static UINT8 *PCEAcardRAM;
+
+static dtimer cd_ack_clear_timer;
 
 struct acard_port_t {
 	UINT8  ctrl;
@@ -121,7 +112,7 @@ static UINT16 adpcm_read_ptr, adpcm_write_ptr;
 static UINT8  adpcm_read_buf, adpcm_write_buf;
 static UINT16 adpcm_length;
 
-static UINT16 msm_start_addr, msm_end_addr, msm_half_addr;
+static UINT32 msm_start_addr, msm_end_addr, msm_half_addr;
 static UINT8  msm_nibble;
 static UINT8  msm_repeat;
 static UINT8  msm_idle;
@@ -167,11 +158,40 @@ static void cd_test_unit_ready()
 	cd_reply_status_byte(0x00);
 }
 
+// Read one CD sector, handle success/error status & IRQs
+static INT32 cd_read_sector()
+{
+	// Attempt to read one data sector from CD image
+	if (CDEmuReadDataSector(cd_current_frame, cd_data_buffer)) {
+		// Sector read failed: reset buffers, report SCSI CHECK CONDITION (0x02)
+		cd_data_buffer_size  = 0;
+		cd_data_buffer_index = 0;
+		cd_data_transferred  = 0;
+		cd_set_irq_line(PCE_CD_IRQ_TRANSFER_READY, 0);
+		cd_reply_status_byte(0x02);
+		cd_set_irq_line(PCE_CD_IRQ_TRANSFER_DONE,  1);
+		return 1;	// Return 1 = read error
+	}
+
+	// Sector read succeeded, setup buffer and state
+	cd_data_buffer_size  = 2048;
+	cd_data_buffer_index = 0;
+	cd_current_frame++;
+	scsi_IO = 1;
+	scsi_CD = 0;
+	cd_data_transferred = (cd_current_frame == cd_end_frame);
+	if (cd_data_transferred) {
+		cd_cdda_status = PCE_CD_CDDA_PAUSED;
+	}
+	cd_set_irq_line(PCE_CD_IRQ_TRANSFER_READY, 1);
+	return 0;	// Return 0 = read ok
+}
+
 /* 0x08 - READ (6) */
 static void cd_read_6()
 {
 	UINT32 frame = ((cd_command_buffer[1] & 0x1f) << 16) | (cd_command_buffer[2] << 8) | cd_command_buffer[3];
-	UINT32 frame_count = cd_command_buffer[4];
+	UINT32 frame_count = cd_command_buffer[4] ? cd_command_buffer[4] : 256;
 
 	if (cd_cdda_status != PCE_CD_CDDA_OFF) {
 		cd_cdda_status = PCE_CD_CDDA_OFF;
@@ -181,28 +201,8 @@ static void cd_read_6()
 
 	cd_current_frame = frame;
 	cd_end_frame = frame + frame_count;
-
-	if (frame_count == 0) {
-		// starbrkr uses this (cannot reproduce)
-		// Should supposedly bump to max size (frame_count = 256)
-		cd_reply_status_byte(0x00);
-	} else {
-		cd_motor_on = 1;
-		INT32 ret = CDEmuLoadSector(cd_current_frame, (char*)cd_data_buffer);
-		memmove(cd_data_buffer, cd_data_buffer + 16, 2048);
-		cd_data_buffer_size = 2048;
-		cd_data_buffer_index = 0;
-		cd_current_frame = (ret > 0) ? ret : (cd_current_frame + 1);
-		scsi_IO = 1;
-		scsi_CD = 0;
-		cd_data_transferred = (cd_current_frame == cd_end_frame) ? 1 : 0;
-		if (cd_current_frame == cd_end_frame) {
-			cd_cdda_status = PCE_CD_CDDA_PAUSED;
-		}
-	}
-
-	// timing likely not exact
-	cd_set_irq_line(PCE_CD_IRQ_TRANSFER_READY, 1);
+	cd_motor_on = 1;
+	cd_read_sector();
 }
 
 /* 0xD8 - SET AUDIO PLAYBACK START POSITION (NEC) */
@@ -413,7 +413,7 @@ static void cd_nec_get_dir_info()
 				cd_data_buffer[0] = toc[0];
 				cd_data_buffer[1] = toc[1];
 				cd_data_buffer[2] = toc[2];
-				cd_data_buffer[3] = 0x04;   /* correct? */
+				cd_data_buffer[3] = toc[3];
 				cd_data_buffer_size = 4;
 				break;
 			}
@@ -521,19 +521,7 @@ static void cd_handle_data_input()
 					cd_reply_status_byte(0x00);
 					cd_set_irq_line(PCE_CD_IRQ_TRANSFER_DONE, 1);
 				} else {
-					{
-						INT32 ret = CDEmuLoadSector(cd_current_frame, (char*)cd_data_buffer);
-						memmove(cd_data_buffer, cd_data_buffer + 16, 2048);
-						cd_current_frame = (ret > 0) ? ret : (cd_current_frame + 1);
-					}
-					cd_data_buffer_index = 0;
-					cd_data_buffer_size = 2048;
-					scsi_IO = 1;
-					scsi_CD = 0;
-					cd_data_transferred = (cd_current_frame == cd_end_frame) ? 1 : 0;
-					if (cd_current_frame == cd_end_frame) {
-						cd_cdda_status = PCE_CD_CDDA_PAUSED;
-					}
+					cd_read_sector();
 				}
 			} else {
 				cd_cdc_data = cd_data_buffer[cd_data_buffer_index];
@@ -645,21 +633,39 @@ static void cd_set_adpcm_ram_byte(UINT8 val)
 	}
 }
 
+static void cd_ack_clear_timer_cb(int param)
+{
+	cd_update();
+	scsi_ACK = 0;
+	// "Ginga Fukei Densetsu Sapphire" hangs if we don't update again
+	cd_update();
+	if (scsi_CD) {
+		cd_adpcm_dma_reg &= 0xfc;
+	}
+}
+
 static UINT8 cd_get_cd_data_byte()
 {
 	UINT8 data = cd_cdc_data;
 	if (scsi_REQ && !scsi_ACK && !scsi_CD) {
 		if (scsi_IO) {
 			scsi_ACK = 1;
-			// MAME uses a timer here to set ACK 15 cycles later
-			cd_update();
-			scsi_ACK = 0;
-			if (scsi_CD) {
-				cd_adpcm_dma_reg &= 0xfc;
-			}
+			cd_ack_clear_timer.start(15, 0, 1, 0);
 		}
 	}
 	return data;
+}
+
+static void cd_adpcm_dma_timer_cb(int param)
+{
+	if (scsi_REQ && !scsi_ACK && !scsi_CD && scsi_IO) {
+		PCEADPCMRAM[adpcm_write_ptr] = cd_get_cd_data_byte();
+		adpcm_write_ptr = (adpcm_write_ptr + 1) & 0xffff;
+		cd_adpcm_status &= ~4;
+
+		if (adpcm_length < 0xffff) adpcm_length++;
+		cd_set_irq_line(PCE_CD_IRQ_SAMPLE_HALF_PLAY, (adpcm_length < 0x8000) ? 1 : 0);
+	}
 }
 
 /*
@@ -901,6 +907,7 @@ static void cd_reg_adpcm_address_control_w(UINT8 data)
 		msm_end_addr = 0;
 		msm_half_addr = 0;
 		msm_nibble = 0;
+		adpcm_length = 0;
 		cd_adpcm_stop(0);
 		MSM5205ResetWrite(0, 1);
 	}
@@ -911,10 +918,9 @@ static void cd_reg_adpcm_address_control_w(UINT8 data)
 
 	if ((data & 0x40) && ((cd_adpcm_control & 0x40) == 0)) { // ADPCM play
 		msm_start_addr = adpcm_read_ptr;
-		msm_end_addr = (adpcm_read_ptr + adpcm_length) & 0xffff;
-		msm_half_addr = (adpcm_read_ptr + (adpcm_length / 2)) & 0xffff;
 		msm_nibble = 0;
 		cd_adpcm_play();
+		cd_set_irq_line(PCE_CD_IRQ_SAMPLE_HALF_PLAY, (adpcm_length < 0x8000) ? 1 : 0);
 		MSM5205ResetWrite(0, 0);
 	} else if ((data & 0x40) == 0) {
 		// used by bbros to cancel an in-flight sample// used by bbros to cancel an in-flight sample
@@ -1025,17 +1031,21 @@ static void cd_msm5205_vclk_callback()
 	if (msm_idle) return;
 
 	/* Supply new ADPCM data */
-	UINT8 msm_data = (msm_nibble) ? (PCEADPCMRAM[msm_start_addr] & 0x0f) : ((PCEADPCMRAM[msm_start_addr] & 0xf0) >> 4);
+	UINT8 msm_data = (msm_nibble) ? (PCEADPCMRAM[msm_start_addr & 0xffff] & 0x0f) : ((PCEADPCMRAM[msm_start_addr & 0xffff] & 0xf0) >> 4);
 
 	MSM5205DataWrite(0, msm_data);
 
 	msm_nibble ^= 1;
 	if (msm_nibble == 0) {
 		msm_start_addr++;
-		if (msm_start_addr == msm_half_addr) {
-			// half-play IRQ intentionally not fired here
-		}
-		if (msm_start_addr > msm_end_addr) {
+		// adpcm_length represents "how many unplayed bytes are currently buffered",
+		// decremented here on consumption, incremented on DMA/manual write (see cd_adpcm_dma_timer_cb).
+		// MAME uses a fixed start/end address comparison, which is breaking sound in Last Armagueddon's intro
+		if (adpcm_length > 0) {
+			adpcm_length--;
+			cd_set_irq_line(PCE_CD_IRQ_SAMPLE_HALF_PLAY, (adpcm_length < 0x8000) ? 1 : 0);
+		} else {
+			cd_set_irq_line(PCE_CD_IRQ_SAMPLE_HALF_PLAY, 0);
 			cd_adpcm_stop(1);
 			MSM5205ResetWrite(0, 1);
 		}
@@ -1103,13 +1113,11 @@ void CDSubsystemTick()
 		}
 	}
 
-	if (adpcm_dma_active) {
-		if (scsi_REQ && !scsi_ACK && !scsi_CD && scsi_IO) {
-			PCEADPCMRAM[adpcm_write_ptr] = cd_get_cd_data_byte();
-			adpcm_write_ptr = (adpcm_write_ptr + 1) & 0xffff;
-			cd_adpcm_status &= ~4;
-		}
-	}
+	// MAME is using a timer for this, but doing the same breaks "Ginga Fukei Densetsu Sapphire" in FBNeo.
+	// specifically, a few seconds of intro just before starting to play are being skipped.
+	// I couldn't test whether MAME suffered from the same issue or not,
+	// with MAME being a nightmare when it comes to starting pce arcade card games
+	if (adpcm_dma_active) cd_adpcm_dma_timer_cb(0);
 }
 
 static UINT8 acard_peripheral_r(UINT32 offset)
@@ -1273,7 +1281,7 @@ void CDSubsystemMiscWrite(UINT32 address, UINT8 data)
 UINT8 CDSubsystemRegsRead(UINT32 address)
 {
 	if (HAS_CD) {
-		if ((address & 0xff) >= 0xc0 && (address & 0xff) <= 0xc7) {
+		if (address >= 0x1ff8c0 && address <= 0x1ff8c7) {
 			switch (address & 0x0f) {
 				case 0x1: return 0xaa;
 				case 0x2: return 0x55;
@@ -1378,6 +1386,7 @@ void CDSubsystemReset()
 		msm_repeat = 0;
 		adpcm_rate = 0;
 		MSM5205Reset();
+		timerReset();
 		cd_cdda_fade_active = 0;
 		cd_adpcm_fade_active = 0;
 
@@ -1408,7 +1417,7 @@ void CDSubsystemInit()
 		memcpy(PCECDBRAM, bram_default, sizeof(bram_default));
 	}
 
-	MSM5205Init(0, PCECDSynchroniseStream, (PCE_CD_CLOCK / 6) / 16, cd_msm5205_vclk_callback, MSM5205_S48_4B, 1);
+	MSM5205Init(0, PCECDSynchroniseStream, (PCE_CD_CLOCK / 6), cd_msm5205_vclk_callback, MSM5205_S48_4B, 1);
 	MSM5205PlaymodeWrite(0, MSM5205_S48_4B);
 	MSM5205SetRoute(0, 1.00, BURN_SND_ROUTE_BOTH);
 
@@ -1430,6 +1439,12 @@ void CDSubsystemInit()
 		acard_shift_reg = 0;
 		acard_rotate_reg = 0;
 	}
+
+	timerInit();
+	timerAdd(cd_ack_clear_timer, 0, cd_ack_clear_timer_cb);
+	h6280Open(0);
+	h6280SetCallback(timerRun);
+	h6280Close();
 }
 
 void CDSubsystemExit()
@@ -1437,6 +1452,7 @@ void CDSubsystemExit()
 	if (HAS_CD) {
 		CDEmuExit();
 		MSM5205Exit();
+		timerExit();
 	}
 }
 
@@ -1519,6 +1535,7 @@ void CDSubsystemScan(INT32 nAction, INT32 *pnMin)
 
 			CDEmuScan(nAction, pnMin);
 			MSM5205Scan(nAction, pnMin);
+			timerScan();
 
 			if (hardware_type == ACARD_HW) {
 				ScanVar(acard_port, sizeof(acard_port), "Arcade Card DRAM Ports");

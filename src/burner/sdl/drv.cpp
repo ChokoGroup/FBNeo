@@ -87,15 +87,18 @@ int DrvInit(int nDrvNum, bool bRestore)
 
 	nBurnDrvActive = nDrvNum;		// Set the driver number
 
-	if ((BurnDrvGetHardwareCode() & HARDWARE_PUBLIC_MASK) == HARDWARE_SNK_NEOCD) {
+	INT32 nHardware = BurnDrvGetHardwareCode() & HARDWARE_PUBLIC_MASK;
+	if (nHardware == HARDWARE_SNK_NEOCD || nHardware == HARDWARE_PCENGINE_PCE_CD) {
 		if (CDEmuInit()) {
 			printf("CD emu failed\n");
 			return 1;
 		}
 
-		NeoCDInfo_Init();
+		if (nHardware == HARDWARE_SNK_NEOCD) {
+			NeoCDInfo_Init();
 
-		NeoCDZRateChange();
+			NeoCDZRateChange();
+		}
 	}
 
 	{ // Init input and audio, save blitter init for later. (reduce # of mode changes, nice for emu front-ends)
@@ -123,6 +126,9 @@ int DrvInit(int nDrvNum, bool bRestore)
 
 		BurnDrvExit();                                // Exit the driver
 
+		NeoCDZRateChangeback();
+		CDEmuExit();
+
 		_stprintf(szTemp, _T("There was an error starting '%s'.\n"), BurnDrvGetText(DRV_FULLNAME));
 		return 1;
 	}
@@ -148,6 +154,8 @@ int DrvExit()
 {
 	if (bDrvOkay)
 	{
+		NeoCDZRateChangeback();
+
 		if (nBurnDrvActive < nBurnDrvCount)
 		{
 			if (bSaveRAM)
@@ -165,6 +173,8 @@ int DrvExit()
 
 	bDrvOkay = 0;                   // Stop using the BurnDrv functions
 //	nBurnDrvActive = ~0U;                 // no driver selected
+
+	CDEmuExit();
 
 	return 0;
 }
