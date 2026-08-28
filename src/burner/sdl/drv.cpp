@@ -1,6 +1,7 @@
 // Driver Init module
 #include "burner.h"
 #include "neocdlist.h"
+#include "pcecdlist.h"
 int bDrvOkay = 0;                       // 1 if the Driver has been initted okay, and it's okay to use the BurnDrv functions
 
 // Choko Hack will mount "/mnt/fbneo" in "/opt/fbneo"
@@ -98,6 +99,8 @@ int DrvInit(int nDrvNum, bool bRestore)
 			NeoCDInfo_Init();
 
 			NeoCDZRateChange();
+		} else if (nHardware == HARDWARE_PCENGINE_PCE_CD) {
+			PceCDInfo_Init();
 		}
 	}
 
