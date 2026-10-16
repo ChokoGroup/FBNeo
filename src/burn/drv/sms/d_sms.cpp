@@ -21601,10 +21601,28 @@ STD_ROM_FN(sms_aliencat2)
 
 struct BurnDriver BurnDrvsms_aliencat2 = {
 	"sms_aliencat2", NULL, NULL, NULL, "2025",
-	"Alien Cat 2 (HB)\0", NULL, "PSCD Games", "Sega Master System",
+	"Alien Cat 2 (HB)\0", "Level 28 Fixed", "PSCD Games", "Sega Master System",
 	NULL, NULL, NULL, NULL,
 	BDF_GAME_WORKING | BDF_HOMEBREW, 1, HARDWARE_SEGA_MASTER_SYSTEM, GBF_ACTION | GBF_PUZZLE, 0,
 	SMSGetZipName, sms_aliencat2RomInfo, sms_aliencat2RomName, NULL, NULL, NULL, NULL, SMSInputInfo, SMSDIPInfo,
+	SMSInit, SMSExit, SMSFrame, SMSDraw, SMSScan, &SMSPaletteRecalc, 0x1E00,
+	256, 192, 4, 3
+};
+
+// Alien Cat 2 (HB, Alt)
+static struct BurnRomInfo sms_aliencat2aRomDesc[] = {
+	{ "Alien Cat 2 (Alt)(2025)(PSCD Games).sms",	327680, 0x188ec6fa, BRF_PRG | BRF_ESS },
+};
+
+STD_ROM_PICK(sms_aliencat2a)
+STD_ROM_FN(sms_aliencat2a)
+
+struct BurnDriver BurnDrvsms_aliencat2a = {
+	"sms_aliencat2a", "sms_aliencat2", NULL, NULL, "2025",
+	"Alien Cat 2 (HB, Alt)\0", NULL, "PSCD Games", "Sega Master System",
+	NULL, NULL, NULL, NULL,
+	BDF_GAME_WORKING | BDF_CLONE | BDF_HOMEBREW, 1, HARDWARE_SEGA_MASTER_SYSTEM, GBF_ACTION | GBF_PUZZLE, 0,
+	SMSGetZipName, sms_aliencat2aRomInfo, sms_aliencat2aRomName, NULL, NULL, NULL, NULL, SMSInputInfo, SMSDIPInfo,
 	SMSInit, SMSExit, SMSFrame, SMSDraw, SMSScan, &SMSPaletteRecalc, 0x1E00,
 	256, 192, 4, 3
 };
@@ -21840,6 +21858,24 @@ struct BurnDriver BurnDrvsms_baraburu10 = {
 	NULL, NULL, NULL, NULL,
 	BDF_GAME_WORKING | BDF_HOMEBREW, 1, HARDWARE_SEGA_MASTER_SYSTEM, GBF_PLATFORM, 0,
 	SMSGetZipName, sms_baraburu10RomInfo, sms_baraburu10RomName, NULL, NULL, NULL, NULL, SMSInputInfo, SMSDIPInfo,
+	SMSInit, SMSExit, SMSFrame, SMSDraw, SMSScan, &SMSPaletteRecalc, 0x1E00,
+	256, 192, 4, 3
+};
+
+// Batman (HB)
+static struct BurnRomInfo sms_batmanhbRomDesc[] = {
+	{ "Batman (2026)(Magic Games).sms",	4194304, 0xa5d296e1, BRF_PRG | BRF_ESS },
+};
+
+STD_ROM_PICK(sms_batmanhb)
+STD_ROM_FN(sms_batmanhb)
+
+struct BurnDriver BurnDrvsms_batmanhb = {
+	"sms_batmanhb", NULL, NULL, NULL, "2026",
+	"Batman (HB)\0", NULL, "Magic Games", "Sega Master System",
+	NULL, NULL, NULL, NULL,
+	BDF_GAME_WORKING | BDF_HOMEBREW, 1, HARDWARE_SEGA_MASTER_SYSTEM, GBF_ADV | GBF_PLATFORM, 0,
+	SMSGetZipName, sms_batmanhbRomInfo, sms_batmanhbRomName, NULL, NULL, NULL, NULL, SMSInputInfo, SMSDIPInfo,
 	SMSInit, SMSExit, SMSFrame, SMSDraw, SMSScan, &SMSPaletteRecalc, 0x1E00,
 	256, 192, 4, 3
 };
@@ -22260,9 +22296,9 @@ struct BurnDriver BurnDrvsms_crazypinball = {
 	256, 192, 4, 3
 };
 
-// Croco Pinball (HB, v0.5)
+// Croco Pinball (HB, v1.0)
 static struct BurnRomInfo sms_crocopinballRomDesc[] = {
-	{ "Croco Pinball v0.5 (2026)(Oldschool Is Beautiful).sms",	524288, 0xb8e36582, BRF_PRG | BRF_ESS },
+	{ "Croco Pinball v1.0 (2026)(Oldschool Is Beautiful).sms",	524288, 0xb24987b4, BRF_PRG | BRF_ESS },
 };
 
 STD_ROM_PICK(sms_crocopinball)
@@ -22270,7 +22306,7 @@ STD_ROM_FN(sms_crocopinball)
 
 struct BurnDriver BurnDrvsms_crocopinball = {
 	"sms_crocopinball", NULL, NULL, NULL, "2026",
-	"Croco Pinball (HB, v0.5)\0", NULL, "Oldschool Is Beautiful", "Sega Master System",
+	"Croco Pinball (HB, v1.0)\0", NULL, "Oldschool Is Beautiful", "Sega Master System",
 	NULL, NULL, NULL, NULL,
 	BDF_GAME_WORKING | BDF_HOMEBREW, 2, HARDWARE_SEGA_MASTER_SYSTEM, GBF_PINBALL, 0,
 	SMSGetZipName, sms_crocopinballRomInfo, sms_crocopinballRomName, NULL, NULL, NULL, NULL, SMSInputInfo, SMSDIPInfo,
@@ -23901,9 +23937,9 @@ struct BurnDriver BurnDrvsms_papicom = {
 	256, 192, 4, 3
 };
 
-// Pedrisco (HB, v1.1)
+// Pedrisco (HB, v1.2)
 static struct BurnRomInfo sms_pedriscoRomDesc[] = {
-	{ "Pedrisco v1.1 (2026)(vosges6128).sms",	131072, 0x271296bc, BRF_PRG | BRF_ESS },
+	{ "Pedrisco v1.2 (2026)(vosges6128).sms",	131072, 0x159f11a2, BRF_PRG | BRF_ESS },
 };
 
 STD_ROM_PICK(sms_pedrisco)
@@ -23911,7 +23947,7 @@ STD_ROM_FN(sms_pedrisco)
 
 struct BurnDriver BurnDrvsms_pedrisco = {
 	"sms_pedrisco", NULL, NULL, NULL, "2026",
-	"Pedrisco (HB, v1.1)\0", NULL, "vosges6128", "Sega Master System",
+	"Pedrisco (HB, v1.2)\0", NULL, "vosges6128", "Sega Master System",
 	NULL, NULL, NULL, NULL,
 	BDF_GAME_WORKING | BDF_HOMEBREW, 1, HARDWARE_SEGA_MASTER_SYSTEM, GBF_PUZZLE, 0,
 	SMSGetZipName, sms_pedriscoRomInfo, sms_pedriscoRomName, NULL, NULL, NULL, NULL, SMSInputInfo, SMSDIPInfo,
@@ -23971,6 +24007,24 @@ struct BurnDriver BurnDrvsms_piracycod = {
     SMSGetZipName, sms_piracycodRomInfo, sms_piracycodRomName, NULL, NULL, NULL, NULL, SMSInputInfo, SMSDIPInfo,
     SMSInit, SMSExit, SMSFrame, SMSDraw, SMSScan, &SMSPaletteRecalc, 0x1E00,
     256, 192, 4, 3
+};
+
+// Project Galaxy (HB, v0.0.1)
+static struct BurnRomInfo sms_prjgalaxyRomDesc[] = {
+	{ "Project Galaxy v0.0.1 (2026)(haroldo-ok).sms",	49152, 0x1baf5cb4, BRF_PRG | BRF_ESS },
+};
+
+STD_ROM_PICK(sms_prjgalaxy)
+STD_ROM_FN(sms_prjgalaxy)
+
+struct BurnDriver BurnDrvsms_prjgalaxy = {
+	"sms_prjgalaxy", NULL, NULL, NULL, "2026",
+	"Project Galaxy (HB, v0.0.1)\0", NULL, "haroldo-ok", "Sega Master System",
+	NULL, NULL, NULL, NULL,
+	BDF_GAME_WORKING | BDF_HOMEBREW, 1, HARDWARE_SEGA_MASTER_SYSTEM, GBF_VERSHOOT, 0,
+	SMSGetZipName, sms_prjgalaxyRomInfo, sms_prjgalaxyRomName, NULL, NULL, NULL, NULL, SMSInputInfo, SMSDIPInfo,
+	SMSInit, SMSExit, SMSFrame, SMSDraw, SMSScan, &SMSPaletteRecalc, 0x1E00,
+	256, 192, 4, 3
 };
 
 // Psychic World - Enhanced Colors (Hack, v1.2)
@@ -26182,9 +26236,9 @@ struct BurnDriver BurnDrvgg_osotosm = {
 	256, 192, 4, 3
 };
 
-// Pedrisco (HB, v1.1)
+// Pedrisco (HB, v1.2)
 static struct BurnRomInfo gg_pedriscoRomDesc[] = {
-	{ "Pedrisco v1.1 (2026)(vosges6128).gg",	131072, 0xbfe924cd, BRF_PRG | BRF_ESS },
+	{ "Pedrisco v1.2 (2026)(vosges6128).gg",	131072, 0x9534946e, BRF_PRG | BRF_ESS },
 };
 
 STD_ROM_PICK(gg_pedrisco)
@@ -26192,7 +26246,7 @@ STD_ROM_FN(gg_pedrisco)
 
 struct BurnDriver BurnDrvgg_pedrisco = {
 	"gg_pedrisco", NULL, NULL, NULL, "2026",
-	"Pedrisco (HB, v1.1)\0", NULL, "vosges6128", "Sega Game Gear",
+	"Pedrisco (HB, v1.2)\0", NULL, "vosges6128", "Sega Game Gear",
 	NULL, NULL, NULL, NULL,
 	BDF_GAME_WORKING | BDF_HOMEBREW, 1, HARDWARE_SEGA_GAME_GEAR, GBF_PUZZLE, 0,
 	GGGetZipName, gg_pedriscoRomInfo, gg_pedriscoRomName, NULL, NULL, NULL, NULL, SMSInputInfo, GGDIPInfo,
