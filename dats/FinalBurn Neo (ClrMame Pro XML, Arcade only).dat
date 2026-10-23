@@ -15968,6 +15968,69 @@
 		<video type="raster" orientation="vertical" width="224" height="288" aspectx="3" aspecty="4"/>
 		<driver status="good"/>
 	</game>
+	<game name="bigfightj" cloneof="bigfight" romof="bigfight" sourcefile="pst90s/d_cyclwarr.cpp">
+		<description>Big Fight: Big Trouble In The Atlantic Ocean (Japan, Rev. F)</description>
+		<year>1992</year>
+		<manufacturer>Tatsumi</manufacturer>
+		<rom name="bfj16f.ic77" size="131072" crc="9141a488"/>
+		<rom name="bf18f.ic98" size="131072" crc="f23a4935"/>
+		<rom name="bf17e.ic78" size="131072" crc="5e5d023d"/>
+		<rom name="bf19e.ic99" size="131072" crc="5329e151"/>
+		<rom name="bf20.ic100" size="131072" crc="5bd44e11"/>
+		<rom name="bf22.ic102" size="131072" crc="e52c29ab"/>
+		<rom name="bf21d.ic101" size="131072" crc="c4c2f969"/>
+		<rom name="bf23d.ic103" size="131072" crc="c05ae1fe"/>
+		<rom name="bf36b.ic91" merge="rom20.ic91" size="65536" crc="b3add091"/>
+		<rom name="bf00d.ic26" size="262144" crc="f506d508"/>
+		<rom name="bf08d.ic45" size="262144" crc="4bf948b9"/>
+		<rom name="bf02d.ic28" size="262144" crc="af30acf7"/>
+		<rom name="bf10d.ic47" size="262144" crc="ffddb7f8"/>
+		<rom name="bf01d.ic27" size="131072" crc="ec3f5f17"/>
+		<rom name="bf09d.ic46" size="131072" crc="284837ed"/>
+		<rom name="bf03d.ic29" size="131072" crc="2ba0398e"/>
+		<rom name="bf11d.ic48" size="131072" crc="3f2fa72f"/>
+		<rom name="bf04d.ic30" size="262144" crc="6203d320"/>
+		<rom name="bf12d.ic49" size="262144" crc="d261dfa7"/>
+		<rom name="bf06d.ic32" size="262144" crc="be187c3c"/>
+		<rom name="bf14d.ic51" size="262144" crc="60f2ab3d"/>
+		<rom name="bf05d.ic31" size="131072" crc="2229acbc"/>
+		<rom name="bf13d.ic50" size="131072" crc="1e46cd79"/>
+		<rom name="bf07d.ic33" size="131072" crc="4940b0bb"/>
+		<rom name="bf15d.ic52" size="131072" crc="dab0c80a"/>
+		<rom name="bf27.ic128" merge="rom21.ic128" size="131072" crc="da027dcf"/>
+		<rom name="bf30.ic73" merge="rom24.ic73" size="131072" crc="c564185d"/>
+		<rom name="bf29.ic72" merge="rom23.ic72" size="131072" crc="f8bb340b"/>
+		<rom name="bf28.ic71" merge="rom22.ic71" size="131072" crc="fb505074"/>
+		<rom name="bf24.ic39" size="131072" crc="9db80c8a"/>
+		<rom name="bf25.ic40" size="131072" crc="630154c4"/>
+		<video type="raster" orientation="horizontal" width="320" height="240" aspectx="4" aspecty="3"/>
+		<driver status="good"/>
+	</game>
+	<game name="bigfight" sourcefile="pst90s/d_cyclwarr.cpp">
+		<description>Big Fight: Big Trouble In The Atlantic Ocean</description>
+		<year>1992</year>
+		<manufacturer>Tatsumi</manufacturer>
+		<rom name="rom16.ic77" size="262144" crc="e7304ec8"/>
+		<rom name="rom17.ic98" size="262144" crc="4cf090f6"/>
+		<rom name="rom18.ic100" size="262144" crc="49df6207"/>
+		<rom name="rom19.ic102" size="262144" crc="c12aa9e9"/>
+		<rom name="rom20.ic91" size="65536" crc="b3add091"/>
+		<rom name="rom0.ic26" size="524288" crc="a4a3c8d6"/>
+		<rom name="rom8.ic45" size="524288" crc="220956ed"/>
+		<rom name="rom2.ic28" size="524288" crc="c4f6d243"/>
+		<rom name="rom10.ic47" size="524288" crc="0212d472"/>
+		<rom name="rom4.ic30" size="524288" crc="999ff7e9"/>
+		<rom name="rom12.ic49" size="524288" crc="cb4c1f0b"/>
+		<rom name="rom6.ic32" size="524288" crc="f70e2d47"/>
+		<rom name="rom14.ic51" size="524288" crc="77430bc9"/>
+		<rom name="rom21.ic128" size="131072" crc="da027dcf"/>
+		<rom name="rom24.ic73" size="131072" crc="c564185d"/>
+		<rom name="rom23.ic72" size="131072" crc="f8bb340b"/>
+		<rom name="rom22.ic71" size="131072" crc="fb505074"/>
+		<rom name="rom15.ic39" size="262144" crc="58d136e8"/>
+		<video type="raster" orientation="horizontal" width="320" height="240" aspectx="4" aspecty="3"/>
+		<driver status="good"/>
+	</game>
 	<game name="bigkarnka" cloneof="bigkarnk" romof="bigkarnk" sourcefile="pst90s/d_gaelco.cpp">
 		<description>Big Karnak (ver. 1.0, checksum 1e38b94)</description>
 		<year>1991</year>
@@ -21127,6 +21190,78 @@
 		<video type="raster" orientation="horizontal" width="256" height="256" aspectx="4" aspecty="3"/>
 		<driver status="good"/>
 	</game>
+	<game name="brickzn11" cloneof="brickzn" romof="brickzn" sourcefile="pre90s/d_suna8.cpp">
+		<description>Brick Zone (v1.1, Spinner)</description>
+		<year>1992</year>
+		<manufacturer>SunA</manufacturer>
+		<rom name="9.bin" size="32768" crc="24f88cfd"/>
+		<rom name="8.bin" size="131072" crc="e2c7f7ac"/>
+		<rom name="7.bin" size="131072" crc="7af5b25c"/>
+		<rom name="10.bin" size="65536" crc="494adf0f"/>
+		<rom name="11.bin" merge="11.n10" size="65536" crc="6c54161a"/>
+		<rom name="5.bin" size="131072" crc="e9f73ba1"/>
+		<rom name="4.bin" size="131072" crc="2be5f335"/>
+		<rom name="3.bin" merge="p3.k5" size="131072" crc="2e4f194b"/>
+		<rom name="2.bin" size="131072" crc="0e994fbf"/>
+		<rom name="1.bin" size="131072" crc="6970ada9"/>
+		<rom name="6.bin" merge="p6.h7" size="131072" crc="bbf31081"/>
+		<video type="raster" orientation="vertical" width="224" height="256" aspectx="3" aspecty="4"/>
+		<driver status="good"/>
+	</game>
+	<game name="brickznv4" cloneof="brickzn" romof="brickzn" sourcefile="pre90s/d_suna8.cpp">
+		<description>Brick Zone (v4.0, Spinner)</description>
+		<year>1992</year>
+		<manufacturer>SunA</manufacturer>
+		<rom name="39" size="32768" crc="043380bd"/>
+		<rom name="38" size="131072" crc="e16216e8"/>
+		<rom name="brickzon.007" size="131072" crc="ceed12f1"/>
+		<rom name="brickzon.010" merge="10.o8" size="65536" crc="4eba8178"/>
+		<rom name="brickzon.011" merge="11.n10" size="65536" crc="6c54161a"/>
+		<rom name="35" size="131072" crc="b463dfcf"/>
+		<rom name="brickzon.004" size="131072" crc="2be5f335"/>
+		<rom name="brickzon.003" merge="p3.k5" size="131072" crc="2e4f194b"/>
+		<rom name="32" size="131072" crc="32dbf2dd"/>
+		<rom name="brickzon.001" size="131072" crc="6970ada9"/>
+		<rom name="brickzon.006" merge="p6.h7" size="131072" crc="bbf31081"/>
+		<video type="raster" orientation="vertical" width="224" height="256" aspectx="3" aspecty="4"/>
+		<driver status="good"/>
+	</game>
+	<game name="brickznv5" cloneof="brickzn" romof="brickzn" sourcefile="pre90s/d_suna8.cpp">
+		<description>Brick Zone (v5.0, Joystick)</description>
+		<year>1992</year>
+		<manufacturer>SunA</manufacturer>
+		<rom name="brickzon.009" size="32768" crc="1ea68dea"/>
+		<rom name="brickzon.008" size="131072" crc="c61540ba"/>
+		<rom name="brickzon.007" size="131072" crc="ceed12f1"/>
+		<rom name="brickzon.010" merge="10.o8" size="65536" crc="4eba8178"/>
+		<rom name="brickzon.011" merge="11.n10" size="65536" crc="6c54161a"/>
+		<rom name="brickzon.005" size="131072" crc="118f8392"/>
+		<rom name="brickzon.004" size="131072" crc="2be5f335"/>
+		<rom name="brickzon.003" merge="p3.k5" size="131072" crc="2e4f194b"/>
+		<rom name="brickzon.002" size="131072" crc="241f0659"/>
+		<rom name="brickzon.001" size="131072" crc="6970ada9"/>
+		<rom name="brickzon.006" merge="p6.h7" size="131072" crc="bbf31081"/>
+		<video type="raster" orientation="vertical" width="224" height="256" aspectx="3" aspecty="4"/>
+		<driver status="good"/>
+	</game>
+	<game name="brickzn" sourcefile="pre90s/d_suna8.cpp">
+		<description>Brick Zone (v6.0, Joystick)</description>
+		<year>1992</year>
+		<manufacturer>SunA</manufacturer>
+		<rom name="p9.m7" size="32768" crc="bd7a3c01"/>
+		<rom name="p8.k7" size="131072" crc="ec3e266d"/>
+		<rom name="p7.i7" size="131072" crc="4dd88631"/>
+		<rom name="10.o8" size="65536" crc="4eba8178"/>
+		<rom name="11.n10" size="65536" crc="6c54161a"/>
+		<rom name="p5.m5" size="131072" crc="ca59e2f7"/>
+		<rom name="p4.l5" size="131072" crc="cc8fb330"/>
+		<rom name="p3.k5" size="131072" crc="2e4f194b"/>
+		<rom name="p2.i5" size="131072" crc="592d45ce"/>
+		<rom name="p1.h5" size="131072" crc="7a6bb583"/>
+		<rom name="p6.h7" size="131072" crc="bbf31081"/>
+		<video type="raster" orientation="vertical" width="224" height="256" aspectx="3" aspecty="4"/>
+		<driver status="good"/>
+	</game>
 	<game name="brix" cloneof="zzyzzyxx" romof="zzyzzyxx" sourcefile="pre90s/d_jack.cpp">
 		<description>Brix</description>
 		<year>1982</year>
@@ -21772,6 +21907,58 @@
 		<rom name="e21-03.rom" merge="e21-03.rom" size="2097152" crc="54c5f83d"/>
 		<rom name="e21-04.rom" merge="e21-04.rom" size="2097152" crc="e5af2a2d"/>
 		<rom name="bubblemu.nv" size="128" crc="a503276c"/>
+		<video type="raster" orientation="horizontal" width="320" height="224" aspectx="4" aspecty="3"/>
+		<driver status="good"/>
+	</game>
+	<game name="bubbleopen" romof="neogeo" sourcefile="neogeo/d_neogeo.cpp">
+		<comment>Homebrew</comment>
+		<description>Bubble Open (HB, Demo 1)</description>
+		<year>2026</year>
+		<manufacturer>neslou</manufacturer>
+		<rom name="bubopen-p1.p1" size="1048576" crc="e931552d"/>
+		<rom name="bubopen-s1.s1" size="131072" crc="64f8b8f3"/>
+		<rom name="bubopen-c1.c1" size="2097152" crc="c300583b"/>
+		<rom name="bubopen-c2.c2" size="2097152" crc="4e9d9d52"/>
+		<rom name="bubopen-m1.m1" size="131072" crc="323eff7a"/>
+		<rom name="bubopen-v1.v1" size="8388608" crc="929cacaa"/>
+		<rom name="sp-s3.sp1" merge="sp-s3.sp1" size="131072" crc="91b64be3"/>
+		<rom name="sp-s2.sp1" merge="sp-s2.sp1" size="131072" crc="9036d879"/>
+		<rom name="sp-s.sp1" merge="sp-s.sp1" size="131072" crc="c7f2fa45"/>
+		<rom name="sp-u2.sp1" merge="sp-u2.sp1" size="131072" crc="e72943de"/>
+		<rom name="sp1-u2" merge="sp1-u2" size="131072" crc="62f021f4"/>
+		<rom name="sp-e.sp1" merge="sp-e.sp1" size="131072" crc="2723a5b5"/>
+		<rom name="sp1-u4.bin" merge="sp1-u4.bin" size="131072" crc="1179a30f"/>
+		<rom name="sp1-u3.bin" merge="sp1-u3.bin" size="131072" crc="2025b7a2"/>
+		<rom name="vs-bios.rom" merge="vs-bios.rom" size="131072" crc="f0e8f27d"/>
+		<rom name="sp-j2.sp1" merge="sp-j2.sp1" size="131072" crc="acede59c"/>
+		<rom name="sp1.jipan.1024" merge="sp1.jipan.1024" size="131072" crc="9fb0abe4"/>
+		<rom name="sp-45.sp1" merge="sp-45.sp1" size="524288" crc="03cc9f6a"/>
+		<rom name="sp-j3.sp1" merge="sp-j3.sp1" size="524288" crc="486cb450"/>
+		<rom name="japan-j3.bin" merge="japan-j3.bin" size="131072" crc="dff6d41f"/>
+		<rom name="sp1-j3.bin" merge="sp1-j3.bin" size="131072" crc="fbc6d469"/>
+		<rom name="neo-po.bin" merge="neo-po.bin" size="131072" crc="16d0c132"/>
+		<rom name="neo-epo.bin" merge="neo-epo.bin" size="131072" crc="d27a71f1"/>
+		<rom name="neodebug.bin" merge="neodebug.bin" size="131072" crc="698ebb7d"/>
+		<rom name="sp-1v1_3db8c.bin" merge="sp-1v1_3db8c.bin" size="131072" crc="162f0ebe"/>
+		<rom name="uni-bios_4_0.rom" merge="uni-bios_4_0.rom" size="131072" crc="a7aab458"/>
+		<rom name="uni-bios_3_3.rom" merge="uni-bios_3_3.rom" size="131072" crc="24858466"/>
+		<rom name="uni-bios_3_2.rom" merge="uni-bios_3_2.rom" size="131072" crc="a4e8b9b3"/>
+		<rom name="uni-bios_3_1.rom" merge="uni-bios_3_1.rom" size="131072" crc="0c58093f"/>
+		<rom name="uni-bios_3_0.rom" merge="uni-bios_3_0.rom" size="131072" crc="a97c89a9"/>
+		<rom name="uni-bios_2_3.rom" merge="uni-bios_2_3.rom" size="131072" crc="27664eb5"/>
+		<rom name="uni-bios_2_3o.rom" merge="uni-bios_2_3o.rom" size="131072" crc="601720ae"/>
+		<rom name="uni-bios_2_2.rom" merge="uni-bios_2_2.rom" size="131072" crc="2d50996a"/>
+		<rom name="uni-bios_2_1.rom" merge="uni-bios_2_1.rom" size="131072" crc="8dabf76b"/>
+		<rom name="uni-bios_2_0.rom" merge="uni-bios_2_0.rom" size="131072" crc="0c12c2ad"/>
+		<rom name="uni-bios_1_3.rom" merge="uni-bios_1_3.rom" size="131072" crc="b24b44a0"/>
+		<rom name="uni-bios_1_2.rom" merge="uni-bios_1_2.rom" size="131072" crc="4fa698e9"/>
+		<rom name="uni-bios_1_2o.rom" merge="uni-bios_1_2o.rom" size="131072" crc="e19d3ce9"/>
+		<rom name="uni-bios_1_1.rom" merge="uni-bios_1_1.rom" size="131072" crc="5dda0d84"/>
+		<rom name="uni-bios_1_0.rom" merge="uni-bios_1_0.rom" size="131072" crc="0ce453a0"/>
+		<rom name="neopen.sp1" merge="neopen.sp1" size="131072" crc="cb915e76"/>
+		<rom name="sm1.sm1" merge="sm1.sm1" size="131072" crc="94416d67"/>
+		<rom name="sfix.sfix" merge="sfix.sfix" size="131072" crc="c2ea0cfd"/>
+		<rom name="000-lo.lo" merge="000-lo.lo" size="131072" crc="5a86cff2"/>
 		<video type="raster" orientation="horizontal" width="320" height="224" aspectx="4" aspecty="3"/>
 		<driver status="good"/>
 	</game>
@@ -36161,6 +36348,120 @@
 		<rom name="a80_18" size="2048" status="nodump"/>
 		<video type="raster" orientation="vertical" width="224" height="256" aspectx="3" aspecty="4"/>
 		<driver status="preliminary"/>
+	</game>
+	<game name="cyclwarra" cloneof="cyclwarr" romof="cyclwarr" sourcefile="pst90s/d_cyclwarr.cpp">
+		<description>Cycle Warriors (Rev. B)</description>
+		<year>1991</year>
+		<manufacturer>Tatsumi</manufacturer>
+		<rom name="cw16b.ic77" size="131072" crc="cb1a737a"/>
+		<rom name="cw18b.ic98" size="131072" crc="0633ddcb"/>
+		<rom name="cw17a.ic78" size="131072" crc="2ad6f836"/>
+		<rom name="cw19a.ic99" size="131072" crc="d3853658"/>
+		<rom name="cw20a.ic100" size="131072" crc="c3578ac1"/>
+		<rom name="cw22a.ic102" size="131072" crc="5339ed24"/>
+		<rom name="cw21.ic101" merge="cw21.ic101" size="131072" crc="ed90d956"/>
+		<rom name="cw23.ic103" merge="cw23.ic103" size="131072" crc="009cdc78"/>
+		<rom name="cw26a.ic91" merge="cw26a.ic91" size="65536" crc="f7a70e3a"/>
+		<rom name="cw00a.ic26" merge="cw00a.ic26" size="131072" crc="058a77f1"/>
+		<rom name="cw08a.ic45" merge="cw08a.ic45" size="131072" crc="f53993e7"/>
+		<rom name="cw02a.ic28" merge="cw02a.ic28" size="131072" crc="4dadf3cb"/>
+		<rom name="cw10a.ic47" merge="cw10a.ic47" size="131072" crc="3b7cd251"/>
+		<rom name="cw01a.ic27" merge="cw01a.ic27" size="131072" crc="7c639948"/>
+		<rom name="cw09a.ic46" merge="cw09a.ic46" size="131072" crc="4ba24af5"/>
+		<rom name="cw03a.ic29" merge="cw03a.ic29" size="131072" crc="3ca6f98e"/>
+		<rom name="cw11a.ic48" merge="cw11a.ic48" size="131072" crc="5d760392"/>
+		<rom name="cw04a.ic30" merge="cw04a.ic30" size="131072" crc="f05f594d"/>
+		<rom name="cw12a.ic49" merge="cw12a.ic49" size="131072" crc="4ac07e8b"/>
+		<rom name="cw06a.ic32" merge="cw06a.ic32" size="131072" crc="f628edc9"/>
+		<rom name="cw14a.ic51" merge="cw14a.ic51" size="131072" crc="a9131f5f"/>
+		<rom name="cw05a.ic31" merge="cw05a.ic31" size="131072" crc="c8f5faa9"/>
+		<rom name="cw13a.ic50" merge="cw13a.ic50" size="131072" crc="8091d381"/>
+		<rom name="cw07a.ic33" merge="cw07a.ic33" size="131072" crc="314579b5"/>
+		<rom name="cw15a.ic52" merge="cw15a.ic52" size="131072" crc="7ed4b721"/>
+		<rom name="cw27.ic128" merge="cw27.ic128" size="131072" crc="2db48a9e"/>
+		<rom name="cw30.ic73" merge="cw30.ic73" size="131072" crc="331d0711"/>
+		<rom name="cw29.ic72" merge="cw29.ic72" size="131072" crc="64dd519c"/>
+		<rom name="cw28.ic71" merge="cw28.ic71" size="131072" crc="3fc568ed"/>
+		<rom name="cw24a.ic39" merge="cw24a.ic39" size="131072" crc="22600cba"/>
+		<rom name="cw25a.ic40" merge="cw25a.ic40" size="131072" crc="372c6bc8"/>
+		<video type="raster" orientation="horizontal" width="320" height="240" aspectx="4" aspecty="3"/>
+		<driver status="good"/>
+	</game>
+	<game name="cyclwarr" sourcefile="pst90s/d_cyclwarr.cpp">
+		<description>Cycle Warriors (Rev. C)</description>
+		<year>1991</year>
+		<manufacturer>Tatsumi</manufacturer>
+		<rom name="cw16c.ic77" size="131072" crc="4d88892b"/>
+		<rom name="cw18c.ic98" size="131072" crc="4ff56209"/>
+		<rom name="cw17b.ic78" size="131072" crc="da998afc"/>
+		<rom name="cw19b.ic99" size="131072" crc="c15a8413"/>
+		<rom name="cw20b.ic100" size="131072" crc="4d75292a"/>
+		<rom name="cw22b.ic102" size="131072" crc="0aec0ba4"/>
+		<rom name="cw21.ic101" size="131072" crc="ed90d956"/>
+		<rom name="cw23.ic103" size="131072" crc="009cdc78"/>
+		<rom name="cw26a.ic91" size="65536" crc="f7a70e3a"/>
+		<rom name="cw00a.ic26" size="131072" crc="058a77f1"/>
+		<rom name="cw08a.ic45" size="131072" crc="f53993e7"/>
+		<rom name="cw02a.ic28" size="131072" crc="4dadf3cb"/>
+		<rom name="cw10a.ic47" size="131072" crc="3b7cd251"/>
+		<rom name="cw01a.ic27" size="131072" crc="7c639948"/>
+		<rom name="cw09a.ic46" size="131072" crc="4ba24af5"/>
+		<rom name="cw03a.ic29" size="131072" crc="3ca6f98e"/>
+		<rom name="cw11a.ic48" size="131072" crc="5d760392"/>
+		<rom name="cw04a.ic30" size="131072" crc="f05f594d"/>
+		<rom name="cw12a.ic49" size="131072" crc="4ac07e8b"/>
+		<rom name="cw06a.ic32" size="131072" crc="f628edc9"/>
+		<rom name="cw14a.ic51" size="131072" crc="a9131f5f"/>
+		<rom name="cw05a.ic31" size="131072" crc="c8f5faa9"/>
+		<rom name="cw13a.ic50" size="131072" crc="8091d381"/>
+		<rom name="cw07a.ic33" size="131072" crc="314579b5"/>
+		<rom name="cw15a.ic52" size="131072" crc="7ed4b721"/>
+		<rom name="cw27.ic128" size="131072" crc="2db48a9e"/>
+		<rom name="cw30.ic73" size="131072" crc="331d0711"/>
+		<rom name="cw29.ic72" size="131072" crc="64dd519c"/>
+		<rom name="cw28.ic71" size="131072" crc="3fc568ed"/>
+		<rom name="cw24a.ic39" size="131072" crc="22600cba"/>
+		<rom name="cw25a.ic40" size="131072" crc="372c6bc8"/>
+		<video type="raster" orientation="horizontal" width="320" height="240" aspectx="4" aspecty="3"/>
+		<driver status="good"/>
+	</game>
+	<game name="cyclwarrb" cloneof="cyclwarr" romof="cyclwarr" sourcefile="pst90s/d_cyclwarr.cpp">
+		<description>Cycle Warriors</description>
+		<year>1991</year>
+		<manufacturer>Tatsumi</manufacturer>
+		<rom name="cw16.ic77" size="131072" crc="47d57cf9"/>
+		<rom name="cw18.ic98" size="131072" crc="7d541f9e"/>
+		<rom name="cw17.ic78" size="131072" crc="008bdf09"/>
+		<rom name="cw19.ic99" size="131072" crc="e82244e0"/>
+		<rom name="cw20.ic100" size="131072" crc="c7a6fa85"/>
+		<rom name="cw22.ic102" size="131072" crc="917c1a2a"/>
+		<rom name="cw21.ic101" merge="cw21.ic101" size="131072" crc="ed90d956"/>
+		<rom name="cw23.ic103" merge="cw23.ic103" size="131072" crc="009cdc78"/>
+		<rom name="cw26.ic91" size="65536" crc="a6485a3a"/>
+		<rom name="cw00.ic26" size="131072" crc="ba00c582"/>
+		<rom name="cw08.ic45" size="131072" crc="1583e576"/>
+		<rom name="cw02.ic28" size="131072" crc="8376a744"/>
+		<rom name="cw10.ic47" size="131072" crc="901d849d"/>
+		<rom name="cw01.ic27" size="131072" crc="35979022"/>
+		<rom name="cw09.ic46" size="131072" crc="8114be09"/>
+		<rom name="cw03.ic29" size="131072" crc="951ed812"/>
+		<rom name="cw11.ic48" size="131072" crc="a7e5bf0b"/>
+		<rom name="cw04.ic30" size="131072" crc="890ea7b1"/>
+		<rom name="cw12.ic49" size="131072" crc="1587e96d"/>
+		<rom name="cw06.ic32" size="131072" crc="47decb23"/>
+		<rom name="cw14.ic51" size="131072" crc="a75072a1"/>
+		<rom name="cw05.ic31" size="131072" crc="4e49fcc5"/>
+		<rom name="cw13.ic50" size="131072" crc="51aee710"/>
+		<rom name="cw07.ic33" size="131072" crc="4f6b3c72"/>
+		<rom name="cw15.ic52" size="131072" crc="9cfc3b14"/>
+		<rom name="cw27.ic128" merge="cw27.ic128" size="131072" crc="2db48a9e"/>
+		<rom name="cw30.ic73" merge="cw30.ic73" size="131072" crc="331d0711"/>
+		<rom name="cw29.ic72" merge="cw29.ic72" size="131072" crc="64dd519c"/>
+		<rom name="cw28.ic71" merge="cw28.ic71" size="131072" crc="3fc568ed"/>
+		<rom name="cw24.ic39" size="131072" crc="08656756"/>
+		<rom name="cw25.ic40" size="131072" crc="36c0b8a6"/>
+		<video type="raster" orientation="horizontal" width="320" height="240" aspectx="4" aspecty="3"/>
+		<driver status="good"/>
 	</game>
 	<game name="cyvernj" cloneof="cyvern" romof="cyvern" sourcefile="pst90s/d_suprnova.cpp">
 		<description>Cyvern - The Dragon Weapons (Japan)</description>
@@ -58201,12 +58502,12 @@
 		<description>Food Fight - Neo Geo Conversion (HB)</description>
 		<year>2025</year>
 		<manufacturer>iq_132</manufacturer>
-		<rom name="foodfight_p1.p1" size="524288" crc="455a609f"/>
-		<rom name="foodfight_s1.s1" size="131072" crc="6956d778"/>
-		<rom name="foodfight_c1.c1" size="524288" crc="7b4ca9e3"/>
-		<rom name="foodfight_c2.c2" size="524288" crc="d9f831bb"/>
-		<rom name="foodfight_m1.m1" size="262144" crc="35cb565b"/>
-		<rom name="foodfight_v1.v1" size="524288" crc="16d20386"/>
+		<rom name="foodfight-p1.p1" size="524288" crc="455a609f"/>
+		<rom name="foodfight-s1.s1" size="131072" crc="6956d778"/>
+		<rom name="foodfight-c1.c1" size="524288" crc="7b4ca9e3"/>
+		<rom name="foodfight-c2.c2" size="524288" crc="d9f831bb"/>
+		<rom name="foodfight-m1.m1" size="262144" crc="35cb565b"/>
+		<rom name="foodfight-v1.v1" size="524288" crc="16d20386"/>
 		<rom name="sp-s3.sp1" merge="sp-s3.sp1" size="131072" crc="91b64be3"/>
 		<rom name="sp-s2.sp1" merge="sp-s2.sp1" size="131072" crc="9036d879"/>
 		<rom name="sp-s.sp1" merge="sp-s.sp1" size="131072" crc="c7f2fa45"/>
@@ -73136,15 +73437,15 @@
 	</game>
 	<game name="hangonng" romof="neogeo" sourcefile="neogeo/d_neogeo.cpp">
 		<comment>Homebrew</comment>
-		<description>Hang-On - Neo Geo Conversion (HB, v2.0)</description>
+		<description>Hang-On - Neo Geo Conversion (HB, v2.1)</description>
 		<year>2026</year>
 		<manufacturer>ShinobiZ</manufacturer>
-		<rom name="hangonng-p1.p1" size="1048576" crc="317040d4"/>
+		<rom name="hangonng-p1.p1" size="1048576" crc="8cdee388"/>
 		<rom name="hangonng-p2.p2" size="5242880" crc="500b59ea"/>
 		<rom name="hangonng-s1.s1" size="131072" crc="72b4653d"/>
 		<rom name="hangonng-c1.c1" size="8388608" crc="4440a35d"/>
 		<rom name="hangonng-c2.c2" size="8388608" crc="83018efe"/>
-		<rom name="hangonng-m1.m1" size="262144" crc="9c53a21d"/>
+		<rom name="hangonng-m1.m1" size="262144" crc="ca5311b0"/>
 		<rom name="hangonng-v1.v1" size="2097152" crc="3aed32bd"/>
 		<rom name="sp-s3.sp1" merge="sp-s3.sp1" size="131072" crc="91b64be3"/>
 		<rom name="sp-s2.sp1" merge="sp-s2.sp1" size="131072" crc="9036d879"/>
@@ -80862,6 +81163,17 @@
 		<rom name="afega_af1-sp.uc13" size="2097152" crc="7d4d4985"/>
 		<rom name="afega1.u95" merge="afega1.u95" size="262144" crc="e911ce33"/>
 		<video type="raster" orientation="vertical" width="224" height="256" aspectx="3" aspecty="4"/>
+		<driver status="good"/>
+	</game>
+	<game name="jetpac" sourcefile="taito/d_taitol.cpp">
+		<description>Jetpac (HB)</description>
+		<year>2026</year>
+		<manufacturer>Tardis Remakes</manufacturer>
+		<rom name="jp-ic10" size="61440" crc="f06281c4"/>
+		<rom name="jp-b96-07.ic9" size="65536" crc="83e284a4"/>
+		<rom name="jp-b96-08.ic8" size="65536" crc="d714c279"/>
+		<rom name="jp-gal16v8-b86-04.bin" size="279" crc="bf8c0ea0"/>
+		<video type="raster" orientation="horizontal" width="320" height="224" aspectx="4" aspecty="3"/>
 		<driver status="good"/>
 	</game>
 	<game name="samesamecn" cloneof="fireshrk" romof="fireshrk" sourcefile="toaplan/d_toaplan1.cpp">
@@ -96606,12 +96918,12 @@
 		<description>Maiya: Super Nature Girl (HB, v4)</description>
 		<year>2026</year>
 		<manufacturer>Eagle Software</manufacturer>
-		<rom name="maiya_p1.p1" size="524288" crc="5fe28a51"/>
-		<rom name="maiya_s1.s1" size="131072" crc="5c7951e1"/>
-		<rom name="maiya_c1.c1" size="4194304" crc="48638505"/>
-		<rom name="maiya_c2.c2" size="4194304" crc="66a5c0e2"/>
-		<rom name="maiya_m1.m1" size="131072" crc="ce7717bd"/>
-		<rom name="maiya_v1.v1" size="7973632" crc="127b89b4"/>
+		<rom name="maiya-p1.p1" size="524288" crc="5fe28a51"/>
+		<rom name="maiya-s1.s1" size="131072" crc="5c7951e1"/>
+		<rom name="maiya-c1.c1" size="4194304" crc="48638505"/>
+		<rom name="maiya-c2.c2" size="4194304" crc="66a5c0e2"/>
+		<rom name="maiya-m1.m1" size="131072" crc="ce7717bd"/>
+		<rom name="maiya-v1.v1" size="7973632" crc="127b89b4"/>
 		<rom name="sp-s3.sp1" merge="sp-s3.sp1" size="131072" crc="91b64be3"/>
 		<rom name="sp-s2.sp1" merge="sp-s2.sp1" size="131072" crc="9036d879"/>
 		<rom name="sp-s.sp1" merge="sp-s.sp1" size="131072" crc="c7f2fa45"/>
@@ -98836,6 +99148,35 @@
 		<video type="raster" orientation="horizontal" width="384" height="224" aspectx="4" aspecty="3"/>
 		<driver status="good"/>
 	</game>
+	<game name="mshtag" cloneof="msh" romof="msh" sourcefile="capcom/d_cps2.cpp">
+		<comment>Hack</comment>
+		<description>Marvel Super Heroes (Hack, Tag v1.2)</description>
+		<year>2026</year>
+		<manufacturer>Morphus56K</manufacturer>
+		<rom name="mshtag.03e" size="524288" crc="d8fb6f4d"/>
+		<rom name="mshtag.04e" size="524288" crc="8f3ffa14"/>
+		<rom name="msh.05" merge="msh.05" size="524288" crc="6a091b9e"/>
+		<rom name="mshtag.06b" size="524288" crc="030e5eaf"/>
+		<rom name="msh.07a" merge="msh.07a" size="524288" crc="c45f8e27"/>
+		<rom name="msh.08a" merge="msh.08a" size="524288" crc="9ca6f12c"/>
+		<rom name="msh.09a" merge="msh.09a" size="524288" crc="82ec27af"/>
+		<rom name="mshtag.10b" size="524288" crc="bfb42012"/>
+		<rom name="mshtag.13m" size="4194304" crc="26c49fc8"/>
+		<rom name="mshtag.15m" size="4194304" crc="a2d26059"/>
+		<rom name="mshtag.17m" size="4194304" crc="5102b5d3"/>
+		<rom name="mshtag.19m" size="4194304" crc="0a54dd29"/>
+		<rom name="msh.14m" merge="msh.14m" size="4194304" crc="4197973e"/>
+		<rom name="msh.16m" merge="msh.16m" size="4194304" crc="438da4a0"/>
+		<rom name="msh.18m" merge="msh.18m" size="4194304" crc="4db92d94"/>
+		<rom name="msh.20m" merge="msh.20m" size="4194304" crc="a2b0c6c0"/>
+		<rom name="msh.01" merge="msh.01" size="131072" crc="c976e6f9"/>
+		<rom name="msh.02" merge="msh.02" size="131072" crc="ce67d0d9"/>
+		<rom name="msh.11m" merge="msh.11m" size="2097152" crc="37ac6d30"/>
+		<rom name="msh.12m" merge="msh.12m" size="2097152" crc="de092570"/>
+		<rom name="msh.key" merge="msh.key" size="20" crc="b494368e"/>
+		<video type="raster" orientation="horizontal" width="384" height="224" aspectx="4" aspecty="3"/>
+		<driver status="good"/>
+	</game>
 	<game name="mshh" cloneof="msh" romof="msh" sourcefile="capcom/d_cps2.cpp">
 		<description>Marvel Super Heroes (Hispanic 951117)</description>
 		<year>1995</year>
@@ -99712,6 +100053,35 @@
 		<rom name="mvc.11m" size="4194304" crc="850fe663"/>
 		<rom name="mvc.12m" size="4194304" crc="7ccb1896"/>
 		<rom name="mvsc.key" size="20" crc="7e101e09"/>
+		<video type="raster" orientation="horizontal" width="384" height="224" aspectx="4" aspecty="3"/>
+		<driver status="good"/>
+	</game>
+	<game name="mvscdhc" cloneof="mvsc" romof="mvsc" sourcefile="capcom/d_cps2.cpp">
+		<comment>Hack</comment>
+		<description>Marvel Vs. Capcom: Clash of Super Heroes (Hack, Delayed Hyper Combo v11)</description>
+		<year>2026</year>
+		<manufacturer>Morphus56K</manufacturer>
+		<rom name="mvcdhc.03a" size="524288" crc="a3fdb671"/>
+		<rom name="mvcdhc.04a" size="524288" crc="fb443dee"/>
+		<rom name="mvc.05a" merge="mvc.05a" size="524288" crc="2d8c8e86"/>
+		<rom name="mvcdhc.06a" size="524288" crc="235ddeed"/>
+		<rom name="mvcdhc.07" size="524288" crc="1f7405c9"/>
+		<rom name="mvcdhc.08" size="524288" crc="4f104120"/>
+		<rom name="mvc.09" merge="mvc.09" size="524288" crc="c67b26df"/>
+		<rom name="mvcdhc.10" size="524288" crc="1be958c3"/>
+		<rom name="mvcdhc.13m" size="4194304" crc="a0a107b2"/>
+		<rom name="mvcdhc.15m" size="4194304" crc="15c57146"/>
+		<rom name="mvcdhc.17m" size="4194304" crc="16d380c7"/>
+		<rom name="mvcdhc.19m" size="4194304" crc="73c64cea"/>
+		<rom name="mvcdhc.14m" size="4194304" crc="2ce8d7ea"/>
+		<rom name="mvcdhc.16m" size="4194304" crc="77dff5d0"/>
+		<rom name="mvcdhc.18m" size="4194304" crc="c50cf2d2"/>
+		<rom name="mvcdhc.20m" size="4194304" crc="252a65f7"/>
+		<rom name="mvc.01" merge="mvc.01" size="131072" crc="41629e95"/>
+		<rom name="mvc.02" merge="mvc.02" size="131072" crc="963abf6b"/>
+		<rom name="mvc.11m" merge="mvc.11m" size="4194304" crc="850fe663"/>
+		<rom name="mvc.12m" merge="mvc.12m" size="4194304" crc="7ccb1896"/>
+		<rom name="mvsc.key" merge="mvsc.key" size="20" crc="7e101e09"/>
 		<video type="raster" orientation="horizontal" width="384" height="224" aspectx="4" aspecty="3"/>
 		<driver status="good"/>
 	</game>
@@ -112409,6 +112779,34 @@
 		<rom name="l1_mortal_kombat_3_u116_game_rom.u116" size="524288" crc="ba246ad0"/>
 		<rom name="l1_mortal_kombat_3_u115_game_rom.u115" size="524288" crc="3ee8b124"/>
 		<rom name="l1_mortal_kombat_3_u114_game_rom.u114" size="524288" crc="a8d99922"/>
+		<video type="raster" orientation="horizontal" width="400" height="254" aspectx="4" aspecty="3"/>
+		<driver status="good"/>
+	</game>
+	<game name="mk2rev4" cloneof="mk2" romof="mk2" sourcefile="midway/d_tunit.cpp">
+		<comment>Hack</comment>
+		<description>Mortal Kombat II (rev 4.0)</description>
+		<year>2026</year>
+		<manufacturer>Midway (recompiled from source)</manufacturer>
+		<rom name="mk2rev4.uj12" size="524288" crc="fd23dd93"/>
+		<rom name="mk2rev4.ug12" size="524288" crc="d40d34fd"/>
+		<rom name="mk2rev4.u2" size="524288" crc="fff86ce6"/>
+		<rom name="mk2rev4.u3" size="524288" crc="a5d9baa8"/>
+		<rom name="mk2rev4.u4" size="524288" crc="51ef6866"/>
+		<rom name="mk2rev4.u5" size="524288" crc="373de0e7"/>
+		<rom name="mk2rev4.u6" size="524288" crc="b05d11bf"/>
+		<rom name="mk2rev4.u7" size="524288" crc="a51de7aa"/>
+		<rom name="mk2rev4.ug14" size="1048576" crc="9c864f0f"/>
+		<rom name="mk2rev4.uj14" size="1048576" crc="3314f622"/>
+		<rom name="mk2rev4.ug19" size="1048576" crc="e768a4ce"/>
+		<rom name="mk2rev4.uj19" size="1048576" crc="04305b16"/>
+		<rom name="mk2rev4.ug16" size="1048576" crc="1e5325f3"/>
+		<rom name="mk2rev4.uj16" size="1048576" crc="8004a3b6"/>
+		<rom name="mk2rev4.ug20" size="1048576" crc="0c929fba"/>
+		<rom name="mk2rev4.uj20" size="1048576" crc="7ed4ba0d"/>
+		<rom name="mk2rev4.ug17" size="1048576" crc="3924479e"/>
+		<rom name="mk2rev4.uj17" size="1048576" crc="a1af4391"/>
+		<rom name="mk2rev4.ug22" size="1048576" crc="d7bd61c3"/>
+		<rom name="mk2rev4.uj22" size="1048576" crc="53dc6b89"/>
 		<video type="raster" orientation="horizontal" width="400" height="254" aspectx="4" aspecty="3"/>
 		<driver status="good"/>
 	</game>
@@ -144275,7 +144673,7 @@
 		<video type="raster" orientation="vertical" width="236" height="272" aspectx="3" aspecty="4"/>
 		<driver status="preliminary"/>
 	</game>
-	<game name="revxp5" cloneof="revx1" romof="revx1" sourcefile="midway/d_xunit.cpp">
+	<game name="revxp5" cloneof="revx" romof="revx" sourcefile="midway/d_xunit.cpp">
 		<comment>Prototype</comment>
 		<description>Revolution X (prototype, revision 5.0 5/23/94)</description>
 		<year>1994</year>
@@ -144327,8 +144725,59 @@
 		<video type="raster" orientation="horizontal" width="400" height="254" aspectx="4" aspecty="3"/>
 		<driver status="good"/>
 	</game>
-	<game name="revx1" sourcefile="midway/d_xunit.cpp">
+	<game name="revx1" cloneof="revx" romof="revx" sourcefile="midway/d_xunit.cpp">
 		<description>Revolution X (revision 1.0 6/16/94)</description>
+		<year>1994</year>
+		<manufacturer>Midway</manufacturer>
+		<rom name="l1_revolution_x_sound_rom_u2.u2" merge="l1_revolution_x_sound_rom_u2.u2" size="524288" crc="d2ed9f5e"/>
+		<rom name="l1_revolution_x_sound_rom_u3.u3" merge="l1_revolution_x_sound_rom_u3.u3" size="524288" crc="af8f253b"/>
+		<rom name="l1_revolution_x_sound_rom_u4.u4" merge="l1_revolution_x_sound_rom_u4.u4" size="524288" crc="3ccce59c"/>
+		<rom name="l1_revolution_x_sound_rom_u5.u5" merge="l1_revolution_x_sound_rom_u5.u5" size="524288" crc="a0438006"/>
+		<rom name="l1_revolution_x_sound_rom_u6.u6" merge="l1_revolution_x_sound_rom_u6.u6" size="524288" crc="b7b34f60"/>
+		<rom name="l1_revolution_x_sound_rom_u7.u7" merge="l1_revolution_x_sound_rom_u7.u7" size="524288" crc="6795fd88"/>
+		<rom name="l1_revolution_x_sound_rom_u8.u8" merge="l1_revolution_x_sound_rom_u8.u8" size="524288" crc="793a7eb5"/>
+		<rom name="l1_revolution_x_sound_rom_u9.u9" merge="l1_revolution_x_sound_rom_u9.u9" size="524288" crc="14ddbea1"/>
+		<rom name="l1_revolution_x_game_rom_u51.u51" size="524288" crc="9960ac7c"/>
+		<rom name="l1_revolution_x_game_rom_u52.u52" size="524288" crc="fbf55510"/>
+		<rom name="l1_revolution_x_game_rom_u53.u53" size="524288" crc="a045b265"/>
+		<rom name="l1_revolution_x_game_rom_u54.u54" size="524288" crc="24471269"/>
+		<rom name="419_revolution-x_u444.u444" merge="419_revolution-x_u444.u444" size="8192" crc="7df57330"/>
+		<rom name="p5_revolution_x_game_rom_u120.u120" merge="p5_revolution_x_game_rom_u120.u120" size="524288" crc="523af1f0"/>
+		<rom name="p5_revolution_x_game_rom_u121.u121" merge="p5_revolution_x_game_rom_u121.u121" size="524288" crc="78201d93"/>
+		<rom name="p5_revolution_x_game_rom_u122.u122" merge="p5_revolution_x_game_rom_u122.u122" size="524288" crc="2cf36144"/>
+		<rom name="p5_revolution_x_game_rom_u123.u123" merge="p5_revolution_x_game_rom_u123.u123" size="524288" crc="6912e1fb"/>
+		<rom name="p5_revolution_x_game_rom_u110.u110" merge="p5_revolution_x_game_rom_u110.u110" size="524288" crc="e3f7f0af"/>
+		<rom name="p5_revolution_x_game_rom_u111.u111" merge="p5_revolution_x_game_rom_u111.u111" size="524288" crc="49fe1a69"/>
+		<rom name="p5_revolution_x_game_rom_u112.u112" merge="p5_revolution_x_game_rom_u112.u112" size="524288" crc="7e3ba175"/>
+		<rom name="p5_revolution_x_game_rom_u113.u113" merge="p5_revolution_x_game_rom_u113.u113" size="524288" crc="c0817583"/>
+		<rom name="p5_revolution_x_game_rom_u101.u101" merge="p5_revolution_x_game_rom_u101.u101" size="524288" crc="5a08272a"/>
+		<rom name="p5_revolution_x_game_rom_u102.u102" merge="p5_revolution_x_game_rom_u102.u102" size="524288" crc="11d567d2"/>
+		<rom name="p5_revolution_x_game_rom_u103.u103" merge="p5_revolution_x_game_rom_u103.u103" size="524288" crc="d338e63b"/>
+		<rom name="p5_revolution_x_game_rom_u104.u104" merge="p5_revolution_x_game_rom_u104.u104" size="524288" crc="f7b701ee"/>
+		<rom name="p5_revolution_x_game_rom_u91.u91" merge="p5_revolution_x_game_rom_u91.u91" size="524288" crc="52a63713"/>
+		<rom name="p5_revolution_x_game_rom_u92.u92" merge="p5_revolution_x_game_rom_u92.u92" size="524288" crc="fae3621b"/>
+		<rom name="p5_revolution_x_game_rom_u93.u93" merge="p5_revolution_x_game_rom_u93.u93" size="524288" crc="7065cf95"/>
+		<rom name="p5_revolution_x_game_rom_u94.u94" merge="p5_revolution_x_game_rom_u94.u94" size="524288" crc="600d5b98"/>
+		<rom name="p5_revolution_x_game_rom_u81.u81" merge="p5_revolution_x_game_rom_u81.u81" size="524288" crc="729eacb1"/>
+		<rom name="p5_revolution_x_game_rom_u82.u82" merge="p5_revolution_x_game_rom_u82.u82" size="524288" crc="19acb904"/>
+		<rom name="p5_revolution_x_game_rom_u83.u83" merge="p5_revolution_x_game_rom_u83.u83" size="524288" crc="0e223456"/>
+		<rom name="p5_revolution_x_game_rom_u84.u84" merge="p5_revolution_x_game_rom_u84.u84" size="524288" crc="d3de0192"/>
+		<rom name="p5_revolution_x_game_rom_u71.u71" merge="p5_revolution_x_game_rom_u71.u71" size="524288" crc="2b29fddb"/>
+		<rom name="p5_revolution_x_game_rom_u72.u72" merge="p5_revolution_x_game_rom_u72.u72" size="524288" crc="2680281b"/>
+		<rom name="p5_revolution_x_game_rom_u73.u73" merge="p5_revolution_x_game_rom_u73.u73" size="524288" crc="420bde4d"/>
+		<rom name="p5_revolution_x_game_rom_u74.u74" merge="p5_revolution_x_game_rom_u74.u74" size="524288" crc="26627410"/>
+		<rom name="p5_revolution_x_game_rom_u63.u63" merge="p5_revolution_x_game_rom_u63.u63" size="524288" crc="3066e3f3"/>
+		<rom name="p5_revolution_x_game_rom_u64.u64" merge="p5_revolution_x_game_rom_u64.u64" size="524288" crc="c33f5309"/>
+		<rom name="p5_revolution_x_game_rom_u65.u65" merge="p5_revolution_x_game_rom_u65.u65" size="524288" crc="6eee3e71"/>
+		<rom name="p5_revolution_x_game_rom_u66.u66" merge="p5_revolution_x_game_rom_u66.u66" size="524288" crc="b43d6fff"/>
+		<rom name="a-17722.u1" merge="a-17722.u1" size="279" crc="054de7a3"/>
+		<rom name="a-17721.u955" merge="a-17721.u955" size="279" crc="033fe902"/>
+		<rom name="snd-gal16v8a.u17" size="279" status="nodump"/>
+		<video type="raster" orientation="horizontal" width="400" height="254" aspectx="4" aspecty="3"/>
+		<driver status="good"/>
+	</game>
+	<game name="revx" sourcefile="midway/d_xunit.cpp">
+		<description>Revolution X (revision 2.0 9/8/94)</description>
 		<year>1994</year>
 		<manufacturer>Midway</manufacturer>
 		<rom name="l1_revolution_x_sound_rom_u2.u2" size="524288" crc="d2ed9f5e"/>
@@ -144339,10 +144788,10 @@
 		<rom name="l1_revolution_x_sound_rom_u7.u7" size="524288" crc="6795fd88"/>
 		<rom name="l1_revolution_x_sound_rom_u8.u8" size="524288" crc="793a7eb5"/>
 		<rom name="l1_revolution_x_sound_rom_u9.u9" size="524288" crc="14ddbea1"/>
-		<rom name="l1_revolution_x_game_rom_u51.u51" size="524288" crc="9960ac7c"/>
-		<rom name="l1_revolution_x_game_rom_u52.u52" size="524288" crc="fbf55510"/>
-		<rom name="l1_revolution_x_game_rom_u53.u53" size="524288" crc="a045b265"/>
-		<rom name="l1_revolution_x_game_rom_u54.u54" size="524288" crc="24471269"/>
+		<rom name="revx_l2.0_u51.u51" size="524288" crc="2c996003"/>
+		<rom name="revx_l2.0_u52.u52" size="524288" crc="f1d4d6fb"/>
+		<rom name="revx_l2.0_u53.u53" size="524288" crc="59ca7084"/>
+		<rom name="revx_l2.0_u54.u54" size="524288" crc="4f577dd9"/>
 		<rom name="419_revolution-x_u444.u444" size="8192" crc="7df57330"/>
 		<rom name="p5_revolution_x_game_rom_u120.u120" size="524288" crc="523af1f0"/>
 		<rom name="p5_revolution_x_game_rom_u121.u121" size="524288" crc="78201d93"/>
@@ -144377,57 +144826,6 @@
 		<rom name="snd-gal16v8a.u17" size="279" status="nodump"/>
 		<video type="raster" orientation="horizontal" width="400" height="254" aspectx="4" aspecty="3"/>
 		<driver status="good"/>
-	</game>
-	<game name="revx" cloneof="revx1" romof="revx1" sourcefile="midway/d_xunit.cpp">
-		<description>Revolution X (revision 2.0 9/8/94)</description>
-		<year>1994</year>
-		<manufacturer>Midway</manufacturer>
-		<rom name="l1_revolution_x_sound_rom_u2.u2" merge="l1_revolution_x_sound_rom_u2.u2" size="524288" crc="d2ed9f5e"/>
-		<rom name="l1_revolution_x_sound_rom_u3.u3" merge="l1_revolution_x_sound_rom_u3.u3" size="524288" crc="af8f253b"/>
-		<rom name="l1_revolution_x_sound_rom_u4.u4" merge="l1_revolution_x_sound_rom_u4.u4" size="524288" crc="3ccce59c"/>
-		<rom name="l1_revolution_x_sound_rom_u5.u5" merge="l1_revolution_x_sound_rom_u5.u5" size="524288" crc="a0438006"/>
-		<rom name="l1_revolution_x_sound_rom_u6.u6" merge="l1_revolution_x_sound_rom_u6.u6" size="524288" crc="b7b34f60"/>
-		<rom name="l1_revolution_x_sound_rom_u7.u7" merge="l1_revolution_x_sound_rom_u7.u7" size="524288" crc="6795fd88"/>
-		<rom name="l1_revolution_x_sound_rom_u8.u8" merge="l1_revolution_x_sound_rom_u8.u8" size="524288" crc="793a7eb5"/>
-		<rom name="l1_revolution_x_sound_rom_u9.u9" merge="l1_revolution_x_sound_rom_u9.u9" size="524288" crc="14ddbea1"/>
-		<rom name="revx_l2.0_u51.u51" size="524288" crc="2c996003"/>
-		<rom name="revx_l2.0_u52.u52" size="524288" crc="f1d4d6fb"/>
-		<rom name="revx_l2.0_u53.u53" size="524288" crc="59ca7084"/>
-		<rom name="revx_l2.0_u54.u54" size="524288" crc="4f577dd9"/>
-		<rom name="419_revolution-x_u444.u444" merge="419_revolution-x_u444.u444" size="8192" crc="7df57330"/>
-		<rom name="p5_revolution_x_game_rom_u120.u120" merge="p5_revolution_x_game_rom_u120.u120" size="524288" crc="523af1f0"/>
-		<rom name="p5_revolution_x_game_rom_u121.u121" merge="p5_revolution_x_game_rom_u121.u121" size="524288" crc="78201d93"/>
-		<rom name="p5_revolution_x_game_rom_u122.u122" merge="p5_revolution_x_game_rom_u122.u122" size="524288" crc="2cf36144"/>
-		<rom name="p5_revolution_x_game_rom_u123.u123" merge="p5_revolution_x_game_rom_u123.u123" size="524288" crc="6912e1fb"/>
-		<rom name="p5_revolution_x_game_rom_u110.u110" merge="p5_revolution_x_game_rom_u110.u110" size="524288" crc="e3f7f0af"/>
-		<rom name="p5_revolution_x_game_rom_u111.u111" merge="p5_revolution_x_game_rom_u111.u111" size="524288" crc="49fe1a69"/>
-		<rom name="p5_revolution_x_game_rom_u112.u112" merge="p5_revolution_x_game_rom_u112.u112" size="524288" crc="7e3ba175"/>
-		<rom name="p5_revolution_x_game_rom_u113.u113" merge="p5_revolution_x_game_rom_u113.u113" size="524288" crc="c0817583"/>
-		<rom name="p5_revolution_x_game_rom_u101.u101" merge="p5_revolution_x_game_rom_u101.u101" size="524288" crc="5a08272a"/>
-		<rom name="p5_revolution_x_game_rom_u102.u102" merge="p5_revolution_x_game_rom_u102.u102" size="524288" crc="11d567d2"/>
-		<rom name="p5_revolution_x_game_rom_u103.u103" merge="p5_revolution_x_game_rom_u103.u103" size="524288" crc="d338e63b"/>
-		<rom name="p5_revolution_x_game_rom_u104.u104" merge="p5_revolution_x_game_rom_u104.u104" size="524288" crc="f7b701ee"/>
-		<rom name="p5_revolution_x_game_rom_u91.u91" merge="p5_revolution_x_game_rom_u91.u91" size="524288" crc="52a63713"/>
-		<rom name="p5_revolution_x_game_rom_u92.u92" merge="p5_revolution_x_game_rom_u92.u92" size="524288" crc="fae3621b"/>
-		<rom name="p5_revolution_x_game_rom_u93.u93" merge="p5_revolution_x_game_rom_u93.u93" size="524288" crc="7065cf95"/>
-		<rom name="p5_revolution_x_game_rom_u94.u94" merge="p5_revolution_x_game_rom_u94.u94" size="524288" crc="600d5b98"/>
-		<rom name="p5_revolution_x_game_rom_u81.u81" merge="p5_revolution_x_game_rom_u81.u81" size="524288" crc="729eacb1"/>
-		<rom name="p5_revolution_x_game_rom_u82.u82" merge="p5_revolution_x_game_rom_u82.u82" size="524288" crc="19acb904"/>
-		<rom name="p5_revolution_x_game_rom_u83.u83" merge="p5_revolution_x_game_rom_u83.u83" size="524288" crc="0e223456"/>
-		<rom name="p5_revolution_x_game_rom_u84.u84" merge="p5_revolution_x_game_rom_u84.u84" size="524288" crc="d3de0192"/>
-		<rom name="p5_revolution_x_game_rom_u71.u71" merge="p5_revolution_x_game_rom_u71.u71" size="524288" crc="2b29fddb"/>
-		<rom name="p5_revolution_x_game_rom_u72.u72" merge="p5_revolution_x_game_rom_u72.u72" size="524288" crc="2680281b"/>
-		<rom name="p5_revolution_x_game_rom_u73.u73" merge="p5_revolution_x_game_rom_u73.u73" size="524288" crc="420bde4d"/>
-		<rom name="p5_revolution_x_game_rom_u74.u74" merge="p5_revolution_x_game_rom_u74.u74" size="524288" crc="26627410"/>
-		<rom name="p5_revolution_x_game_rom_u63.u63" merge="p5_revolution_x_game_rom_u63.u63" size="524288" crc="3066e3f3"/>
-		<rom name="p5_revolution_x_game_rom_u64.u64" merge="p5_revolution_x_game_rom_u64.u64" size="524288" crc="c33f5309"/>
-		<rom name="p5_revolution_x_game_rom_u65.u65" merge="p5_revolution_x_game_rom_u65.u65" size="524288" crc="6eee3e71"/>
-		<rom name="p5_revolution_x_game_rom_u66.u66" merge="p5_revolution_x_game_rom_u66.u66" size="524288" crc="b43d6fff"/>
-		<rom name="a-17722.u1" merge="a-17722.u1" size="279" crc="054de7a3"/>
-		<rom name="a-17721.u955" merge="a-17721.u955" size="279" crc="033fe902"/>
-		<rom name="snd-gal16v8a.u17" size="279" status="nodump"/>
-		<video type="raster" orientation="horizontal" width="400" height="254" aspectx="4" aspecty="3"/>
-		<driver status="preliminary"/>
 	</game>
 	<game name="rezono" cloneof="rezon" romof="rezon" sourcefile="pst90s/d_seta.cpp">
 		<description>Rezon (earlier)</description>
@@ -150170,12 +150568,12 @@
 	</game>
 	<game name="samsho2pe" cloneof="samsho2" romof="samsho2" sourcefile="neogeo/d_neogeo.cpp">
 		<comment>Hack</comment>
-		<description>Samurai Shodown II / Shin Samurai Spirits - Haohmaru Jigokuhen (Perfect V. 2.9, Hack)</description>
+		<description>Samurai Shodown II / Shin Samurai Spirits - Haohmaru Jigokuhen (Perfect V. 3.0, Hack)</description>
 		<year>2023-26</year>
 		<manufacturer>Bear</manufacturer>
-		<rom name="063-p1pe.p1" size="1048576" crc="c47446f7"/>
-		<rom name="063-p2pe.sp2" size="1048576" crc="269e9be3"/>
-		<rom name="063-p3pe.p3" size="131072" crc="7e9083e9"/>
+		<rom name="063-p1pe.p1" size="1048576" crc="b3b0c7df"/>
+		<rom name="063-p2pe.sp2" size="1048576" crc="0efb4875"/>
+		<rom name="063-p3pe.p3" size="131072" crc="5e912569"/>
 		<rom name="063-s1.s1" merge="063-s1.s1" size="131072" crc="64a5cd66"/>
 		<rom name="063-c1.c1" merge="063-c1.c1" size="2097152" crc="86cd307c"/>
 		<rom name="063-c2.c2" merge="063-c2.c2" size="2097152" crc="cdfcc4ca"/>
@@ -159066,6 +159464,58 @@
 		<video type="raster" orientation="horizontal" width="288" height="224" aspectx="4" aspecty="3"/>
 		<driver status="good"/>
 	</game>
+	<game name="skylance" romof="neogeo" sourcefile="neogeo/d_neogeo.cpp">
+		<comment>Homebrew</comment>
+		<description>Sky Lance (HB, RC1)</description>
+		<year>2026</year>
+		<manufacturer>Eagle Software</manufacturer>
+		<rom name="skylance-p1.p1" size="524288" crc="29e1968d"/>
+		<rom name="skylance-s1.s1" size="131072" crc="bd69c9ff"/>
+		<rom name="skylance-c1.c1" size="4194304" crc="e80e7df9"/>
+		<rom name="skylance-c2.c2" size="4194304" crc="0668da32"/>
+		<rom name="skylance-m1.m1" size="131072" crc="cb88d068"/>
+		<rom name="skylance-v1.v1" size="4546304" crc="897c1fbc"/>
+		<rom name="sp-s3.sp1" merge="sp-s3.sp1" size="131072" crc="91b64be3"/>
+		<rom name="sp-s2.sp1" merge="sp-s2.sp1" size="131072" crc="9036d879"/>
+		<rom name="sp-s.sp1" merge="sp-s.sp1" size="131072" crc="c7f2fa45"/>
+		<rom name="sp-u2.sp1" merge="sp-u2.sp1" size="131072" crc="e72943de"/>
+		<rom name="sp1-u2" merge="sp1-u2" size="131072" crc="62f021f4"/>
+		<rom name="sp-e.sp1" merge="sp-e.sp1" size="131072" crc="2723a5b5"/>
+		<rom name="sp1-u4.bin" merge="sp1-u4.bin" size="131072" crc="1179a30f"/>
+		<rom name="sp1-u3.bin" merge="sp1-u3.bin" size="131072" crc="2025b7a2"/>
+		<rom name="vs-bios.rom" merge="vs-bios.rom" size="131072" crc="f0e8f27d"/>
+		<rom name="sp-j2.sp1" merge="sp-j2.sp1" size="131072" crc="acede59c"/>
+		<rom name="sp1.jipan.1024" merge="sp1.jipan.1024" size="131072" crc="9fb0abe4"/>
+		<rom name="sp-45.sp1" merge="sp-45.sp1" size="524288" crc="03cc9f6a"/>
+		<rom name="sp-j3.sp1" merge="sp-j3.sp1" size="524288" crc="486cb450"/>
+		<rom name="japan-j3.bin" merge="japan-j3.bin" size="131072" crc="dff6d41f"/>
+		<rom name="sp1-j3.bin" merge="sp1-j3.bin" size="131072" crc="fbc6d469"/>
+		<rom name="neo-po.bin" merge="neo-po.bin" size="131072" crc="16d0c132"/>
+		<rom name="neo-epo.bin" merge="neo-epo.bin" size="131072" crc="d27a71f1"/>
+		<rom name="neodebug.bin" merge="neodebug.bin" size="131072" crc="698ebb7d"/>
+		<rom name="sp-1v1_3db8c.bin" merge="sp-1v1_3db8c.bin" size="131072" crc="162f0ebe"/>
+		<rom name="uni-bios_4_0.rom" merge="uni-bios_4_0.rom" size="131072" crc="a7aab458"/>
+		<rom name="uni-bios_3_3.rom" merge="uni-bios_3_3.rom" size="131072" crc="24858466"/>
+		<rom name="uni-bios_3_2.rom" merge="uni-bios_3_2.rom" size="131072" crc="a4e8b9b3"/>
+		<rom name="uni-bios_3_1.rom" merge="uni-bios_3_1.rom" size="131072" crc="0c58093f"/>
+		<rom name="uni-bios_3_0.rom" merge="uni-bios_3_0.rom" size="131072" crc="a97c89a9"/>
+		<rom name="uni-bios_2_3.rom" merge="uni-bios_2_3.rom" size="131072" crc="27664eb5"/>
+		<rom name="uni-bios_2_3o.rom" merge="uni-bios_2_3o.rom" size="131072" crc="601720ae"/>
+		<rom name="uni-bios_2_2.rom" merge="uni-bios_2_2.rom" size="131072" crc="2d50996a"/>
+		<rom name="uni-bios_2_1.rom" merge="uni-bios_2_1.rom" size="131072" crc="8dabf76b"/>
+		<rom name="uni-bios_2_0.rom" merge="uni-bios_2_0.rom" size="131072" crc="0c12c2ad"/>
+		<rom name="uni-bios_1_3.rom" merge="uni-bios_1_3.rom" size="131072" crc="b24b44a0"/>
+		<rom name="uni-bios_1_2.rom" merge="uni-bios_1_2.rom" size="131072" crc="4fa698e9"/>
+		<rom name="uni-bios_1_2o.rom" merge="uni-bios_1_2o.rom" size="131072" crc="e19d3ce9"/>
+		<rom name="uni-bios_1_1.rom" merge="uni-bios_1_1.rom" size="131072" crc="5dda0d84"/>
+		<rom name="uni-bios_1_0.rom" merge="uni-bios_1_0.rom" size="131072" crc="0ce453a0"/>
+		<rom name="neopen.sp1" merge="neopen.sp1" size="131072" crc="cb915e76"/>
+		<rom name="sm1.sm1" merge="sm1.sm1" size="131072" crc="94416d67"/>
+		<rom name="sfix.sfix" merge="sfix.sfix" size="131072" crc="c2ea0cfd"/>
+		<rom name="000-lo.lo" merge="000-lo.lo" size="131072" crc="5a86cff2"/>
+		<video type="raster" orientation="horizontal" width="320" height="224" aspectx="4" aspecty="3"/>
+		<driver status="good"/>
+	</game>
 	<game name="skylancre" cloneof="skylancr" romof="skylancr" sourcefile="pre90s/d_funkybee.cpp">
 		<description>Sky Lancer (Esco Trading Co license)</description>
 		<year>1983</year>
@@ -164613,7 +165063,7 @@
 		<description>SQIJ!</description>
 		<year>2018</year>
 		<manufacturer>Sokurah</manufacturer>
-		<rom name="sqij.ic10" size="61440" crc="214ba802"/>
+		<rom name="sqij.ic10" size="61440" crc="793c8b97"/>
 		<rom name="sqij.ic9" size="65536" crc="c4de729b"/>
 		<rom name="sqij.ic8" size="65536" crc="978df42d"/>
 		<rom name="gal16v8-b86-04.bin" size="279" crc="bf8c0ea0"/>
@@ -166720,23 +167170,23 @@
 	</game>
 	<game name="sfa2ds" cloneof="sfz2al" romof="sfz2al" sourcefile="capcom/d_cps2.cpp">
 		<comment>Bootleg</comment>
-		<description>Street Fighter Alpha 2 Dash (Europe, PS2 Backport RC6)</description>
+		<description>Street Fighter Alpha 2 Dash (Europe, PS2 Backport RC7)</description>
 		<year>2026</year>
 		<manufacturer>bootleg</manufacturer>
-		<rom name="sz2ds.03" size="524288" crc="daa64229"/>
-		<rom name="sz2ds.04" size="524288" crc="7e5a7f0f"/>
+		<rom name="sz2ds.03" size="524288" crc="9c4956b7"/>
+		<rom name="sz2ds.04" size="524288" crc="f2b045ba"/>
 		<rom name="sz2ds.05" size="524288" crc="b1c15635"/>
 		<rom name="szaa.06" merge="szaa.06" size="524288" crc="cfc0e7a8"/>
-		<rom name="sz2ds.07" size="524288" crc="455c31c2"/>
-		<rom name="sz2ds.08" size="524288" crc="04fcbf2e"/>
+		<rom name="sz2ds.07" size="524288" crc="7e22f11e"/>
+		<rom name="sz2ds.08" size="524288" crc="1f7691f0"/>
 		<rom name="sz2ds.13m" size="4194304" crc="771fdfaa"/>
 		<rom name="sz2ds.15m" size="4194304" crc="b29bda7a"/>
 		<rom name="sz2ds.17m" size="4194304" crc="c2dca3e0"/>
 		<rom name="sz2ds.19m" size="4194304" crc="e5beeae4"/>
-		<rom name="sza.14m" merge="sza.14m" size="1048576" crc="0560c6aa"/>
-		<rom name="sza.16m" merge="sza.16m" size="1048576" crc="ae940f87"/>
-		<rom name="sza.18m" merge="sza.18m" size="1048576" crc="4bc3c8bc"/>
-		<rom name="sza.20m" merge="sza.20m" size="1048576" crc="39e674c0"/>
+		<rom name="sz2ds.14m" size="1048576" crc="90c44fed"/>
+		<rom name="sz2ds.16m" size="1048576" crc="bab2c323"/>
+		<rom name="sz2ds.18m" size="1048576" crc="09ce96f2"/>
+		<rom name="sz2ds.20m" size="1048576" crc="2898af24"/>
 		<rom name="sz2ds.01" size="131072" crc="81a567c1"/>
 		<rom name="sz2ds.02" size="131072" crc="c45ee83c"/>
 		<rom name="sz2ds.11m" size="4194304" crc="f23db54d"/>
@@ -166747,24 +167197,24 @@
 	</game>
 	<game name="sfa2ex" cloneof="sfz2al" romof="sfz2al" sourcefile="capcom/d_cps2.cpp">
 		<comment>Hack</comment>
-		<description>Street Fighter Alpha 2 EX (Hack, USA RC1)</description>
+		<description>Street Fighter Alpha 2 EX (Hack, USA RC3)</description>
 		<year>2026</year>
 		<manufacturer>Strygo</manufacturer>
-		<rom name="sz2ex.03" size="524288" crc="f361ad05"/>
-		<rom name="sz2ex.04" size="524288" crc="afcf0a4e"/>
+		<rom name="sz2ex.03" size="524288" crc="03c5978c"/>
+		<rom name="sz2ex.04" size="524288" crc="7a3d6732"/>
 		<rom name="sz2ds.05" size="524288" crc="b1c15635"/>
 		<rom name="szaa.06" merge="szaa.06" size="524288" crc="cfc0e7a8"/>
-		<rom name="sz2ex.07" size="524288" crc="bf97619c"/>
-		<rom name="sz2ex.08" size="524288" crc="9ee4e0be"/>
-		<rom name="sz2ex.13m" size="4194304" crc="08d22680"/>
-		<rom name="sz2ex.15m" size="4194304" crc="1a402a21"/>
-		<rom name="sz2ex.17m" size="4194304" crc="7c574c07"/>
-		<rom name="sz2ex.19m" size="4194304" crc="6bed9c85"/>
-		<rom name="sza.14m" merge="sza.14m" size="1048576" crc="0560c6aa"/>
-		<rom name="sza.16m" merge="sza.16m" size="1048576" crc="ae940f87"/>
-		<rom name="sza.18m" merge="sza.18m" size="1048576" crc="4bc3c8bc"/>
-		<rom name="sza.20m" merge="sza.20m" size="1048576" crc="39e674c0"/>
-		<rom name="sz2ds.01" size="131072" crc="81a567c1"/>
+		<rom name="sz2ex.07" size="524288" crc="a37a6f6a"/>
+		<rom name="sz2ex.08" size="524288" crc="9f231db8"/>
+		<rom name="sz2ex.13m" size="4194304" crc="a27253f3"/>
+		<rom name="sz2ex.15m" size="4194304" crc="2a0c5df1"/>
+		<rom name="sz2ex.17m" size="4194304" crc="140cdbb2"/>
+		<rom name="sz2ex.19m" size="4194304" crc="b5beabf6"/>
+		<rom name="sz2ex.14m" size="1048576" crc="33403c39"/>
+		<rom name="sz2ex.16m" size="1048576" crc="f947ab53"/>
+		<rom name="sz2ex.18m" size="1048576" crc="998bcd46"/>
+		<rom name="sz2ex.20m" size="1048576" crc="736317fa"/>
+		<rom name="sz2ex.01" size="131072" crc="fa497904"/>
 		<rom name="sz2ds.02" size="131072" crc="c45ee83c"/>
 		<rom name="sz2ds.11m" size="4194304" crc="f23db54d"/>
 		<rom name="sz2ds.12m" size="4194304" crc="c824a1ea"/>
@@ -166774,23 +167224,23 @@
 	</game>
 	<game name="sfa2gl" cloneof="sfz2al" romof="sfz2al" sourcefile="capcom/d_cps2.cpp">
 		<comment>Bootleg</comment>
-		<description>Street Fighter Alpha 2 Gold (USA, PS2 Backport RC6)</description>
+		<description>Street Fighter Alpha 2 Gold (USA, PS2 Backport RC7)</description>
 		<year>2026</year>
 		<manufacturer>bootleg</manufacturer>
-		<rom name="sz2gl.03" size="524288" crc="0f22578e"/>
-		<rom name="sz2gl.04" size="524288" crc="8b168698"/>
+		<rom name="sz2gl.03" size="524288" crc="94bdce5a"/>
+		<rom name="sz2gl.04" size="524288" crc="09f3e26d"/>
 		<rom name="sz2ds.05" size="524288" crc="b1c15635"/>
 		<rom name="szaa.06" merge="szaa.06" size="524288" crc="cfc0e7a8"/>
-		<rom name="sz2gl.07" size="524288" crc="3fd0b420"/>
-		<rom name="sz2gl.08" size="524288" crc="319c1f41"/>
+		<rom name="sz2gl.07" size="524288" crc="04ae74fc"/>
+		<rom name="sz2gl.08" size="524288" crc="2a16319f"/>
 		<rom name="sz2gl.13m" size="4194304" crc="0be1771d"/>
 		<rom name="sz2gl.15m" size="4194304" crc="895cab31"/>
 		<rom name="sz2gl.17m" size="4194304" crc="118cba69"/>
 		<rom name="sz2gl.19m" size="4194304" crc="463758bc"/>
-		<rom name="sza.14m" merge="sza.14m" size="1048576" crc="0560c6aa"/>
-		<rom name="sza.16m" merge="sza.16m" size="1048576" crc="ae940f87"/>
-		<rom name="sza.18m" merge="sza.18m" size="1048576" crc="4bc3c8bc"/>
-		<rom name="sza.20m" merge="sza.20m" size="1048576" crc="39e674c0"/>
+		<rom name="sz2ds.14m" size="1048576" crc="90c44fed"/>
+		<rom name="sz2ds.16m" size="1048576" crc="bab2c323"/>
+		<rom name="sz2ds.18m" size="1048576" crc="09ce96f2"/>
+		<rom name="sz2ds.20m" size="1048576" crc="2898af24"/>
 		<rom name="sz2ds.01" size="131072" crc="81a567c1"/>
 		<rom name="sz2ds.02" size="131072" crc="c45ee83c"/>
 		<rom name="sz2ds.11m" size="4194304" crc="f23db54d"/>
@@ -166801,11 +167251,11 @@
 	</game>
 	<game name="sfa2re" cloneof="sfa2" romof="sfa2" sourcefile="capcom/d_cps2.cpp">
 		<comment>Hack</comment>
-		<description>Street Fighter Alpha 2 Restoration (Hack, USA RC1)</description>
+		<description>Street Fighter Alpha 2 Restoration (Hack, USA RC2)</description>
 		<year>2026</year>
 		<manufacturer>Strygo</manufacturer>
-		<rom name="sz2re.03b" size="524288" crc="ba5d0534"/>
-		<rom name="sz2re.04b" size="524288" crc="0f245d48"/>
+		<rom name="sz2re.03b" size="524288" crc="f528583f"/>
+		<rom name="sz2re.04b" size="524288" crc="bdc00d52"/>
 		<rom name="sz2j.05b" size="524288" crc="dd224156"/>
 		<rom name="sz2j.06b" size="524288" crc="a45a75a6"/>
 		<rom name="sz2re.07b" size="524288" crc="c6500e15"/>
@@ -167138,21 +167588,21 @@
 	</game>
 	<game name="sfa3re" cloneof="sfa3" romof="sfa3" sourcefile="capcom/d_cps2.cpp">
 		<comment>Hack</comment>
-		<description>Street Fighter Alpha 3 Restoration (Hack, English RC1)</description>
+		<description>Street Fighter Alpha 3 Restoration (Hack, USA RC3)</description>
 		<year>2026</year>
 		<manufacturer>Strygo</manufacturer>
-		<rom name="sz3re.03c" size="524288" crc="8f83a2d7"/>
-		<rom name="sz3re.04c" size="524288" crc="aea73027"/>
+		<rom name="sz3re.03c" size="524288" crc="5a63772b"/>
+		<rom name="sz3re.04c" size="524288" crc="c4746c41"/>
 		<rom name="sz3.05c" merge="sz3.05c" size="524288" crc="57fd0a40"/>
 		<rom name="sz3.06c" merge="sz3.06c" size="524288" crc="f6305f8b"/>
 		<rom name="sz3.07c" merge="sz3.07c" size="524288" crc="6eab0f6f"/>
 		<rom name="sz3re.08c" size="524288" crc="743184e5"/>
-		<rom name="sz3re.09c" size="524288" crc="be2779c3"/>
-		<rom name="sz3re.10b" size="524288" crc="61495b7e"/>
-		<rom name="sz3re.13m" size="4194304" crc="ce8690b4"/>
-		<rom name="sz3re.15m" size="4194304" crc="09e3362a"/>
-		<rom name="sz3re.17m" size="4194304" crc="944c9737"/>
-		<rom name="sz3re.19m" size="4194304" crc="0a9b0b22"/>
+		<rom name="sz3re.09c" size="524288" crc="7e0db66f"/>
+		<rom name="sz3re.10b" size="524288" crc="3108b13e"/>
+		<rom name="sz3re.13m" size="4194304" crc="1cef39bc"/>
+		<rom name="sz3re.15m" size="4194304" crc="1efafa96"/>
+		<rom name="sz3re.17m" size="4194304" crc="794a20f7"/>
+		<rom name="sz3re.19m" size="4194304" crc="8617f745"/>
 		<rom name="sz3re.14m" size="4194304" crc="31bfae76"/>
 		<rom name="sz3re.16m" size="4194304" crc="c366c0ab"/>
 		<rom name="sz3re.18m" size="4194304" crc="be20b9bb"/>
@@ -167392,6 +167842,27 @@
 		<rom name="sfz.11m" merge="sfz.11m" size="2097152" crc="c4b093cd"/>
 		<rom name="sfz.12m" merge="sfz.12m" size="2097152" crc="8bdbc4b4"/>
 		<rom name="phoenix.key" size="20" crc="2cf772b0"/>
+		<video type="raster" orientation="horizontal" width="384" height="224" aspectx="4" aspecty="3"/>
+		<driver status="good"/>
+	</game>
+	<game name="sfare" cloneof="sfa" romof="sfa" sourcefile="capcom/d_cps2.cpp">
+		<comment>Hack</comment>
+		<description>Street Fighter Alpha: Warriors' Dreams Restoration (Hack, USA RC1)</description>
+		<year>2026</year>
+		<manufacturer>Strygo</manufacturer>
+		<rom name="sfzre.03c" size="524288" crc="1cc762a9"/>
+		<rom name="sfzre.04b" size="524288" crc="8d9b2480"/>
+		<rom name="sfzre.05a" size="524288" crc="8cf0a98f"/>
+		<rom name="sfzre.06" size="524288" crc="63b58796"/>
+		<rom name="sfzre.14m" size="2097152" crc="abb29988"/>
+		<rom name="sfzre.16m" size="2097152" crc="2be26e22"/>
+		<rom name="sfzre.18m" size="2097152" crc="c0331453"/>
+		<rom name="sfzre.20m" size="2097152" crc="fa05882c"/>
+		<rom name="sfz.01" merge="sfz.01" size="131072" crc="ffffec7d"/>
+		<rom name="sfz.02" merge="sfz.02" size="131072" crc="45f46a08"/>
+		<rom name="sfz.11m" merge="sfz.11m" size="2097152" crc="c4b093cd"/>
+		<rom name="sfz.12m" merge="sfz.12m" size="2097152" crc="8bdbc4b4"/>
+		<rom name="sfzj.key" size="20" crc="355d85b8"/>
 		<video type="raster" orientation="horizontal" width="384" height="224" aspectx="4" aspecty="3"/>
 		<driver status="good"/>
 	</game>
@@ -172550,20 +173021,69 @@
 		<video type="raster" orientation="horizontal" width="384" height="224" aspectx="4" aspecty="3"/>
 		<driver status="good"/>
 	</game>
+	<game name="sfiii3tag6p" cloneof="sfiii3" romof="sfiii3" sourcefile="cps3/d_cps3.cpp">
+		<comment>Hack</comment>
+		<description>Street Fighter III 3rd Strike: Fight for the Future (Hack, Tag 6 Players, v4.3)</description>
+		<year>2026</year>
+		<manufacturer>Morphus56K</manufacturer>
+		<rom name="sfiii3_japan_nocd.29f400.u2" size="524288" crc="1edc6366"/>
+		<rom name="sfiii3tag-simm1.0" size="2097152" crc="06095f64"/>
+		<rom name="sfiii3tag-simm1.1" size="2097152" crc="c62aeb15"/>
+		<rom name="sfiii3tag6p-simm1.2" size="2097152" crc="665af926"/>
+		<rom name="sfiii3tag6p-simm1.3" size="2097152" crc="45ba277e"/>
+		<rom name="sfiii3tag6p-simm2.0" size="2097152" crc="ed89b9f3"/>
+		<rom name="sfiii3tag6p-simm2.1" size="2097152" crc="1e7c8853"/>
+		<rom name="sfiii3tag6p-simm2.2" size="2097152" crc="e5d0719e"/>
+		<rom name="sfiii3tag6p-simm2.3" size="2097152" crc="6843f894"/>
+		<rom name="sfiii3-simm3.0" merge="sfiii3-simm3.0" size="2097152" crc="7baa1f79"/>
+		<rom name="sfiii3-simm3.1" merge="sfiii3-simm3.1" size="2097152" crc="234bf8fe"/>
+		<rom name="sfiii3-simm3.2" merge="sfiii3-simm3.2" size="2097152" crc="d9ebc308"/>
+		<rom name="sfiii3-simm3.3" merge="sfiii3-simm3.3" size="2097152" crc="293cba77"/>
+		<rom name="sfiii3-simm3.4" merge="sfiii3-simm3.4" size="2097152" crc="6055e747"/>
+		<rom name="sfiii3-simm3.5" merge="sfiii3-simm3.5" size="2097152" crc="499aa6fc"/>
+		<rom name="sfiii3-simm3.6" merge="sfiii3-simm3.6" size="2097152" crc="6c13879e"/>
+		<rom name="sfiii3-simm3.7" merge="sfiii3-simm3.7" size="2097152" crc="cf4f8ede"/>
+		<rom name="sfiii3-simm4.0" merge="sfiii3-simm4.0" size="2097152" crc="091fd5ba"/>
+		<rom name="sfiii3-simm4.1" merge="sfiii3-simm4.1" size="2097152" crc="0bca8917"/>
+		<rom name="sfiii3-simm4.2" merge="sfiii3-simm4.2" size="2097152" crc="a0fd578b"/>
+		<rom name="sfiii3-simm4.3" merge="sfiii3-simm4.3" size="2097152" crc="4bf8c699"/>
+		<rom name="sfiii3-simm4.4" merge="sfiii3-simm4.4" size="2097152" crc="137b8785"/>
+		<rom name="sfiii3-simm4.5" merge="sfiii3-simm4.5" size="2097152" crc="4fb70671"/>
+		<rom name="sfiii3-simm4.6" merge="sfiii3-simm4.6" size="2097152" crc="832374a4"/>
+		<rom name="sfiii3-simm4.7" merge="sfiii3-simm4.7" size="2097152" crc="1c88576d"/>
+		<rom name="sfiii3-simm5.0" merge="sfiii3-simm5.0" size="2097152" crc="c67d9190"/>
+		<rom name="sfiii3-simm5.1" merge="sfiii3-simm5.1" size="2097152" crc="6cb79868"/>
+		<rom name="sfiii3-simm5.2" merge="sfiii3-simm5.2" size="2097152" crc="df69930e"/>
+		<rom name="sfiii3-simm5.3" merge="sfiii3-simm5.3" size="2097152" crc="333754e0"/>
+		<rom name="sfiii3-simm5.4" merge="sfiii3-simm5.4" size="2097152" crc="78f6d417"/>
+		<rom name="sfiii3-simm5.5" merge="sfiii3-simm5.5" size="2097152" crc="8ccad9b1"/>
+		<rom name="sfiii3-simm5.6" merge="sfiii3-simm5.6" size="2097152" crc="85de59e5"/>
+		<rom name="sfiii3-simm5.7" merge="sfiii3-simm5.7" size="2097152" crc="ee7e29b3"/>
+		<rom name="sfiii3-simm6.0" merge="sfiii3-simm6.0" size="2097152" crc="8da69042"/>
+		<rom name="sfiii3-simm6.1" merge="sfiii3-simm6.1" size="2097152" crc="1c8c7ac4"/>
+		<rom name="sfiii3-simm6.2" merge="sfiii3-simm6.2" size="2097152" crc="a671341d"/>
+		<rom name="sfiii3-simm6.3" merge="sfiii3-simm6.3" size="2097152" crc="1a990249"/>
+		<rom name="sfiii3-simm6.4" merge="sfiii3-simm6.4" size="2097152" crc="20cb39ac"/>
+		<rom name="sfiii3-simm6.5" merge="sfiii3-simm6.5" size="2097152" crc="5f844b2f"/>
+		<rom name="sfiii3-simm6.6" merge="sfiii3-simm6.6" size="2097152" crc="450e8d28"/>
+		<rom name="sfiii3-simm6.7" merge="sfiii3-simm6.7" size="2097152" crc="cc5f4187"/>
+		<video type="raster" orientation="horizontal" width="384" height="224" aspectx="4" aspecty="3"/>
+		<driver status="good"/>
+	</game>
 	<game name="sfiii3tag" cloneof="sfiii3" romof="sfiii3" sourcefile="cps3/d_cps3.cpp">
 		<comment>Hack</comment>
 		<description>Street Fighter III 3rd Strike: Fight for the Future (Hack, Tag v4.3)</description>
 		<year>2026</year>
-		<manufacturer>hack</manufacturer>
+		<manufacturer>Morphus56K</manufacturer>
 		<rom name="sfiii3_japan_nocd.29f400.u2" size="524288" crc="1edc6366"/>
 		<rom name="sfiii3tag-simm1.0" size="2097152" crc="06095f64"/>
 		<rom name="sfiii3tag-simm1.1" size="2097152" crc="c62aeb15"/>
-		<rom name="sfiii3tag-simm1.2" size="2097152" crc="665af926"/>
-		<rom name="sfiii3tag-simm1.3" size="2097152" crc="45ba277e"/>
-		<rom name="sfiii3tag-simm2.0" size="2097152" crc="ed89b9f3"/>
-		<rom name="sfiii3tag-simm2.1" size="2097152" crc="1e7c8853"/>
-		<rom name="sfiii3tag-simm2.2" size="2097152" crc="e5d0719e"/>
-		<rom name="sfiii3tag-simm2.3" size="2097152" crc="6843f894"/>
+		<rom name="sfiii3tag-simm1.2" size="2097152" crc="fe41921b"/>
+		<rom name="sfiii3tag-simm1.3" size="2097152" crc="dbb6ce56"/>
+		<rom name="sfiii3tag-simm2.0" size="2097152" crc="87609fab"/>
+		<rom name="sfiii3tag-simm2.1" size="2097152" crc="1100095a"/>
+		<rom name="sfiii3tag-simm2.2" size="2097152" crc="6c3e86da"/>
+		<rom name="sfiii3tag-simm2.3" size="2097152" crc="e3862125"/>
 		<rom name="sfiii3-simm3.0" merge="sfiii3-simm3.0" size="2097152" crc="7baa1f79"/>
 		<rom name="sfiii3-simm3.1" merge="sfiii3-simm3.1" size="2097152" crc="234bf8fe"/>
 		<rom name="sfiii3-simm3.2" merge="sfiii3-simm3.2" size="2097152" crc="d9ebc308"/>
@@ -173920,27 +174440,27 @@
 	</game>
 	<game name="sfz2aldash" cloneof="sfz2al" romof="sfz2al" sourcefile="capcom/d_cps2.cpp">
 		<comment>Hack</comment>
-		<description>Street Fighter Zero 2 Alpha Dash / Gold (Hack, RC2)</description>
+		<description>Street Fighter Zero 2 Alpha Dash / Gold (Hack, v1.2.1)</description>
 		<year>2026</year>
 		<manufacturer>Zer0-NexuS</manufacturer>
-		<rom name="sz2dash.03" size="524288" crc="25779eab"/>
-		<rom name="sz2dash.04" size="524288" crc="737ce842"/>
+		<rom name="sz2dash.03" size="524288" crc="ab1ac222"/>
+		<rom name="sz2dash.04" size="524288" crc="ae70e890"/>
 		<rom name="szaa.05" merge="szaa.05" size="524288" crc="f053a55e"/>
 		<rom name="szaa.06" merge="szaa.06" size="524288" crc="cfc0e7a8"/>
-		<rom name="sz2dash.07" size="524288" crc="4e2c92ee"/>
-		<rom name="sz2dash.08" size="524288" crc="cccc750c"/>
-		<rom name="sz2dash.13m" size="4194304" crc="ba450a7e"/>
-		<rom name="sz2dash.15m" size="4194304" crc="df1728ae"/>
-		<rom name="sz2dash.17m" size="4194304" crc="21044cb9"/>
-		<rom name="sz2dash.19m" size="4194304" crc="72234cf0"/>
+		<rom name="sz2dash.07" size="524288" crc="be2178e3"/>
+		<rom name="sz2dash.08" size="524288" crc="90e4727a"/>
+		<rom name="sz2dash.13m" size="4194304" crc="18f746b2"/>
+		<rom name="sz2dash.15m" size="4194304" crc="7d3ba3aa"/>
+		<rom name="sz2dash.17m" size="4194304" crc="0a6a6660"/>
+		<rom name="sz2dash.19m" size="4194304" crc="65ab1a0f"/>
 		<rom name="sz2dash.14m" size="1048576" crc="445c63d2"/>
 		<rom name="sz2dash.16m" size="1048576" crc="87eff508"/>
 		<rom name="sz2dash.18m" size="1048576" crc="f1d8c9d8"/>
 		<rom name="sz2dash.20m" size="1048576" crc="f874c20e"/>
-		<rom name="sz2dash.01a" size="131072" crc="3bc82c35"/>
+		<rom name="sz2dash.01a" size="131072" crc="ef593e8a"/>
 		<rom name="sz2dash.02a" size="131072" crc="f6a8628b"/>
-		<rom name="sz2dash.11m" size="2097152" crc="ce184e92"/>
-		<rom name="sz2dash.12m" size="2097152" crc="08860e2a"/>
+		<rom name="sz2dash.11m" size="2097152" crc="f8cce5f7"/>
+		<rom name="sz2dash.12m" size="2097152" crc="6bd3daee"/>
 		<rom name="phoenix.key" size="20" crc="2cf772b0"/>
 		<video type="raster" orientation="horizontal" width="384" height="224" aspectx="4" aspecty="3"/>
 		<driver status="good"/>
@@ -173974,23 +174494,23 @@
 	</game>
 	<game name="sfz2dsa" cloneof="sfz2al" romof="sfz2al" sourcefile="capcom/d_cps2.cpp">
 		<comment>Bootleg</comment>
-		<description>Street Fighter Zero 2 Dash (Asia, PS2 Backport RC6)</description>
+		<description>Street Fighter Zero 2 Dash (Asia, PS2 Backport RC7)</description>
 		<year>2026</year>
 		<manufacturer>bootleg</manufacturer>
-		<rom name="sz2dsa.03a" size="524288" crc="422b0c9a"/>
-		<rom name="sz2dsa.04a" size="524288" crc="14845042"/>
+		<rom name="sz2dsa.03a" size="524288" crc="da38f64d"/>
+		<rom name="sz2dsa.04a" size="524288" crc="3146ab3e"/>
 		<rom name="sz2ds.05" size="524288" crc="b1c15635"/>
 		<rom name="szaa.06" merge="szaa.06" size="524288" crc="cfc0e7a8"/>
-		<rom name="sz2dsa.07a" size="524288" crc="4fce620c"/>
-		<rom name="sz2dsa.08a" size="524288" crc="01ccbbfb"/>
+		<rom name="sz2dsa.07a" size="524288" crc="74b0a2d0"/>
+		<rom name="sz2dsa.08a" size="524288" crc="1a469525"/>
 		<rom name="sz2dsa.13m" size="4194304" crc="e35cbaae"/>
 		<rom name="sz2dsa.15m" size="4194304" crc="045e1960"/>
 		<rom name="sz2dsa.17m" size="4194304" crc="42e56efc"/>
 		<rom name="sz2dsa.19m" size="4194304" crc="3277a07e"/>
-		<rom name="sza.14m" merge="sza.14m" size="1048576" crc="0560c6aa"/>
-		<rom name="sza.16m" merge="sza.16m" size="1048576" crc="ae940f87"/>
-		<rom name="sza.18m" merge="sza.18m" size="1048576" crc="4bc3c8bc"/>
-		<rom name="sza.20m" merge="sza.20m" size="1048576" crc="39e674c0"/>
+		<rom name="sz2ds.14m" size="1048576" crc="90c44fed"/>
+		<rom name="sz2ds.16m" size="1048576" crc="bab2c323"/>
+		<rom name="sz2ds.18m" size="1048576" crc="09ce96f2"/>
+		<rom name="sz2ds.20m" size="1048576" crc="2898af24"/>
 		<rom name="sz2ds.01" size="131072" crc="81a567c1"/>
 		<rom name="sz2ds.02" size="131072" crc="c45ee83c"/>
 		<rom name="sz2ds.11m" size="4194304" crc="f23db54d"/>
@@ -173999,13 +174519,13 @@
 		<video type="raster" orientation="horizontal" width="384" height="224" aspectx="4" aspecty="3"/>
 		<driver status="good"/>
 	</game>
-	<game name="sfz2ds" cloneof="sfz2al" romof="sfz2al" sourcefile="capcom/d_cps2.cpp">
+	<game name="sfz2dsj" cloneof="sfz2al" romof="sfz2al" sourcefile="capcom/d_cps2.cpp">
 		<comment>Bootleg</comment>
-		<description>Street Fighter Zero 2 Dash (Japan, PS2 Backport RC6)</description>
+		<description>Street Fighter Zero 2 Dash (Japan, PS2 Backport RC7)</description>
 		<year>2026</year>
 		<manufacturer>bootleg</manufacturer>
-		<rom name="sz2dsj.03a" size="524288" crc="28f810c9"/>
-		<rom name="sz2dsj.04a" size="524288" crc="97d1b04e"/>
+		<rom name="sz2dsj.03a" size="524288" crc="aefd56e8"/>
+		<rom name="sz2dsj.04a" size="524288" crc="bb9526b6"/>
 		<rom name="szaj.05a" size="524288" crc="c88ebf88"/>
 		<rom name="szaj.06a" size="524288" crc="35ed5b7a"/>
 		<rom name="sz2dsj.07a" size="524288" crc="1ccf395a"/>
@@ -174028,24 +174548,24 @@
 	</game>
 	<game name="sfz2exj" cloneof="sfz2al" romof="sfz2al" sourcefile="capcom/d_cps2.cpp">
 		<comment>Hack</comment>
-		<description>Street Fighter Zero 2 EX (Hack, Japan RC1)</description>
+		<description>Street Fighter Zero 2 EX (Hack, Japan RC3)</description>
 		<year>2026</year>
 		<manufacturer>Strygo</manufacturer>
-		<rom name="sz2exj.03" size="524288" crc="44c9c370"/>
-		<rom name="sz2exj.04" size="524288" crc="5a1712f0"/>
+		<rom name="sz2exj.03a" size="524288" crc="085726a0"/>
+		<rom name="sz2exj.04a" size="524288" crc="9b8329a2"/>
 		<rom name="szaj.05a" size="524288" crc="c88ebf88"/>
 		<rom name="szaj.06a" size="524288" crc="35ed5b7a"/>
-		<rom name="sz2exj.07" size="524288" crc="59b681df"/>
-		<rom name="sz2exj.08" size="524288" crc="87beae3c"/>
-		<rom name="sz2exj.13m" size="4194304" crc="d3322c27"/>
-		<rom name="sz2exj.15m" size="4194304" crc="59a27a38"/>
-		<rom name="sz2exj.17m" size="4194304" crc="8c60de42"/>
-		<rom name="sz2exj.19m" size="4194304" crc="6f711940"/>
-		<rom name="sza.14m" merge="sza.14m" size="1048576" crc="0560c6aa"/>
-		<rom name="sza.16m" merge="sza.16m" size="1048576" crc="ae940f87"/>
-		<rom name="sza.18m" merge="sza.18m" size="1048576" crc="4bc3c8bc"/>
-		<rom name="sza.20m" merge="sza.20m" size="1048576" crc="39e674c0"/>
-		<rom name="sz2ds.01" size="131072" crc="81a567c1"/>
+		<rom name="sz2exj.07a" size="524288" crc="3cbb8ebc"/>
+		<rom name="sz2exj.08a" size="524288" crc="58220a6e"/>
+		<rom name="sz2exj.13m" size="4194304" crc="415077c3"/>
+		<rom name="sz2exj.15m" size="4194304" crc="e4593f76"/>
+		<rom name="sz2exj.17m" size="4194304" crc="22f96062"/>
+		<rom name="sz2exj.19m" size="4194304" crc="ec764fd2"/>
+		<rom name="sz2exj.14m" size="1048576" crc="695e3a4a"/>
+		<rom name="sz2exj.16m" size="1048576" crc="42e971a6"/>
+		<rom name="sz2exj.18m" size="1048576" crc="fd1227f3"/>
+		<rom name="sz2exj.20m" size="1048576" crc="d06ed26a"/>
+		<rom name="sz2ex.01" size="131072" crc="fa497904"/>
 		<rom name="sz2ds.02" size="131072" crc="c45ee83c"/>
 		<rom name="sz2ds.11m" size="4194304" crc="f23db54d"/>
 		<rom name="sz2ds.12m" size="4194304" crc="c824a1ea"/>
@@ -174055,11 +174575,11 @@
 	</game>
 	<game name="sfz2rea" cloneof="sfa2" romof="sfa2" sourcefile="capcom/d_cps2.cpp">
 		<comment>Hack</comment>
-		<description>Street Fighter Zero 2 Restoration (Hack, Asia RC1)</description>
+		<description>Street Fighter Zero 2 Restoration (Hack, Asia RC2)</description>
 		<year>2026</year>
 		<manufacturer>Strygo</manufacturer>
-		<rom name="sz2rea.03b" size="524288" crc="74783d7a"/>
-		<rom name="sz2re.04b" size="524288" crc="0f245d48"/>
+		<rom name="sz2rea.03b" size="524288" crc="3b0d6071"/>
+		<rom name="sz2re.04b" size="524288" crc="bdc00d52"/>
 		<rom name="sz2j.05b" size="524288" crc="dd224156"/>
 		<rom name="sz2j.06b" size="524288" crc="a45a75a6"/>
 		<rom name="sz2re.07b" size="524288" crc="c6500e15"/>
@@ -174085,8 +174605,8 @@
 		<description>Street Fighter Zero 2 Restoration (Hack, Japan RC1)</description>
 		<year>2026</year>
 		<manufacturer>Strygo</manufacturer>
-		<rom name="sz2rej.03b" size="524288" crc="68600815"/>
-		<rom name="sz2re.04b" size="524288" crc="0f245d48"/>
+		<rom name="sz2rej.03b" size="524288" crc="2715551e"/>
+		<rom name="sz2re.04b" size="524288" crc="bdc00d52"/>
 		<rom name="sz2j.05b" size="524288" crc="dd224156"/>
 		<rom name="sz2j.06b" size="524288" crc="a45a75a6"/>
 		<rom name="sz2re.07b" size="524288" crc="c6500e15"/>
@@ -174363,6 +174883,35 @@
 		<video type="raster" orientation="horizontal" width="416" height="234" aspectx="16" aspecty="9"/>
 		<driver status="good"/>
 	</game>
+	<game name="sfz3rej" cloneof="sfa3" romof="sfa3" sourcefile="capcom/d_cps2.cpp">
+		<comment>Hack</comment>
+		<description>Street Fighter Zero 3 Restoration (Hack, Japan RC3)</description>
+		<year>2026</year>
+		<manufacturer>Strygo</manufacturer>
+		<rom name="sz3rej.03c" size="524288" crc="320d141e"/>
+		<rom name="sz3rej.04c" size="524288" crc="faf7c4aa"/>
+		<rom name="sz3.05c" merge="sz3.05c" size="524288" crc="57fd0a40"/>
+		<rom name="sz3.06c" merge="sz3.06c" size="524288" crc="f6305f8b"/>
+		<rom name="sz3.07c" merge="sz3.07c" size="524288" crc="6eab0f6f"/>
+		<rom name="sz3.08c" merge="sz3.08c" size="524288" crc="910c4a3b"/>
+		<rom name="sz3rej.09c" size="524288" crc="72b49e35"/>
+		<rom name="sz3rej.10b" size="524288" crc="8ef31512"/>
+		<rom name="sz3rej.13m" size="4194304" crc="dd13c9d1"/>
+		<rom name="sz3rej.15m" size="4194304" crc="998afbfd"/>
+		<rom name="sz3rej.17m" size="4194304" crc="3bef3687"/>
+		<rom name="sz3rej.19m" size="4194304" crc="7f968eed"/>
+		<rom name="sz3.14m" merge="sz3.14m" size="4194304" crc="5ff98297"/>
+		<rom name="sz3.16m" merge="sz3.16m" size="4194304" crc="52b5bdee"/>
+		<rom name="sz3.18m" merge="sz3.18m" size="4194304" crc="40631ed5"/>
+		<rom name="sz3.20m" merge="sz3.20m" size="4194304" crc="763409b4"/>
+		<rom name="sz3.01" merge="sz3.01" size="131072" crc="de810084"/>
+		<rom name="sz3.02" merge="sz3.02" size="131072" crc="72445dc4"/>
+		<rom name="sz3.11m" merge="sz3.11m" size="4194304" crc="1c89eed1"/>
+		<rom name="sz3.12m" merge="sz3.12m" size="4194304" crc="f392b13a"/>
+		<rom name="sfz3j.key" size="20" crc="d30cca8d"/>
+		<video type="raster" orientation="horizontal" width="384" height="224" aspectx="4" aspecty="3"/>
+		<driver status="good"/>
+	</game>
 	<game name="sfz3te" cloneof="sfa3" romof="sfa3" sourcefile="capcom/d_cps2.cpp">
 		<comment>Hack</comment>
 		<description>Street Fighter Zero 3: Training Edition v1.2 (Japan 980629)</description>
@@ -174389,6 +174938,48 @@
 		<rom name="sz3.11m" merge="sz3.11m" size="4194304" crc="1c89eed1"/>
 		<rom name="sz3.12m" merge="sz3.12m" size="4194304" crc="f392b13a"/>
 		<rom name="sfz3j.key" size="20" crc="d30cca8d"/>
+		<video type="raster" orientation="horizontal" width="384" height="224" aspectx="4" aspecty="3"/>
+		<driver status="good"/>
+	</game>
+	<game name="sfzrea" cloneof="sfa" romof="sfa" sourcefile="capcom/d_cps2.cpp">
+		<comment>Hack</comment>
+		<description>Street Fighter Zero Restoration (Hack, Asia RC1)</description>
+		<year>2026</year>
+		<manufacturer>Strygo</manufacturer>
+		<rom name="sfzrea.03c" size="524288" crc="c4e79fb7"/>
+		<rom name="sfzre.04b" size="524288" crc="8d9b2480"/>
+		<rom name="sfzre.05a" size="524288" crc="8cf0a98f"/>
+		<rom name="sfzre.06" size="524288" crc="63b58796"/>
+		<rom name="sfzre.14m" size="2097152" crc="abb29988"/>
+		<rom name="sfzre.16m" size="2097152" crc="2be26e22"/>
+		<rom name="sfzre.18m" size="2097152" crc="c0331453"/>
+		<rom name="sfzre.20m" size="2097152" crc="fa05882c"/>
+		<rom name="sfz.01" merge="sfz.01" size="131072" crc="ffffec7d"/>
+		<rom name="sfz.02" merge="sfz.02" size="131072" crc="45f46a08"/>
+		<rom name="sfz.11m" merge="sfz.11m" size="2097152" crc="c4b093cd"/>
+		<rom name="sfz.12m" merge="sfz.12m" size="2097152" crc="8bdbc4b4"/>
+		<rom name="sfzj.key" size="20" crc="355d85b8"/>
+		<video type="raster" orientation="horizontal" width="384" height="224" aspectx="4" aspecty="3"/>
+		<driver status="good"/>
+	</game>
+	<game name="sfzrej" cloneof="sfa" romof="sfa" sourcefile="capcom/d_cps2.cpp">
+		<comment>Hack</comment>
+		<description>Street Fighter Zero Restoration (Hack, Japan RC1)</description>
+		<year>2026</year>
+		<manufacturer>Strygo</manufacturer>
+		<rom name="sfzrej.03c" size="524288" crc="2c69cf4c"/>
+		<rom name="sfzre.04b" size="524288" crc="8d9b2480"/>
+		<rom name="sfzrej.05a" size="524288" crc="fa9ceda6"/>
+		<rom name="sfz.06" merge="sfz.06" size="524288" crc="806e8f38"/>
+		<rom name="sfz.14m" merge="sfz.14m" size="2097152" crc="90fefdb3"/>
+		<rom name="sfz.16m" merge="sfz.16m" size="2097152" crc="5354c948"/>
+		<rom name="sfz.18m" merge="sfz.18m" size="2097152" crc="41a1e790"/>
+		<rom name="sfz.20m" merge="sfz.20m" size="2097152" crc="a549df98"/>
+		<rom name="sfz.01" merge="sfz.01" size="131072" crc="ffffec7d"/>
+		<rom name="sfz.02" merge="sfz.02" size="131072" crc="45f46a08"/>
+		<rom name="sfz.11m" merge="sfz.11m" size="2097152" crc="c4b093cd"/>
+		<rom name="sfz.12m" merge="sfz.12m" size="2097152" crc="8bdbc4b4"/>
+		<rom name="sfzj.key" size="20" crc="355d85b8"/>
 		<video type="raster" orientation="horizontal" width="384" height="224" aspectx="4" aspecty="3"/>
 		<driver status="good"/>
 	</game>
@@ -180541,28 +181132,28 @@
 	</game>
 	<game name="ssf2xucj" cloneof="ssf2t" romof="ssf2t" sourcefile="capcom/d_cps2.cpp">
 		<comment>Hack</comment>
-		<description>Super Street Fighter II EX: The Ultimate Championship (Hack, Japan RC6)</description>
+		<description>Super Street Fighter II EX: The Ultimate Championship (Hack, Japan RC8)</description>
 		<year>2026</year>
 		<manufacturer>Strygo</manufacturer>
-		<rom name="sfxucj.03d" size="524288" crc="dd0bcd25"/>
+		<rom name="sfxucj.03d" size="524288" crc="218a0966"/>
 		<rom name="sfxucj.04a" size="524288" crc="b7ebadbc"/>
 		<rom name="sfxuc.05" size="524288" crc="477b0a5e"/>
-		<rom name="sfxucj.06b" size="524288" crc="fd491e78"/>
-		<rom name="sfxucj.07a" size="524288" crc="d51c94ea"/>
+		<rom name="sfxucj.06b" size="524288" crc="5ec55165"/>
+		<rom name="sfxucj.07a" size="524288" crc="a3a5664f"/>
 		<rom name="sfxuc.08" size="524288" crc="ea0d1d90"/>
-		<rom name="sfx.09" merge="sfx.09" size="524288" crc="642fae3f"/>
+		<rom name="sfxuc.09" size="524288" crc="f37642c4"/>
 		<rom name="sfxucj.13m" size="2097152" crc="d9bf2280"/>
 		<rom name="sfxucj.15m" size="2097152" crc="d70f65e7"/>
 		<rom name="sfxucj.17m" size="2097152" crc="bd7f8933"/>
 		<rom name="sfxucj.19m" size="2097152" crc="77455a16"/>
-		<rom name="sfxuc.14m" size="1048576" crc="03618e46"/>
-		<rom name="sfxuc.16m" size="1048576" crc="992763ca"/>
-		<rom name="sfxuc.18m" size="1048576" crc="7d2d760f"/>
-		<rom name="sfxuc.20m" size="1048576" crc="ec8aa170"/>
-		<rom name="sfxuc.21m" size="1048576" crc="94b141da"/>
-		<rom name="sfxuc.23m" size="1048576" crc="359e2c32"/>
-		<rom name="sfxuc.25m" size="1048576" crc="99008d5f"/>
-		<rom name="sfxuc.27m" size="1048576" crc="164bbf8b"/>
+		<rom name="sfxuc.14m" size="1048576" crc="ab206f6b"/>
+		<rom name="sfxuc.16m" size="1048576" crc="9a62078f"/>
+		<rom name="sfxuc.18m" size="1048576" crc="55f01bdb"/>
+		<rom name="sfxuc.20m" size="1048576" crc="e4bb346d"/>
+		<rom name="sfxuc.21m" size="1048576" crc="b1bf51a0"/>
+		<rom name="sfxuc.23m" size="1048576" crc="982694f0"/>
+		<rom name="sfxuc.25m" size="1048576" crc="706f24a9"/>
+		<rom name="sfxuc.27m" size="1048576" crc="529d32bf"/>
 		<rom name="sfx.01" merge="sfx.01" size="131072" crc="b47b8835"/>
 		<rom name="sfx.02" merge="sfx.02" size="131072" crc="0022633f"/>
 		<rom name="sfx.11m" merge="sfx.11m" size="2097152" crc="9bdbd476"/>
@@ -180573,28 +181164,28 @@
 	</game>
 	<game name="ssf2tuc" cloneof="ssf2t" romof="ssf2t" sourcefile="capcom/d_cps2.cpp">
 		<comment>Hack</comment>
-		<description>Super Street Fighter II EX: The Ultimate Championship (Hack, USA RC6)</description>
+		<description>Super Street Fighter II EX: The Ultimate Championship (Hack, USA RC8)</description>
 		<year>2026</year>
 		<manufacturer>Strygo</manufacturer>
-		<rom name="sfxuc.03d" size="524288" crc="a828cd5b"/>
+		<rom name="sfxuc.03d" size="524288" crc="73cdf90e"/>
 		<rom name="sfxuc.04a" size="524288" crc="9e8c8632"/>
 		<rom name="sfxuc.05" size="524288" crc="477b0a5e"/>
-		<rom name="sfxuc.06b" size="524288" crc="c8986040"/>
-		<rom name="sfxuc.07a" size="524288" crc="36377a5e"/>
+		<rom name="sfxuc.06b" size="524288" crc="6b142f5d"/>
+		<rom name="sfxuc.07a" size="524288" crc="408e88fb"/>
 		<rom name="sfxuc.08" size="524288" crc="ea0d1d90"/>
-		<rom name="sfx.09" merge="sfx.09" size="524288" crc="642fae3f"/>
+		<rom name="sfxuc.09" size="524288" crc="f37642c4"/>
 		<rom name="sfxuc.13m" size="2097152" crc="63f1301e"/>
 		<rom name="sfxuc.15m" size="2097152" crc="0d64a671"/>
 		<rom name="sfxuc.17m" size="2097152" crc="fd13753a"/>
 		<rom name="sfxuc.19m" size="2097152" crc="50082000"/>
-		<rom name="sfxuc.14m" size="1048576" crc="03618e46"/>
-		<rom name="sfxuc.16m" size="1048576" crc="992763ca"/>
-		<rom name="sfxuc.18m" size="1048576" crc="7d2d760f"/>
-		<rom name="sfxuc.20m" size="1048576" crc="ec8aa170"/>
-		<rom name="sfxuc.21m" size="1048576" crc="94b141da"/>
-		<rom name="sfxuc.23m" size="1048576" crc="359e2c32"/>
-		<rom name="sfxuc.25m" size="1048576" crc="99008d5f"/>
-		<rom name="sfxuc.27m" size="1048576" crc="164bbf8b"/>
+		<rom name="sfxuc.14m" size="1048576" crc="ab206f6b"/>
+		<rom name="sfxuc.16m" size="1048576" crc="9a62078f"/>
+		<rom name="sfxuc.18m" size="1048576" crc="55f01bdb"/>
+		<rom name="sfxuc.20m" size="1048576" crc="e4bb346d"/>
+		<rom name="sfxuc.21m" size="1048576" crc="b1bf51a0"/>
+		<rom name="sfxuc.23m" size="1048576" crc="982694f0"/>
+		<rom name="sfxuc.25m" size="1048576" crc="706f24a9"/>
+		<rom name="sfxuc.27m" size="1048576" crc="529d32bf"/>
 		<rom name="sfx.01" merge="sfx.01" size="131072" crc="b47b8835"/>
 		<rom name="sfx.02" merge="sfx.02" size="131072" crc="0022633f"/>
 		<rom name="sfx.11m" merge="sfx.11m" size="2097152" crc="9bdbd476"/>
@@ -180890,7 +181481,7 @@
 		<comment>Hack</comment>
 		<description>Super Street Fighter II Turbo Tag (Hack, V3)</description>
 		<year>2026</year>
-		<manufacturer>hack</manufacturer>
+		<manufacturer>Morphus56K</manufacturer>
 		<rom name="sfxtag.03c" size="524288" crc="4afb091d"/>
 		<rom name="sfxtag.04a" size="524288" crc="6d6bd06a"/>
 		<rom name="sfxe.05" merge="sfxe.05" size="524288" crc="65222964"/>
@@ -180974,6 +181565,38 @@
 		<rom name="sfx.23m" merge="sfx.23m" size="1048576" crc="760f2927"/>
 		<rom name="sfx.25m" merge="sfx.25m" size="1048576" crc="1ee90208"/>
 		<rom name="sfx.27m" merge="sfx.27m" size="1048576" crc="f814400f"/>
+		<rom name="sfx.01" merge="sfx.01" size="131072" crc="b47b8835"/>
+		<rom name="sfx.02" merge="sfx.02" size="131072" crc="0022633f"/>
+		<rom name="sfx.11m" merge="sfx.11m" size="2097152" crc="9bdbd476"/>
+		<rom name="sfx.12m" merge="sfx.12m" size="2097152" crc="a05e3aab"/>
+		<rom name="ssf2xj.key" size="20" crc="160d1424"/>
+		<video type="raster" orientation="horizontal" width="384" height="224" aspectx="4" aspecty="3"/>
+		<driver status="good"/>
+	</game>
+	<game name="ssf2xdced" cloneof="ssf2t" romof="ssf2t" sourcefile="capcom/d_cps2.cpp">
+		<comment>Hack</comment>
+		<description>Super Street Fighter II X: Grand Master Challenge (Hack, Dreamcast Gouki RC1)</description>
+		<year>2026</year>
+		<manufacturer>Zer0-NexuS</manufacturer>
+		<rom name="sfxdce.03d" size="524288" crc="53968914"/>
+		<rom name="sfxdce.04a" size="524288" crc="d8a825e6"/>
+		<rom name="sfxj.05" size="524288" crc="f4ff18f5"/>
+		<rom name="sfxj.06b" size="524288" crc="413477c2"/>
+		<rom name="sfxj.07a" size="524288" crc="a18b3d83"/>
+		<rom name="sfxj.08" size="524288" crc="2de76f10"/>
+		<rom name="sfxdce.09" size="524288" crc="c7f1e39d"/>
+		<rom name="sfx.13m" merge="sfx.13m" size="2097152" crc="cf94d275"/>
+		<rom name="sfx.15m" merge="sfx.15m" size="2097152" crc="5eb703af"/>
+		<rom name="sfx.17m" merge="sfx.17m" size="2097152" crc="ffa60e0f"/>
+		<rom name="sfx.19m" merge="sfx.19m" size="2097152" crc="34e825c5"/>
+		<rom name="sfx.14m" merge="sfx.14m" size="1048576" crc="b7cc32e7"/>
+		<rom name="sfx.16m" merge="sfx.16m" size="1048576" crc="8376ad18"/>
+		<rom name="sfx.18m" merge="sfx.18m" size="1048576" crc="f5b1b336"/>
+		<rom name="sfx.20m" merge="sfx.20m" size="1048576" crc="459d5c6b"/>
+		<rom name="sfxdce.21m" size="1048576" crc="69f3654c"/>
+		<rom name="sfxdce.23m" size="1048576" crc="5a1a5e58"/>
+		<rom name="sfxdce.25m" size="1048576" crc="632c11bf"/>
+		<rom name="sfxdce.27m" size="1048576" crc="09883f5f"/>
 		<rom name="sfx.01" merge="sfx.01" size="131072" crc="b47b8835"/>
 		<rom name="sfx.02" merge="sfx.02" size="131072" crc="0022633f"/>
 		<rom name="sfx.11m" merge="sfx.11m" size="2097152" crc="9bdbd476"/>
@@ -194044,7 +194667,7 @@
 		<description>The King of Fighters '98 - The Slugfest / King of Fighters '98 - Dream Match Never Ends (BC Style 2002, Hack) (Unknown Author)</description>
 		<year>20??</year>
 		<manufacturer>hack</manufacturer>
-		<rom name="98s02-p1.p1" size="1048576" crc="2fd34fd8"/>
+		<rom name="98s02-p1.p1" size="1048576" crc="fafb0449"/>
 		<rom name="98s02-p2.p2" size="4194304" crc="ccc71b9c"/>
 		<rom name="98s02-s1.s1" size="131072" crc="f6871e73"/>
 		<rom name="242-c1pfe.c1" size="8388608" crc="379654a5"/>
@@ -218300,6 +218923,58 @@
 		<video type="raster" orientation="horizontal" width="640" height="240" aspectx="8" aspecty="3"/>
 		<driver status="good"/>
 	</game>
+	<game name="warriorman" romof="neogeo" sourcefile="neogeo/d_neogeo.cpp">
+		<comment>Homebrew</comment>
+		<description>Warrior Man (HB)</description>
+		<year>2026</year>
+		<manufacturer>NK Home Entertainment</manufacturer>
+		<rom name="warman-p1.p1" size="524288" crc="7a91cc78"/>
+		<rom name="warman-s1.s1" size="131072" crc="4c175fa4"/>
+		<rom name="warman-c1.c1" size="4194304" crc="7864d85f"/>
+		<rom name="warman-c2.c2" size="4194304" crc="b7f686ec"/>
+		<rom name="warman-m1.m1" size="131072" crc="a3e65a9c"/>
+		<rom name="warman-v1.v1" size="16777216" crc="3dccb4ad"/>
+		<rom name="sp-s3.sp1" merge="sp-s3.sp1" size="131072" crc="91b64be3"/>
+		<rom name="sp-s2.sp1" merge="sp-s2.sp1" size="131072" crc="9036d879"/>
+		<rom name="sp-s.sp1" merge="sp-s.sp1" size="131072" crc="c7f2fa45"/>
+		<rom name="sp-u2.sp1" merge="sp-u2.sp1" size="131072" crc="e72943de"/>
+		<rom name="sp1-u2" merge="sp1-u2" size="131072" crc="62f021f4"/>
+		<rom name="sp-e.sp1" merge="sp-e.sp1" size="131072" crc="2723a5b5"/>
+		<rom name="sp1-u4.bin" merge="sp1-u4.bin" size="131072" crc="1179a30f"/>
+		<rom name="sp1-u3.bin" merge="sp1-u3.bin" size="131072" crc="2025b7a2"/>
+		<rom name="vs-bios.rom" merge="vs-bios.rom" size="131072" crc="f0e8f27d"/>
+		<rom name="sp-j2.sp1" merge="sp-j2.sp1" size="131072" crc="acede59c"/>
+		<rom name="sp1.jipan.1024" merge="sp1.jipan.1024" size="131072" crc="9fb0abe4"/>
+		<rom name="sp-45.sp1" merge="sp-45.sp1" size="524288" crc="03cc9f6a"/>
+		<rom name="sp-j3.sp1" merge="sp-j3.sp1" size="524288" crc="486cb450"/>
+		<rom name="japan-j3.bin" merge="japan-j3.bin" size="131072" crc="dff6d41f"/>
+		<rom name="sp1-j3.bin" merge="sp1-j3.bin" size="131072" crc="fbc6d469"/>
+		<rom name="neo-po.bin" merge="neo-po.bin" size="131072" crc="16d0c132"/>
+		<rom name="neo-epo.bin" merge="neo-epo.bin" size="131072" crc="d27a71f1"/>
+		<rom name="neodebug.bin" merge="neodebug.bin" size="131072" crc="698ebb7d"/>
+		<rom name="sp-1v1_3db8c.bin" merge="sp-1v1_3db8c.bin" size="131072" crc="162f0ebe"/>
+		<rom name="uni-bios_4_0.rom" merge="uni-bios_4_0.rom" size="131072" crc="a7aab458"/>
+		<rom name="uni-bios_3_3.rom" merge="uni-bios_3_3.rom" size="131072" crc="24858466"/>
+		<rom name="uni-bios_3_2.rom" merge="uni-bios_3_2.rom" size="131072" crc="a4e8b9b3"/>
+		<rom name="uni-bios_3_1.rom" merge="uni-bios_3_1.rom" size="131072" crc="0c58093f"/>
+		<rom name="uni-bios_3_0.rom" merge="uni-bios_3_0.rom" size="131072" crc="a97c89a9"/>
+		<rom name="uni-bios_2_3.rom" merge="uni-bios_2_3.rom" size="131072" crc="27664eb5"/>
+		<rom name="uni-bios_2_3o.rom" merge="uni-bios_2_3o.rom" size="131072" crc="601720ae"/>
+		<rom name="uni-bios_2_2.rom" merge="uni-bios_2_2.rom" size="131072" crc="2d50996a"/>
+		<rom name="uni-bios_2_1.rom" merge="uni-bios_2_1.rom" size="131072" crc="8dabf76b"/>
+		<rom name="uni-bios_2_0.rom" merge="uni-bios_2_0.rom" size="131072" crc="0c12c2ad"/>
+		<rom name="uni-bios_1_3.rom" merge="uni-bios_1_3.rom" size="131072" crc="b24b44a0"/>
+		<rom name="uni-bios_1_2.rom" merge="uni-bios_1_2.rom" size="131072" crc="4fa698e9"/>
+		<rom name="uni-bios_1_2o.rom" merge="uni-bios_1_2o.rom" size="131072" crc="e19d3ce9"/>
+		<rom name="uni-bios_1_1.rom" merge="uni-bios_1_1.rom" size="131072" crc="5dda0d84"/>
+		<rom name="uni-bios_1_0.rom" merge="uni-bios_1_0.rom" size="131072" crc="0ce453a0"/>
+		<rom name="neopen.sp1" merge="neopen.sp1" size="131072" crc="cb915e76"/>
+		<rom name="sm1.sm1" merge="sm1.sm1" size="131072" crc="94416d67"/>
+		<rom name="sfix.sfix" merge="sfix.sfix" size="131072" crc="c2ea0cfd"/>
+		<rom name="000-lo.lo" merge="000-lo.lo" size="131072" crc="5a86cff2"/>
+		<video type="raster" orientation="horizontal" width="304" height="224" aspectx="4" aspecty="3"/>
+		<driver status="good"/>
+	</game>
 	<game name="wofpic" cloneof="wof" romof="wof" sourcefile="capcom/d_cps1.cpp">
 		<comment>Bootleg, no sound</comment>
 		<description>Warriors of Fate (bootleg with PIC16C57)</description>
@@ -220104,6 +220779,63 @@
 		<rom name="mam12.14p" merge="mam12.14p" size="524288" crc="6f00b791"/>
 		<rom name="hb-00.11p" merge="hb-00.11p" size="512" crc="b7a7baad"/>
 		<video type="raster" orientation="horizontal" width="320" height="240" aspectx="4" aspecty="3"/>
+		<driver status="good"/>
+	</game>
+	<game name="wolfn3d" romof="neogeo" sourcefile="neogeo/d_neogeo.cpp">
+		<comment>Homebrew</comment>
+		<description>Wolfenstein 3-D (HB, v1.2.0)</description>
+		<year>2026</year>
+		<manufacturer>Thibaut Lion</manufacturer>
+		<rom name="wolfn3d-p1.bin" size="524288" crc="00b38f35"/>
+		<rom name="wolfn3d-s1.bin" size="131072" crc="67bfa3a2"/>
+		<rom name="wolfn3d-c1.bin" size="16777216" crc="cba29aef"/>
+		<rom name="wolfn3d-c2.bin" size="16777216" crc="e88b4a64"/>
+		<rom name="wolfn3d-c3.bin" size="16777216" crc="958b670f"/>
+		<rom name="wolfn3d-c4.bin" size="16777216" crc="8b4d1874"/>
+		<rom name="wolfn3d-c5.bin" size="16777216" crc="14b469a4"/>
+		<rom name="wolfn3d-c6.bin" size="16777216" crc="df9048ab"/>
+		<rom name="wolfn3d-m1.bin" size="131072" crc="60e0acb9"/>
+		<rom name="wolfn3d-v1.bin" size="2097152" crc="cc0f0f7d"/>
+		<rom name="wolfn3d-v2.bin" size="2097152" crc="cc0f0f7d"/>
+		<rom name="sp-s3.sp1" merge="sp-s3.sp1" size="131072" crc="91b64be3"/>
+		<rom name="sp-s2.sp1" merge="sp-s2.sp1" size="131072" crc="9036d879"/>
+		<rom name="sp-s.sp1" merge="sp-s.sp1" size="131072" crc="c7f2fa45"/>
+		<rom name="sp-u2.sp1" merge="sp-u2.sp1" size="131072" crc="e72943de"/>
+		<rom name="sp1-u2" merge="sp1-u2" size="131072" crc="62f021f4"/>
+		<rom name="sp-e.sp1" merge="sp-e.sp1" size="131072" crc="2723a5b5"/>
+		<rom name="sp1-u4.bin" merge="sp1-u4.bin" size="131072" crc="1179a30f"/>
+		<rom name="sp1-u3.bin" merge="sp1-u3.bin" size="131072" crc="2025b7a2"/>
+		<rom name="vs-bios.rom" merge="vs-bios.rom" size="131072" crc="f0e8f27d"/>
+		<rom name="sp-j2.sp1" merge="sp-j2.sp1" size="131072" crc="acede59c"/>
+		<rom name="sp1.jipan.1024" merge="sp1.jipan.1024" size="131072" crc="9fb0abe4"/>
+		<rom name="sp-45.sp1" merge="sp-45.sp1" size="524288" crc="03cc9f6a"/>
+		<rom name="sp-j3.sp1" merge="sp-j3.sp1" size="524288" crc="486cb450"/>
+		<rom name="japan-j3.bin" merge="japan-j3.bin" size="131072" crc="dff6d41f"/>
+		<rom name="sp1-j3.bin" merge="sp1-j3.bin" size="131072" crc="fbc6d469"/>
+		<rom name="neo-po.bin" merge="neo-po.bin" size="131072" crc="16d0c132"/>
+		<rom name="neo-epo.bin" merge="neo-epo.bin" size="131072" crc="d27a71f1"/>
+		<rom name="neodebug.bin" merge="neodebug.bin" size="131072" crc="698ebb7d"/>
+		<rom name="sp-1v1_3db8c.bin" merge="sp-1v1_3db8c.bin" size="131072" crc="162f0ebe"/>
+		<rom name="uni-bios_4_0.rom" merge="uni-bios_4_0.rom" size="131072" crc="a7aab458"/>
+		<rom name="uni-bios_3_3.rom" merge="uni-bios_3_3.rom" size="131072" crc="24858466"/>
+		<rom name="uni-bios_3_2.rom" merge="uni-bios_3_2.rom" size="131072" crc="a4e8b9b3"/>
+		<rom name="uni-bios_3_1.rom" merge="uni-bios_3_1.rom" size="131072" crc="0c58093f"/>
+		<rom name="uni-bios_3_0.rom" merge="uni-bios_3_0.rom" size="131072" crc="a97c89a9"/>
+		<rom name="uni-bios_2_3.rom" merge="uni-bios_2_3.rom" size="131072" crc="27664eb5"/>
+		<rom name="uni-bios_2_3o.rom" merge="uni-bios_2_3o.rom" size="131072" crc="601720ae"/>
+		<rom name="uni-bios_2_2.rom" merge="uni-bios_2_2.rom" size="131072" crc="2d50996a"/>
+		<rom name="uni-bios_2_1.rom" merge="uni-bios_2_1.rom" size="131072" crc="8dabf76b"/>
+		<rom name="uni-bios_2_0.rom" merge="uni-bios_2_0.rom" size="131072" crc="0c12c2ad"/>
+		<rom name="uni-bios_1_3.rom" merge="uni-bios_1_3.rom" size="131072" crc="b24b44a0"/>
+		<rom name="uni-bios_1_2.rom" merge="uni-bios_1_2.rom" size="131072" crc="4fa698e9"/>
+		<rom name="uni-bios_1_2o.rom" merge="uni-bios_1_2o.rom" size="131072" crc="e19d3ce9"/>
+		<rom name="uni-bios_1_1.rom" merge="uni-bios_1_1.rom" size="131072" crc="5dda0d84"/>
+		<rom name="uni-bios_1_0.rom" merge="uni-bios_1_0.rom" size="131072" crc="0ce453a0"/>
+		<rom name="neopen.sp1" merge="neopen.sp1" size="131072" crc="cb915e76"/>
+		<rom name="sm1.sm1" merge="sm1.sm1" size="131072" crc="94416d67"/>
+		<rom name="sfix.sfix" merge="sfix.sfix" size="131072" crc="c2ea0cfd"/>
+		<rom name="000-lo.lo" merge="000-lo.lo" size="131072" crc="5a86cff2"/>
+		<video type="raster" orientation="horizontal" width="320" height="224" aspectx="4" aspecty="3"/>
 		<driver status="good"/>
 	</game>
 	<game name="wonder3" cloneof="3wonders" romof="3wonders" sourcefile="capcom/d_cps1.cpp">
@@ -224820,6 +225552,35 @@
 		<rom name="xmn.11m" size="2097152" crc="c848a6bc"/>
 		<rom name="xmn.12m" size="2097152" crc="729c188f"/>
 		<rom name="xmcota.key" size="20" crc="6665bbfb"/>
+		<video type="raster" orientation="horizontal" width="384" height="224" aspectx="4" aspecty="3"/>
+		<driver status="good"/>
+	</game>
+	<game name="xmcotatag" cloneof="xmcota" romof="xmcota" sourcefile="capcom/d_cps2.cpp">
+		<comment>Hack</comment>
+		<description>X-Men: Children of the Atom (Hack, Tag v5.6)</description>
+		<year>2026</year>
+		<manufacturer>Morphus56K</manufacturer>
+		<rom name="xmntag.03f" size="524288" crc="76565783"/>
+		<rom name="xmntag.04f" size="524288" crc="cc2f25d6"/>
+		<rom name="xmntag.05b" size="524288" crc="33e28359"/>
+		<rom name="xmntag.06a" size="524288" crc="8ff26a18"/>
+		<rom name="xmn.07a" merge="xmn.07a" size="524288" crc="2c142a44"/>
+		<rom name="xmn.08a" merge="xmn.08a" size="524288" crc="f712d44f"/>
+		<rom name="xmntag.09a" size="524288" crc="08b127b1"/>
+		<rom name="xmntag.10b" size="524288" crc="2d32fa8e"/>
+		<rom name="xmntag.13m" size="4194304" crc="bc06bb34"/>
+		<rom name="xmntag.15m" size="4194304" crc="5ceeeaed"/>
+		<rom name="xmntag.17m" size="4194304" crc="b49d26b7"/>
+		<rom name="xmntag.19m" size="4194304" crc="54895bd1"/>
+		<rom name="xmntag.14m" size="4194304" crc="e89a87ec"/>
+		<rom name="xmntag.16m" size="4194304" crc="694e52c8"/>
+		<rom name="xmntag.18m" size="4194304" crc="a4440a89"/>
+		<rom name="xmntag.20m" size="4194304" crc="46a85641"/>
+		<rom name="xmntag.01a" size="131072" crc="b7d4c880"/>
+		<rom name="xmntag.02a" size="131072" crc="cb5026bd"/>
+		<rom name="xmntag.11m" size="2097152" crc="2c0537ce"/>
+		<rom name="xmntag.12m" size="2097152" crc="b8333510"/>
+		<rom name="xmcota.key" merge="xmcota.key" size="20" crc="6665bbfb"/>
 		<video type="raster" orientation="horizontal" width="384" height="224" aspectx="4" aspecty="3"/>
 		<driver status="good"/>
 	</game>

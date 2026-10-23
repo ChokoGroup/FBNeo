@@ -772,7 +772,8 @@ void GbaCoreClearBatteryDirty(GbaCore *core)
 
 size_t GbaCoreStateSize()
 {
-	return sizeof(gba_t);
+	// gba_t plus the worker blob (zero-filled payload in single-thread builds).
+	return sizeof(gba_t) + ppu_worker_state_size();
 }
 
 INT32 GbaCoreSaveState(const GbaCore *core, void *data, size_t size)
@@ -781,7 +782,7 @@ INT32 GbaCoreSaveState(const GbaCore *core, void *data, size_t size)
 		return 1;
 	memcpy(data, &core->state, sizeof(gba_t));
 	UINT8 *state = (UINT8 *)data;
-// pointer fields: nulls the pointer, not the pointee
+	// pointer fields: nulls the pointer, not the pointee
 #define GBA_CLEAR_STATE_FIELD(type, base, field)	memset(state + (base) + offsetof(type, field), 0, sizeof(((type *)0)->field))
 	const size_t mem = offsetof(gba_t, mem);
 	const size_t cpu = offsetof(gba_t, cpu);
@@ -814,6 +815,13 @@ INT32 GbaCoreSaveState(const GbaCore *core, void *data, size_t size)
 	GBA_CLEAR_STATE_FIELD(gba_t,     0,   dma_event.callback);
 	GBA_CLEAR_STATE_FIELD(gba_t,     0,   timing.head);
 #undef GBA_CLEAR_STATE_FIELD
+	// Append the worker blob (zero-filled in single-thread builds; see worker.h).
+	{
+		ppu_worker_t* wk = (ppu_worker_t*)&core->worker;
+		size_t wsz = ppu_worker_state_size();
+		if (wsz > 0)
+			ppu_worker_save_state(wk, (UINT8*)data + sizeof(gba_t));
+	}
 	return 0;
 }
 
@@ -830,12 +838,24 @@ INT32 GbaCoreLoadState(GbaCore *core, const void *data, size_t size, INT32 prese
 	gba_timing_rebind(&core->state);
 	GbaCoreApplyCartridgeFeatures(core);
 	GbaCoreRebind(core);
-	// Run-ahead rollback (preservePresentation=1): worker backbufs and the audio
-	// ring still hold valid content, so keep them. Full state load (=0): drop both.
-	if (!preservePresentation)
+	// Restore the worker buffer state; on failure (bad/absent blob or no
+	// presented frame) reset, unless the current presentation is preserved.
 	{
-		ppu_worker_reset(&core->worker);
-		GbaCoreClearAudio(core);
+		ppu_worker_t* wk = (ppu_worker_t*)&core->worker;
+		UINT8* wfb = NULL;
+		bool   wdirect = false;
+		if (size > sizeof(gba_t) &&
+			ppu_worker_load_state(wk, (const UINT8*)data + sizeof(gba_t),
+			                      size - sizeof(gba_t), &wfb, &wdirect))
+		{
+			core->state.framebuffer = wfb;
+			core->state.framebuffer_is_direct_copy = wdirect;
+		}
+		else if (!preservePresentation)
+		{
+			ppu_worker_reset(wk);
+			GbaCoreClearAudio(core);
+		}
 	}
 	return 0;
 }

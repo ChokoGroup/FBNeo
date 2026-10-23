@@ -9180,11 +9180,30 @@ STD_ROM_PICK(snes_Daikugensan)
 STD_ROM_FN(snes_Daikugensan)
 
 struct BurnDriver BurnDrvsnes_Daikugensan = {
-	"snes_daikugensan", NULL, NULL, NULL, "1993",
+	"snes_daikugensan", "snes_daikugensante", NULL, NULL, "1993",
 	"Ganbare! Daiku no Gen-san (Japan)\0", NULL, "Irem Corp.", "SNES / Super Famicom",
 	L"Ganbare! Daiku no Gen-san (Japan)\0\u304c\u3093\u3070\u308c! \u5927\u5de5\u306e\u6e90\u3055\u3093\0", NULL, NULL, NULL,
-	BDF_GAME_WORKING, 1, HARDWARE_SNES, GBF_PLATFORM, 0,
+	BDF_GAME_WORKING | BDF_CLONE, 1, HARDWARE_SNES, GBF_PLATFORM, 0,
 	SNESGetZipName, snes_DaikugensanRomInfo, snes_DaikugensanRomName, NULL, NULL, NULL, NULL, SNESInputInfo, SNESDIPInfo,
+	DrvInit, DrvExit, DrvFrame, DrvDraw, DrvScan, &DrvRecalc, 0x8000,
+	512, 448, 4, 3
+};
+
+// Ganbare! Daiku no Gen-san (Hack, English)
+// https://github.com/Retroplayingbcn/gen-san-sfc-english
+static struct BurnRomInfo snes_DaikugensanteRomDesc[] = {
+	{ "Ganbare! Daiku no Gen-san T-Eng (2026)(Retroplaying BCN).sfc", 2097152, 0x1299babb, BRF_ESS | BRF_PRG },
+};
+
+STD_ROM_PICK(snes_Daikugensante)
+STD_ROM_FN(snes_Daikugensante)
+
+struct BurnDriver BurnDrvsnes_Daikugensante = {
+	"snes_daikugensante", NULL, NULL, NULL, "2026",
+	"Ganbare! Daiku no Gen-san (Hack, English)\0", NULL, "Retroplaying BCN", "SNES / Super Famicom",
+	NULL, NULL, NULL, NULL,
+	BDF_GAME_WORKING, 1, HARDWARE_SNES, GBF_PLATFORM, 0,
+	SNESGetZipName, snes_DaikugensanteRomInfo, snes_DaikugensanteRomName, NULL, NULL, NULL, NULL, SNESInputInfo, SNESDIPInfo,
 	DrvInit, DrvExit, DrvFrame, DrvDraw, DrvScan, &DrvRecalc, 0x8000,
 	512, 448, 4, 3
 };
@@ -46785,6 +46804,25 @@ struct BurnDriver BurnDrvsnes_2048 = {
 	512, 448, 4, 3
 };
 
+// 2048 Fibo+ (HB)
+// https://ditnera.itch.io/2048-fibo-plus
+static struct BurnRomInfo snes_2048fpRomDesc[] = {
+	{ "2048 Fibo+ (2026)(DiTnera).sfc", 131072, 0xa3e5b01c, BRF_ESS | BRF_PRG },
+};
+
+STD_ROM_PICK(snes_2048fp)
+STD_ROM_FN(snes_2048fp)
+
+struct BurnDriver BurnDrvsnes_2048fp = {
+	"snes_2048fp", NULL, NULL, NULL, "2026",
+	"2048 Fibo+ (HB)\0", NULL, "DiTnera", "SNES / Super Famicom",
+	NULL, NULL, NULL, NULL,
+	BDF_GAME_WORKING | BDF_HOMEBREW, 1, HARDWARE_SNES, GBF_PUZZLE, 0,
+	SNESGetZipName, snes_2048fpRomInfo, snes_2048fpRomName, NULL, NULL, NULL, NULL, SNESInputInfo, SNESDIPInfo,
+	DrvInit, DrvExit, DrvFrame, DrvDraw, DrvScan, &DrvRecalc, 0x8000,
+	512, 448, 4, 3
+};
+
 // Alien Cat 2 Enhanced Edition (HB, v1.1)
 
 static struct BurnRomInfo snes_Aliencat2RomDesc[] = {
@@ -46990,6 +47028,44 @@ struct BurnDriver BurnDrvsnes_Badapple = {
 	NULL, NULL, NULL, NULL,
 	BDF_GAME_WORKING | BDF_DEMO | BDF_HOMEBREW, 1, HARDWARE_SNES, GBF_MISC, 0,
 	SNESGetZipName, snes_BadappleRomInfo, snes_BadappleRomName, NULL, NULL, NULL, NULL, SNESInputInfo, SNESDIPInfo,
+	DrvInit, DrvExit, DrvFrame, DrvDraw, DrvScan, &DrvRecalc, 0x8000,
+	512, 448, 4, 3
+};
+
+// Balance 67 (HB)
+// https://ditnera.itch.io/balance-67
+static struct BurnRomInfo snes_Balance67RomDesc[] = {
+	{ "Balance 67 (2026)(DiTnera).sfc", 131072, 0x1eca7b04, BRF_ESS | BRF_PRG },
+};
+
+STD_ROM_PICK(snes_Balance67)
+STD_ROM_FN(snes_Balance67)
+
+struct BurnDriver BurnDrvsnes_Balance67 = {
+	"snes_balance67", NULL, NULL, NULL, "2026",
+	"Balance 67 (HB)\0", NULL, "DiTnera", "SNES / Super Famicom",
+	NULL, NULL, NULL, NULL,
+	BDF_GAME_WORKING | BDF_HOMEBREW, 1, HARDWARE_SNES, GBF_PUZZLE, 0,
+	SNESGetZipName, snes_Balance67RomInfo, snes_Balance67RomName, NULL, NULL, NULL, NULL, SNESInputInfo, SNESDIPInfo,
+	DrvInit, DrvExit, DrvFrame, DrvDraw, DrvScan, &DrvRecalc, 0x8000,
+	512, 448, 4, 3
+};
+
+// Batida (HB)
+// https://ditnera.itch.io/batida
+static struct BurnRomInfo snes_BatidaRomDesc[] = {
+	{ "Batida (2026)(DiTnera).sfc", 262144, 0x379caf5f, BRF_ESS | BRF_PRG },
+};
+
+STD_ROM_PICK(snes_Batida)
+STD_ROM_FN(snes_Batida)
+
+struct BurnDriver BurnDrvsnes_Batida = {
+	"snes_batida", NULL, NULL, NULL, "2026",
+	"Batida (HB)\0", NULL, "DiTnera", "SNES / Super Famicom",
+	NULL, NULL, NULL, NULL,
+	BDF_GAME_WORKING | BDF_HOMEBREW, 1, HARDWARE_SNES, GBF_PUZZLE, 0,
+	SNESGetZipName, snes_BatidaRomInfo, snes_BatidaRomName, NULL, NULL, NULL, NULL, SNESInputInfo, SNESDIPInfo,
 	DrvInit, DrvExit, DrvFrame, DrvDraw, DrvScan, &DrvRecalc, 0x8000,
 	512, 448, 4, 3
 };
@@ -47754,6 +47830,25 @@ struct BurnDriver BurnDrvsnes_Earthboundgsb = {
 	512, 448, 4, 3
 };
 
+// ECHO (HB)
+// https://ditnera.itch.io/echo
+static struct BurnRomInfo snes_EchoRomDesc[] = {
+	{ "ECHO (2026)(DiTnera).sfc", 131072, 0x684427f6, BRF_ESS | BRF_PRG },
+};
+
+STD_ROM_PICK(snes_Echo)
+STD_ROM_FN(snes_Echo)
+
+struct BurnDriver BurnDrvsnes_Echo = {
+	"snes_echo", NULL, NULL, NULL, "2026",
+	"ECHO (HB)\0", NULL, "DiTnera", "SNES / Super Famicom",
+	NULL, NULL, NULL, NULL,
+	BDF_GAME_WORKING | BDF_HOMEBREW, 1, HARDWARE_SNES, GBF_ACTION | GBF_MAZE, 0,
+	SNESGetZipName, snes_EchoRomInfo, snes_EchoRomName, NULL, NULL, NULL, NULL, SNESInputInfo, SNESDIPInfo,
+	DrvInit, DrvExit, DrvFrame, DrvDraw, DrvScan, &DrvRecalc, 0x8000,
+	512, 448, 4, 3
+};
+
 // Eek! The Cat - Color Enhancement (Hack)
 // https://www.romhacking.net/hacks/6336/
 static struct BurnRomInfo snes_EekcatceRomDesc[] = {
@@ -47983,6 +48078,63 @@ struct BurnDriver BurnDrvsnes_Ffight3te = {
 	512, 448, 4, 3
 };
 
+// Find 87 (HB, v3)
+// https://ditnera.itch.io/find87
+static struct BurnRomInfo snes_Find87RomDesc[] = {
+	{ "Find 87 v3 (2026)(DiTnera).sfc", 262144, 0x973cc7a2, BRF_ESS | BRF_PRG },
+};
+
+STD_ROM_PICK(snes_Find87)
+STD_ROM_FN(snes_Find87)
+
+struct BurnDriver BurnDrvsnes_Find87 = {
+	"snes_find87", NULL, NULL, NULL, "2026",
+	"Find 87 (HB, v3)\0", NULL, "DiTnera", "SNES / Super Famicom",
+	NULL, NULL, NULL, NULL,
+	BDF_GAME_WORKING | BDF_HOMEBREW, 1, HARDWARE_SNES, GBF_PUZZLE, 0,
+	SNESGetZipName, snes_Find87RomInfo, snes_Find87RomName, NULL, NULL, NULL, NULL, SNESInputInfo, SNESDIPInfo,
+	DrvInit, DrvExit, DrvFrame, DrvDraw, DrvScan, &DrvRecalc, 0x8000,
+	512, 448, 4, 3
+};
+
+// Find 87 (HB, v2)
+// https://ditnera.itch.io/find-87
+static struct BurnRomInfo snes_Find87v2RomDesc[] = {
+	{ "Find 87 v2 (2026)(DiTnera).sfc", 262144, 0x797eb82b, BRF_ESS | BRF_PRG },
+};
+
+STD_ROM_PICK(snes_Find87v2)
+STD_ROM_FN(snes_Find87v2)
+
+struct BurnDriver BurnDrvsnes_Find87v2 = {
+	"snes_find87v2", "snes_find87", NULL, NULL, "2026",
+	"Find 87 (HB, v2)\0", NULL, "DiTnera", "SNES / Super Famicom",
+	NULL, NULL, NULL, NULL,
+	BDF_GAME_WORKING | BDF_CLONE | BDF_HOMEBREW, 1, HARDWARE_SNES, GBF_PUZZLE, 0,
+	SNESGetZipName, snes_Find87v2RomInfo, snes_Find87v2RomName, NULL, NULL, NULL, NULL, SNESInputInfo, SNESDIPInfo,
+	DrvInit, DrvExit, DrvFrame, DrvDraw, DrvScan, &DrvRecalc, 0x8000,
+	512, 448, 4, 3
+};
+
+// FIO (HB)
+// https://ditnera.itch.io/fio
+static struct BurnRomInfo snes_FioRomDesc[] = {
+	{ "FIO (2026)(DiTnera).sfc", 262144, 0xc7f21be4, BRF_ESS | BRF_PRG },
+};
+
+STD_ROM_PICK(snes_Fio)
+STD_ROM_FN(snes_Fio)
+
+struct BurnDriver BurnDrvsnes_Fio = {
+	"snes_fio", NULL, NULL, NULL, "2026",
+	"FIO (HB)\0", NULL, "DiTnera", "SNES / Super Famicom",
+	NULL, NULL, NULL, NULL,
+	BDF_GAME_WORKING | BDF_HOMEBREW, 1, HARDWARE_SNES, GBF_PLATFORM, 0,
+	SNESGetZipName, snes_FioRomInfo, snes_FioRomName, NULL, NULL, NULL, NULL, SNESInputInfo, SNESDIPInfo,
+	DrvInit, DrvExit, DrvFrame, DrvDraw, DrvScan, &DrvRecalc, 0x8000,
+	512, 448, 4, 3
+};
+
 // Firewall (HB)
 // https://colpanic.itch.io/firewall-snes
 static struct BurnRomInfo snes_FirewallRomDesc[] = {
@@ -48074,6 +48226,45 @@ struct BurnDriver BurnDrvsnes_Fzeroml = {
 	NULL, NULL, NULL, NULL,
 	BDF_GAME_WORKING | BDF_CLONE | BDF_HACK, 1, HARDWARE_SNES, GBF_RACING, 0,
 	SNESGetZipName, snes_FzeromlRomInfo, snes_FzeromlRomName, NULL, NULL, NULL, NULL, SNESInputInfo, SNESDIPInfo,
+	DrvInit, DrvExit, DrvFrame, DrvDraw, DrvScan, &DrvRecalc, 0x8000,
+	512, 448, 4, 3
+};
+
+// Ganbare! Daiku no Gen-san - FastROM (Hack)
+// https://www.patreon.com/Kandowontu/posts/ganbare-daiku-no-82033798
+static struct BurnRomInfo snes_DaikugensanfrRomDesc[] = {
+	{ "Ganbare! Daiku no Gen-san - FastROM (2023)(kandowontu).sfc", 1048576, 0xb6cc7c94, BRF_ESS | BRF_PRG },
+};
+
+STD_ROM_PICK(snes_Daikugensanfr)
+STD_ROM_FN(snes_Daikugensanfr)
+
+struct BurnDriver BurnDrvsnes_Daikugensanfr = {
+	"snes_daikugensanfr", "snes_daikugensante", NULL, NULL, "2023",
+	"Ganbare! Daiku no Gen-san - FastROM (Hack)\0", NULL, "kandowontu", "SNES / Super Famicom",
+	NULL, NULL, NULL, NULL,
+	BDF_GAME_WORKING | BDF_CLONE | BDF_HACK, 1, HARDWARE_SNES, GBF_PLATFORM, 0,
+	SNESGetZipName, snes_DaikugensanfrRomInfo, snes_DaikugensanfrRomName, NULL, NULL, NULL, NULL, SNESInputInfo, SNESDIPInfo,
+	DrvInit, DrvExit, DrvFrame, DrvDraw, DrvScan, &DrvRecalc, 0x8000,
+	512, 448, 4, 3
+};
+
+// Ganbare! Daiku no Gen-san - FastROM (Hack, English)
+// https://www.patreon.com/Kandowontu/posts/ganbare-daiku-no-82033798
+// https://github.com/Retroplayingbcn/gen-san-sfc-english
+static struct BurnRomInfo snes_DaikugensanfrteRomDesc[] = {
+	{ "Ganbare! Daiku no Gen-san - FastROM T-Eng (2023-26)(kandowontu & Retroplaying BCN).sfc", 2097152, 0x579ba3de, BRF_ESS | BRF_PRG },
+};
+
+STD_ROM_PICK(snes_Daikugensanfrte)
+STD_ROM_FN(snes_Daikugensanfrte)
+
+struct BurnDriver BurnDrvsnes_Daikugensanfrte = {
+	"snes_daikugensanfrte", "snes_daikugensante", NULL, NULL, "2023-26",
+	"Ganbare! Daiku no Gen-san - FastROM (Hack, English)\0", NULL, "kandowontu & Retroplaying BCN", "SNES / Super Famicom",
+	NULL, NULL, NULL, NULL,
+	BDF_GAME_WORKING | BDF_CLONE | BDF_HACK, 1, HARDWARE_SNES, GBF_PLATFORM, 0,
+	SNESGetZipName, snes_DaikugensanfrteRomInfo, snes_DaikugensanfrteRomName, NULL, NULL, NULL, NULL, SNESInputInfo, SNESDIPInfo,
 	DrvInit, DrvExit, DrvFrame, DrvDraw, DrvScan, &DrvRecalc, 0x8000,
 	512, 448, 4, 3
 };
@@ -49597,6 +49788,25 @@ struct BurnDriver BurnDrvsnes_Pitfallvcs = {
 	512, 448, 4, 3
 };
 
+// Pocket Gravity (HB)
+// https://ditnera.itch.io/pocket-gravity
+static struct BurnRomInfo snes_PocketgravityRomDesc[] = {
+	{ "Pocket Gravity (2026)(DiTnera).sfc", 131072, 0x1f174fa8, BRF_ESS | BRF_PRG },
+};
+
+STD_ROM_PICK(snes_Pocketgravity)
+STD_ROM_FN(snes_Pocketgravity)
+
+struct BurnDriver BurnDrvsnes_Pocketgravity = {
+	"snes_pocketgravity", NULL, NULL, NULL, "2026",
+	"Pocket Gravity (HB)\0", NULL, "DiTnera", "SNES / Super Famicom",
+	NULL, NULL, NULL, NULL,
+	BDF_GAME_WORKING | BDF_HOMEBREW, 1, HARDWARE_SNES, GBF_PUZZLE, 0,
+	SNESGetZipName, snes_PocketgravityRomInfo, snes_PocketgravityRomName, NULL, NULL, NULL, NULL, SNESInputInfo, SNESDIPInfo,
+	DrvInit, DrvExit, DrvFrame, DrvDraw, DrvScan, &DrvRecalc, 0x8000,
+	512, 448, 4, 3
+};
+
 // Prince of Persia Restoration (Hack)
 // https://www.romhacking.net/hacks/3603/
 static struct BurnRomInfo snes_PrincepersiarRomDesc[] = {
@@ -49765,6 +49975,25 @@ struct BurnDriver BurnDrvsnes_Returndoubledragonev = {
 	NULL, NULL, NULL, NULL,
 	BDF_GAME_WORKING, 2, HARDWARE_SNES, GBF_SCRFIGHT, 0,
 	SNESGetZipName, snes_ReturndoubledragonevRomInfo, snes_ReturndoubledragonevRomName, NULL, NULL, NULL, NULL, SNESInputInfo, SNESDIPInfo,
+	DrvInit, DrvExit, DrvFrame, DrvDraw, DrvScan, &DrvRecalc, 0x8000,
+	512, 448, 4, 3
+};
+
+// Return of Double Dragon PLUS (Hack, v0.9)
+// https://romhackplaza.org/romhacks/super-double-dragon-return-of-the-double-dragon-plus-super-nintendo-romhack
+static struct BurnRomInfo snes_ReturndoubledragonpRomDesc[] = {
+	{ "Return of Double Dragon PLUS v0.9 (2026)(Jackic).sfc", 2097152, 0x62d3188c, BRF_ESS | BRF_PRG },
+};
+
+STD_ROM_PICK(snes_Returndoubledragonp)
+STD_ROM_FN(snes_Returndoubledragonp)
+
+struct BurnDriver BurnDrvsnes_Returndoubledragonp = {
+	"snes_returndoubledragonp", "snes_returndoubledragonev", NULL, NULL, "2026",
+	"Return of Double Dragon PLUS (Hack, v0.9)\0", NULL, "Jackic", "SNES / Super Famicom",
+	NULL, NULL, NULL, NULL,
+	BDF_GAME_WORKING | BDF_CLONE | BDF_HACK, 2, HARDWARE_SNES, GBF_SCRFIGHT, 0,
+	SNESGetZipName, snes_ReturndoubledragonpRomInfo, snes_ReturndoubledragonpRomName, NULL, NULL, NULL, NULL, SNESInputInfo, SNESDIPInfo,
 	DrvInit, DrvExit, DrvFrame, DrvDraw, DrvScan, &DrvRecalc, 0x8000,
 	512, 448, 4, 3
 };
@@ -50278,6 +50507,25 @@ struct BurnDriver BurnDrvsnes_Skippfrds = {
 	NULL, NULL, NULL, NULL,
 	BDF_GAME_WORKING | BDF_HOMEBREW, 1, HARDWARE_SNES, GBF_ACTION | GBF_PUZZLE, 0,
 	SNESGetZipName, snes_SkippfrdsRomInfo, snes_SkippfrdsRomName, NULL, NULL, NULL, NULL, SNESInputInfo, SNESDIPInfo,
+	DrvInit, DrvExit, DrvFrame, DrvDraw, DrvScan, &DrvRecalc, 0x8000,
+	512, 448, 4, 3
+};
+
+// Super Double Dragon PLUS (Hack, v0.9)
+// https://romhackplaza.org/romhacks/super-double-dragon-return-of-the-double-dragon-plus-super-nintendo-romhack
+static struct BurnRomInfo snes_SuperdoubledragonpRomDesc[] = {
+	{ "Super Double Dragon PLUS v0.9 (2026)(Jackic).sfc", 2097152, 0x60e7aa93, BRF_ESS | BRF_PRG },
+};
+
+STD_ROM_PICK(snes_Superdoubledragonp)
+STD_ROM_FN(snes_Superdoubledragonp)
+
+struct BurnDriver BurnDrvsnes_Superdoubledragonp = {
+	"snes_superdoubledragonp", "snes_returndoubledragonev", NULL, NULL, "2026",
+	"Super Double Dragon PLUS (Hack, v0.9)\0", NULL, "Jackic", "SNES / Super Famicom",
+	NULL, NULL, NULL, NULL,
+	BDF_GAME_WORKING | BDF_CLONE | BDF_HACK, 2, HARDWARE_SNES, GBF_SCRFIGHT, 0,
+	SNESGetZipName, snes_SuperdoubledragonpRomInfo, snes_SuperdoubledragonpRomName, NULL, NULL, NULL, NULL, SNESInputInfo, SNESDIPInfo,
 	DrvInit, DrvExit, DrvFrame, DrvDraw, DrvScan, &DrvRecalc, 0x8000,
 	512, 448, 4, 3
 };
@@ -51102,10 +51350,10 @@ struct BurnDriver BurnDrvsnes_Supermetroidxf = {
 	512, 448, 4, 3
 };
 
-// Super Mario Kart - Fullscreen Edition (Hack, v1.5)
+// Super Mario Kart - Fullscreen Edition (Hack, v2.0)
 // https://www.romhacking.net/hacks/10083/
 static struct BurnRomInfo snes_SupermkartfseRomDesc[] = {
-	{ "Super Mario Kart - Fullscreen Edition v1.5 (2026)(Psicopompo).sfc", 1048576, 0x6af5145e, BRF_ESS | BRF_PRG },
+	{ "Super Mario Kart - Fullscreen Edition v2.0 (2026)(Psicopompo).sfc", 1048576, 0xe9b8c210, BRF_ESS | BRF_PRG },
 };
 
 STDROMPICKEXT(snes_Supermkartfse, snes_Supermkartfse, snes_dsp1b)
@@ -51113,7 +51361,7 @@ STD_ROM_FN(snes_Supermkartfse)
 
 struct BurnDriver BurnDrvsnes_Supermkartfse = {
 	"snes_supermkartfse", "snes_supermkart", "snes_dsp1b", NULL, "2026",
-	"Super Mario Kart - Fullscreen Edition (Hack, v1.5)\0", "DSP-1B enhancement chip", "Psicopompo", "SNES / Super Famicom",
+	"Super Mario Kart - Fullscreen Edition (Hack, v2.0)\0", "DSP-1B enhancement chip", "Psicopompo", "SNES / Super Famicom",
 	NULL, NULL, NULL, NULL,
 	BDF_GAME_WORKING | BDF_CLONE | BDF_HACK, 2, HARDWARE_SNES, GBF_RACING, 0,
 	SNESGetZipName, snes_SupermkartfseRomInfo, snes_SupermkartfseRomName, NULL, NULL, NULL, NULL, SNESInputInfo, SNESDIPInfo,
