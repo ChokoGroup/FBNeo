@@ -2,6 +2,7 @@
 #include "burner.h"
 #include "neocdlist.h"
 #include "pcecdlist.h"
+#include "segacdlist.h"
 int bDrvOkay = 0;                       // 1 if the Driver has been initted okay, and it's okay to use the BurnDrv functions
 
 // Choko Hack will mount "/mnt/fbneo" in "/opt/fbneo"
@@ -89,7 +90,7 @@ int DrvInit(int nDrvNum, bool bRestore)
 	nBurnDrvActive = nDrvNum;		// Set the driver number
 
 	INT32 nHardware = BurnDrvGetHardwareCode() & HARDWARE_PUBLIC_MASK;
-	if (nHardware == HARDWARE_SNK_NEOCD || nHardware == HARDWARE_PCENGINE_PCE_CD) {
+	if (nHardware == HARDWARE_SNK_NEOCD || nHardware == HARDWARE_PCENGINE_PCE_CD || nHardware == HARDWARE_SEGA_MEGACD) {
 		if (CDEmuInit()) {
 			printf("CD emu failed\n");
 			return 1;
@@ -101,6 +102,10 @@ int DrvInit(int nDrvNum, bool bRestore)
 			NeoCDZRateChange();
 		} else if (nHardware == HARDWARE_PCENGINE_PCE_CD) {
 			PceCDInfo_Init();
+		} else if (nHardware == HARDWARE_SEGA_MEGACD) {
+			SegaCDInfo_Init();
+
+			NeoCDZRateChange();
 		}
 	}
 
