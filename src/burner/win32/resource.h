@@ -58,6 +58,7 @@
 #define IDD_ROMDATA_MANAGER					85
 #define IDD_ROMDATA_COVER_DLG				86
 #define IDD_HOTKEYS							87
+#define IDD_SEL_PRESETNAME					88
 
 #define IDR_MENU                        	100
 #define IDR_MENU_BLITTER_1					110
@@ -209,6 +210,11 @@
 #define IDC_SYSINFO_LOG_SAVE				20139
 #define IDC_LOCAL_DOWNLOAD_LANG				20140
 #define IDC_SEL_SEARCHTIMER					20141
+#define IDC_SEL_HW_ARCADE					20158
+#define IDC_SEL_HW_CONSOLE					20159
+#define IDC_SEL_HW_PRESET1					20160
+#define IDC_SEL_HW_PRESET2					20161
+#define IDC_SEL_PRESETNAME_EDIT				20162
 #define IDC_CHOOSE_MONITOR_HOR				20142
 #define IDC_CHOOSE_MONITOR_HOR_LIST			20143
 #define IDC_CHOOSE_MONITOR_VER				20144
@@ -490,50 +496,56 @@
 #define IDC_ROMSDIR_EDIT18               	21117
 #define IDC_ROMSDIR_EDIT19               	21118
 #define IDC_ROMSDIR_EDIT20               	21119
+#define IDC_ROMSDIR_EDIT21               	21120
+#define IDC_ROMSDIR_EDIT22               	21121
 
-#define IDC_ROMSDIR_TEXT1					21120
-#define IDC_ROMSDIR_TEXT2					21121
-#define IDC_ROMSDIR_TEXT3					21122
-#define IDC_ROMSDIR_TEXT4					21123
-#define IDC_ROMSDIR_TEXT5					21124
-#define IDC_ROMSDIR_TEXT6					21125
-#define IDC_ROMSDIR_TEXT7					21126
-#define IDC_ROMSDIR_TEXT8					21127
-#define IDC_ROMSDIR_TEXT9					21128
-#define IDC_ROMSDIR_TEXT10					21129
-#define IDC_ROMSDIR_TEXT11					21130
-#define IDC_ROMSDIR_TEXT12					21131
-#define IDC_ROMSDIR_TEXT13					21132
-#define IDC_ROMSDIR_TEXT14					21133
-#define IDC_ROMSDIR_TEXT15					21134
-#define IDC_ROMSDIR_TEXT16					21135
-#define IDC_ROMSDIR_TEXT17					21136
-#define IDC_ROMSDIR_TEXT18					21137
-#define IDC_ROMSDIR_TEXT19					21138
-#define IDC_ROMSDIR_TEXT20					21139
+#define IDC_ROMSDIR_TEXT1					21122
+#define IDC_ROMSDIR_TEXT2					21123
+#define IDC_ROMSDIR_TEXT3					21124
+#define IDC_ROMSDIR_TEXT4					21125
+#define IDC_ROMSDIR_TEXT5					21126
+#define IDC_ROMSDIR_TEXT6					21127
+#define IDC_ROMSDIR_TEXT7					21128
+#define IDC_ROMSDIR_TEXT8					21129
+#define IDC_ROMSDIR_TEXT9					21130
+#define IDC_ROMSDIR_TEXT10					21131
+#define IDC_ROMSDIR_TEXT11					21132
+#define IDC_ROMSDIR_TEXT12					21133
+#define IDC_ROMSDIR_TEXT13					21134
+#define IDC_ROMSDIR_TEXT14					21135
+#define IDC_ROMSDIR_TEXT15					21136
+#define IDC_ROMSDIR_TEXT16					21137
+#define IDC_ROMSDIR_TEXT17					21138
+#define IDC_ROMSDIR_TEXT18					21139
+#define IDC_ROMSDIR_TEXT19					21140
+#define IDC_ROMSDIR_TEXT20					21141
+#define IDC_ROMSDIR_TEXT21					21142
+#define IDC_ROMSDIR_TEXT22					21143
 
-#define IDC_ROMSDIR_BR1                 	21140
-#define IDC_ROMSDIR_BR2                 	21141
-#define IDC_ROMSDIR_BR3                 	21142
-#define IDC_ROMSDIR_BR4                 	21143
-#define IDC_ROMSDIR_BR5                 	21144
-#define IDC_ROMSDIR_BR6                 	21145
-#define IDC_ROMSDIR_BR7                 	21146
-#define IDC_ROMSDIR_BR8                 	21147
-#define IDC_ROMSDIR_BR9                 	21148
-#define IDC_ROMSDIR_BR10                 	21149
-#define IDC_ROMSDIR_BR11                 	21150
-#define IDC_ROMSDIR_BR12                 	21151
-#define IDC_ROMSDIR_BR13                 	21152
-#define IDC_ROMSDIR_BR14                 	21153
-#define IDC_ROMSDIR_BR15                 	21154
-#define IDC_ROMSDIR_BR16                 	21155
-#define IDC_ROMSDIR_BR17                 	21156
-#define IDC_ROMSDIR_BR18                 	21157
-#define IDC_ROMSDIR_BR19                 	21158
-#define IDC_ROMSDIR_BR20                 	21159
+#define IDC_ROMSDIR_BR1                 	21144
+#define IDC_ROMSDIR_BR2                 	21145
+#define IDC_ROMSDIR_BR3                 	21146
+#define IDC_ROMSDIR_BR4                 	21147
+#define IDC_ROMSDIR_BR5                 	21148
+#define IDC_ROMSDIR_BR6                 	21149
+#define IDC_ROMSDIR_BR7                 	21150
+#define IDC_ROMSDIR_BR8                 	21151
+#define IDC_ROMSDIR_BR9                 	21152
+#define IDC_ROMSDIR_BR10                 	21153
+#define IDC_ROMSDIR_BR11                 	21154
+#define IDC_ROMSDIR_BR12                 	21155
+#define IDC_ROMSDIR_BR13                 	21156
+#define IDC_ROMSDIR_BR14                 	21157
+#define IDC_ROMSDIR_BR15                 	21158
+#define IDC_ROMSDIR_BR16                 	21159
+#define IDC_ROMSDIR_BR17                 	21160
+#define IDC_ROMSDIR_BR18                 	21161
+#define IDC_ROMSDIR_BR19                 	21162
+#define IDC_ROMSDIR_BR20                 	21163
+#define IDC_ROMSDIR_BR21                 	21164
+#define IDC_ROMSDIR_BR22                 	21165
 
-#define IDDEFAULT							21160
+#define IDDEFAULT							21166
 
 #define IDC_ROMDATA_MANAGER					21200
 #define IDC_ROMDATA_LIST					21201
@@ -863,6 +875,7 @@
 #define MENU_CLRMAME_PRO_XML_ASTROHOME_ONLY	10741
 #define MENU_CLRMAME_PRO_XML_GBA_ONLY		10742
 #define MENU_CLRMAME_PRO_XML_ATARI2600_ONLY	10744
+#define MENU_CLRMAME_PRO_XML_32X_ONLY		10745
 
 #define MENU_INPUT_P1_DISABLE				10750
 #define MENU_INPUT_P1_SOCDN					10751
@@ -1142,6 +1155,16 @@
 #define MENU_UI_DEFAULT_MODE                11908
 
 #define MENU_HOTKEYS                        11960
+
+#define MENU_ARTWORK_NONE					12100	// "Artwork" sub-menu, rebuilt for each game
+#define MENU_ARTWORK_RESET					12101
+#define MENU_ARTWORK_VIEW					12110	// 12110 - 12141: views
+#define MENU_ARTWORK_TOGGLE					12150	// 12150 - 12181: collections (overlay, bezel, ...)
+#define MENU_ARTWORK_ENABLE					12102
+#define MENU_ARTWORK_DEF					12190	// 12190 - 12194: default parts (marquee, overlay, backdrop, bezel, control panel)
+#define MENU_ARTWORK_DEFVIEW				12200	// 12200 - 12207: default view
+#define MENU_ARTWORK_SCALE					12210	// 12210 - 12215: size mode (auto, 1x - 4x, fit max. height)
+#define MENU_ARTWORK_MAXH					12220	// 12220 - 12224: max. height
 
 // Next default values for new objects
 //

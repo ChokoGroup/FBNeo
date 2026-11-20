@@ -1,4 +1,5 @@
 #include "cps.h"
+#include "burn_ost.h"
 // CPS - Memory
 
 UINT32 CpsMProt[4];
@@ -154,6 +155,10 @@ void __fastcall CPSQSoundC0WriteByte(UINT32 sekAddress, UINT8 byteValue)
 #else
 	QsndSyncZ80();
 #endif
+
+	if (sekAddress == 0x001F && BurnOstActive()) {
+		if (CpsOstQsndMailbox(byteValue) == 0) return;	// OST replaced it with nothing
+	}
 
 	CpsZRamC0[sekAddress >> 1] = byteValue;
 }
@@ -435,6 +440,13 @@ INT32 CpsAreaScan(INT32 nAction, INT32 *pnMin)
 		SCAN_VAR(nCpsObjectBank);
 		CpsRasterScan();
 
+		// latches drawn after the vblank (sprite list, palette DMA, registers): without them the first frame drawn
+		// after a state load, or a redraw, uses the latches of whatever frame ran before the load
+		ScanVar(CpsSavePal, 0x2000, "CpsSavePal");
+		ScanVar(CpsSaveReg[0], 0x100, "CpsSaveReg");
+		if (Cps == 2) ScanVar(CpsSaveFrg[0], 0x20, "CpsSaveFrg");
+		if (CpsObjScan(nAction, "CpsObj")) return 1;
+
 		if (Cps1OverrideLayers) {
 			SCAN_VAR(nCps1Layers);
 			SCAN_VAR(nCps1LayerOffs);
@@ -457,10 +469,12 @@ INT32 CpsAreaScan(INT32 nAction, INT32 *pnMin)
 
 	if (((Cps == 2) && !Cps2DisableQSnd) || Cps1Qs == 1) {						// Scan QSound chips
 		if (CpsSoundScanCallbackFunction) CpsSoundScanCallbackFunction(nAction, pnMin);
-		else QsndScan(nAction);
+		else QsndScan(nAction, 1);
 	} else {											// Scan PSound chips
 		if ((Cps & 1) && !Cps1DisablePSnd) PsndScan(nAction, pnMin);
 	}
+
+	BurnOstScan(nAction, pnMin);
 	
 	if (CpsMemScanCallbackFunction) {
 		CpsMemScanCallbackFunction(nAction, pnMin);

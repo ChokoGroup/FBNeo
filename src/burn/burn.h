@@ -64,6 +64,8 @@ extern TCHAR szAppHDDPath[MAX_PATH];
 extern TCHAR szAppBlendPath[MAX_PATH];
 extern TCHAR szAppEEPROMPath[MAX_PATH];
 extern TCHAR szAppSnesMsu1Path[MAX_PATH];	// SNES MSU-1 media root
+extern TCHAR szAppOstPath[MAX_PATH];		// OST packs (burn_ost)
+extern TCHAR szAppArtworkPath[MAX_PATH];	// Artwork packs (burn_artwork)
 
 // Macro to determine the size of a struct up to and including "member"
 #define STRUCT_SIZE_HELPER(type, member) offsetof(type, member) + sizeof(((type*)0)->member)
@@ -345,6 +347,54 @@ extern bool bSpeedLimit60hz;
 extern double dForcedFrameRate;
 
 extern bool bBurnUseBlend;
+
+// Artwork (.lay) support, see burn_artwork.h
+extern INT32 bBurnArtworkEnable;			// load Artwork packs (default 1)
+extern INT32 nBurnArtworkView;				// artwork view to use (0 = first view with a screen)
+extern INT32 nBurnArtworkMaxHeight;		// cap for the composited artwork height (default 2160)
+extern INT32 nBurnArtworkScale;			// game screen size: -1 = fit the frontend's window / fullscreen (default),
+											// N = N x native, 0 = fit nBurnArtworkMaxHeight
+INT32 BurnArtworkActive();
+INT32 BurnArtworkGetBaseSize(INT32 *pnWidth, INT32 *pnHeight);	// size to base the window size on (1 if active)
+INT32 BurnArtworkSetTargetSize(INT32 nWidth, INT32 nHeight);		// output area, display orientation (1 if size changed)
+INT32 BurnArtworkGetViewCount();
+const char *BurnArtworkGetViewName(INT32 n);
+INT32 BurnArtworkGetView();
+INT32 BurnArtworkSetView(INT32 n);					// returns 1 if changed: re-init video
+INT32 BurnArtworkGetToggleCount();					// collections of the current view
+const char *BurnArtworkGetToggleName(INT32 n);
+INT32 BurnArtworkGetToggle(INT32 n);
+INT32 BurnArtworkSetToggle(INT32 n, INT32 nOn);		// returns 1 if changed: re-init video
+INT32 BurnArtworkResetSettings();					// delete config/games/<game>_art.ini, back to defaults
+INT32 BurnArtworkRefresh();							// after changing a global setting: returns 1 if active (re-init video)
+INT32 BurnArtworkSetEnable(INT32 bEnable);			// on/off for the running game too: returns 1 if changed (re-init video)
+// frontends that keep the per-game settings themselves (libretro core options): BurnArtworkProbe()
+// parses the selected game's artwork before BurnDrvInit() (returns 1 if found), so its views and
+// toggles can be listed and set; the choices are kept when BurnDrvInit() loads the artwork
+INT32 BurnArtworkProbe();
+INT32 BurnArtworkGetViewToggleCount(INT32 nView);
+const char *BurnArtworkGetViewToggleName(INT32 nView, INT32 n);
+INT32 BurnArtworkGetViewToggle(INT32 nView, INT32 n);
+INT32 BurnArtworkSetViewToggles(INT32 nView, UINT32 nToggles);	// returns 1 if changed: re-init video
+extern INT32 nBurnArtworkDefaults;					// parts shown in games without their own _art.ini:
+#define ARTWORK_DEFAULT_MARQUEE		(1 << 0)
+#define ARTWORK_DEFAULT_OVERLAY		(1 << 1)
+#define ARTWORK_DEFAULT_BACKDROP	(1 << 2)
+#define ARTWORK_DEFAULT_BEZEL		(1 << 3)
+#define ARTWORK_DEFAULT_CPANEL		(1 << 4)
+#define ARTWORK_DEFAULT_ALL			0x1f
+
+// Layered artwork: frontends that composite the artwork themselves (e.g. on the GPU, so their
+// effects / shaders only touch the game image). out = Add + Mul * (Under + game), per channel
+struct BurnArtworkLayers {
+	INT32 nWidth, nHeight, nPitch;				// layers, in the driver's orientation (like pBurnDraw), pitch in pixels
+	UINT32 *pUnder, *pAdd, *pMul;				// 0xffRRGGBB
+	INT32 nScreenX, nScreenY, nScreenW, nScreenH;	// where the game image goes, in the layers
+	INT32 nSerial;								// changes when the layers do (re-upload them)
+};
+extern INT32 bBurnArtworkLayered;				// allow it (1), or always use the core's compositing (0)
+INT32 BurnArtworkSetLayered(INT32 bLayered);	// call before getting the image size; returns 1 if layered artwork is active
+INT32 BurnArtworkGetLayers(BurnArtworkLayers *pLayers);	// returns 0 if not layered / no artwork
 
 extern INT32 nBurnFPS;
 extern INT32 nBurnCPUSpeedAdjust;
@@ -750,6 +800,7 @@ int BurnComputeSHA1(const UINT8 *buffer, int buffer_size, char *hash_str);
 
 #define HARDWARE_SEGA_MEGADRIVE							(HARDWARE_PREFIX_SEGA_MEGADRIVE)
 #define HARDWARE_SEGA_MEGACD							(HARDWARE_PREFIX_SEGA_MEGADRIVE | 0x00010000)
+#define HARDWARE_SEGA_32X								(HARDWARE_PREFIX_SEGA_MEGADRIVE | 0x00020000)
 
 #define HARDWARE_SEGA_SG1000                            (HARDWARE_PREFIX_SEGA_SG1000)
 #define HARDWARE_SEGA_SG1000_RAMEXP_A                   (0x1000)

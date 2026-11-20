@@ -2516,7 +2516,7 @@ struct BurnDriver BurnDrvGalagamf = {
 	"galagamf", "galaga", NULL, "galaga", "1981",
 	"Galaga (Midway set 1 with fast shoot hack)\0", NULL, "Namco (Midway license)", "Miscellaneous",
 	NULL, NULL, NULL, NULL,
-	BDF_GAME_WORKING | BDF_CLONE | BDF_ORIENTATION_VERTICAL | BDF_ORIENTATION_FLIPPED | BDF_HISCORE_SUPPORTED, 2, HARDWARE_MISC_PRE90S, GBF_VERSHOOT, 0,
+	BDF_GAME_WORKING | BDF_CLONE | BDF_HACK | BDF_ORIENTATION_VERTICAL | BDF_ORIENTATION_FLIPPED | BDF_HISCORE_SUPPORTED, 2, HARDWARE_MISC_PRE90S, GBF_VERSHOOT, 0,
 	NULL, GalagamfRomInfo, GalagamfRomName, NULL, NULL, GalagaSampleInfo, GalagaSampleName, GalagaInputInfo, GalagamwDIPInfo,
 	galagaInit, DrvExit, DrvFrame, DrvDraw, galagaScan, NULL,
 	GALAGA_PALETTE_SIZE, NAMCO_SCREEN_WIDTH, NAMCO_SCREEN_HEIGHT, 3, 4
@@ -3321,6 +3321,92 @@ struct BurnDriver BurnDrvDigdugat = {
 	DIGDUG_PALETTE_SIZE, NAMCO_SCREEN_WIDTH, NAMCO_SCREEN_HEIGHT, 3, 4
 };
 
+static struct BurnRomInfo digdugat1RomDesc[] = {
+	{ "136007.101",   0x1000, 0xb9198079, BRF_ESS | BRF_PRG  }, //  0 Z80 #1 Program Code
+	{ "136007.102",   0x1000, 0xb2acbe49, BRF_ESS | BRF_PRG  }, //  1
+	{ "136007.103",   0x1000, 0xd6407b49, BRF_ESS | BRF_PRG  }, //  2
+	{ "136007.104",   0x1000, 0xb3ad42c3, BRF_ESS | BRF_PRG  }, //  3
+
+	{ "136007.105",   0x1000, 0x0a2aef4a, BRF_ESS | BRF_PRG  }, //  4	Z80 #2 Program Code
+	{ "136007.106",   0x1000, 0xa2876d6e, BRF_ESS | BRF_PRG  }, //  5
+
+	{ "136007.107",   0x1000, 0xa41bce72, BRF_ESS | BRF_PRG  }, //  6	Z80 #3 Program Code
+
+	{ "136007.108",   0x0800, 0x3d24a3af, BRF_GRA            }, //  7	Characters
+
+	{ "136007.116",   0x1000, 0xe22957c8, BRF_GRA            }, //  8	Sprites
+	{ "136007.117",   0x1000, 0xa3bbfd85, BRF_GRA            }, //  9
+	{ "136007.118",   0x1000, 0x458499e9, BRF_GRA            }, // 10
+	{ "136007.119",   0x1000, 0xc58252a0, BRF_GRA            }, // 11
+
+	{ "136007.115",   0x1000, 0x754539be, BRF_GRA            }, // 12	Characters 8x8 2bpp
+
+	{ "136007.114",   0x1000, 0xd6822397, BRF_GRA            }, // 13 Playfield Data
+
+	{ "136007.113",   0x0020, 0x4cb9da99, BRF_GRA            }, // 14 Palette Prom
+	{ "136007.111",   0x0100, 0x00c7c419, BRF_GRA            }, // 15 Sprite Color Prom
+	{ "136007.112",   0x0100, 0xe9b3e08e, BRF_GRA            }, // 16 Character Color Prom
+
+	{ "136007.110",   0x0100, 0x7a2815b4, BRF_GRA            }, // 17 Namco Sound Proms
+	{ "136007.109",   0x0100, 0x77245b66, BRF_GRA            }, // 18
+};
+
+STD_ROM_PICK(digdugat1)
+STD_ROM_FN(digdugat1)
+
+struct BurnDriver BurnDrvDigdugat1 = {
+	"digdugat1", "digdug", NULL, NULL, "1982",
+	"Dig Dug (Atari, rev 1)\0", NULL, "Namco (Atari license)", "Miscellaneous",
+	NULL, NULL, NULL, NULL,
+	BDF_GAME_WORKING | BDF_CLONE | BDF_ORIENTATION_VERTICAL | BDF_ORIENTATION_FLIPPED, 2, HARDWARE_MISC_PRE90S, GBF_MAZE | GBF_ACTION, 0,
+	NULL, digdugat1RomInfo, digdugat1RomName, NULL, NULL, NULL, NULL, DigdugInputInfo, DigdugDIPInfo,
+	digdugInit, DrvExit, DrvFrame, DrvDraw, digdugScan, NULL,
+	DIGDUG_PALETTE_SIZE, NAMCO_SCREEN_WIDTH, NAMCO_SCREEN_HEIGHT, 3, 4
+};
+
+static struct BurnRomInfo digsidRomDesc[] = {
+	{ "digdug0.0",    0x1000, 0x602197f0, BRF_ESS | BRF_PRG  }, //  0 Z80 #1 Program Code
+	{ "digdug1.1",    0x1000, 0xc6c8306b, BRF_ESS | BRF_PRG  }, //  1
+	{ "digdug2.2",    0x1000, 0xb695ec17, BRF_ESS | BRF_PRG  }, //  2
+	{ "digdug3.3",    0x1000, 0x17bbfa40, BRF_ESS | BRF_PRG  }, //  3
+
+	{ "digdug4.4",    0x1000, 0x370ef9b4, BRF_ESS | BRF_PRG  }, //  4	Z80 #2 Program Code
+	{ "digdug5.5",    0x1000, 0xd751df5d, BRF_ESS | BRF_PRG  }, //  5
+
+	{ "digdug6.6",    0x1000, 0xa41bce72, BRF_ESS | BRF_PRG  }, //  6	Z80 #3 Program Code
+
+	{ "digdug8.8",    0x0800, 0xf14a6fe1, BRF_GRA            }, //  7	Characters
+
+	{ "digdug14.14",  0x1000, 0xe22957c8, BRF_GRA            }, //  8	Sprites
+	{ "digdug13.13",  0x1000, 0x2829ec99, BRF_GRA            }, //  9
+	{ "digdug12.12",  0x1000, 0x458499e9, BRF_GRA            }, // 10
+	{ "digdug11.11",  0x1000, 0xc58252a0, BRF_GRA            }, // 11
+
+	{ "digdug10.10",  0x1000, 0x7b383983, BRF_GRA            }, // 12	Characters 8x8 2bpp
+
+	{ "digdug9.9",    0x1000, 0x2cf399c2, BRF_GRA            }, // 13 Playfield Data
+
+	{ "136007.113",   0x0020, 0x4cb9da99, BRF_GRA            }, // 14 Palette Prom
+	{ "136007.111",   0x0100, 0x00c7c419, BRF_GRA            }, // 15 Sprite Color Prom
+	{ "136007.112",   0x0100, 0xe9b3e08e, BRF_GRA            }, // 16 Character Color Prom
+
+	{ "136007.110",   0x0100, 0x7a2815b4, BRF_GRA            }, // 17 Namco Sound Proms
+	{ "136007.109",   0x0100, 0x77245b66, BRF_GRA            }, // 18
+};
+
+STD_ROM_PICK(digsid)
+STD_ROM_FN(digsid)
+
+struct BurnDriver BurnDrvDigsid = {
+	"digsid", "digdug", NULL, NULL, "1982",
+	"Dig Dug (manufactured by Sidam)\0", NULL, "Namco (Sidam license)", "Miscellaneous",
+	NULL, NULL, NULL, NULL,
+	BDF_GAME_WORKING | BDF_CLONE | BDF_ORIENTATION_VERTICAL | BDF_ORIENTATION_FLIPPED, 2, HARDWARE_MISC_PRE90S, GBF_MAZE | GBF_ACTION, 0,
+	NULL, digsidRomInfo, digsidRomName, NULL, NULL, NULL, NULL, DigdugInputInfo, DigdugDIPInfo,
+	digdugInit, DrvExit, DrvFrame, DrvDraw, digdugScan, NULL,
+	DIGDUG_PALETTE_SIZE, NAMCO_SCREEN_WIDTH, NAMCO_SCREEN_HEIGHT, 3, 4
+};
+
 /* === XEVIOUS === */
 
 static struct BurnInputInfo XeviousInputList[] =
@@ -3877,9 +3963,9 @@ static struct BurnRomInfo XeviousdRomDesc[] = {
 	{ "1983_atari_8307_136018_106.3d",     0x01000, 0x535cdbbc, BRF_GRA             }, //  6 bg pattern B1
 
 	{ "1983_atari_8307_136018_107.4m",     0x02000, 0xdc2c0ecb, BRF_GRA             }, //  7 sprite set #1, planes 0/1
-	{ "1983_atari_8307_136018_109.4p",     0x02000, 0x02417d19, BRF_GRA             }, //  8 sprite set #1, plane 2, set #2, plane 0
-	{ "1983_atari_8307_136018_108.4n",     0x02000, 0xdfb587ce, BRF_GRA             }, //  9 sprite set #2, planes 1/2
-	{ "1983_atari_8307_136018_110.4r",     0x01000, 0x605ca889, BRF_GRA             }, // 10 sprite set #3, planes 0/1
+	{ "1983_atari_8307_136018_110.4r",     0x02000, 0x02417d19, BRF_GRA             }, //  8 sprite set #1, plane 2, set #2, plane 0
+	{ "1983_atari_8307_136018_109.4p",     0x02000, 0xdfb587ce, BRF_GRA             }, //  9 sprite set #2, planes 1/2
+	{ "1983_atari_8307_136018_108.4n",     0x01000, 0x605ca889, BRF_GRA             }, // 10 sprite set #3, planes 0/1
 
 	{ "1983_atari_8307_136018_101.2a",     0x01000, 0x57ed9879, BRF_GRA             }, // 11
 	{ "1983_atari_8307_136018_102.2b",     0x02000, 0xae3ba9e5, BRF_GRA             }, // 12
@@ -4980,7 +5066,7 @@ struct BurnDriver BurnDrvXeviousc = {
 };
 
 struct BurnDriver BurnDrvXeviousd = {
-	"xeviousd", "xevious", NULL, "xevious", "1982",
+	"xeviousd", "xevious", NULL, "xevious", "1983",
 	"Xevious (Atari, set 4)\0", NULL, "Namco (Atari license)", "Miscellaneous",
 	NULL, NULL, NULL, NULL,
 	BDF_GAME_WORKING | BDF_CLONE | BDF_ORIENTATION_VERTICAL | BDF_ORIENTATION_FLIPPED | BDF_HISCORE_SUPPORTED, 2, HARDWARE_MISC_PRE90S, GBF_VERSHOOT, 0,
@@ -5409,6 +5495,76 @@ static struct BurnRomInfo sboscoRomDesc[] = {
 
 STD_ROM_PICK(sbosco)
 STD_ROM_FN(sbosco)
+
+// Bosconian 87 Arcade (hack of "bosco", Namco new version)
+
+static struct BurnRomInfo bosco87RomDesc[] = {
+	{ "bos3_1.3n",    0x1000, 0x4c8dac81, BRF_PRG | BRF_ESS  }, //  0 Z80 #1 (main)    - patched
+	{ "bos1_2.3m",    0x1000, 0x2d8f3ebe, BRF_PRG | BRF_ESS  }, //  1
+	{ "bos1_3.3l",    0x1000, 0x68db1a66, BRF_PRG | BRF_ESS  }, //  2                  - patched
+	{ "bos1_4b.3k",   0x1000, 0x7d2f7af0, BRF_PRG | BRF_ESS  }, //  3                  - patched
+
+	{ "bos1_5c.3j",   0x1000, 0xa7c8e432, BRF_PRG | BRF_ESS  }, //  4 Z80 #2 (sub)
+	{ "bos3_6.3h",    0x1000, 0x4543cf82, BRF_PRG | BRF_ESS  }, //  5
+
+	{ "bos1_7.3e",    0x1000, 0x9ac7836c, BRF_PRG | BRF_ESS  }, //  6 Z80 #3 (sound)   - patched
+
+	{ "bos1_14.5d",   0x1000, 0xa956d3c5, BRF_GRA            }, //  7 Characters
+	{ "bos1_13.5e",   0x1000, 0xe869219c, BRF_GRA            }, //  8 Sprites
+	{ "bos1-4.2r",    0x0100, 0x9b69b543, BRF_GRA            }, //  9 Radar dots
+
+	{ "bos1-6.6b",    0x0020, 0xd2b96fb0, BRF_GRA            }, // 10 Palette
+	{ "bos1-5.4m",    0x0100, 0x4e15d59c, BRF_GRA            }, // 11 Colour lookup table
+	{ "bos1-3.2d",    0x0020, 0xb88d5ba9, BRF_GRA            }, // 12 Video layout (not used)
+	{ "bos1-7.7h",    0x0020, 0x87d61353, BRF_GRA            }, // 13 Video timing (not used)
+
+	{ "bos1-1.1d",    0x0100, 0xde2316c6, BRF_SND            }, // 14 Namco Sound Proms
+	{ "bos1-2.5c",    0x0100, 0x77245b66, BRF_SND            }, // 15 (timing - not used)
+
+	{ "bos1_9.5n",    0x1000, 0x09acc978, BRF_SND            }, // 16 52XX Samples
+	{ "bos1_10.5m",   0x1000, 0xe571e959, BRF_SND            }, // 17
+	{ "bos1_11.5k",   0x1000, 0x17ac9511, BRF_SND            }, // 18
+
+	{ "54xx.bin",     0x0400, 0xee7357e0, BRF_ESS | BRF_PRG  }, // 19 54XX MCU
+};
+
+STD_ROM_PICK(bosco87)
+STD_ROM_FN(bosco87)
+
+// Bosconian 87 Arcade (hack of "boscomd", Midway new version)
+
+static struct BurnRomInfo bosco87mRomDesc[] = {
+	{ "3n",           0x1000, 0x286ac876, BRF_PRG | BRF_ESS  }, //  0 Z80 #1 (main)    - patched
+	{ "3m",           0x1000, 0xa3c5c7ef, BRF_PRG | BRF_ESS  }, //  1
+	{ "3l",           0x1000, 0x6ca9a0cf, BRF_PRG | BRF_ESS  }, //  2
+	{ "3k",           0x1000, 0xf34970c8, BRF_PRG | BRF_ESS  }, //  3                  - patched
+
+	{ "3j",           0x1000, 0x4374e39a, BRF_PRG | BRF_ESS  }, //  4 Z80 #2 (sub)
+	{ "3h",           0x1000, 0x04e9fcef, BRF_PRG | BRF_ESS  }, //  5
+
+	{ "bos1_7.3e",    0x1000, 0x9ac7836c, BRF_PRG | BRF_ESS  }, //  6 Z80 #3 (sound)   - patched
+
+	{ "bos1_14.5d",   0x1000, 0xa956d3c5, BRF_GRA            }, //  7 Characters
+	{ "bos1_13.5e",   0x1000, 0xe869219c, BRF_GRA            }, //  8 Sprites
+	{ "bos1-4.2r",    0x0100, 0x9b69b543, BRF_GRA            }, //  9 Radar dots
+
+	{ "bos1-6.6b",    0x0020, 0xd2b96fb0, BRF_GRA            }, // 10 Palette
+	{ "bos1-5.4m",    0x0100, 0x4e15d59c, BRF_GRA            }, // 11 Colour lookup table
+	{ "bos1-3.2d",    0x0020, 0xb88d5ba9, BRF_GRA            }, // 12 Video layout (not used)
+	{ "bos1-7.7h",    0x0020, 0x87d61353, BRF_GRA            }, // 13 Video timing (not used)
+
+	{ "bos1-1.1d",    0x0100, 0xde2316c6, BRF_SND            }, // 14 Namco Sound Proms
+	{ "bos1-2.5c",    0x0100, 0x77245b66, BRF_SND            }, // 15 (timing - not used)
+
+	{ "bos1_9.5n",    0x1000, 0x09acc978, BRF_SND            }, // 16 52XX Samples
+	{ "bos1_10.5m",   0x1000, 0xe571e959, BRF_SND            }, // 17
+	{ "bos1_11.5k",   0x1000, 0x17ac9511, BRF_SND            }, // 18
+
+	{ "54xx.bin",     0x0400, 0xee7357e0, BRF_ESS | BRF_PRG  }, // 19 54XX MCU
+};
+
+STD_ROM_PICK(bosco87m)
+STD_ROM_FN(bosco87m)
 
 #define BOSCO_SCREEN_WIDTH                288
 #define BOSCO_SCREEN_HEIGHT               224
@@ -6873,7 +7029,7 @@ struct BurnDriver BurnDrvBosco = {
 	"bosco", NULL, NULL, NULL, "1981",
 	"Bosconian - Star Destroyer (version 5)\0", NULL, "Namco", "Miscellaneous",
 	NULL, NULL, NULL, NULL,
-	BDF_GAME_WORKING, 2, HARDWARE_MISC_PRE90S, GBF_SHOOT, 0,
+	BDF_GAME_WORKING | BDF_HISCORE_SUPPORTED, 2, HARDWARE_MISC_PRE90S, GBF_SHOOT, 0,
 	NULL, boscoRomInfo, boscoRomName, NULL, NULL, NULL, NULL, BoscoInputInfo, BoscoDIPInfo,
 	boscoInit, boscoExit, boscoFrame, DrvDraw, boscoScan, NULL,
 	BOSCO_PALETTE_SIZE, BOSCO_SCREEN_WIDTH, BOSCO_SCREEN_HEIGHT, 4, 3
@@ -6883,7 +7039,7 @@ struct BurnDriver BurnDrvBosco3 = {
 	"bosco3", "bosco", NULL, NULL, "1981",
 	"Bosconian - Star Destroyer (version 3)\0", NULL, "Namco", "Miscellaneous",
 	NULL, NULL, NULL, NULL,
-	BDF_GAME_WORKING | BDF_CLONE, 2, HARDWARE_MISC_PRE90S, GBF_SHOOT, 0,
+	BDF_GAME_WORKING | BDF_CLONE | BDF_HISCORE_SUPPORTED, 2, HARDWARE_MISC_PRE90S, GBF_SHOOT, 0,
 	NULL, bosco3RomInfo, bosco3RomName, NULL, NULL, NULL, NULL, BoscoInputInfo, BoscoDIPInfo,
 	boscoInit, boscoExit, boscoFrame, DrvDraw, boscoScan, NULL,
 	BOSCO_PALETTE_SIZE, BOSCO_SCREEN_WIDTH, BOSCO_SCREEN_HEIGHT, 4, 3
@@ -6893,7 +7049,7 @@ struct BurnDriver BurnDrvBosco1 = {
 	"bosco1", "bosco", NULL, NULL, "1981",
 	"Bosconian - Star Destroyer (version 1, newer)\0", NULL, "Namco", "Miscellaneous",
 	NULL, NULL, NULL, NULL,
-	BDF_GAME_WORKING | BDF_CLONE, 2, HARDWARE_MISC_PRE90S, GBF_SHOOT, 0,
+	BDF_GAME_WORKING | BDF_CLONE | BDF_HISCORE_SUPPORTED, 2, HARDWARE_MISC_PRE90S, GBF_SHOOT, 0,
 	NULL, bosco1RomInfo, bosco1RomName, NULL, NULL, NULL, NULL, BoscoInputInfo, BoscoDIPInfo,
 	boscoInit, boscoExit, boscoFrame, DrvDraw, boscoScan, NULL,
 	BOSCO_PALETTE_SIZE, BOSCO_SCREEN_WIDTH, BOSCO_SCREEN_HEIGHT, 4, 3
@@ -6903,7 +7059,7 @@ struct BurnDriver BurnDrvBosco1o = {
 	"bosco1o", "bosco", NULL, NULL, "1981",
 	"Bosconian - Star Destroyer (version 1, older)\0", NULL, "Namco", "Miscellaneous",
 	NULL, NULL, NULL, NULL,
-	BDF_GAME_WORKING | BDF_CLONE, 2, HARDWARE_MISC_PRE90S, GBF_SHOOT, 0,
+	BDF_GAME_WORKING | BDF_CLONE | BDF_HISCORE_SUPPORTED, 2, HARDWARE_MISC_PRE90S, GBF_SHOOT, 0,
 	NULL, bosco1oRomInfo, bosco1oRomName, NULL, NULL, NULL, NULL, BoscoInputInfo, BoscoDIPInfo,
 	boscoInit, boscoExit, boscoFrame, DrvDraw, boscoScan, NULL,
 	BOSCO_PALETTE_SIZE, BOSCO_SCREEN_WIDTH, BOSCO_SCREEN_HEIGHT, 4, 3
@@ -6913,7 +7069,7 @@ struct BurnDriver BurnDrvBoscomd = {
 	"boscomd", "bosco", NULL, NULL, "1981",
 	"Bosconian - Star Destroyer (Midway, new version)\0", NULL, "Namco (Midway license)", "Miscellaneous",
 	NULL, NULL, NULL, NULL,
-	BDF_GAME_WORKING | BDF_CLONE, 2, HARDWARE_MISC_PRE90S, GBF_SHOOT, 0,
+	BDF_GAME_WORKING | BDF_CLONE | BDF_HISCORE_SUPPORTED, 2, HARDWARE_MISC_PRE90S, GBF_SHOOT, 0,
 	NULL, boscomdRomInfo, boscomdRomName, NULL, NULL, NULL, NULL, BoscoInputInfo, BoscomdDIPInfo,
 	boscomdInit, boscoExit, boscoFrame, DrvDraw, boscoScan, NULL,
 	BOSCO_PALETTE_SIZE, BOSCO_SCREEN_WIDTH, BOSCO_SCREEN_HEIGHT, 4, 3
@@ -6923,7 +7079,7 @@ struct BurnDriver BurnDrvBoscomdo = {
 	"boscomdo", "bosco", NULL, NULL, "1981",
 	"Bosconian - Star Destroyer (Midway, old version)\0", NULL, "Namco (Midway license)", "Miscellaneous",
 	NULL, NULL, NULL, NULL,
-	BDF_GAME_WORKING | BDF_CLONE, 2, HARDWARE_MISC_PRE90S, GBF_SHOOT, 0,
+	BDF_GAME_WORKING | BDF_CLONE | BDF_HISCORE_SUPPORTED, 2, HARDWARE_MISC_PRE90S, GBF_SHOOT, 0,
 	NULL, boscomdoRomInfo, boscomdoRomName, NULL, NULL, NULL, NULL, BoscoInputInfo, BoscomdDIPInfo,
 	boscomdInit, boscoExit, boscoFrame, DrvDraw, boscoScan, NULL,
 	BOSCO_PALETTE_SIZE, BOSCO_SCREEN_WIDTH, BOSCO_SCREEN_HEIGHT, 4, 3
@@ -6933,8 +7089,28 @@ struct BurnDriver BurnDrvSbosco = {
 	"sbosco", "bosco", NULL, NULL, "2026",
 	"Super Bosconian (Hack)\0", NULL, "zeroco", "Miscellaneous",
 	NULL, NULL, NULL, NULL,
-	BDF_GAME_WORKING | BDF_CLONE | BDF_HACK, 2, HARDWARE_MISC_PRE90S, GBF_SHOOT, 0,
+	BDF_GAME_WORKING | BDF_CLONE | BDF_HACK | BDF_HISCORE_SUPPORTED, 2, HARDWARE_MISC_PRE90S, GBF_SHOOT, 0,
 	NULL, sboscoRomInfo, sboscoRomName, NULL, NULL, NULL, NULL, BoscoInputInfo, BoscoDIPInfo,
+	boscoInit, boscoExit, boscoFrame, DrvDraw, boscoScan, NULL,
+	BOSCO_PALETTE_SIZE, BOSCO_SCREEN_WIDTH, BOSCO_SCREEN_HEIGHT, 4, 3
+};
+
+struct BurnDriver BurnDrvBosco87 = {
+	"bosco87", "bosco", NULL, NULL, "2026",
+	"Bosconian 87 Arcade\0", NULL, "hack", "Miscellaneous",
+	NULL, NULL, NULL, NULL,
+	BDF_GAME_WORKING | BDF_CLONE | BDF_HACK | BDF_HISCORE_SUPPORTED, 2, HARDWARE_MISC_PRE90S, GBF_SHOOT, 0,
+	NULL, bosco87RomInfo, bosco87RomName, NULL, NULL, NULL, NULL, BoscoInputInfo, BoscoDIPInfo,
+	boscoInit, boscoExit, boscoFrame, DrvDraw, boscoScan, NULL,
+	BOSCO_PALETTE_SIZE, BOSCO_SCREEN_WIDTH, BOSCO_SCREEN_HEIGHT, 4, 3
+};
+
+struct BurnDriver BurnDrvBosco87m = {
+	"bosco87m", "bosco", NULL, NULL, "2026",
+	"Bosconian 87 Arcade (Midway version)\0", NULL, "hack", "Miscellaneous",
+	NULL, NULL, NULL, NULL,
+	BDF_GAME_WORKING | BDF_CLONE | BDF_HACK | BDF_HISCORE_SUPPORTED, 2, HARDWARE_MISC_PRE90S, GBF_SHOOT, 0,
+	NULL, bosco87mRomInfo, bosco87mRomName, NULL, NULL, NULL, NULL, BoscoInputInfo, BoscoDIPInfo,
 	boscoInit, boscoExit, boscoFrame, DrvDraw, boscoScan, NULL,
 	BOSCO_PALETTE_SIZE, BOSCO_SCREEN_WIDTH, BOSCO_SCREEN_HEIGHT, 4, 3
 };

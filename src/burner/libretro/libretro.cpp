@@ -28,6 +28,7 @@
 #include <file/file_path.h>
 
 #include <streams/file_stream.h>
+#include <retro_dirent.h>
 #include <string/stdstring.h>
 
 #define PRINTF_BUFFER_SIZE 512
@@ -149,6 +150,8 @@ TCHAR szAppIpsesPath[MAX_PATH];
 TCHAR szAppRomdatasPath[MAX_PATH];
 TCHAR szAppPathDefPath[MAX_PATH];
 TCHAR szAppSnesMsu1Path[MAX_PATH];
+TCHAR szAppOstPath[MAX_PATH];
+TCHAR szAppArtworkPath[MAX_PATH];
 TCHAR szAppBurnVer[16];
 
 static char szRomsetPath[MAX_PATH]        = { 0 };
@@ -364,6 +367,17 @@ void retro_set_environment(retro_environment_t cb)
 {
 	environ_cb = cb;
 
+	// Must be done before any file is opened: a stream must be closed by the implementation that opened it
+	struct retro_vfs_interface_info vfs_iface_info;
+	vfs_iface_info.required_interface_version = FILESTREAM_REQUIRED_VFS_VERSION;
+	vfs_iface_info.iface                      = NULL;
+	if (environ_cb(RETRO_ENVIRONMENT_GET_VFS_INTERFACE, &vfs_iface_info))
+	{
+		dirent_vfs_init(&vfs_iface_info);
+		filestream_vfs_init(&vfs_iface_info);
+		path_vfs_init(&vfs_iface_info);
+	}
+
 	struct retro_core_options_update_display_callback update_display_cb;
 	update_display_cb.callback = apply_dipswitches_from_variables;
 	environ_cb(RETRO_ENVIRONMENT_SET_CORE_OPTIONS_UPDATE_DISPLAY_CALLBACK, &update_display_cb);
@@ -419,6 +433,7 @@ void retro_set_environment(retro_environment_t cb)
 #ifdef BUILD_MEGADRIVE
 		{ "Sega Megadrive",                      "md",     subsystem_rom, 1, RETRO_GAME_TYPE_MD     },
 		{ "Sega CD",                             "segacd", subsystem_iso, 1, RETRO_GAME_TYPE_SEGACD },
+		{ "Sega 32X",                            "s32x",   subsystem_rom, 1, RETRO_GAME_TYPE_S32X   },
 #endif
 #ifdef BUILD_SG1000
 		{ "Sega SG-1000",                        "sg1k",   subsystem_rom, 1, RETRO_GAME_TYPE_SG1K   },
@@ -1188,6 +1203,9 @@ int CreateAllDatfiles(char* dat_folder)
 #ifdef BUILD_MEGADRIVE
 	snprintf_nowarn(szFilename, sizeof(szFilename), "%s%c%s (%s).dat", dat_folder, PATH_DEFAULT_SLASH_C(), APP_TITLE, "ClrMame Pro XML, Megadrive only");
 	create_datfile(szFilename, DAT_MEGADRIVE_ONLY);
+
+	snprintf_nowarn(szFilename, sizeof(szFilename), "%s%c%s (%s).dat", dat_folder, PATH_DEFAULT_SLASH_C(), APP_TITLE, "ClrMame Pro XML, Sega 32X only");
+	create_datfile(szFilename, DAT_32X_ONLY);
 #endif
 
 #ifdef BUILD_SG1000
@@ -2149,6 +2167,12 @@ static bool retro_load_game_common()
 	snprintf_nowarn (szAppSnesMsu1Path, sizeof(szAppSnesMsu1Path), "%s%cfbneo%csnesmsu1%c", g_system_dir, PATH_DEFAULT_SLASH_C(), PATH_DEFAULT_SLASH_C(), PATH_DEFAULT_SLASH_C());
 #endif
 
+	// Initialize OST path
+	snprintf_nowarn (szAppOstPath, sizeof(szAppOstPath), "%s%cfbneo%cost%c", g_system_dir, PATH_DEFAULT_SLASH_C(), PATH_DEFAULT_SLASH_C(), PATH_DEFAULT_SLASH_C());
+
+	// Initialize artwork path
+	snprintf_nowarn (szAppArtworkPath, sizeof(szAppArtworkPath), "%s%cfbneo%cartwork%c", g_system_dir, PATH_DEFAULT_SLASH_C(), PATH_DEFAULT_SLASH_C(), PATH_DEFAULT_SLASH_C());
+
 	// Initialize Cheats path
 	snprintf_nowarn (szAppCheatsPath, sizeof(szAppCheatsPath), "%s%cfbneo%ccheats%c", g_system_dir, PATH_DEFAULT_SLASH_C(), PATH_DEFAULT_SLASH_C(), PATH_DEFAULT_SLASH_C());
 
@@ -2251,6 +2275,52 @@ static bool retro_load_game_common()
 		nBurnLayer    = 0xff;
 		nSpriteEnable = 0xff;
 
+#if defined(BUILD_NEOGEO) || defined(BUILD_PCE) || defined(BUILD_MEGADRIVE)
+		// Start CD reader emulation if needed, the disc identifies the game (cheats, nvram...)
+		if (nGameType == RETRO_GAME_TYPE_NEOCD || nGameType == RETRO_GAME_TYPE_PCECD || nGameType == RETRO_GAME_TYPE_SEGACD) {
+			const char* ext = path_get_extension(CDEmuImage);
+			if (!string_is_equal_noncase(ext, "cue")
+			 && !string_is_equal_noncase(ext, "ccd")
+#ifdef INCLUDE_CHD_SUPPORT
+			 && !string_is_equal_noncase(ext, "chd")
+#endif
+			) {
+				static char uguiText[4096];
+				const char* s1 = RETRO_ERROR_MESSAGES_13;
+				const char* s2 = RETRO_ERROR_MESSAGES_07;
+				sprintf(uguiText, "%s\n\n%s", s1, s2);
+				SetUguiError(uguiText);
+				goto end;
+			}
+			if (CDEmuInit() != 0) {
+				SetUguiError("Failed initializing CD image");
+				HandleMessage(RETRO_LOG_ERROR, "[FBNeo] Failed initializing CD image\n");
+				goto end;
+			}
+			// cd emulation is started
+			bCDEmuStarted = true;
+			disc_control_register();
+#ifdef BUILD_NEOGEO
+			if (nGameType == RETRO_GAME_TYPE_NEOCD) {
+				NeoCDInfo_Init();
+				HandleMessage(RETRO_LOG_INFO, "[FBNeo] Starting Neo-Geo CD\n");
+			}
+#endif
+#ifdef BUILD_PCE
+			if (nGameType == RETRO_GAME_TYPE_PCECD) {
+				PceCDInfo_Init();
+				HandleMessage(RETRO_LOG_INFO, "[FBNeo] Starting PC Engine CD\n");
+			}
+#endif
+#ifdef BUILD_MEGADRIVE
+			if (nGameType == RETRO_GAME_TYPE_SEGACD) {
+				SegaCDInfo_Init();
+				HandleMessage(RETRO_LOG_INFO, "[FBNeo] Starting Sega CD\n");
+			}
+#endif
+		}
+#endif
+
 		// Create cheats core options
 		create_variables_from_cheats();
 
@@ -2322,52 +2392,6 @@ static bool retro_load_game_common()
 		nBurnSoundRate = g_audio_samplerate;
 		AudioBufferInit(nBurnSoundRate, 6000);
 		HandleMessage(RETRO_LOG_INFO, "[FBNeo] Samplerate set to %d\n", nBurnSoundRate);
-
-#if defined(BUILD_NEOGEO) || defined(BUILD_PCE) || defined(BUILD_MEGADRIVE)
-		// Start CD reader emulation if needed
-		if (nGameType == RETRO_GAME_TYPE_NEOCD || nGameType == RETRO_GAME_TYPE_PCECD || nGameType == RETRO_GAME_TYPE_SEGACD) {
-			const char* ext = path_get_extension(CDEmuImage);
-			if (!string_is_equal_noncase(ext, "cue")
-			 && !string_is_equal_noncase(ext, "ccd")
-#ifdef INCLUDE_CHD_SUPPORT
-			 && !string_is_equal_noncase(ext, "chd")
-#endif
-			) {
-				static char uguiText[4096];
-				const char* s1 = RETRO_ERROR_MESSAGES_13;
-				const char* s2 = RETRO_ERROR_MESSAGES_07;
-				sprintf(uguiText, "%s\n\n%s", s1, s2);
-				SetUguiError(uguiText);
-				goto end;
-			}
-			if (CDEmuInit() != 0) {
-				SetUguiError("Failed initializing CD image");
-				HandleMessage(RETRO_LOG_ERROR, "[FBNeo] Failed initializing CD image\n");
-				goto end;
-			}
-			// cd emulation is started
-			bCDEmuStarted = true;
-			disc_control_register();
-#ifdef BUILD_NEOGEO
-			if (nGameType == RETRO_GAME_TYPE_NEOCD) {
-				NeoCDInfo_Init();
-				HandleMessage(RETRO_LOG_INFO, "[FBNeo] Starting Neo-Geo CD\n");
-			}
-#endif
-#ifdef BUILD_PCE
-			if (nGameType == RETRO_GAME_TYPE_PCECD) {
-				PceCDInfo_Init();
-				HandleMessage(RETRO_LOG_INFO, "[FBNeo] Starting PC Engine CD\n");
-			}
-#endif
-#ifdef BUILD_MEGADRIVE
-			if (nGameType == RETRO_GAME_TYPE_SEGACD) {
-				SegaCDInfo_Init();
-				HandleMessage(RETRO_LOG_INFO, "[FBNeo] Starting Sega CD\n");
-			}
-#endif
-		}
-#endif
 
 		// Apply dipswitches
 		// note: apply_dipswitches_from_variables won't be able to detect changed dips at boot if they are the defaults,
@@ -2627,6 +2651,10 @@ bool retro_load_game(const struct retro_game_info *info)
 		HandleMessage(RETRO_LOG_INFO, "[FBNeo] subsystem md identified from parent folder\n");
 		if (strncmp(g_driver_name, "md_", 3) != 0) prefix = "md_";
 	}
+	if(strcmp(g_rom_parent_dir, "s32x")==0 || strcmp(g_rom_parent_dir, "32x")==0 || strcmp(g_rom_parent_dir, "sega32x")==0) {
+		HandleMessage(RETRO_LOG_INFO, "[FBNeo] subsystem s32x identified from parent folder\n");
+		if (strncmp(g_driver_name, "s32x_", 5) != 0) prefix = "s32x_";
+	}
 #endif
 #ifdef BUILD_MSX
 	if(strcmp(g_rom_parent_dir, "msx")==0 || strcmp(g_rom_parent_dir, "msx1")==0) {
@@ -2786,6 +2814,9 @@ bool retro_load_game_special(unsigned game_type, const struct retro_game_info *i
 #ifdef BUILD_MEGADRIVE
 		case RETRO_GAME_TYPE_MD:
 			prefix = "md_";
+			break;
+		case RETRO_GAME_TYPE_S32X:
+			prefix = "s32x_";
 			break;
 #endif
 #ifdef BUILD_MSX

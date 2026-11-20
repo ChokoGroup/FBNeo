@@ -722,6 +722,7 @@ static int CreateDatfileWindows(int bType)
 	if (bType == DAT_CHANNELF_ONLY) _sntprintf(szConsoleString, 64, _T(", Fairchild Channel F Games only"));
 	if (bType == DAT_ASTROHOME_ONLY) _sntprintf(szConsoleString, 64, _T(", Bally Astrocade Games only"));
 	if (bType == DAT_ATARI2600_ONLY) _sntprintf(szConsoleString, 64, _T(", Atari 2600 Games only"));
+	if (bType == DAT_32X_ONLY) _sntprintf(szConsoleString, 64, _T(", Sega 32X Games only"));
 
 	TCHAR szProgramString[25];
 	_sntprintf(szProgramString, 25, _T("ClrMame Pro XML"));
@@ -860,13 +861,76 @@ INT32 CreateAllDatfilesWindows(bool bSilent, const TCHAR* pszSpecDir)
 	_sntprintf(szFilename, MAX_PATH, _T("%s") _T(APP_TITLE) _T(" v%.20s (%s%s).dat"), buffer, szAppBurnVer, szProgramString, _T(", Atari 2600 Games only"));
 	create_datfile(szFilename, DAT_ATARI2600_ONLY);
 
+	_sntprintf(szFilename, MAX_PATH, _T("%s") _T(APP_TITLE) _T(" v%.20s (%s%s).dat"), buffer, szAppBurnVer, szProgramString, _T(", Sega 32X Games only"));
+	create_datfile(szFilename, DAT_32X_ONLY);
+
 
 	return nRet;
+}
+
+// MAME artwork in auto-size mode (nBurnArtworkScale < 0) is rendered at the size
+// of the window / fullscreen, so the blitter shows it 1:1 and it stays crisp.
+static bool bInSizeMove = false;
+static int nArtTargetW = 0, nArtTargetH = 0;
+
+static bool ScrnGetArtworkTarget(int *pw, int *ph)
+{
+	if (!bDrvOkay || nBurnArtworkScale >= 0 || !BurnArtworkActive() || hScrnWnd == NULL) {
+		return false;
+	}
+
+	int w, h;
+	if (nVidFullscreen) {
+		MONITORINFO mi;
+		memset(&mi, 0, sizeof(mi));
+		mi.cbSize = sizeof(mi);
+		GetMonitorInfo(MonitorFromWindow(hScrnWnd, MONITOR_DEFAULTTOPRIMARY), &mi);
+		w = mi.rcMonitor.right - mi.rcMonitor.left;
+		h = mi.rcMonitor.bottom - mi.rcMonitor.top;
+	} else {
+		RECT rect;
+		if (IsIconic(hScrnWnd) || !GetClientRect(hScrnWnd, &rect)) {
+			return false;
+		}
+		w = rect.right - rect.left;
+		h = rect.bottom - rect.top - nMenuHeight;
+	}
+
+	if ((BurnDrvGetFlags() & BDF_ORIENTATION_VERTICAL) && (nVidRotationAdjust & 1)) {
+		int t = w; w = h; h = t;	// shown sideways
+	}
+
+	if (w < 16 || h < 16) {
+		return false;
+	}
+
+	*pw = w;
+	*ph = h;
+	return true;
+}
+
+// called by VidInit() before the blitter is initialised
+void ScrnSetArtworkTarget()
+{
+	int w, h;
+	if (ScrnGetArtworkTarget(&w, &h)) {
+		nArtTargetW = w;
+		nArtTargetH = h;
+		BurnArtworkSetTargetSize(w, h);
+	}
 }
 
 // Returns true if a VidInit is needed when the window is resized
 static bool VidInitNeeded()
 {
+	// artwork in auto-size mode: re-render at the new size (but not while dragging)
+	if (!bInSizeMove) {
+		int w, h;
+		if (ScrnGetArtworkTarget(&w, &h) && (w != nArtTargetW || h != nArtTargetH)) {
+			return true;
+		}
+	}
+
 	// D3D blitter needs to re-initialise only when auto-size RGB effects are enabled
 	if (nVidSelect == 1 && (nVidBlitterOpt[nVidSelect] & 0x00030000) == 0x00030000) {
 		return true;
@@ -1310,6 +1374,7 @@ static t_hw_Struct scrn_gamehw_cfg[] = {
 	{ "channelf",	{ HARDWARE_CHANNELF, 0 } },
 	{ "astrocade",	{ HARDWARE_ASTROHOME, 0 } },
 	{ "atari2600",	{ HARDWARE_ATARI2600, 0 } },
+	{ "32x",		{ HARDWARE_SEGA_32X, 0 } },
 	{ "cps1",		{ HARDWARE_CAPCOM_CPS1, HARDWARE_CAPCOM_CPS1_QSOUND, HARDWARE_CAPCOM_CPS1_GENERIC, HARDWARE_CAPCOM_CPSCHANGER, 0 } },
 	{ "cps2",		{ HARDWARE_CAPCOM_CPS2, 0 } },
 	{ "cps3",		{ HARDWARE_CAPCOM_CPS3, 0 } },
@@ -2382,8 +2447,57 @@ static void OnCommand(HWND /*hDlg*/, int id, HWND /*hwndCtl*/, UINT codeNotify)
 			}
 			break;
 
+		case MENU_ARTWORK_RESET:
+			if (bDrvOkay && BurnArtworkResetSettings()) {
+				POST_INITIALISE_MESSAGE;
+			}
+			break;
+
+		case MENU_ARTWORK_ENABLE:
+			if (bDrvOkay) {
+				if (BurnArtworkSetEnable(!bBurnArtworkEnable)) {
+					POST_INITIALISE_MESSAGE;
+				}
+			} else {
+				bBurnArtworkEnable = !bBurnArtworkEnable;
+			}
+			break;
+
 		// PGM2 per-slot card operations (IDs 10040..10055)
 		default:
+			// Artwork views / parts (the artwork's size can change: re-initialise like a window size change)
+			if (id >= MENU_ARTWORK_VIEW && id < MENU_ARTWORK_VIEW + 32) {
+				if (bDrvOkay && BurnArtworkSetView(id - MENU_ARTWORK_VIEW)) {
+					POST_INITIALISE_MESSAGE;
+				}
+				break;
+			}
+			if (id >= MENU_ARTWORK_TOGGLE && id < MENU_ARTWORK_TOGGLE + 32) {
+				int n = id - MENU_ARTWORK_TOGGLE;
+				if (bDrvOkay && BurnArtworkSetToggle(n, !BurnArtworkGetToggle(n))) {
+					POST_INITIALISE_MESSAGE;
+				}
+				break;
+			}
+			// Artwork defaults / size: global settings, redo the running game's artwork with them
+			if ((id >= MENU_ARTWORK_DEF && id < MENU_ARTWORK_DEF + 5) || (id >= MENU_ARTWORK_DEFVIEW && id < MENU_ARTWORK_DEFVIEW + 8) ||
+				(id >= MENU_ARTWORK_SCALE && id < MENU_ARTWORK_SCALE + 6) || (id >= MENU_ARTWORK_MAXH && id < MENU_ARTWORK_MAXH + 5)) {
+				if (id >= MENU_ARTWORK_DEF && id < MENU_ARTWORK_DEF + 5) {
+					nBurnArtworkDefaults ^= 1 << (id - MENU_ARTWORK_DEF);
+				} else if (id >= MENU_ARTWORK_DEFVIEW && id < MENU_ARTWORK_DEFVIEW + 8) {
+					nBurnArtworkView = id - MENU_ARTWORK_DEFVIEW;
+				} else if (id >= MENU_ARTWORK_SCALE && id < MENU_ARTWORK_SCALE + 6) {
+					int n = id - MENU_ARTWORK_SCALE;
+					nBurnArtworkScale = (n == 0) ? -1 : ((n == 5) ? 0 : n);
+				} else {
+					const int nHeights[5] = { 720, 1080, 1440, 2160, 4320 };
+					nBurnArtworkMaxHeight = nHeights[id - MENU_ARTWORK_MAXH];
+				}
+				if (bDrvOkay && BurnArtworkRefresh()) {
+					POST_INITIALISE_MESSAGE;
+				}
+				break;
+			}
 #ifdef BUILD_PGM2
 			if (id >= MENU_MEMCARD_PGM2_BASE && id < MENU_MEMCARD_PGM2_BASE + 16) {
 				int slot = (id - MENU_MEMCARD_PGM2_BASE) / 4;
@@ -3747,6 +3861,12 @@ static void OnCommand(HWND /*hDlg*/, int id, HWND /*hwndCtl*/, UINT codeNotify)
 			}
 			break;
 
+		case MENU_CLRMAME_PRO_XML_32X_ONLY:
+			if (UseDialogs()) {
+				CreateDatfileWindows(DAT_32X_ONLY);
+			}
+			break;
+
 		case MENU_CLRMAME_PRO_ALL_DATS:
 			if (UseDialogs()) {
 				CreateAllDatfilesWindows();
@@ -4642,6 +4762,8 @@ static void OnEnterSizeMove(HWND)
 
 	AudBlankSound();
 
+	bInSizeMove = true;
+
 	GetClientRect(hScrnWnd, &rect);
 	nPrevWidth = rect.right;
 	nPrevHeight = rect.bottom;
@@ -4650,6 +4772,8 @@ static void OnEnterSizeMove(HWND)
 static void OnExitSizeMove(HWND)
 {
 	RECT rect;
+
+	bInSizeMove = false;
 
 	GetClientRect(hScrnWnd, &rect);
 	if (rect.right != nPrevWidth || rect.bottom != nPrevHeight) {
@@ -4745,9 +4869,11 @@ int ScrnSize()
 		if ((BurnDrvGetFlags() & BDF_ORIENTATION_VERTICAL) && (nVidRotationAdjust & 1)) {
 			BurnDrvGetVisibleSize(&nBmapHeight, &nBmapWidth);
 			BurnDrvGetAspect(&nGameAspectY, &nGameAspectX);
+			BurnArtworkGetBaseSize(&nBmapHeight, &nBmapWidth);	// artwork: size the window from the 1x artwork, not the window
 		} else {
 			BurnDrvGetVisibleSize(&nBmapWidth, &nBmapHeight);
 			BurnDrvGetAspect(&nGameAspectX, &nGameAspectY);
+			BurnArtworkGetBaseSize(&nBmapWidth, &nBmapHeight);
 		}
 
 		if (nBmapWidth <= 0 || nBmapHeight <= 0) {

@@ -168,16 +168,16 @@ BEGIN
     PUSHBUTTON      "Cancel",IDCANCEL,151,23,50,14, NOT WS_VISIBLE
 END
 
-IDD_ROMSDIR DIALOGEX 0, 0, 300, 380
+IDD_ROMSDIR DIALOGEX 0, 0, 300, 412
 STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | DS_CENTER | WS_POPUP | WS_CAPTION | WS_SYSMENU | WS_THICKFRAME
 CAPTION "Edit ROMs paths"
 FONT 8, "MS Shell Dlg"
 BEGIN
-    CONTROL         "",IDC_ROMPATH_TAB,"SysTabControl32",WS_TABSTOP | TCS_HOTTRACK,3,0,294,355
-    PUSHBUTTON      "Defaults",IDDEFAULT,7,359,50,14
-    DEFPUSHBUTTON   "OK",IDOK,241,359,50,14
-    PUSHBUTTON      "Cancel",IDCANCEL,186,359,50,14
-    GROUPBOX        "",IDC_STATIC1,7,14,284,337
+    CONTROL         "",IDC_ROMPATH_TAB,"SysTabControl32",WS_TABSTOP | TCS_HOTTRACK,3,0,294,387
+    PUSHBUTTON      "Defaults",IDDEFAULT,7,391,50,14
+    DEFPUSHBUTTON   "OK",IDOK,241,391,50,14
+    PUSHBUTTON      "Cancel",IDCANCEL,186,391,50,14
+    GROUPBOX        "",IDC_STATIC1,7,14,284,369
     LTEXT           "Path #1:",IDC_ROMSDIR_TEXT1,15,28,40,12
     EDITTEXT        IDC_ROMSDIR_EDIT1,56,26,170,12,ES_AUTOHSCROLL
     PUSHBUTTON      "Browse...",IDC_ROMSDIR_BR1,233,25,50,14
@@ -238,6 +238,12 @@ BEGIN
     LTEXT           "Path #20:",IDC_ROMSDIR_TEXT20,15,332,40,12
 	EDITTEXT        IDC_ROMSDIR_EDIT20,56,330,170,12,ES_AUTOHSCROLL
     PUSHBUTTON      "Browse...",IDC_ROMSDIR_BR20,233,329,50,14
+    LTEXT           "Path #21:",IDC_ROMSDIR_TEXT21,15,348,40,12
+	EDITTEXT        IDC_ROMSDIR_EDIT21,56,346,170,12,ES_AUTOHSCROLL
+    PUSHBUTTON      "Browse...",IDC_ROMSDIR_BR21,233,345,50,14
+    LTEXT           "Path #22:",IDC_ROMSDIR_TEXT22,15,364,40,12
+	EDITTEXT        IDC_ROMSDIR_EDIT22,56,362,170,12,ES_AUTOHSCROLL
+    PUSHBUTTON      "Browse...",IDC_ROMSDIR_BR22,233,361,50,14
 END
 
 IDD_ABOUT DIALOGEX 0, 0, 360, 109
@@ -273,7 +279,7 @@ CAPTION "Select Game"
 FONT 8, "MS Shell Dlg", 0, 0, 0x1
 BEGIN
 	CONTROL         "Tree1",IDC_TREE1,"SysTreeView32",TVS_HASBUTTONS | TVS_LINESATROOT | TVS_SHOWSELALWAYS | TVS_FULLROWSELECT | TVS_NOHSCROLL | WS_TABSTOP,9,133,323,137,WS_EX_STATICEDGE
-    CONTROL         "Tree2",IDC_TREE2,"SysTreeView32",TVS_HASBUTTONS | TVS_HASLINES | TVS_LINESATROOT | TVS_SHOWSELALWAYS | WS_TABSTOP | 0x8000,345,112,148,155,WS_EX_STATICEDGE
+    CONTROL         "Tree2",IDC_TREE2,"SysTreeView32",TVS_HASBUTTONS | TVS_HASLINES | TVS_LINESATROOT | TVS_SHOWSELALWAYS | WS_TABSTOP | 0x8000,345,129,148,138,WS_EX_STATICEDGE
     GROUPBOX        "Preview",IDC_STATIC2,163,1,157,118
     GROUPBOX        "Title",IDC_STATIC3,4,1,157,118
     CONTROL         "",IDC_SCREENSHOT_H,"Static",SS_BITMAP | SS_REALSIZEIMAGE | SS_SUNKEN,169,13,50,50, WS_EX_CLIENTEDGE
@@ -294,7 +300,11 @@ BEGIN
     EDITTEXT        IDC_TEXTSYSTEM,60,308,271,8,ES_AUTOHSCROLL | ES_READONLY | NOT WS_BORDER | NOT WS_TABSTOP
     EDITTEXT        IDC_TEXTGENRE,60,318,271,8,ES_AUTOHSCROLL | ES_READONLY | NOT WS_BORDER | NOT WS_TABSTOP
     EDITTEXT        IDC_TEXTNOTES,60,328,271,8,ES_AUTOHSCROLL | ES_READONLY | NOT WS_BORDER | NOT WS_TABSTOP
-    GROUPBOX        "Filters",IDC_STATIC_SYS,341,101,157,169
+    GROUPBOX        "Filters",IDC_STATIC_SYS,341,118,157,152
+    CONTROL         "Arcade",IDC_SEL_HW_ARCADE,"Button",WS_TABSTOP,341,102,38,14
+    CONTROL         "Console",IDC_SEL_HW_CONSOLE,"Button",WS_TABSTOP,380,102,38,14
+    CONTROL         "Preset 1",IDC_SEL_HW_PRESET1,"Button",WS_TABSTOP,420,102,38,14
+    CONTROL         "Preset 2",IDC_SEL_HW_PRESET2,"Button",WS_TABSTOP,460,102,38,14
     LTEXT           "",IDC_DRVCOUNT,10,345,241,8
     CONTROL         "Game Info",IDGAMEINFO,"Button",WS_TABSTOP,256,343,78,14
     GROUPBOX        "Options",IDC_STATIC_OPT,341,1,157,98
@@ -313,6 +323,17 @@ BEGIN
 	CONTROL         "IPS Manager",IDC_SEL_IPSMANAGER,"Button",WS_TABSTOP,346,324,78,14
 	GROUPBOX        "Search",IDC_SEL_SEARCHGROUP,341,271,157,27
 	EDITTEXT        IDC_SEL_SEARCH,346,282,147,12,ES_AUTOHSCROLL | WS_TABSTOP
+END
+
+IDD_SEL_PRESETNAME DIALOGEX 0, 0, 170, 50
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | DS_CENTER | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Rename Preset Button"
+FONT 8, "MS Shell Dlg", 0, 0, 0x1
+BEGIN
+    LTEXT           "Button text:",IDC_STATIC,6,9,44,8
+    EDITTEXT        IDC_SEL_PRESETNAME_EDIT,52,7,112,12,ES_AUTOHSCROLL | WS_TABSTOP
+    DEFPUSHBUTTON   "OK",IDOK,58,30,50,14
+    PUSHBUTTON      "Cancel",IDCANCEL,114,30,50,14
 END
 
 IDD_CAPTURE DIALOGEX 0, 0, 270, 90
@@ -1242,6 +1263,10 @@ BEGIN
              MENUITEM "&Quadruple size",				MENU_QUADSIZEWINDOW
              MENUITEM "&Maximum size",					MENU_MAXIMUMSIZEWINDOW
         END
+        POPUP "A&rtwork"
+        BEGIN
+             MENUITEM "(no artwork loaded)",				MENU_ARTWORK_NONE, GRAYED
+        END
         MENUITEM SEPARATOR
         MENUITEM "Toggle &fullscreen mode\tAlt+Enter",			MENU_FULL
         MENUITEM "Auto Switch to Fullscreen after loading",		MENU_AUTOSWITCHFULL
@@ -1506,31 +1531,32 @@ BEGIN
 #endif
 	END
         MENUITEM SEPARATOR
-        POPUP    "Generate dat file"
+		POPUP    "Generate dat file"
         BEGIN
-	        MENUITEM "Generate dat (Arcade only)...",			MENU_CLRMAME_PRO_XML
-	        MENUITEM "Generate dat (Neo Geo only)...",			MENU_CLRMAME_PRO_XML_NEOGEO_ONLY
-	        MENUITEM "Generate dat (Megadrive only)...",		MENU_CLRMAME_PRO_XML_MD_ONLY
-			MENUITEM "Generate dat (PC-Engine only)...",		MENU_CLRMAME_PRO_XML_PCE_ONLY
-			MENUITEM "Generate dat (TurboGrafx16 only)...",		MENU_CLRMAME_PRO_XML_TG16_ONLY
-			MENUITEM "Generate dat (SuprGrafx only)...",		MENU_CLRMAME_PRO_XML_SGX_ONLY
-			MENUITEM "Generate dat (Sega SG-1000 only)...",		MENU_CLRMAME_PRO_XML_SG1000_ONLY
-			MENUITEM "Generate dat (ColecoVision only)...",		MENU_CLRMAME_PRO_XML_COLECO_ONLY
-			MENUITEM "Generate dat (Master System only)...",	MENU_CLRMAME_PRO_XML_SMS_ONLY
-			MENUITEM "Generate dat (Game Gear only)...",		MENU_CLRMAME_PRO_XML_GG_ONLY
-			MENUITEM "Generate dat (MSX 1 Games only)...",		MENU_CLRMAME_PRO_XML_MSX_ONLY
-			MENUITEM "Generate dat (ZX Spectrum Games only)...",MENU_CLRMAME_PRO_XML_SPECTRUM_ONLY
-			MENUITEM "Generate dat (NES Games only)...",		MENU_CLRMAME_PRO_XML_NES_ONLY
-			MENUITEM "Generate dat (FDS Games only)...",		MENU_CLRMAME_PRO_XML_FDS_ONLY
-			MENUITEM "Generate dat (SNES Games only)...",		MENU_CLRMAME_PRO_XML_SNES_ONLY
-			MENUITEM "Generate dat (GBA Games Only)...",		MENU_CLRMAME_PRO_XML_GBA_ONLY
-			MENUITEM "Generate dat (Neo Geo Pocket Games only)...",	MENU_CLRMAME_PRO_XML_NGP_ONLY
-			MENUITEM "Generate dat (Fairchild Channel F Games only)...",	MENU_CLRMAME_PRO_XML_CHANNELF_ONLY
-			MENUITEM "Generate dat (Bally Astrocade Games Only)...",	MENU_CLRMAME_PRO_XML_ASTROHOME_ONLY
-			MENUITEM "Generate dat (Atari 2600 Games Only)...",	MENU_CLRMAME_PRO_XML_ATARI2600_ONLY
-			MENUITEM SEPARATOR
-			MENUITEM "Generate all dats...",					MENU_CLRMAME_PRO_ALL_DATS
-	END
+            MENUITEM "Generate dat (Arcade Only)...",                     MENU_CLRMAME_PRO_XML
+            MENUITEM "Generate dat (Atari 2600 Games Only)...",           MENU_CLRMAME_PRO_XML_ATARI2600_ONLY
+            MENUITEM "Generate dat (Bally Astrocade Games Only)...",      MENU_CLRMAME_PRO_XML_ASTROHOME_ONLY
+            MENUITEM "Generate dat (Coleco ColecoVision Only)...",        MENU_CLRMAME_PRO_XML_COLECO_ONLY
+            MENUITEM "Generate dat (Fairchild Channel F Games Only)...",  MENU_CLRMAME_PRO_XML_CHANNELF_ONLY
+            MENUITEM "Generate dat (MSX 1 Games Only)...",                MENU_CLRMAME_PRO_XML_MSX_ONLY
+            MENUITEM "Generate dat (NEC PC-Engine Only)...",              MENU_CLRMAME_PRO_XML_PCE_ONLY
+            MENUITEM "Generate dat (NEC SuprGrafx Only)...",              MENU_CLRMAME_PRO_XML_SGX_ONLY
+            MENUITEM "Generate dat (NEC TurboGrafx16 Only)...",           MENU_CLRMAME_PRO_XML_TG16_ONLY
+            MENUITEM "Generate dat (Nintendo FDS Games Only)...",         MENU_CLRMAME_PRO_XML_FDS_ONLY
+            MENUITEM "Generate dat (Nintendo GBA Games Only)...",         MENU_CLRMAME_PRO_XML_GBA_ONLY
+            MENUITEM "Generate dat (Nintendo NES Games Only)...",         MENU_CLRMAME_PRO_XML_NES_ONLY
+            MENUITEM "Generate dat (Nintendo SNES Games Only)...",        MENU_CLRMAME_PRO_XML_SNES_ONLY
+            MENUITEM "Generate dat (Sega 32X Games Only)...",             MENU_CLRMAME_PRO_XML_32X_ONLY
+            MENUITEM "Generate dat (Sega Game Gear Only)...",             MENU_CLRMAME_PRO_XML_GG_ONLY
+            MENUITEM "Generate dat (Sega Master System Only)...",         MENU_CLRMAME_PRO_XML_SMS_ONLY
+            MENUITEM "Generate dat (Sega Megadrive Only)...",             MENU_CLRMAME_PRO_XML_MD_ONLY
+            MENUITEM "Generate dat (Sega SG-1000 Only)...",               MENU_CLRMAME_PRO_XML_SG1000_ONLY
+            MENUITEM "Generate dat (Sinclair ZX Spectrum Games Only)...", MENU_CLRMAME_PRO_XML_SPECTRUM_ONLY
+            MENUITEM "Generate dat (SNK Neo Geo Only)...",                MENU_CLRMAME_PRO_XML_NEOGEO_ONLY
+            MENUITEM "Generate dat (SNK Neo Geo Pocket Games Only)...",   MENU_CLRMAME_PRO_XML_NGP_ONLY
+            MENUITEM SEPARATOR
+            MENUITEM "Generate all dats...",                              MENU_CLRMAME_PRO_ALL_DATS
+        END
         MENUITEM SEPARATOR
         MENUITEM "Configure ROM paths...",						MENU_ROMDIRS
         MENUITEM "Configure support file paths...",				MENU_SUPPORTDIRS
@@ -1741,30 +1767,30 @@ BEGIN
         POPUP "SoftFX\t(DirectDraw 7)"
         BEGIN
                 MENUITEM "&Double pixels (Software)",                   MENU_SOFTFX_SOFT_STRETCH
-                MENUITEM "AdvanceMAME Scale2x\t(16/32-bit only)",       MENU_SOFTFX_SOFT_SCALE2X
-                MENUITEM "AdvanceMAME Scale3x\t(16/32-bit only)",       MENU_SOFTFX_SOFT_SCALE3X
+                MENUITEM "AdvanceMAME Scale2x\t(15/16/32-bit only)",       MENU_SOFTFX_SOFT_SCALE2X
+                MENUITEM "AdvanceMAME Scale3x\t(15/16/32-bit only)",       MENU_SOFTFX_SOFT_SCALE3X
 				MENUITEM "2xPM LQ\t(15/16-bit only)",					MENU_SOFTFX_SOFT_2XPM_LQ
 				MENUITEM "2xPM HQ\t(15/16-bit only)",					MENU_SOFTFX_SOFT_2XPM_HQ
-                MENUITEM "Eagle Graphics\t(16-bit only)",               MENU_SOFTFX_SOFT_EAGLE
+                MENUITEM "Eagle Graphics\t(15/16/32-bit only)",               MENU_SOFTFX_SOFT_EAGLE
                 MENUITEM "Super Eagle\t(15/16-bit only)",               MENU_SOFTFX_SOFT_SUPEREAGLE
                 MENUITEM "2xSaI\t(15/16-bit only)",                     MENU_SOFTFX_SOFT_2XSAI
                 MENUITEM "Super 2xSaI\t(15/16-bit only)",	       		MENU_SOFTFX_SOFT_SUPER2XSAI
                 MENUITEM "Super Eagle (VBA)\t(15/16/32-bit only)",      MENU_SOFTFX_SOFT_SUPEREAGLE_VBA
                 MENUITEM "2xSaI (VBA)\t(15/16/32-bit only)",            MENU_SOFTFX_SOFT_2XSAI_VBA
                 MENUITEM "Super 2xSaI (VBA)\t(15/16/32-bit only)",      MENU_SOFTFX_SOFT_SUPER2XSAI_VBA
-                MENUITEM "SuperScale\t(15/16-bit only)",				MENU_SOFTFX_SOFT_SUPERSCALE
-                MENUITEM "SuperScale (75% Scanlines)\t(15/16-bit only)",MENU_SOFTFX_SOFT_SUPERSCALE75
-                MENUITEM "hq2x filter\t(32-bit only)",                  MENU_SOFTFX_SOFT_HQ2X
-                MENUITEM "hq3x filter\t(32-bit only)",                  MENU_SOFTFX_SOFT_HQ3X
-                MENUITEM "hq4x filter\t(32-bit only)",                  MENU_SOFTFX_SOFT_HQ4X
-                MENUITEM "hq2xS (VBA) filter\t(16/32-bit only)",        MENU_SOFTFX_SOFT_HQ2XS_VBA
-                MENUITEM "hq3xS (VBA) filter\t(16/32-bit only)",        MENU_SOFTFX_SOFT_HQ3XS_VBA, GRAYED
+                MENUITEM "SuperScale\t(15/16/32-bit only)",				MENU_SOFTFX_SOFT_SUPERSCALE
+                MENUITEM "SuperScale (75% Scanlines)\t(15/16/32-bit only)",MENU_SOFTFX_SOFT_SUPERSCALE75
+                MENUITEM "hq2x filter\t(15/16/32-bit only)",                  MENU_SOFTFX_SOFT_HQ2X
+                MENUITEM "hq3x filter\t(15/16/32-bit only)",                  MENU_SOFTFX_SOFT_HQ3X
+                MENUITEM "hq4x filter\t(15/16/32-bit only)",                  MENU_SOFTFX_SOFT_HQ4X
+                MENUITEM "hq2xS (VBA) filter\t(15/16/32-bit only)",        MENU_SOFTFX_SOFT_HQ2XS_VBA
+                MENUITEM "hq3xS (VBA) filter\t(15/16/32-bit only)",     MENU_SOFTFX_SOFT_HQ3XS_VBA
                 MENUITEM "hq2xS (SNES9X) Filter\t(16-bit only)",		MENU_SOFTFX_SOFT_HQ2XS_SNES9X
 				MENUITEM "hq3xS (SNEX9X) Filter\t(16-bit only)",		MENU_SOFTFX_SOFT_HQ3XS_SNES9X
 				MENUITEM "hq2xBold Filter\t(16-bit only)",				MENU_SOFTFX_SOFT_HQ2XBOLD
 				MENUITEM "hq3xBold Filter\t(16-bit only)",				MENU_SOFTFX_SOFT_HQ3XBOLD
-				MENUITEM "EPXB Filter\t(16-bit only)",					MENU_SOFTFX_SOFT_EPXB
-				MENUITEM "EPXC Filter\t(16-bit only)",					MENU_SOFTFX_SOFT_EPXC
+				MENUITEM "EPXB Filter\t(15/16/32-bit only)",					MENU_SOFTFX_SOFT_EPXB
+				MENUITEM "EPXC Filter\t(15/16/32-bit only)",					MENU_SOFTFX_SOFT_EPXC
 				MENUITEM "2xBR Squared\t(16-bit only)",					MENU_SOFTFX_SOFT_2XBR_A
 				MENUITEM "2xBR Semi-Rounded\t(16-bit only)",			MENU_SOFTFX_SOFT_2XBR_B
 				MENUITEM "2xBR Rounded\t(16-bit only)",					MENU_SOFTFX_SOFT_2XBR_C
@@ -1774,7 +1800,7 @@ BEGIN
 				MENUITEM "4xBR Squared\t(16-bit only)",					MENU_SOFTFX_SOFT_4XBR_A
 				MENUITEM "4xBR Semi-Rounded\t(16-bit only)",			MENU_SOFTFX_SOFT_4XBR_B
 				MENUITEM "4xBR Rounded\t(16-bit only)",					MENU_SOFTFX_SOFT_4XBR_C
-				MENUITEM "DDT3x\t(16-bit only)",            	        MENU_SOFTFX_SOFT_DDT3X
+				MENUITEM "DDT3x\t(15/16-bit only)",            	        MENU_SOFTFX_SOFT_DDT3X
 				MENUITEM "CRT 2x2 (Fast 480p)\t(32-bit only)",          MENU_SOFTFX_SOFT_CRTx22
 				MENUITEM "CRT 3x3 (720p)\t(32-bit only)",               MENU_SOFTFX_SOFT_CRTx33
 				MENUITEM "CRT 4x4 (1080p)\t(32-bit only)",              MENU_SOFTFX_SOFT_CRTx44
@@ -1873,7 +1899,7 @@ BEGIN
 			MENUITEM "hq3x Filter",								MENU_DX9_ALT_SOFT_HQ3X
 			MENUITEM "hq4x Filter",								MENU_DX9_ALT_SOFT_HQ4X
 			MENUITEM "hq2xS (VBA) Filter",						MENU_DX9_ALT_SOFT_HQ2XS_VBA
-			MENUITEM "hq3xS (VBA) Filter",						MENU_DX9_ALT_SOFT_HQ3XS_VBA, GRAYED
+			MENUITEM "hq3xS (VBA) Filter",						MENU_DX9_ALT_SOFT_HQ3XS_VBA
 			MENUITEM "hq2xS (SNES9X) Filter",					MENU_DX9_ALT_SOFT_HQ2XS_SNES9X
 			MENUITEM "hq3xS (SNEX9X) Filter",					MENU_DX9_ALT_SOFT_HQ3XS_SNES9X
 			MENUITEM "hq2xBold Filter",							MENU_DX9_ALT_SOFT_HQ2XBOLD
@@ -1944,7 +1970,7 @@ BEGIN
 			MENUITEM "hq3x Filter",								MENU_DX9_ALT_SOFT_HQ3X
 			MENUITEM "hq4x Filter",								MENU_DX9_ALT_SOFT_HQ4X
 			MENUITEM "hq2xS (VBA) Filter",						MENU_DX9_ALT_SOFT_HQ2XS_VBA
-			MENUITEM "hq3xS (VBA) Filter",						MENU_DX9_ALT_SOFT_HQ3XS_VBA, GRAYED
+			MENUITEM "hq3xS (VBA) Filter",						MENU_DX9_ALT_SOFT_HQ3XS_VBA
 			MENUITEM "hq2xS (SNES9X) Filter",					MENU_DX9_ALT_SOFT_HQ2XS_SNES9X
 			MENUITEM "hq3xS (SNEX9X) Filter",					MENU_DX9_ALT_SOFT_HQ3XS_SNES9X
 			MENUITEM "hq2xBold Filter",							MENU_DX9_ALT_SOFT_HQ2XBOLD
